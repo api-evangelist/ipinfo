@@ -1,0 +1,96 @@
+capability: 1.0.0
+info:
+  name: IPinfo Whois
+  description: IPinfo whois capability — exposes operations grouped under the OpenAPI tag 'whois'.
+  version: 1.0.0
+  provider: IPinfo
+  domain: IP Intelligence
+consumes:
+  namespace: ipinfo.whois
+  baseURI: https://api.ipinfo.io
+  authentication:
+    type: bearer
+    header: Authorization
+    scheme: Bearer
+    envVar: IPINFO_TOKEN
+  operations:
+  - name: get-whois-net-whoisnetid
+    method: GET
+    path: "/whois/net/{whoisnetid}"
+    summary: IPinfo Returns the WHOIS Information by Net ID Lookup
+    description: "This API endpoint allows users to retrieve WHOIS information based on a specified Net ID.\nThe response includes details such as the IP address range, organization name, country, and various administrative information related to the network."
+  - name: get-whois-net-whoisip
+    method: GET
+    path: "/whois/net/{whoisip}"
+    summary: IPinfo Returns the WHOIS Information by WHOIS IP Address or IP Address Range
+    description: "The WHOIS API lookup via IP address provides WHOIS information based on a specific IP address or IP address range.\nThe response contains detailed information about the organization associated with the IP, including the range of addresses, organization name, administrative contacts, abuse contacts, a"
+  - name: get-whois-net-domain
+    method: GET
+    path: "/whois/net/{domain}"
+    summary: IPinfo Returns the WHOIS Information by WHOIS Domain of an Internet Organization
+    description: The IPinfo WHOIS API lookup via organization organization domain name provides comprehensive WHOIS information for specified organization, enabling users to gain insights into the registration and organizational details of internet entities. The response includes a total count of records, and detail
+  - name: get-whois-net-as-asn
+    method: GET
+    path: "/whois/net/AS{asn}"
+    summary: IPinfo Returns the WHOIS Information by WHOIS ASN
+    description: The IPinfo WHOIS API lookup via ASN provides in-depth WHOIS information associated with a specific Autonomous System Number (ASN). Querying ASN reveals critical data, including the organization's name, the allocated IP range, and the country of operation. The response includes administrative and tec
+  - name: get-whois-org-whoisorgid
+    method: GET
+    path: "/whois/org/{whoisorgid}"
+    summary: IPinfo Returns the WHOIS Information by WHOIS Organization (ORG) ID of an Internet Organization
+    description: The IPinfo WHOIS API lookup via organization IDs (Org) provides comprehensive information about a specific internet organization identified by its WHOIS organization ID. Querying a WHOIS org key returns data about the internet organization. The response includes critical details such as the organiza
+  - name: get-whois-poc-whoispoc
+    method: GET
+    path: "/whois/poc/{whoispoc}"
+    summary: IPinfo Returns the WHOIS Information by WHOIS Point of Contact (POC) Value of an Internet Organization
+    description: The IPinfo WHOIS API lookup via Points of Contact (POC) provides essential details about an individual associated with an internet organization identified by their WHOIS POC ID. For instance, querying the POC ID yields information about the name of the point of contact and their organization locatio
+exposes:
+  rest:
+    namespace: ipinfo.whois
+    port: 8080
+    operations:
+    - name: get-whois-net-whoisnetid
+      method: GET
+      path: "/whois/net/{whoisnetid}"
+      consumes: get-whois-net-whoisnetid
+    - name: get-whois-net-whoisip
+      method: GET
+      path: "/whois/net/{whoisip}"
+      consumes: get-whois-net-whoisip
+    - name: get-whois-net-domain
+      method: GET
+      path: "/whois/net/{domain}"
+      consumes: get-whois-net-domain
+    - name: get-whois-net-as-asn
+      method: GET
+      path: "/whois/net/AS{asn}"
+      consumes: get-whois-net-as-asn
+    - name: get-whois-org-whoisorgid
+      method: GET
+      path: "/whois/org/{whoisorgid}"
+      consumes: get-whois-org-whoisorgid
+    - name: get-whois-poc-whoispoc
+      method: GET
+      path: "/whois/poc/{whoispoc}"
+      consumes: get-whois-poc-whoispoc
+  mcp:
+    namespace: ipinfo.whois
+    tools:
+    - name: get-whois-net-whoisnetid
+      description: IPinfo Returns the WHOIS Information by Net ID Lookup
+      consumes: get-whois-net-whoisnetid
+    - name: get-whois-net-whoisip
+      description: IPinfo Returns the WHOIS Information by WHOIS IP Address or IP Address Range
+      consumes: get-whois-net-whoisip
+    - name: get-whois-net-domain
+      description: IPinfo Returns the WHOIS Information by WHOIS Domain of an Internet Organization
+      consumes: get-whois-net-domain
+    - name: get-whois-net-as-asn
+      description: IPinfo Returns the WHOIS Information by WHOIS ASN
+      consumes: get-whois-net-as-asn
+    - name: get-whois-org-whoisorgid
+      description: IPinfo Returns the WHOIS Information by WHOIS Organization (ORG) ID of an Internet Organization
+      consumes: get-whois-org-whoisorgid
+    - name: get-whois-poc-whoispoc
+      description: IPinfo Returns the WHOIS Information by WHOIS Point of Contact (POC) Value of an Internet Organization
+      consumes: get-whois-poc-whoispoc

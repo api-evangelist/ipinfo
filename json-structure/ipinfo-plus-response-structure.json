@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/ipinfo-plus-response-structure.json",
+  "name": "PlusResponse",
+  "description": "PlusResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "ip": {
+      "type": "string"
+    },
+    "geo": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "region_code": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "country_code": {
+          "type": "string"
+        },
+        "continent": {
+          "type": "string"
+        },
+        "continent_code": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "double"
+        },
+        "longitude": {
+          "type": "double"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "postal_code": {
+          "type": "string"
+        },
+        "dma_code": {
+          "type": "string"
+        },
+        "geoname_id": {
+          "type": "string"
+        },
+        "radius": {
+          "type": "int32"
+        },
+        "last_changed": {
+          "type": "date"
+        }
+      }
+    },
+    "as": {
+      "type": "object",
+      "properties": {
+        "asn": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "last_changed": {
+          "type": "date"
+        }
+      }
+    },
+    "mobile": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "mcc": {
+          "type": "string"
+        },
+        "mnc": {
+          "type": "string"
+        }
+      }
+    },
+    "anonymous": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "is_proxy": {
+          "type": "boolean"
+        },
+        "is_relay": {
+          "type": "boolean"
+        },
+        "is_tor": {
+          "type": "boolean"
+        },
+        "is_vpn": {
+          "type": "boolean"
+        }
+      }
+    },
+    "is_anonymous": {
+      "type": "boolean"
+    },
+    "is_anycast": {
+      "type": "boolean"
+    },
+    "is_hosting": {
+      "type": "boolean"
+    },
+    "is_mobile": {
+      "type": "boolean"
+    },
+    "is_satellite": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "ip"
+  ]
+}

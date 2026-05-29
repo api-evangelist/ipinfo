@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/ipinfo-whois-poc-response-structure.json",
+  "name": "WhoisPocResponse",
+  "description": "WhoisPocResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "poc": {
+      "type": "string"
+    },
+    "total": {
+      "type": "int32"
+    },
+    "page": {
+      "type": "int32"
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "fax": {
+            "type": "string"
+          },
+          "created": {
+            "type": "date"
+          },
+          "updated": {
+            "type": "date"
+          },
+          "source": {
+            "type": "string"
+          },
+          "raw": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/ipinfo-whois-poc-response-schema.json",
+  "title": "WhoisPocResponse",
+  "description": "WhoisPocResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "poc": {
+      "type": "string",
+      "example": "CP312-ARIN"
+    },
+    "total": {
+      "type": "integer",
+      "example": 1
+    },
+    "page": {
+      "type": "integer",
+      "example": 0
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "CP312-ARIN"
+          },
+          "name": {
+            "type": "string",
+            "example": "Cynthia Pararo"
+          },
+          "email": {
+            "type": "string",
+            "example": "spararo@mindspring.com"
+          },
+          "address": {
+            "type": "string",
+            "example": "US, GA, Atlanta, Pineapple Houser\n2131 Plaster Bridge Rd Ne, 303244036"
+          },
+          "country": {
+            "type": "string",
+            "example": "US"
+          },
+          "phone": {
+            "type": "string",
+            "example": ""
+          },
+          "fax": {
+            "type": "string",
+            "example": ""
+          },
+          "created": {
+            "type": "string",
+            "format": "date",
+            "example": "2000-03-25"
+          },
+          "updated": {
+            "type": "string",
+            "format": "date",
+            "example": "2000-03-25"
+          },
+          "source": {
+            "type": "string",
+            "example": "arin"
+          },
+          "raw": {
+            "type": "string",
+            "example": "<raw data>"
+          }
+        }
+      }
+    }
+  },
+  "example": {
+    "poc": "CP312-ARIN",
+    "total": 1,
+    "page": 0,
+    "records": [
+      {
+        "id": "CP312-ARIN",
+        "name": "Cynthia Pararo",
+        "email": "spararo@mindspring.com",
+        "address": "US, GA, Atlanta, Pineapple Houser\n2131 Plaster Bridge Rd Ne, 303244036",
+        "country": "US",
+        "phone": "",
+        "fax": "",
+        "created": "2000-03-25",
+        "updated": "2000-03-25",
+        "source": "arin",
+        "raw": "<raw data>"
+      }
+    ]
+  }
+}

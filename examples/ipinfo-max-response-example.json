@@ -1,0 +1,44 @@
+{
+  "ip": "1.0.126.158",
+  "hostname": "158.126.0.1.megaegg.ne.jp",
+  "geo": {
+    "city": "Izumo",
+    "region": "Shimane",
+    "region_code": "32",
+    "country": "Japan",
+    "country_code": "JP",
+    "continent": "Asia",
+    "continent_code": "AS",
+    "latitude": 35.36667,
+    "longitude": 132.76667,
+    "timezone": "Asia/Tokyo",
+    "postal_code": "693-0001",
+    "dma_code": "501",
+    "geoname_id": "1861084",
+    "radius": 50,
+    "last_changed": "2026-03-22"
+  },
+  "as": {
+    "asn": "AS18144",
+    "name": "Enecom,Inc.",
+    "domain": "enecom.co.jp",
+    "type": "business",
+    "last_changed": "2021-05-01"
+  },
+  "mobile": {},
+  "anonymous": {
+    "name": "Ping Proxies",
+    "last_seen": "2026-03-29",
+    "percent_days_seen": 63,
+    "is_proxy": false,
+    "is_relay": false,
+    "is_tor": false,
+    "is_vpn": false,
+    "is_res_proxy": true
+  },
+  "is_anonymous": true,
+  "is_anycast": false,
+  "is_hosting": false,
+  "is_mobile": false,
+  "is_satellite": false
+}

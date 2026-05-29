@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/ipinfo-whois-org-response-structure.json",
+  "name": "WhoisOrgResponse",
+  "description": "WhoisOrgResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "org": {
+      "type": "string"
+    },
+    "total": {
+      "type": "int32"
+    },
+    "page": {
+      "type": "int32"
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "admin": {
+            "type": "string"
+          },
+          "abuse": {
+            "type": "string"
+          },
+          "tech": {
+            "type": "string"
+          },
+          "maintainer": {
+            "type": "string"
+          },
+          "created": {
+            "type": "date"
+          },
+          "updated": {
+            "type": "date"
+          },
+          "source": {
+            "type": "string"
+          },
+          "raw": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

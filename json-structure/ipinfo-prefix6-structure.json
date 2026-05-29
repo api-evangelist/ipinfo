@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/ipinfo-prefix6-structure.json",
+  "name": "Prefix6",
+  "description": "Prefix6 schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "netblock": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "size": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "netblock",
+    "id",
+    "name",
+    "country"
+  ]
+}

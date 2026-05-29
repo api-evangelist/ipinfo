@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/ipinfo-asn-response-structure.json",
+  "name": "AsnResponse",
+  "description": "AsnResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "asn": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "allocated": {
+      "type": "string"
+    },
+    "registry": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "string"
+    },
+    "num_ips": {
+      "type": "int32"
+    },
+    "route": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "prefixes": {
+      "type": "array",
+      "items": {
+        "$ref": "./ipinfo-prefix-structure.json"
+      }
+    },
+    "prefixes6": {
+      "type": "array",
+      "items": {
+        "$ref": "./ipinfo-prefix6-structure.json"
+      }
+    },
+    "peers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "upstreams": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "downstreams": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "asn",
+    "name",
+    "domain",
+    "type"
+  ]
+}

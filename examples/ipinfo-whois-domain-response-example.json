@@ -1,0 +1,23 @@
+{
+  "net": "comcast.net",
+  "total": 80,
+  "page": 0,
+  "records": [
+    {
+      "range": "24.147.0.0/17",
+      "id": "NEW-ENGLAND-10",
+      "name": "Comcast Cable Communications Holdings, Inc",
+      "country": "US",
+      "org": "C02610737",
+      "status": "REASSIGNMENT",
+      "tech": null,
+      "maintainer": null,
+      "admin": null,
+      "abuse": null,
+      "updated": "2010-10-18",
+      "source": "arin",
+      "raw": "<raw data>",
+      "domain": "comcast.net"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/ipinfo-full-response-schema.json",
+  "title": "FullResponse",
+  "description": "FullResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "ip": {
+      "type": "string",
+      "example": "66.87.125.72"
+    },
+    "bogon": {
+      "type": "boolean",
+      "example": false
+    },
+    "hostname": {
+      "type": "string",
+      "example": "ip-66-87-125-72.spfdma.spcsdns.net"
+    },
+    "city": {
+      "type": "string",
+      "example": "Springfield"
+    },
+    "region": {
+      "type": "string",
+      "example": "Massachusetts"
+    },
+    "country": {
+      "type": "string",
+      "example": "US"
+    },
+    "loc": {
+      "type": "string",
+      "example": "42.0999,-72.5783"
+    },
+    "postal": {
+      "type": "string",
+      "example": "01105"
+    },
+    "timezone": {
+      "type": "string",
+      "example": "America/New_York"
+    },
+    "org": {
+      "type": "string",
+      "example": "AS51501 Khabarovsk home networks Ltd"
+    },
+    "asn": {
+      "$ref": "./ipinfo-asn-response-schema.json"
+    },
+    "company": {
+      "$ref": "./ipinfo-company-response-schema.json"
+    },
+    "carrier": {
+      "$ref": "./ipinfo-carrier-response-schema.json"
+    },
+    "privacy": {
+      "$ref": "./ipinfo-privacy-response-schema.json"
+    },
+    "domains": {
+      "$ref": "./ipinfo-domains-response-schema.json"
+    }
+  },
+  "required": [
+    "ip"
+  ]
+}

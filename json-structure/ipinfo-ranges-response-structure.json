@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/ipinfo-ranges-response-structure.json",
+  "name": "RangesResponse",
+  "description": "RangesResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "domain": {
+      "type": "string"
+    },
+    "num_ranges": {
+      "type": "string"
+    },
+    "redirects_to": {
+      "type": "string"
+    },
+    "ranges": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "domain",
+    "redirects_to",
+    "num_ranges",
+    "ranges"
+  ]
+}

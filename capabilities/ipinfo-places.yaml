@@ -1,0 +1,36 @@
+capability: 1.0.0
+info:
+  name: IPinfo Places
+  description: IPinfo places capability — exposes operations grouped under the OpenAPI tag 'places'.
+  version: 1.0.0
+  provider: IPinfo
+  domain: IP Intelligence
+consumes:
+  namespace: ipinfo.places
+  baseURI: https://api.ipinfo.io
+  authentication:
+    type: bearer
+    header: Authorization
+    scheme: Bearer
+    envVar: IPINFO_TOKEN
+  operations:
+  - name: getPlaceByIp
+    method: GET
+    path: /places/{ip}
+    summary: IPinfo Returns Building-level Place Information for the Provided IP
+    description: Returns the real-world location associated with an IP address at the building level, including hotels, airports, museums, stadiums, and 30+ other categories. Includes venue name, category, SSID, and coordinates.
+exposes:
+  rest:
+    namespace: ipinfo.places
+    port: 8080
+    operations:
+    - name: getPlaceByIp
+      method: GET
+      path: /places/{ip}
+      consumes: getPlaceByIp
+  mcp:
+    namespace: ipinfo.places
+    tools:
+    - name: getPlaceByIp
+      description: IPinfo Returns Building-level Place Information for the Provided IP
+      consumes: getPlaceByIp

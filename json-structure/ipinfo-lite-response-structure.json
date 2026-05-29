@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/ipinfo-lite-response-structure.json",
+  "name": "LiteResponse",
+  "description": "LiteResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "ip": {
+      "type": "string"
+    },
+    "asn": {
+      "type": "string"
+    },
+    "as_name": {
+      "type": "string"
+    },
+    "as_domain": {
+      "type": "string"
+    },
+    "country_code": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "continent_code": {
+      "type": "string"
+    },
+    "continent": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "ip",
+    "asn",
+    "as_name",
+    "as_domain",
+    "country_code",
+    "country",
+    "continent_code",
+    "continent"
+  ]
+}

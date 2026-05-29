@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/ipinfo-prefix-schema.json",
+  "title": "Prefix",
+  "description": "Prefix schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "netblock": {
+      "type": "string",
+      "example": "104.69.216.0/22"
+    },
+    "id": {
+      "type": "string",
+      "example": "AKAMAI"
+    },
+    "name": {
+      "type": "string",
+      "example": "Akamai Technologies, Inc."
+    },
+    "country": {
+      "type": "string",
+      "example": "US"
+    },
+    "size": {
+      "type": "string",
+      "example": "256"
+    },
+    "status": {
+      "type": "string",
+      "example": "ALLOCATION"
+    },
+    "domain": {
+      "type": "string",
+      "nullable": true,
+      "example": "quadranet.com"
+    }
+  },
+  "required": [
+    "netblock",
+    "id",
+    "name",
+    "country"
+  ]
+}

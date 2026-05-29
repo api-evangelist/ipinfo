@@ -1,0 +1,72 @@
+capability: 1.0.0
+info:
+  name: IPinfo Ipinfo Lite
+  description: IPinfo ipinfo lite capability — exposes operations grouped under the OpenAPI tag 'ipinfo lite'.
+  version: 1.0.0
+  provider: IPinfo
+  domain: IP Intelligence
+consumes:
+  namespace: ipinfo.ipinfo-lite
+  baseURI: https://api.ipinfo.io
+  authentication:
+    type: bearer
+    header: Authorization
+    scheme: Bearer
+    envVar: IPINFO_TOKEN
+  operations:
+  - name: getCurrentLiteInformation
+    method: GET
+    path: "/lite/me"
+    summary: IPinfo Returns Lightweight IP Information About the Current IP
+    description: Returns lightweight IP information about the current IP including ASN details, country, and continent information.
+  - name: getLiteInformationByIp
+    method: GET
+    path: "/lite/{ip}"
+    summary: IPinfo Returns Lightweight IP Information About the Provided IP
+    description: 'Returns lightweight IP information about the provided IP including ASN details, country, and continent information. For bogon/private IPs, returns a response with bogon: true.'
+  - name: getCurrentLiteField
+    method: GET
+    path: "/lite/me/{field}"
+    summary: IPinfo Returns a Specific Field from Lightweight IP Information About the Current IP
+    description: Returns a specific field from lightweight IP information about the current IP.
+  - name: getLiteFieldByIp
+    method: GET
+    path: "/lite/{ip}/{field}"
+    summary: IPinfo Returns a Specific Field from Lightweight IP Information About the Provided IP
+    description: Returns a specific field from lightweight IP information about the provided IP.
+exposes:
+  rest:
+    namespace: ipinfo.ipinfo-lite
+    port: 8080
+    operations:
+    - name: getCurrentLiteInformation
+      method: GET
+      path: "/lite/me"
+      consumes: getCurrentLiteInformation
+    - name: getLiteInformationByIp
+      method: GET
+      path: "/lite/{ip}"
+      consumes: getLiteInformationByIp
+    - name: getCurrentLiteField
+      method: GET
+      path: "/lite/me/{field}"
+      consumes: getCurrentLiteField
+    - name: getLiteFieldByIp
+      method: GET
+      path: "/lite/{ip}/{field}"
+      consumes: getLiteFieldByIp
+  mcp:
+    namespace: ipinfo.ipinfo-lite
+    tools:
+    - name: getCurrentLiteInformation
+      description: IPinfo Returns Lightweight IP Information About the Current IP
+      consumes: getCurrentLiteInformation
+    - name: getLiteInformationByIp
+      description: IPinfo Returns Lightweight IP Information About the Provided IP
+      consumes: getLiteInformationByIp
+    - name: getCurrentLiteField
+      description: IPinfo Returns a Specific Field from Lightweight IP Information About the Current IP
+      consumes: getCurrentLiteField
+    - name: getLiteFieldByIp
+      description: IPinfo Returns a Specific Field from Lightweight IP Information About the Provided IP
+      consumes: getLiteFieldByIp

@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/ipinfo-core-response-schema.json",
+  "title": "CoreResponse",
+  "description": "CoreResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "ip": {
+      "type": "string",
+      "example": "8.8.8.8"
+    },
+    "hostname": {
+      "type": "string",
+      "example": "dns.google"
+    },
+    "geo": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string",
+          "example": "Mountain View"
+        },
+        "region": {
+          "type": "string",
+          "example": "California"
+        },
+        "region_code": {
+          "type": "string",
+          "example": "CA"
+        },
+        "country": {
+          "type": "string",
+          "example": "United States"
+        },
+        "country_code": {
+          "type": "string",
+          "example": "US"
+        },
+        "continent": {
+          "type": "string",
+          "example": "North America"
+        },
+        "continent_code": {
+          "type": "string",
+          "example": "NA"
+        },
+        "latitude": {
+          "type": "number",
+          "example": 37.4056
+        },
+        "longitude": {
+          "type": "number",
+          "example": -122.0775
+        },
+        "timezone": {
+          "type": "string",
+          "example": "America/Los_Angeles"
+        },
+        "postal_code": {
+          "type": "string",
+          "example": "94043"
+        }
+      }
+    },
+    "as": {
+      "type": "object",
+      "properties": {
+        "asn": {
+          "type": "string",
+          "example": "AS15169"
+        },
+        "name": {
+          "type": "string",
+          "example": "Google LLC"
+        },
+        "domain": {
+          "type": "string",
+          "example": "google.com"
+        },
+        "type": {
+          "type": "string",
+          "example": "hosting"
+        }
+      }
+    },
+    "is_anonymous": {
+      "type": "boolean",
+      "example": false
+    },
+    "is_anycast": {
+      "type": "boolean",
+      "example": true
+    },
+    "is_hosting": {
+      "type": "boolean",
+      "example": true
+    },
+    "is_mobile": {
+      "type": "boolean",
+      "example": false
+    },
+    "is_satellite": {
+      "type": "boolean",
+      "example": false
+    }
+  },
+  "required": [
+    "ip"
+  ]
+}

@@ -1,0 +1,113 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: IPinfo
+providerId: ipinfo
+created: '2026-05-29'
+modified: '2026-05-29'
+reconciled: true
+tags:
+  - Rate Limiting
+  - IP Intelligence
+  - Quota
+  - Throttling
+description: >-
+  IPinfo enforces rate limits per access token, not per IP. Limits are
+  expressed as a monthly request quota on the Lookup endpoints (Core / Plus
+  / Max / Enterprise) — the quota size is selected at sign-up via a slider
+  (150k–5M / month) and overages bill at a per-1k rate. The free Lite tier
+  has no daily, hourly, or per-second throttling, and paid tiers explicitly
+  publish 'no concurrent request limits, no per-second throttling.' The
+  Summarize IPs and Map IPs tools enforce a separate 5-uses-per-day limit
+  irrespective of plan. The Batch endpoint allows bulk enrichment within
+  the monthly quota.
+sources:
+  - https://ipinfo.io/developers
+  - https://ipinfo.io/developers/rate-limits
+  - https://ipinfo.io/pricing
+headers:
+  retryAfter: Retry-After
+responseCodes:
+  throttled: 429
+  quotaExceeded: 429
+  forbidden: 403
+limits:
+  - name: IPinfo Lite — Unlimited (free tier)
+    scope: account
+    metric: requests_per_month
+    limit: -1
+    timeFrame: month
+    notes: No daily, hourly, or per-second caps. Attribution required for commercial use.
+
+  - name: IPinfo Core — Monthly quota
+    scope: account
+    metric: requests_per_month
+    limit: 150000
+    timeFrame: month
+    notes: Adjustable from 150k to 5M via signup slider. Overages bill at $0.54 / 1k requests.
+
+  - name: IPinfo Plus — Monthly quota
+    scope: account
+    metric: requests_per_month
+    limit: 150000
+    timeFrame: month
+    notes: Adjustable from 150k to 5M. Overages $0.81 / 1k.
+
+  - name: IPinfo Max — Monthly quota
+    scope: account
+    metric: requests_per_month
+    limit: 150000
+    timeFrame: month
+    notes: Adjustable from 150k to 5M. Overages $1.03 / 1k.
+
+  - name: IPinfo Enterprise — Custom monthly quota
+    scope: account
+    metric: requests_per_month
+    limit: 'negotiated via sales'
+    notes: Custom volumes and SLA.
+
+  - name: Concurrent requests (paid tiers)
+    scope: account
+    metric: concurrent_requests
+    limit: -1
+    notes: No concurrent request limits on paid plans.
+
+  - name: Per-second throttling (paid tiers)
+    scope: account
+    metric: requests_per_second
+    limit: -1
+    timeFrame: second
+    notes: No per-second throttling on paid plans.
+
+  - name: Summarize IPs tool
+    scope: account
+    metric: requests_per_day
+    limit: 5
+    timeFrame: day
+    notes: Hard daily cap on the /tools/summarize-ips endpoint; promotes upgrading to the Lite API for higher volume.
+
+  - name: Map IPs tool
+    scope: account
+    metric: requests_per_day
+    limit: 5
+    timeFrame: day
+    notes: Hard daily cap on the /tools/map endpoint.
+
+policies:
+  - name: Token-scoped limits
+    description: All rate limits are enforced against the access token, not the source IP. Multiple deployments sharing one token share the quota.
+
+  - name: Soft monthly quota with metered overages
+    description: When the included monthly request count is exceeded, requests continue to succeed but are billed at the per-1k overage rate for the plan. Configurable alerts (e.g. 80% / 100% of quota) can be set in the dashboard.
+
+  - name: 429 on tool throttling
+    description: The /tools/summarize-ips and /tools/map endpoints return HTTP 429 with a message directing the caller to use the Lite API for higher-volume needs.
+
+  - name: 403 on auth failure or quota lockout
+    description: Returns HTTP 403 when the token is missing, invalid, or has been suspended for billing or policy reasons.
+
+  - name: Three authentication methods
+    description: Tokens can be presented via HTTP Basic Auth (token as username, empty password), Bearer header (Authorization Bearer), or query parameter (?token=...).
+
+  - name: Database product bypasses limits
+    description: Customers on the downloadable IPinfo Database product perform lookups locally with no API rate-limit applicability.

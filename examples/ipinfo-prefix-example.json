@@ -1,0 +1,9 @@
+{
+  "netblock": "104.69.216.0/22",
+  "id": "AKAMAI",
+  "name": "Akamai Technologies, Inc.",
+  "country": "US",
+  "size": "256",
+  "status": "ALLOCATION",
+  "domain": "quadranet.com"
+}

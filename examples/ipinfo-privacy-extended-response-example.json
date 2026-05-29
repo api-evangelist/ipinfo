@@ -1,0 +1,18 @@
+{
+  "vpn": true,
+  "proxy": false,
+  "tor": false,
+  "relay": false,
+  "hosting": true,
+  "service": "NordVPN",
+  "confidence": 3,
+  "coverage": 1.0,
+  "census": false,
+  "census_ports": [],
+  "device_activity": false,
+  "inferred": false,
+  "vpn_config": false,
+  "whois": false,
+  "first_seen": "2025-09-19",
+  "last_seen": "2025-11-06"
+}

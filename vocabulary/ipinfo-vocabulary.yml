@@ -1,0 +1,214 @@
+vocabulary: 1.0.0
+info:
+  provider: IPinfo
+  description: Vocabulary for the IPinfo IP intelligence platform — covers the operational (REST API) and capability (Naftiko) dimensions of the unified IPinfo API.
+  created: '2026-05-29'
+  modified: '2026-05-29'
+operational:
+  apis:
+  - name: IPinfo Core API
+    namespace: ipinfo
+    baseUrl: https://api.ipinfo.io
+    status: active
+    version: 1.0.0
+  resources:
+  - name: abuse
+    operationCount: 1
+  - name: asn
+    operationCount: 1
+  - name: carrier
+    operationCount: 1
+  - name: company
+    operationCount: 1
+  - name: domains
+    operationCount: 1
+  - name: general
+    operationCount: 6
+  - name: ipinfo core
+    operationCount: 4
+  - name: ipinfo lite
+    operationCount: 4
+  - name: ipinfo max
+    operationCount: 1
+  - name: ipinfo plus
+    operationCount: 4
+  - name: places
+    operationCount: 1
+  - name: privacy detection
+    operationCount: 1
+  - name: privacy detection extended
+    operationCount: 1
+  - name: ranges
+    operationCount: 1
+  - name: residential proxy detection
+    operationCount: 1
+  - name: single
+    operationCount: 18
+  - name: whois
+    operationCount: 6
+  actions:
+  - verb: batch
+    methods:
+    - POST
+  - verb: get
+    methods:
+    - GET
+  - verb: map
+    methods:
+    - POST
+  - verb: summarize
+    methods:
+    - POST
+  schemas:
+  - name: AbuseResponse
+    type: object
+  - name: AsnResponse
+    type: object
+  - name: CarrierResponse
+    type: object
+  - name: CompanyResponse
+    type: object
+  - name: CoreResponse
+    type: object
+  - name: DomainsResponse
+    type: object
+  - name: Error400
+    type: object
+  - name: Error400Me
+    type: object
+  - name: Error403
+    type: object
+  - name: Error404
+    type: object
+  - name: Error404ASN
+    type: object
+  - name: Error422
+    type: object
+  - name: Error429
+    type: object
+  - name: Error500
+    type: object
+  - name: FullResponse
+    type: object
+  - name: LiteResponse
+    type: object
+  - name: MaxResponse
+    type: object
+  - name: MeResponse
+    type: object
+  - name: PlacesResponse
+    type: object
+  - name: PlusResponse
+    type: object
+  - name: Prefix
+    type: object
+  - name: Prefix6
+    type: object
+  - name: PrivacyExtendedResponse
+    type: object
+  - name: PrivacyResponse
+    type: object
+  - name: RangesResponse
+    type: object
+  - name: ResidentialProxyResponse
+    type: object
+  - name: WhoisAsnResponse
+    type: object
+  - name: WhoisDomainResponse
+    type: object
+  - name: WhoisIpResponse
+    type: object
+  - name: WhoisNetIdResponse
+    type: object
+  - name: WhoisOrgResponse
+    type: object
+  - name: WhoisPocResponse
+    type: object
+  authentication:
+    schemes:
+    - BasicAuth
+    - BearerAuth
+    - ApiKeyAuth
+    tokenEnvVar: IPINFO_TOKEN
+capability:
+  workflows:
+  - name: IPinfo abuse
+    file: capabilities/ipinfo-abuse.yaml
+    toolCount: 1
+  - name: IPinfo asn
+    file: capabilities/ipinfo-asn.yaml
+    toolCount: 1
+  - name: IPinfo carrier
+    file: capabilities/ipinfo-carrier.yaml
+    toolCount: 1
+  - name: IPinfo company
+    file: capabilities/ipinfo-company.yaml
+    toolCount: 1
+  - name: IPinfo domains
+    file: capabilities/ipinfo-domains.yaml
+    toolCount: 1
+  - name: IPinfo general
+    file: capabilities/ipinfo-general.yaml
+    toolCount: 6
+  - name: IPinfo ipinfo core
+    file: capabilities/ipinfo-ipinfo-core.yaml
+    toolCount: 4
+  - name: IPinfo ipinfo lite
+    file: capabilities/ipinfo-ipinfo-lite.yaml
+    toolCount: 4
+  - name: IPinfo ipinfo max
+    file: capabilities/ipinfo-ipinfo-max.yaml
+    toolCount: 1
+  - name: IPinfo ipinfo plus
+    file: capabilities/ipinfo-ipinfo-plus.yaml
+    toolCount: 4
+  - name: IPinfo places
+    file: capabilities/ipinfo-places.yaml
+    toolCount: 1
+  - name: IPinfo privacy detection
+    file: capabilities/ipinfo-privacy-detection.yaml
+    toolCount: 1
+  - name: IPinfo privacy detection extended
+    file: capabilities/ipinfo-privacy-detection-extended.yaml
+    toolCount: 1
+  - name: IPinfo ranges
+    file: capabilities/ipinfo-ranges.yaml
+    toolCount: 1
+  - name: IPinfo residential proxy detection
+    file: capabilities/ipinfo-residential-proxy-detection.yaml
+    toolCount: 1
+  - name: IPinfo single
+    file: capabilities/ipinfo-single.yaml
+    toolCount: 18
+  - name: IPinfo whois
+    file: capabilities/ipinfo-whois.yaml
+    toolCount: 6
+  personas:
+  - id: fraud-analyst
+    name: Fraud Analyst
+    uses:
+    - IPinfo privacy detection
+    - IPinfo residential proxy detection
+  - id: security-engineer
+    name: Security Engineer
+    uses:
+    - IPinfo abuse
+    - IPinfo whois
+    - IPinfo asn
+  - id: marketing-analyst
+    name: Marketing Analyst
+    uses:
+    - IPinfo ipinfo core
+    - IPinfo ipinfo plus
+  - id: network-engineer
+    name: Network Engineer
+    uses:
+    - IPinfo asn
+    - IPinfo ranges
+    - IPinfo whois
+  domains:
+  - IP Intelligence
+  - Geolocation
+  - Network Data
+  - Security
+  - Privacy Detection

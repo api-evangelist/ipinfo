@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/ipinfo-carrier-response-schema.json",
+  "title": "CarrierResponse",
+  "description": "CarrierResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "example": "Sprint Corporation"
+    },
+    "mcc": {
+      "type": "string",
+      "example": "310"
+    },
+    "mnc": {
+      "type": "string",
+      "example": "120"
+    }
+  },
+  "required": [
+    "name",
+    "mcc",
+    "mnc"
+  ]
+}

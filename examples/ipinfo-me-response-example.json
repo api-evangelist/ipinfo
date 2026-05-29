@@ -1,0 +1,56 @@
+{
+  "token": "TOKEN",
+  "requests": {
+    "day": 0,
+    "month": 69,
+    "limit": 50000,
+    "remaining": 2147483578
+  },
+  "features": {
+    "core": {
+      "daily": 50000,
+      "monthly": 50000
+    },
+    "hostio": {
+      "daily": 50000,
+      "monthly": 50000,
+      "result_limit": 5,
+      "asn": {
+        "daily": 50000,
+        "monthly": 50000
+      },
+      "abuse": {
+        "daily": 50000,
+        "monthly": 50000
+      },
+      "whois": {
+        "daily": 50000,
+        "monthly": 50000
+      },
+      "ranges": {
+        "daily": 50000,
+        "monthly": 50000
+      },
+      "carrier": {
+        "daily": 50000,
+        "monthly": 50000
+      },
+      "company": {
+        "daily": 50000,
+        "monthly": 50000,
+        "firmographics": false,
+        "org_additional": false
+      },
+      "privacy": {
+        "daily": 50000,
+        "monthly": 50000,
+        "vpn_provider": false
+      },
+      "hosted_domains": {
+        "daily": 50000,
+        "monthly": 50000,
+        "result_limit": 5
+      }
+    }
+  }
+}

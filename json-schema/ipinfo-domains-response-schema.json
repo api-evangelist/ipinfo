@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/ipinfo-domains-response-schema.json",
+  "title": "DomainsResponse",
+  "description": "DomainsResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "ip": {
+      "type": "string",
+      "example": "1.1.1.1"
+    },
+    "page": {
+      "type": "integer",
+      "example": 1
+    },
+    "total": {
+      "type": "integer",
+      "example": 17939
+    },
+    "domains": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "example": "udemy.com"
+      }
+    }
+  },
+  "required": [
+    "total"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "poc": "CP312-ARIN",
+  "total": 1,
+  "page": 0,
+  "records": [
+    {
+      "id": "CP312-ARIN",
+      "name": "Cynthia Pararo",
+      "email": "spararo@mindspring.com",
+      "address": "US, GA, Atlanta, Pineapple Houser\n2131 Plaster Bridge Rd Ne, 303244036",
+      "country": "US",
+      "phone": "",
+      "fax": "",
+      "created": "2000-03-25",
+      "updated": "2000-03-25",
+      "source": "arin",
+      "raw": "<raw data>"
+    }
+  ]
+}

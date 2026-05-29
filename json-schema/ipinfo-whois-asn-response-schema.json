@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/ipinfo-whois-asn-response-schema.json",
+  "title": "WhoisAsnResponse",
+  "description": "WhoisAsnResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "net": {
+      "type": "string",
+      "example": "AS9541"
+    },
+    "total": {
+      "type": "integer",
+      "example": 47
+    },
+    "page": {
+      "type": "integer",
+      "example": 0
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "range": {
+            "type": "string",
+            "example": "58.65.203.0/24"
+          },
+          "id": {
+            "type": "string",
+            "example": "CYBERNET"
+          },
+          "name": {
+            "type": "string",
+            "example": "Broadband Services"
+          },
+          "country": {
+            "type": "string",
+            "example": "PK"
+          },
+          "org": {
+            "type": "string",
+            "example": null
+          },
+          "status": {
+            "type": "string",
+            "example": "ALLOCATED NON-PORTABLE"
+          },
+          "admin": {
+            "type": "string",
+            "example": "POC object or null"
+          },
+          "abuse": {
+            "type": "string",
+            "example": "POC object or null"
+          },
+          "tech": {
+            "type": "string",
+            "example": "POC object or null"
+          },
+          "maintainer": {
+            "type": "string",
+            "example": "POC object or null"
+          },
+          "updated": {
+            "type": "string",
+            "format": "date",
+            "example": "2021-01-27"
+          },
+          "source": {
+            "type": "string",
+            "example": "apnic"
+          },
+          "raw": {
+            "type": "string",
+            "example": "<raw data>"
+          }
+        }
+      }
+    }
+  },
+  "example": {
+    "net": "AS9541",
+    "total": 47,
+    "page": 0,
+    "records": [
+      {
+        "range": "58.65.203.0/24",
+        "id": "CYBERNET",
+        "name": "Broadband Services",
+        "country": "PK",
+        "org": null,
+        "status": "ALLOCATED NON-PORTABLE",
+        "admin": "POC object or null",
+        "abuse": "POC object or null",
+        "tech": "POC object or null",
+        "maintainer": "POC object or null",
+        "updated": "2021-01-27",
+        "source": "apnic",
+        "raw": "<raw data>"
+      }
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/ipinfo-ranges-response-schema.json",
+  "title": "RangesResponse",
+  "description": "RangesResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "domain": {
+      "type": "string",
+      "example": "comcast.net"
+    },
+    "num_ranges": {
+      "type": "string",
+      "example": "37330"
+    },
+    "redirects_to": {
+      "type": "string",
+      "example": "xfinity.com"
+    },
+    "ranges": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "example": "23.24.240.0/29"
+      }
+    }
+  },
+  "required": [
+    "domain",
+    "redirects_to",
+    "num_ranges",
+    "ranges"
+  ]
+}

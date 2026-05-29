@@ -1,0 +1,21 @@
+{
+  "org": "PINEAP",
+  "total": 100,
+  "page": 0,
+  "records": [
+    {
+      "id": "PINEAP",
+      "name": "Pineapple Houser",
+      "address": null,
+      "country": "US",
+      "admin": "POC object or null",
+      "abuse": "POC object or null",
+      "tech": "POC object or null",
+      "maintainer": "POC object or null",
+      "created": "2000-03-25",
+      "updated": "2011-09-24",
+      "source": "arin",
+      "raw": "<raw data>"
+    }
+  ]
+}

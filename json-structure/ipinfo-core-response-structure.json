@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/ipinfo-core-response-structure.json",
+  "name": "CoreResponse",
+  "description": "CoreResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "ip": {
+      "type": "string"
+    },
+    "hostname": {
+      "type": "string"
+    },
+    "geo": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "region_code": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "country_code": {
+          "type": "string"
+        },
+        "continent": {
+          "type": "string"
+        },
+        "continent_code": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "double"
+        },
+        "longitude": {
+          "type": "double"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "postal_code": {
+          "type": "string"
+        }
+      }
+    },
+    "as": {
+      "type": "object",
+      "properties": {
+        "asn": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "is_anonymous": {
+      "type": "boolean"
+    },
+    "is_anycast": {
+      "type": "boolean"
+    },
+    "is_hosting": {
+      "type": "boolean"
+    },
+    "is_mobile": {
+      "type": "boolean"
+    },
+    "is_satellite": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "ip"
+  ]
+}

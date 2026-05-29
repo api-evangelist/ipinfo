@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/ipinfo-me-response-structure.json",
+  "name": "MeResponse",
+  "description": "MeResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "token": {
+      "type": "string"
+    },
+    "requests": {
+      "type": "object",
+      "properties": {
+        "day": {
+          "type": "int32"
+        },
+        "month": {
+          "type": "int32"
+        },
+        "limit": {
+          "type": "int32"
+        },
+        "remaining": {
+          "type": "int32"
+        }
+      }
+    },
+    "features": {
+      "type": "object",
+      "properties": {
+        "core": {
+          "type": "object",
+          "properties": {
+            "daily": {
+              "type": "int32"
+            },
+            "monthly": {
+              "type": "int32"
+            }
+          }
+        },
+        "hostio": {
+          "type": "object",
+          "properties": {
+            "daily": {
+              "type": "int32"
+            },
+            "monthly": {
+              "type": "int32"
+            },
+            "result_limit": {
+              "type": "int32"
+            },
+            "asn": {
+              "type": "object",
+              "properties": {
+                "daily": {
+                  "type": "int32"
+                },
+                "monthly": {
+                  "type": "int32"
+                }
+              }
+            },
+            "abuse": {
+              "type": "object",
+              "properties": {
+                "daily": {
+                  "type": "int32"
+                },
+                "monthly": {
+                  "type": "int32"
+                }
+              }
+            },
+            "whois": {
+              "type": "object",
+              "properties": {
+                "daily": {
+                  "type": "int32"
+                },
+                "monthly": {
+                  "type": "int32"
+                }
+              }
+            },
+            "ranges": {
+              "type": "object",
+              "properties": {
+                "daily": {
+                  "type": "int32"
+                },
+                "monthly": {
+                  "type": "int32"
+                }
+              }
+            },
+            "carrier": {
+              "type": "object",
+              "properties": {
+                "daily": {
+                  "type": "int32"
+                },
+                "monthly": {
+                  "type": "int32"
+                }
+              }
+            },
+            "company": {
+              "type": "object",
+              "properties": {
+                "daily": {
+                  "type": "int32"
+                },
+                "monthly": {
+                  "type": "int32"
+                },
+                "firmographics": {
+                  "type": "boolean"
+                },
+                "org_additional": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "privacy": {
+              "type": "object",
+              "properties": {
+                "daily": {
+                  "type": "int32"
+                },
+                "monthly": {
+                  "type": "int32"
+                },
+                "vpn_provider": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "hosted_domains": {
+              "type": "object",
+              "properties": {
+                "daily": {
+                  "type": "int32"
+                },
+                "monthly": {
+                  "type": "int32"
+                },
+                "result_limit": {
+                  "type": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "token",
+    "requests",
+    "features"
+  ]
+}

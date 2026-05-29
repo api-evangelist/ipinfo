@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/ipinfo-max-response-schema.json",
+  "title": "MaxResponse",
+  "description": "MaxResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "ip": {
+      "type": "string",
+      "example": "1.0.126.158"
+    },
+    "hostname": {
+      "type": "string",
+      "example": "158.126.0.1.megaegg.ne.jp"
+    },
+    "geo": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string",
+          "example": "Izumo"
+        },
+        "region": {
+          "type": "string",
+          "example": "Shimane"
+        },
+        "region_code": {
+          "type": "string",
+          "example": "32"
+        },
+        "country": {
+          "type": "string",
+          "example": "Japan"
+        },
+        "country_code": {
+          "type": "string",
+          "example": "JP"
+        },
+        "continent": {
+          "type": "string",
+          "example": "Asia"
+        },
+        "continent_code": {
+          "type": "string",
+          "example": "AS"
+        },
+        "latitude": {
+          "type": "number",
+          "example": 35.36667
+        },
+        "longitude": {
+          "type": "number",
+          "example": 132.76667
+        },
+        "timezone": {
+          "type": "string",
+          "example": "Asia/Tokyo"
+        },
+        "postal_code": {
+          "type": "string",
+          "example": "693-0001"
+        },
+        "dma_code": {
+          "type": "string",
+          "example": "501"
+        },
+        "geoname_id": {
+          "type": "string",
+          "example": "1861084"
+        },
+        "radius": {
+          "type": "integer",
+          "example": 50
+        },
+        "last_changed": {
+          "type": "string",
+          "format": "date",
+          "example": "2026-03-22"
+        }
+      }
+    },
+    "as": {
+      "type": "object",
+      "properties": {
+        "asn": {
+          "type": "string",
+          "example": "AS18144"
+        },
+        "name": {
+          "type": "string",
+          "example": "Enecom,Inc."
+        },
+        "domain": {
+          "type": "string",
+          "example": "enecom.co.jp"
+        },
+        "type": {
+          "type": "string",
+          "example": "business"
+        },
+        "last_changed": {
+          "type": "string",
+          "format": "date",
+          "example": "2021-05-01"
+        }
+      }
+    },
+    "mobile": {
+      "type": "object"
+    },
+    "anonymous": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Ping Proxies"
+        },
+        "last_seen": {
+          "type": "string",
+          "format": "date",
+          "example": "2026-03-29"
+        },
+        "percent_days_seen": {
+          "type": "integer",
+          "example": 63
+        },
+        "is_proxy": {
+          "type": "boolean",
+          "example": false
+        },
+        "is_relay": {
+          "type": "boolean",
+          "example": false
+        },
+        "is_tor": {
+          "type": "boolean",
+          "example": false
+        },
+        "is_vpn": {
+          "type": "boolean",
+          "example": false
+        },
+        "is_res_proxy": {
+          "type": "boolean",
+          "example": true
+        }
+      }
+    },
+    "is_anonymous": {
+      "type": "boolean",
+      "example": true
+    },
+    "is_anycast": {
+      "type": "boolean",
+      "example": false
+    },
+    "is_hosting": {
+      "type": "boolean",
+      "example": false
+    },
+    "is_mobile": {
+      "type": "boolean",
+      "example": false
+    },
+    "is_satellite": {
+      "type": "boolean",
+      "example": false
+    }
+  },
+  "required": [
+    "ip",
+    "geo",
+    "as",
+    "anonymous"
+  ]
+}

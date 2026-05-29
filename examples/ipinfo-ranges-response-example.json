@@ -1,0 +1,8 @@
+{
+  "domain": "comcast.net",
+  "num_ranges": "37330",
+  "redirects_to": "xfinity.com",
+  "ranges": [
+    "23.24.240.0/29"
+  ]
+}

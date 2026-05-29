@@ -1,0 +1,9 @@
+{
+  "netblock": "2601::/20",
+  "id": "COMCAST6NET",
+  "name": "Comcast Cable Communications, LLC",
+  "country": "US",
+  "size": "20282409603651670423947251286016",
+  "status": "ASSIGNMENT",
+  "domain": "comcast.com"
+}

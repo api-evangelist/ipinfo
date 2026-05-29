@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/ipinfo-carrier-response-structure.json",
+  "name": "CarrierResponse",
+  "description": "CarrierResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "mcc": {
+      "type": "string"
+    },
+    "mnc": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "mcc",
+    "mnc"
+  ]
+}

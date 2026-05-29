@@ -1,0 +1,18 @@
+{
+  "net": "24.62.0.0/15",
+  "total": 100,
+  "page": 0,
+  "records": [
+    {
+      "range": "24.62.0.0/15",
+      "id": "NEW-ENGLAND-5",
+      "name": "Comcast Cable Communications Holdings, Inc",
+      "country": "US",
+      "org": "C02610695",
+      "updated": "2010-10-18",
+      "status": "REASSIGNMENT",
+      "source": "arin",
+      "raw": "<raw data>"
+    }
+  ]
+}

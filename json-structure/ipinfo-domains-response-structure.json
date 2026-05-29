@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/ipinfo-domains-response-structure.json",
+  "name": "DomainsResponse",
+  "description": "DomainsResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "ip": {
+      "type": "string"
+    },
+    "page": {
+      "type": "int32"
+    },
+    "total": {
+      "type": "int32"
+    },
+    "domains": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "total"
+  ]
+}

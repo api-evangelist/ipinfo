@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/ipinfo-me-response-schema.json",
+  "title": "MeResponse",
+  "description": "MeResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "token": {
+      "type": "string",
+      "example": "TOKEN"
+    },
+    "requests": {
+      "type": "object",
+      "properties": {
+        "day": {
+          "type": "integer",
+          "example": 0
+        },
+        "month": {
+          "type": "integer",
+          "example": 69
+        },
+        "limit": {
+          "type": "integer",
+          "example": 50000
+        },
+        "remaining": {
+          "type": "integer",
+          "example": 2147483578
+        }
+      }
+    },
+    "features": {
+      "type": "object",
+      "properties": {
+        "core": {
+          "type": "object",
+          "properties": {
+            "daily": {
+              "type": "integer",
+              "example": 50000
+            },
+            "monthly": {
+              "type": "integer",
+              "example": 50000
+            }
+          }
+        },
+        "hostio": {
+          "type": "object",
+          "properties": {
+            "daily": {
+              "type": "integer",
+              "example": 50000
+            },
+            "monthly": {
+              "type": "integer",
+              "example": 50000
+            },
+            "result_limit": {
+              "type": "integer",
+              "example": 5
+            },
+            "asn": {
+              "type": "object",
+              "properties": {
+                "daily": {
+                  "type": "integer",
+                  "example": 50000
+                },
+                "monthly": {
+                  "type": "integer",
+                  "example": 50000
+                }
+              }
+            },
+            "abuse": {
+              "type": "object",
+              "properties": {
+                "daily": {
+                  "type": "integer",
+                  "example": 50000
+                },
+                "monthly": {
+                  "type": "integer",
+                  "example": 50000
+                }
+              }
+            },
+            "whois": {
+              "type": "object",
+              "properties": {
+                "daily": {
+                  "type": "integer",
+                  "example": 50000
+                },
+                "monthly": {
+                  "type": "integer",
+                  "example": 50000
+                }
+              }
+            },
+            "ranges": {
+              "type": "object",
+              "properties": {
+                "daily": {
+                  "type": "integer",
+                  "example": 50000
+                },
+                "monthly": {
+                  "type": "integer",
+                  "example": 50000
+                }
+              }
+            },
+            "carrier": {
+              "type": "object",
+              "properties": {
+                "daily": {
+                  "type": "integer",
+                  "example": 50000
+                },
+                "monthly": {
+                  "type": "integer",
+                  "example": 50000
+                }
+              }
+            },
+            "company": {
+              "type": "object",
+              "properties": {
+                "daily": {
+                  "type": "integer",
+                  "example": 50000
+                },
+                "monthly": {
+                  "type": "integer",
+                  "example": 50000
+                },
+                "firmographics": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "org_additional": {
+                  "type": "boolean",
+                  "example": false
+                }
+              }
+            },
+            "privacy": {
+              "type": "object",
+              "properties": {
+                "daily": {
+                  "type": "integer",
+                  "example": 50000
+                },
+                "monthly": {
+                  "type": "integer",
+                  "example": 50000
+                },
+                "vpn_provider": {
+                  "type": "boolean",
+                  "example": false
+                }
+              }
+            },
+            "hosted_domains": {
+              "type": "object",
+              "properties": {
+                "daily": {
+                  "type": "integer",
+                  "example": 50000
+                },
+                "monthly": {
+                  "type": "integer",
+                  "example": 50000
+                },
+                "result_limit": {
+                  "type": "integer",
+                  "example": 5
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "token",
+    "requests",
+    "features"
+  ]
+}

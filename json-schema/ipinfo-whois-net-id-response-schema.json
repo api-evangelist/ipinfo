@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/ipinfo-whois-net-id-response-schema.json",
+  "title": "WhoisNetIdResponse",
+  "description": "WhoisNetIdResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "net": {
+      "type": "string"
+    },
+    "total": {
+      "type": "integer"
+    },
+    "page": {
+      "type": "integer"
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "range": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "org": {
+            "type": "string"
+          },
+          "admin": {
+            "type": "string"
+          },
+          "abuse": {
+            "type": "string"
+          },
+          "tech": {
+            "type": "string"
+          },
+          "maintainer": {
+            "type": "string"
+          },
+          "updated": {
+            "type": "string",
+            "format": "date"
+          },
+          "status": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "raw": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "range": "24.62.0.0/15",
+          "id": "",
+          "name": "Comcast Cable Communications Holdings, Inc",
+          "country": "US",
+          "org": "POC object or null",
+          "admin": "POC object or null",
+          "abuse": "POC object or null",
+          "tech": "POC object or null",
+          "maintainer": "POC object or null",
+          "updated": "2010-10-18",
+          "status": "REASSIGNMENT",
+          "source": "arin",
+          "raw": "<raw data>"
+        }
+      }
+    }
+  },
+  "example": {
+    "net": "NEW-ENGLAND-5",
+    "total": 100,
+    "page": 0,
+    "records": [
+      {
+        "range": "24.62.0.0/15",
+        "id": "",
+        "name": "Comcast Cable Communications Holdings, Inc",
+        "country": "US",
+        "org": "POC object or null",
+        "admin": "POC object or null",
+        "abuse": "POC object or null",
+        "tech": "POC object or null",
+        "maintainer": "POC object or null",
+        "updated": "2010-10-18",
+        "status": "REASSIGNMENT",
+        "source": "arin",
+        "raw": "<raw data>"
+      }
+    ]
+  }
+}

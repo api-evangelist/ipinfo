@@ -1,0 +1,44 @@
+{
+  "ip": "206.47.33.149",
+  "geo": {
+    "city": "Toronto",
+    "region": "Ontario",
+    "region_code": "ON",
+    "country": "Canada",
+    "country_code": "CA",
+    "continent": "North America",
+    "continent_code": "NA",
+    "latitude": 43.6561,
+    "longitude": -79.3406,
+    "timezone": "America/Toronto",
+    "postal_code": "M4M",
+    "dma_code": "57",
+    "geoname_id": "6167865",
+    "radius": 50,
+    "last_changed": "2025-09-21"
+  },
+  "as": {
+    "asn": "AS577",
+    "name": "Bell Canada",
+    "domain": "bell.ca",
+    "type": "isp",
+    "last_changed": "2025-09-28"
+  },
+  "mobile": {
+    "name": "Bell Mobility",
+    "mcc": "302",
+    "mnc": "610"
+  },
+  "anonymous": {
+    "name": "Google One VPN",
+    "is_proxy": false,
+    "is_relay": false,
+    "is_tor": false,
+    "is_vpn": false
+  },
+  "is_anonymous": false,
+  "is_anycast": false,
+  "is_hosting": false,
+  "is_mobile": true,
+  "is_satellite": false
+}

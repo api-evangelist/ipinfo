@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/ipinfo-company-response-schema.json",
+  "title": "CompanyResponse",
+  "description": "CompanyResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "example": "Sprint Springfield POP"
+    },
+    "domain": {
+      "type": "string",
+      "example": "sprint.com"
+    },
+    "type": {
+      "type": "string",
+      "example": "isp",
+      "enum": [
+        "isp",
+        "business",
+        "education",
+        "hosting"
+      ]
+    }
+  },
+  "required": [
+    "name",
+    "domain",
+    "type"
+  ]
+}

@@ -1,0 +1,72 @@
+capability: 1.0.0
+info:
+  name: IPinfo Ipinfo Core
+  description: IPinfo ipinfo core capability — exposes operations grouped under the OpenAPI tag 'ipinfo core'.
+  version: 1.0.0
+  provider: IPinfo
+  domain: IP Intelligence
+consumes:
+  namespace: ipinfo.ipinfo-core
+  baseURI: https://api.ipinfo.io
+  authentication:
+    type: bearer
+    header: Authorization
+    scheme: Bearer
+    envVar: IPINFO_TOKEN
+  operations:
+  - name: getCurrentCoreInformation
+    method: GET
+    path: "/lookup/me"
+    summary: IPinfo Returns Core IP Information About the Current IP
+    description: Returns comprehensive core IP information about the current IP including geolocation, ASN details, and various IP characteristics.
+  - name: getCoreInformationByIp
+    method: GET
+    path: "/lookup/{ip}"
+    summary: IPinfo Returns Core IP Information About the Provided IP
+    description: Returns comprehensive core IP information about the provided IP including geolocation, ASN details, and various IP characteristics.
+  - name: getCurrentCoreField
+    method: GET
+    path: "/lookup/me/{field}"
+    summary: IPinfo Returns a Specific Field from Core IP Information About the Current IP
+    description: Returns a specific field from core IP information about the current IP.
+  - name: getCoreFieldByIp
+    method: GET
+    path: "/lookup/{ip}/{field}"
+    summary: IPinfo Returns a Specific Field from Core IP Information About the Provided IP
+    description: Returns a specific field from core IP information about the provided IP.
+exposes:
+  rest:
+    namespace: ipinfo.ipinfo-core
+    port: 8080
+    operations:
+    - name: getCurrentCoreInformation
+      method: GET
+      path: "/lookup/me"
+      consumes: getCurrentCoreInformation
+    - name: getCoreInformationByIp
+      method: GET
+      path: "/lookup/{ip}"
+      consumes: getCoreInformationByIp
+    - name: getCurrentCoreField
+      method: GET
+      path: "/lookup/me/{field}"
+      consumes: getCurrentCoreField
+    - name: getCoreFieldByIp
+      method: GET
+      path: "/lookup/{ip}/{field}"
+      consumes: getCoreFieldByIp
+  mcp:
+    namespace: ipinfo.ipinfo-core
+    tools:
+    - name: getCurrentCoreInformation
+      description: IPinfo Returns Core IP Information About the Current IP
+      consumes: getCurrentCoreInformation
+    - name: getCoreInformationByIp
+      description: IPinfo Returns Core IP Information About the Provided IP
+      consumes: getCoreInformationByIp
+    - name: getCurrentCoreField
+      description: IPinfo Returns a Specific Field from Core IP Information About the Current IP
+      consumes: getCurrentCoreField
+    - name: getCoreFieldByIp
+      description: IPinfo Returns a Specific Field from Core IP Information About the Provided IP
+      consumes: getCoreFieldByIp

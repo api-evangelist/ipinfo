@@ -1,32 +1,320 @@
 aid: ipinfo
 name: IPinfo
-description: "Another simple IP Address API"
+description: >-
+  IPinfo is an IP address data and intelligence platform that provides
+  geolocation (country, region, city, coordinates, postal, timezone), ASN data,
+  company association, mobile carrier identification, hosted domains lookup,
+  privacy detection (VPN, proxy, Tor, relay, hosting), residential proxy
+  detection, WHOIS, IP ranges, abuse contacts, and an IP-to-Places product.
+  Data is available via a unified REST API (Lite, Core, Plus, Max, Enterprise
+  tiers), a Batch Enrichment endpoint, and downloadable databases (CSV, MMDB,
+  JSON, Parquet). Authentication uses access tokens via Basic Auth, Bearer
+  Token, or query parameter; dual-stack IPv4/IPv6 endpoints are available.
 url: https://ipinfo.io/developers
+image: https://ipinfo.io/static/images/logo.svg
 specificationVersion: '0.20'
 created: '2026-05-28'
-modified: '2026-05-28'
+modified: '2026-05-29'
 x-source: public-apis/public-apis
 x-category: "Development"
 x-tier: 3
 x-tier-reason: bulk-registered-from-public-apis
 tags:
-  - Development
+  - IP Intelligence
+  - IP Geolocation
+  - ASN
+  - Privacy Detection
+  - VPN Detection
+  - Threat Intelligence
+  - Network Data
+  - Mobile Carrier
+  - WHOIS
   - Public APIs
+  - Development
 apis:
-  - name: IPinfo
-    description: "Another simple IP Address API"
+  - name: IPinfo Core API
+    description: >-
+      Unified IP intelligence REST API exposing the Lite, Core, Plus, Max,
+      Enterprise, Places, ASN, Company, Carrier, Hosted Domains, Privacy
+      Detection (Standard and Extended), Residential Proxy Detection, WHOIS,
+      IP Ranges, Abuse Contact, Batch Enrichment, and Tools (Summarize IPs,
+      Map IPs) endpoints. All endpoints share the same `api.ipinfo.io` base
+      URL and the same token-based authentication.
     humanURL: https://ipinfo.io/developers
-    baseURL: https://ipinfo.io/developers
+    baseURL: https://api.ipinfo.io
     tags:
-      - Development
+      - IP Intelligence
+      - REST API
+      - Geolocation
+      - ASN
+      - Privacy Detection
     properties:
       - type: Documentation
         url: https://ipinfo.io/developers
+      - type: APIReference
+        url: https://ipinfo.io/developers
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/openapi/ipinfo-openapi.yml
+      - type: GettingStarted
+        url: https://ipinfo.io/developers/getting-started
+      - type: Authentication
+        url: https://ipinfo.io/developers#authentication
+      - type: Quickstart
+        url: https://ipinfo.io/developers/lite-api
+      - type: JSONSchema
+        url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/
+      - type: JSONStructure
+        url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/
+      - type: Example
+        url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/examples/
+      - type: SDK
+        title: Python SDK
+        url: https://github.com/ipinfo/python
+      - type: SDK
+        title: Node.js SDK
+        url: https://github.com/ipinfo/node
+      - type: SDK
+        title: Java SDK
+        url: https://github.com/ipinfo/java
+      - type: SDK
+        title: Go SDK
+        url: https://github.com/ipinfo/go
+      - type: SDK
+        title: Ruby SDK
+        url: https://github.com/ipinfo/ruby
+      - type: SDK
+        title: PHP SDK
+        url: https://github.com/ipinfo/php
+      - type: SDK
+        title: C# SDK
+        url: https://github.com/ipinfo/csharp
+      - type: SDK
+        title: Rust SDK
+        url: https://github.com/ipinfo/rust
+      - type: SDK
+        title: Perl SDK
+        url: https://github.com/ipinfo/perl
+      - type: SDK
+        title: Swift SDK
+        url: https://github.com/ipinfo/swift
+      - type: SDK
+        title: Erlang SDK
+        url: https://github.com/ipinfo/erlang
+      - type: SDK
+        title: Django SDK
+        url: https://github.com/ipinfo/django
+      - type: SDK
+        title: Laravel SDK
+        url: https://github.com/ipinfo/laravel
+      - type: SDK
+        title: Spring SDK
+        url: https://github.com/ipinfo/spring
+      - type: SDK
+        title: Rails SDK
+        url: https://github.com/ipinfo/rails
+      - type: SDK
+        title: Node Express SDK
+        url: https://github.com/ipinfo/node-express
+      - type: RateLimits
+        url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/rate-limits/ipinfo-rate-limits.yml
+      - type: Plans
+        url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
 common:
   - type: Website
+    url: https://ipinfo.io
+  - type: DeveloperPortal
     url: https://ipinfo.io/developers
+  - type: SignUp
+    url: https://ipinfo.io/signup
+  - type: Login
+    url: https://ipinfo.io/login
+  - type: Pricing
+    url: https://ipinfo.io/pricing
+  - type: Console
+    title: Dashboard
+    url: https://ipinfo.io/account
+  - type: Blog
+    url: https://ipinfo.io/blog
+  - type: Support
+    url: https://support.ipinfo.io
+  - type: StatusPage
+    url: https://status.ipinfo.io
+  - type: ChangeLog
+    url: https://ipinfo.io/changelog
+  - type: TermsOfService
+    url: https://ipinfo.io/terms-of-service
+  - type: PrivacyPolicy
+    url: https://ipinfo.io/privacy-policy
+  - type: Compliance
+    url: https://ipinfo.io/security
+  - type: GitHubOrganization
+    url: https://github.com/ipinfo
+  - type: CLI
+    title: IPinfo CLI
+    url: https://github.com/ipinfo/cli
+  - type: CLI
+    title: mmdbctl (MMDB File Management CLI)
+    url: https://github.com/ipinfo/mmdbctl
+  - type: Tools
+    title: Summarize IPs Tool
+    url: https://ipinfo.io/tools/summarize-ips
+  - type: Tools
+    title: Map IPs Tool
+    url: https://ipinfo.io/tools/map
+  - type: CodeExamples
+    title: Sample Database Repository
+    url: https://github.com/ipinfo/sample-database
+  - type: CodeExamples
+    title: Rails Example App
+    url: https://github.com/ipinfo/rails-example
+  - type: CodeExamples
+    title: Docker Image
+    url: https://github.com/ipinfo/docker
+  - type: SpectralRules
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/rules/ipinfo-spectral-rules.yml
+  - type: Vocabulary
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/vocabulary/ipinfo-vocabulary.yml
+  - type: JSON-LD
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-ld/ipinfo-context.jsonld
+  - type: NaftikoCapability
+    title: General
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-general.yaml
+  - type: NaftikoCapability
+    title: IPinfo Lite
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-ipinfo-lite.yaml
+  - type: NaftikoCapability
+    title: IPinfo Core
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-ipinfo-core.yaml
+  - type: NaftikoCapability
+    title: IPinfo Plus
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-ipinfo-plus.yaml
+  - type: NaftikoCapability
+    title: IPinfo Max
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-ipinfo-max.yaml
+  - type: NaftikoCapability
+    title: Places
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-places.yaml
+  - type: NaftikoCapability
+    title: ASN
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-asn.yaml
+  - type: NaftikoCapability
+    title: Company
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-company.yaml
+  - type: NaftikoCapability
+    title: Carrier
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-carrier.yaml
+  - type: NaftikoCapability
+    title: Ranges
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-ranges.yaml
+  - type: NaftikoCapability
+    title: Domains
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-domains.yaml
+  - type: NaftikoCapability
+    title: Abuse
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-abuse.yaml
+  - type: NaftikoCapability
+    title: Privacy Detection
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-privacy-detection.yaml
+  - type: NaftikoCapability
+    title: Privacy Detection Extended
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-privacy-detection-extended.yaml
+  - type: NaftikoCapability
+    title: Residential Proxy Detection
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-residential-proxy-detection.yaml
+  - type: NaftikoCapability
+    title: WHOIS
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-whois.yaml
+  - type: NaftikoCapability
+    title: Single Field
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-single.yaml
   - type: PublicAPIsListing
     url: https://github.com/public-apis/public-apis
+  - type: Features
+    data:
+      - name: IP Geolocation
+        description: City, region, country, postal code, coordinates, and timezone for any IP.
+      - name: ASN Data
+        description: Autonomous System Number, organization, domain, type, peers, upstreams, downstreams, and prefixes.
+      - name: Company Identification
+        description: Organization name, type, and domain associated with an IP block.
+      - name: Mobile Carrier Detection
+        description: Carrier name, Mobile Country Code (MCC), and Mobile Network Code (MNC).
+      - name: Hosted Domains
+        description: List of domains hosted on an IP address (up to 1,000 per request).
+      - name: Privacy Detection
+        description: Identifies VPN, proxy, Tor, relay, and hosting provider anonymization services.
+      - name: Residential Proxy Detection
+        description: Detects residential, mobile, and datacenter proxies with last-seen recency.
+      - name: Abuse Contact
+        description: Network administrator address, email, and phone for reporting abuse.
+      - name: WHOIS
+        description: WHOIS lookup by Net ID, IP, domain, ASN, organization, or point-of-contact.
+      - name: Batch Enrichment
+        description: Bulk lookup of up to thousands of IPs in a single request.
+      - name: Database Downloads
+        description: Daily-refreshed CSV, MMDB, JSON, and Parquet database files.
+      - name: IPv4 and IPv6 Support
+        description: Dual-stack service with explicit v4.api.ipinfo.io and v6.api.ipinfo.io endpoints.
+      - name: Field Filtering
+        description: Request a single field (plaintext) or filtered object (JSON) per lookup.
+      - name: 99.999% Uptime
+        description: High-availability service with 50-200 ms typical response time.
+  - type: UseCases
+    data:
+      - name: Fraud Prevention
+        description: Block or flag traffic from VPNs, proxies, Tor, and known abuse sources.
+      - name: Geo-Targeted Content
+        description: Personalize content, pricing, and language based on visitor country and city.
+      - name: Compliance and Geofencing
+        description: Enforce geographic licensing or regulatory restrictions on content access.
+      - name: Cybersecurity and Threat Intelligence
+        description: Enrich SIEM, SOAR, and EDR events with IP context for faster triage.
+      - name: Ad Tech and Marketing Analytics
+        description: Attribute conversions, dedupe sessions, and segment by carrier or ASN.
+      - name: Log Enrichment
+        description: Add geolocation, ASN, and privacy flags to web, application, and network logs.
+      - name: Bot Detection
+        description: Identify datacenter and hosting-provider IPs that are likely bots.
+      - name: Account Takeover Prevention
+        description: Detect anomalous logins from unusual countries or proxy networks.
+      - name: Customer Support Triage
+        description: Surface visitor location and ISP to support agents in real time.
+      - name: Network Engineering
+        description: Look up ASN peering, prefixes, and abuse contacts during incident response.
+  - type: Integrations
+    data:
+      - name: Splunk
+        description: IPinfo Splunk app and lookups for SIEM enrichment.
+      - name: Elastic / Logstash
+        description: Logstash filter plugin for IPinfo MMDB database enrichment.
+      - name: Cloudflare Workers
+        description: Enrich edge requests with IPinfo data inside Workers.
+      - name: AWS Lambda
+        description: Serverless enrichment using IPinfo SDKs and Lambda layers.
+      - name: Snowflake
+        description: Bulk database loads of IPinfo data for analytical warehouses.
+      - name: Datadog
+        description: Use IPinfo enrichment in Datadog dashboards and detection rules.
+      - name: Heroku
+        description: Use IPinfo SDKs (Rails, Node, Python, etc.) in Heroku apps.
+      - name: Docker
+        description: Official Docker image and Compose files for self-hosted enrichment.
+      - name: Homebrew
+        description: Install the IPinfo CLI and mmdbctl via Homebrew tap.
+  - type: Solutions
+    data:
+      - name: IPinfo Lite
+        description: Free, unlimited tier with country, continent, and ASN attributes.
+      - name: IPinfo Core
+        description: Paid tier with 16 attributes including city-level geolocation and basic privacy detection.
+      - name: IPinfo Plus
+        description: Paid tier with 32 attributes including carrier data and named privacy services.
+      - name: IPinfo Max
+        description: Paid tier with 35 attributes including residential proxy detection.
+      - name: IPinfo Enterprise
+        description: Custom tier with 40+ attributes, full WHOIS, IP ranges, dedicated account manager.
+      - name: IPinfo Database
+        description: Downloadable IP database in CSV, MMDB, JSON, and Parquet for offline lookups.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

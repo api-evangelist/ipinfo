@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/ipinfo-abuse-response-schema.json",
+  "title": "AbuseResponse",
+  "description": "AbuseResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "address": {
+      "type": "string",
+      "example": "US, CA, Mountain View, 1600 Amphitheatre Parkway, 94043"
+    },
+    "country": {
+      "type": "string",
+      "example": "US"
+    },
+    "email": {
+      "type": "string",
+      "example": "network-abuse@google.com"
+    },
+    "name": {
+      "type": "string",
+      "example": "Abuse"
+    },
+    "network": {
+      "type": "string",
+      "example": "8.8.8.0/24"
+    },
+    "phone": {
+      "type": "string",
+      "example": "+1-650-253-0000"
+    }
+  }
+}

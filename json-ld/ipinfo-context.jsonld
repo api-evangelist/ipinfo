@@ -1,0 +1,443 @@
+{
+  "@context": {
+    "ipinfo": "https://schema.ipinfo.io/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "AbuseResponse": "ipinfo:AbuseResponse",
+    "AsnResponse": "ipinfo:AsnResponse",
+    "CarrierResponse": "ipinfo:CarrierResponse",
+    "CompanyResponse": "ipinfo:CompanyResponse",
+    "CoreResponse": "ipinfo:CoreResponse",
+    "DomainsResponse": "ipinfo:DomainsResponse",
+    "Error400Me": "ipinfo:Error400Me",
+    "Error400": "ipinfo:Error400",
+    "Error403": "ipinfo:Error403",
+    "Error404ASN": "ipinfo:Error404ASN",
+    "Error404": "ipinfo:Error404",
+    "Error422": "ipinfo:Error422",
+    "Error429": "ipinfo:Error429",
+    "FullResponse": "ipinfo:FullResponse",
+    "LiteResponse": "ipinfo:LiteResponse",
+    "MaxResponse": "ipinfo:MaxResponse",
+    "MeResponse": "ipinfo:MeResponse",
+    "PlacesResponse": "ipinfo:PlacesResponse",
+    "PlusResponse": "ipinfo:PlusResponse",
+    "Prefix": "ipinfo:Prefix",
+    "Prefix6": "ipinfo:Prefix6",
+    "PrivacyExtendedResponse": "ipinfo:PrivacyExtendedResponse",
+    "PrivacyResponse": "ipinfo:PrivacyResponse",
+    "RangesResponse": "ipinfo:RangesResponse",
+    "ResidentialProxyResponse": "ipinfo:ResidentialProxyResponse",
+    "WhoisAsnResponse": "ipinfo:WhoisAsnResponse",
+    "WhoisDomainResponse": "ipinfo:WhoisDomainResponse",
+    "WhoisIpResponse": "ipinfo:WhoisIpResponse",
+    "WhoisNetIdResponse": "ipinfo:WhoisNetIdResponse",
+    "WhoisOrgResponse": "ipinfo:WhoisOrgResponse",
+    "WhoisPocResponse": "ipinfo:WhoisPocResponse",
+    "address": {
+      "@id": "schema:address",
+      "@type": "xsd:string"
+    },
+    "country": {
+      "@id": "schema:addressCountry",
+      "@type": "xsd:string"
+    },
+    "email": {
+      "@id": "schema:email",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "network": {
+      "@id": "ipinfo:network",
+      "@type": "xsd:string"
+    },
+    "phone": {
+      "@id": "schema:telephone",
+      "@type": "xsd:string"
+    },
+    "asn": {
+      "@id": "ipinfo:autonomousSystemNumber",
+      "@type": "xsd:string"
+    },
+    "allocated": {
+      "@id": "ipinfo:allocated",
+      "@type": "xsd:string"
+    },
+    "registry": {
+      "@id": "ipinfo:registry",
+      "@type": "xsd:string"
+    },
+    "domain": {
+      "@id": "schema:url",
+      "@type": "xsd:string"
+    },
+    "num_ips": {
+      "@id": "ipinfo:num_ips",
+      "@type": "xsd:integer"
+    },
+    "route": {
+      "@id": "ipinfo:route",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "ipinfo:type",
+      "@type": "xsd:string"
+    },
+    "prefixes": {
+      "@id": "ipinfo:prefixes",
+      "@container": "@list"
+    },
+    "prefixes6": {
+      "@id": "ipinfo:prefixes6",
+      "@container": "@list"
+    },
+    "peers": {
+      "@id": "ipinfo:peers",
+      "@container": "@list"
+    },
+    "upstreams": {
+      "@id": "ipinfo:upstreams",
+      "@container": "@list"
+    },
+    "downstreams": {
+      "@id": "ipinfo:downstreams",
+      "@container": "@list"
+    },
+    "mcc": {
+      "@id": "ipinfo:mcc",
+      "@type": "xsd:string"
+    },
+    "mnc": {
+      "@id": "ipinfo:mnc",
+      "@type": "xsd:string"
+    },
+    "ip": {
+      "@id": "ipinfo:ipAddress",
+      "@type": "xsd:string"
+    },
+    "hostname": {
+      "@id": "schema:url",
+      "@type": "xsd:string"
+    },
+    "geo": {
+      "@id": "ipinfo:geo"
+    },
+    "city": {
+      "@id": "schema:addressLocality",
+      "@type": "xsd:string"
+    },
+    "region": {
+      "@id": "schema:addressRegion",
+      "@type": "xsd:string"
+    },
+    "region_code": {
+      "@id": "ipinfo:region_code",
+      "@type": "xsd:string"
+    },
+    "country_code": {
+      "@id": "ipinfo:country_code",
+      "@type": "xsd:string"
+    },
+    "continent": {
+      "@id": "ipinfo:continent",
+      "@type": "xsd:string"
+    },
+    "continent_code": {
+      "@id": "ipinfo:continent_code",
+      "@type": "xsd:string"
+    },
+    "latitude": {
+      "@id": "schema:latitude",
+      "@type": "xsd:decimal"
+    },
+    "longitude": {
+      "@id": "schema:longitude",
+      "@type": "xsd:decimal"
+    },
+    "timezone": {
+      "@id": "ipinfo:timezone",
+      "@type": "xsd:string"
+    },
+    "postal_code": {
+      "@id": "ipinfo:postal_code",
+      "@type": "xsd:string"
+    },
+    "as": {
+      "@id": "ipinfo:as"
+    },
+    "is_anonymous": {
+      "@id": "ipinfo:is_anonymous",
+      "@type": "xsd:boolean"
+    },
+    "is_anycast": {
+      "@id": "ipinfo:is_anycast",
+      "@type": "xsd:boolean"
+    },
+    "is_hosting": {
+      "@id": "ipinfo:is_hosting",
+      "@type": "xsd:boolean"
+    },
+    "is_mobile": {
+      "@id": "ipinfo:is_mobile",
+      "@type": "xsd:boolean"
+    },
+    "is_satellite": {
+      "@id": "ipinfo:is_satellite",
+      "@type": "xsd:boolean"
+    },
+    "page": {
+      "@id": "ipinfo:page",
+      "@type": "xsd:integer"
+    },
+    "total": {
+      "@id": "ipinfo:total",
+      "@type": "xsd:integer"
+    },
+    "domains": {
+      "@id": "ipinfo:domains",
+      "@container": "@list"
+    },
+    "error": {
+      "@id": "ipinfo:error",
+      "@type": "xsd:string"
+    },
+    "token": {
+      "@id": "ipinfo:token",
+      "@type": "xsd:string"
+    },
+    "title": {
+      "@id": "ipinfo:title",
+      "@type": "xsd:string"
+    },
+    "message": {
+      "@id": "ipinfo:message",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "ipinfo:status",
+      "@type": "xsd:integer"
+    },
+    "bogon": {
+      "@id": "ipinfo:bogon",
+      "@type": "xsd:boolean"
+    },
+    "loc": {
+      "@id": "ipinfo:loc",
+      "@type": "xsd:string"
+    },
+    "postal": {
+      "@id": "schema:postalCode",
+      "@type": "xsd:string"
+    },
+    "org": {
+      "@id": "ipinfo:org",
+      "@type": "xsd:string"
+    },
+    "company": {
+      "@id": "ipinfo:company",
+      "@type": "xsd:string"
+    },
+    "carrier": {
+      "@id": "ipinfo:carrier",
+      "@type": "xsd:string"
+    },
+    "privacy": {
+      "@id": "ipinfo:privacy",
+      "@type": "xsd:string"
+    },
+    "as_name": {
+      "@id": "ipinfo:as_name",
+      "@type": "xsd:string"
+    },
+    "as_domain": {
+      "@id": "ipinfo:as_domain",
+      "@type": "xsd:string"
+    },
+    "mobile": {
+      "@id": "ipinfo:mobile"
+    },
+    "anonymous": {
+      "@id": "ipinfo:anonymous"
+    },
+    "last_seen": {
+      "@id": "ipinfo:last_seen",
+      "@type": "xsd:string"
+    },
+    "percent_days_seen": {
+      "@id": "ipinfo:percent_days_seen",
+      "@type": "xsd:integer"
+    },
+    "is_proxy": {
+      "@id": "ipinfo:is_proxy",
+      "@type": "xsd:boolean"
+    },
+    "is_relay": {
+      "@id": "ipinfo:is_relay",
+      "@type": "xsd:boolean"
+    },
+    "is_tor": {
+      "@id": "ipinfo:is_tor",
+      "@type": "xsd:boolean"
+    },
+    "is_vpn": {
+      "@id": "ipinfo:is_vpn",
+      "@type": "xsd:boolean"
+    },
+    "is_res_proxy": {
+      "@id": "ipinfo:is_res_proxy",
+      "@type": "xsd:boolean"
+    },
+    "requests": {
+      "@id": "ipinfo:requests"
+    },
+    "day": {
+      "@id": "ipinfo:day",
+      "@type": "xsd:integer"
+    },
+    "month": {
+      "@id": "ipinfo:month",
+      "@type": "xsd:integer"
+    },
+    "limit": {
+      "@id": "ipinfo:limit",
+      "@type": "xsd:integer"
+    },
+    "remaining": {
+      "@id": "ipinfo:remaining",
+      "@type": "xsd:integer"
+    },
+    "features": {
+      "@id": "ipinfo:features"
+    },
+    "core": {
+      "@id": "ipinfo:core"
+    },
+    "daily": {
+      "@id": "ipinfo:daily",
+      "@type": "xsd:integer"
+    },
+    "monthly": {
+      "@id": "ipinfo:monthly",
+      "@type": "xsd:integer"
+    },
+    "hostio": {
+      "@id": "ipinfo:hostio"
+    },
+    "result_limit": {
+      "@id": "ipinfo:result_limit",
+      "@type": "xsd:integer"
+    },
+    "abuse": {
+      "@id": "ipinfo:abuse"
+    },
+    "whois": {
+      "@id": "ipinfo:whois"
+    },
+    "ranges": {
+      "@id": "ipinfo:ranges"
+    },
+    "hosted_domains": {
+      "@id": "ipinfo:hosted_domains"
+    },
+    "category": {
+      "@id": "ipinfo:category",
+      "@type": "xsd:string"
+    },
+    "ssid": {
+      "@id": "ipinfo:ssid",
+      "@type": "xsd:string"
+    },
+    "netblock": {
+      "@id": "ipinfo:netblock",
+      "@type": "xsd:string"
+    },
+    "id": {
+      "@id": "ipinfo:id",
+      "@type": "xsd:string"
+    },
+    "size": {
+      "@id": "ipinfo:size",
+      "@type": "xsd:string"
+    },
+    "vpn": {
+      "@id": "ipinfo:vpn",
+      "@type": "xsd:boolean"
+    },
+    "proxy": {
+      "@id": "ipinfo:proxy",
+      "@type": "xsd:boolean"
+    },
+    "tor": {
+      "@id": "ipinfo:tor",
+      "@type": "xsd:boolean"
+    },
+    "relay": {
+      "@id": "ipinfo:relay",
+      "@type": "xsd:boolean"
+    },
+    "hosting": {
+      "@id": "ipinfo:hosting",
+      "@type": "xsd:boolean"
+    },
+    "service": {
+      "@id": "ipinfo:service",
+      "@type": "xsd:string"
+    },
+    "confidence": {
+      "@id": "ipinfo:confidence",
+      "@type": "xsd:integer"
+    },
+    "coverage": {
+      "@id": "ipinfo:coverage",
+      "@type": "xsd:decimal"
+    },
+    "census": {
+      "@id": "ipinfo:census",
+      "@type": "xsd:boolean"
+    },
+    "census_ports": {
+      "@id": "ipinfo:census_ports",
+      "@container": "@list"
+    },
+    "device_activity": {
+      "@id": "ipinfo:device_activity",
+      "@type": "xsd:boolean"
+    },
+    "inferred": {
+      "@id": "ipinfo:inferred",
+      "@type": "xsd:boolean"
+    },
+    "vpn_config": {
+      "@id": "ipinfo:vpn_config",
+      "@type": "xsd:boolean"
+    },
+    "first_seen": {
+      "@id": "ipinfo:first_seen",
+      "@type": "xsd:string"
+    },
+    "num_ranges": {
+      "@id": "ipinfo:num_ranges",
+      "@type": "xsd:string"
+    },
+    "redirects_to": {
+      "@id": "ipinfo:redirects_to",
+      "@type": "xsd:string"
+    },
+    "net": {
+      "@id": "ipinfo:net",
+      "@type": "xsd:string"
+    },
+    "records": {
+      "@id": "ipinfo:records",
+      "@container": "@list"
+    },
+    "poc": {
+      "@id": "ipinfo:poc",
+      "@type": "xsd:string"
+    }
+  }
+}

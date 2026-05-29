@@ -1,0 +1,36 @@
+capability: 1.0.0
+info:
+  name: IPinfo Privacy Detection Extended
+  description: IPinfo privacy detection extended capability — exposes operations grouped under the OpenAPI tag 'privacy detection extended'.
+  version: 1.0.0
+  provider: IPinfo
+  domain: IP Intelligence
+consumes:
+  namespace: ipinfo.privacy-detection-extended
+  baseURI: https://api.ipinfo.io
+  authentication:
+    type: bearer
+    header: Authorization
+    scheme: Bearer
+    envVar: IPINFO_TOKEN
+  operations:
+  - name: getPrivacyExtendedByIp
+    method: GET
+    path: "/{ip}/privacy_extended"
+    summary: IPinfo Returns Extended Privacy Detection Information with Detailed Methodologies
+    description: "The Privacy Detection Extended API provides detection methodology metadata to support risk scoring, confidence metrics, and IP reputation aspects.\nUses multi-modal detection methods including internet measurement, IP behavior analysis, and internet records metadata.\nIncludes detailed flags for VPN,"
+exposes:
+  rest:
+    namespace: ipinfo.privacy-detection-extended
+    port: 8080
+    operations:
+    - name: getPrivacyExtendedByIp
+      method: GET
+      path: "/{ip}/privacy_extended"
+      consumes: getPrivacyExtendedByIp
+  mcp:
+    namespace: ipinfo.privacy-detection-extended
+    tools:
+    - name: getPrivacyExtendedByIp
+      description: IPinfo Returns Extended Privacy Detection Information with Detailed Methodologies
+      consumes: getPrivacyExtendedByIp

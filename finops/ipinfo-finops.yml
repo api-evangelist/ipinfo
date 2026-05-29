@@ -1,0 +1,95 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: IPinfo
+providerId: ipinfo
+created: '2026-05-29'
+modified: '2026-05-29'
+reconciled: true
+tags:
+  - FinOps
+  - FOCUS
+  - IP Intelligence
+  - Tiered Subscription
+description: >-
+  FOCUS-aligned FinOps for IPinfo: monthly base subscription tiers (Core,
+  Plus, Max) with adjustable included request quotas and per-1k overage
+  metering, plus a separately licensed downloadable database product.
+sources:
+  - https://ipinfo.io/pricing
+  - https://ipinfo.io/developers
+  - https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: IPinfo, Inc.
+serviceCategory: Identity + Network Intelligence
+billingModel:
+  pricingCategory: Tiered Subscription + Metered Overage
+  billingFrequency: Monthly
+  billingCurrency: USD
+focusColumns:
+  BilledCost: Monthly base + sum of overage units × per-1k overage rate
+  EffectiveCost: BilledCost minus any committed-use or annual prepay discounts
+  ListCost: Same as BilledCost for the public price; differs only for enterprise contracts
+  ContractedCost: Negotiated commit for Enterprise customers
+  ChargeCategory: Usage
+  ChargeClass: ''
+  ChargeDescription: 'IPinfo lookup requests against api.ipinfo.io endpoints'
+  ChargeFrequency: Recurring (monthly) + Usage (overage)
+  ServiceName: IPinfo IP Intelligence API
+  SkuId: ipinfo-{tier}
+  SkuPriceId: ipinfo-{tier}-{request-quota}
+  PricingUnit: 1k requests
+  PricingCategory: Subscription
+  CommitmentDiscountCategory: ''
+  CommitmentDiscountType: ''
+  RegionId: global
+  ProviderName: IPinfo, Inc.
+  PublisherName: IPinfo, Inc.
+  InvoiceIssuerName: IPinfo, Inc.
+meters:
+  - name: IPinfo Lookup Requests
+    metric: request
+    unit: 1k requests
+    tier: Core / Plus / Max
+    base: $49–$94 / month
+    overage: '$0.54–$1.03 / 1,000 requests depending on tier'
+    notes: Quota is adjustable from 150k to 5M / month; overages bill continuously.
+
+  - name: IPinfo Lite Lookups
+    metric: request
+    unit: request
+    tier: Lite (free)
+    base: $0
+    overage: $0
+    notes: Unlimited under the free tier. Attribution required for commercial use.
+
+  - name: Summarize / Map Tools
+    metric: tool_invocation
+    unit: invocation
+    tier: All plans
+    base: included
+    overage: 'Hard cap at 5 invocations / day; no monetary overage.'
+
+  - name: IPinfo Database
+    metric: license
+    unit: annual license
+    tier: Enterprise (separate product)
+    base: 'Custom, via sales'
+    overage: 'N/A — local lookups bypass API metering.'
+principles:
+  - name: Teams need to collaborate
+    description: Engineering teams instrumenting IPinfo lookups should expose request counts to finance via tagged metrics so commitment level can be tuned monthly.
+
+  - name: Decisions are driven by business value
+    description: Tier selection (Lite vs Core vs Plus vs Max) should be driven by the number of attributes actually needed for downstream use (fraud, marketing, security), not the maximum on offer.
+
+  - name: Everyone takes ownership for their usage
+    description: Each environment / product team should hold its own IPinfo token so usage and overage are attributable rather than pooled into one shared key.
+
+  - name: FinOps data should be accessible and timely
+    description: Use the dashboard alert feature (80%/100% of quota) plus FOCUS-style monthly export to flag drift before overages compound.

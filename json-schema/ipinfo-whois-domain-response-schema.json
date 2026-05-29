@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/ipinfo-whois-domain-response-schema.json",
+  "title": "WhoisDomainResponse",
+  "description": "WhoisDomainResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "net": {
+      "type": "string",
+      "example": "comcast.net"
+    },
+    "total": {
+      "type": "integer",
+      "example": 80
+    },
+    "page": {
+      "type": "integer",
+      "example": 0
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "range": {
+            "type": "string",
+            "example": "24.147.0.0/17"
+          },
+          "id": {
+            "type": "string",
+            "example": "NEW-ENGLAND-10"
+          },
+          "name": {
+            "type": "string",
+            "example": "Comcast Cable Communications Holdings, Inc"
+          },
+          "country": {
+            "type": "string",
+            "example": "US"
+          },
+          "org": {
+            "type": "string",
+            "example": "C02610737"
+          },
+          "status": {
+            "type": "string",
+            "example": "REASSIGNMENT"
+          },
+          "tech": {
+            "type": "string",
+            "example": null
+          },
+          "maintainer": {
+            "type": "string",
+            "example": null
+          },
+          "admin": {
+            "type": "string",
+            "example": null
+          },
+          "abuse": {
+            "type": "string",
+            "example": null
+          },
+          "updated": {
+            "type": "string",
+            "format": "date",
+            "example": "2010-10-18"
+          },
+          "source": {
+            "type": "string",
+            "example": "arin"
+          },
+          "raw": {
+            "type": "string",
+            "example": "<raw data>"
+          },
+          "domain": {
+            "type": "string",
+            "example": "comcast.net"
+          }
+        }
+      }
+    }
+  },
+  "example": {
+    "net": "comcast.net",
+    "total": 80,
+    "page": 0,
+    "records": [
+      {
+        "range": "24.147.0.0/17",
+        "id": "NEW-ENGLAND-10",
+        "name": "Comcast Cable Communications Holdings, Inc",
+        "country": "US",
+        "org": "C02610737",
+        "status": "REASSIGNMENT",
+        "tech": null,
+        "maintainer": null,
+        "admin": null,
+        "abuse": null,
+        "updated": "2010-10-18",
+        "source": "arin",
+        "raw": "<raw data>",
+        "domain": "comcast.net"
+      }
+    ]
+  }
+}

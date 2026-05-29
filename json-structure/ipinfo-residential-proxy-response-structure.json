@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/ipinfo-residential-proxy-response-structure.json",
+  "name": "ResidentialProxyResponse",
+  "description": "ResidentialProxyResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "ip": {
+      "type": "string",
+      "description": "The IPv4 or IPv6 address associated with a residential proxy"
+    },
+    "last_seen": {
+      "type": "date",
+      "description": "The last recorded date when the residential proxy IP was active (YYYY-MM-DD, UTC)"
+    },
+    "percent_days_seen": {
+      "type": "int32",
+      "description": "The percentage of days the IP was active in the last 7-day period"
+    },
+    "service": {
+      "type": "string",
+      "description": "The name of the residential proxy service. Suffixed with _mobile for carrier/mobile or _datacenter for datacenter proxies"
+    }
+  },
+  "required": [
+    "ip",
+    "last_seen",
+    "percent_days_seen",
+    "service"
+  ]
+}

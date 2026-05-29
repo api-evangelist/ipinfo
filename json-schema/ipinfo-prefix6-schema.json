@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/ipinfo-prefix6-schema.json",
+  "title": "Prefix6",
+  "description": "Prefix6 schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "netblock": {
+      "type": "string",
+      "example": "2601::/20"
+    },
+    "id": {
+      "type": "string",
+      "example": "COMCAST6NET"
+    },
+    "name": {
+      "type": "string",
+      "example": "Comcast Cable Communications, LLC"
+    },
+    "country": {
+      "type": "string",
+      "example": "US"
+    },
+    "size": {
+      "type": "string",
+      "example": "20282409603651670423947251286016"
+    },
+    "status": {
+      "type": "string",
+      "example": "ASSIGNMENT"
+    },
+    "domain": {
+      "type": "string",
+      "example": "comcast.com"
+    }
+  },
+  "required": [
+    "netblock",
+    "id",
+    "name",
+    "country"
+  ]
+}

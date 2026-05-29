@@ -1,0 +1,22 @@
+{
+  "asn": "AS10507",
+  "name": "Sprint Personal Communications Systems",
+  "country": "US",
+  "allocated": "1997-02-14",
+  "registry": "arin",
+  "domain": "sprint.net",
+  "num_ips": 71224576,
+  "route": "66.87.125.0/24",
+  "type": "isp",
+  "prefixes": [],
+  "prefixes6": [],
+  "peers": [
+    "1299"
+  ],
+  "upstreams": [
+    "1299"
+  ],
+  "downstreams": [
+    "109"
+  ]
+}

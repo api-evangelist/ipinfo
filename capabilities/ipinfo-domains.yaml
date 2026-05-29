@@ -1,0 +1,36 @@
+capability: 1.0.0
+info:
+  name: IPinfo Domains
+  description: IPinfo domains capability — exposes operations grouped under the OpenAPI tag 'domains'.
+  version: 1.0.0
+  provider: IPinfo
+  domain: IP Intelligence
+consumes:
+  namespace: ipinfo.domains
+  baseURI: https://api.ipinfo.io
+  authentication:
+    type: bearer
+    header: Authorization
+    scheme: Bearer
+    envVar: IPINFO_TOKEN
+  operations:
+  - name: getDomains
+    method: GET
+    path: "/domains/{ip}"
+    summary: IPinfo Returns a List of All of the Domains Hosted on the Provided IP Address
+    description: The Hosted Domains or Reverse IP API endpoint returns a list of domains hosted on a specified IP address, including the total number of domains and the specific names associated with that address.
+exposes:
+  rest:
+    namespace: ipinfo.domains
+    port: 8080
+    operations:
+    - name: getDomains
+      method: GET
+      path: "/domains/{ip}"
+      consumes: getDomains
+  mcp:
+    namespace: ipinfo.domains
+    tools:
+    - name: getDomains
+      description: IPinfo Returns a List of All of the Domains Hosted on the Provided IP Address
+      consumes: getDomains

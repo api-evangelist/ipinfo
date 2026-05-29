@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/ipinfo-whois-ip-response-schema.json",
+  "title": "WhoisIpResponse",
+  "description": "WhoisIpResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "net": {
+      "type": "string",
+      "example": "24.62.0.0/15"
+    },
+    "total": {
+      "type": "integer",
+      "example": 100
+    },
+    "page": {
+      "type": "integer",
+      "example": 0
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "range": {
+            "type": "string",
+            "example": "24.62.0.0/15"
+          },
+          "id": {
+            "type": "string",
+            "example": "NEW-ENGLAND-5"
+          },
+          "name": {
+            "type": "string",
+            "example": "Comcast Cable Communications Holdings, Inc"
+          },
+          "country": {
+            "type": "string",
+            "example": "US"
+          },
+          "org": {
+            "type": "string",
+            "example": "C02610695"
+          },
+          "updated": {
+            "type": "string",
+            "format": "date",
+            "example": "2010-10-18"
+          },
+          "status": {
+            "type": "string",
+            "example": "REASSIGNMENT"
+          },
+          "source": {
+            "type": "string",
+            "example": "arin"
+          },
+          "raw": {
+            "type": "string",
+            "example": "<raw data>"
+          }
+        }
+      }
+    }
+  },
+  "example": {
+    "net": "24.62.0.0/15",
+    "total": 100,
+    "page": 0,
+    "records": [
+      {
+        "range": "24.62.0.0/15",
+        "id": "NEW-ENGLAND-5",
+        "name": "Comcast Cable Communications Holdings, Inc",
+        "country": "US",
+        "org": "C02610695",
+        "updated": "2010-10-18",
+        "status": "REASSIGNMENT",
+        "source": "arin",
+        "raw": "<raw data>"
+      }
+    ]
+  }
+}

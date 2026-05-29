@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/ipinfo-whois-org-response-schema.json",
+  "title": "WhoisOrgResponse",
+  "description": "WhoisOrgResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "org": {
+      "type": "string",
+      "example": "PINEAP"
+    },
+    "total": {
+      "type": "integer",
+      "example": 100
+    },
+    "page": {
+      "type": "integer",
+      "example": 0
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "PINEAP"
+          },
+          "name": {
+            "type": "string",
+            "example": "Pineapple Houser"
+          },
+          "address": {
+            "type": "string",
+            "example": null
+          },
+          "country": {
+            "type": "string",
+            "example": "US"
+          },
+          "admin": {
+            "type": "string",
+            "example": "POC object or null"
+          },
+          "abuse": {
+            "type": "string",
+            "example": "POC object or null"
+          },
+          "tech": {
+            "type": "string",
+            "example": "POC object or null"
+          },
+          "maintainer": {
+            "type": "string",
+            "example": "POC object or null"
+          },
+          "created": {
+            "type": "string",
+            "format": "date",
+            "example": "2000-03-25"
+          },
+          "updated": {
+            "type": "string",
+            "format": "date",
+            "example": "2011-09-24"
+          },
+          "source": {
+            "type": "string",
+            "example": "arin"
+          },
+          "raw": {
+            "type": "string",
+            "example": "<raw data>"
+          }
+        }
+      }
+    }
+  },
+  "example": {
+    "org": "PINEAP",
+    "total": 100,
+    "page": 0,
+    "records": [
+      {
+        "id": "PINEAP",
+        "name": "Pineapple Houser",
+        "address": null,
+        "country": "US",
+        "admin": "POC object or null",
+        "abuse": "POC object or null",
+        "tech": "POC object or null",
+        "maintainer": "POC object or null",
+        "created": "2000-03-25",
+        "updated": "2011-09-24",
+        "source": "arin",
+        "raw": "<raw data>"
+      }
+    ]
+  }
+}

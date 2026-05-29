@@ -1,0 +1,220 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: IPinfo
+providerId: ipinfo
+created: '2026-05-29'
+modified: '2026-05-29'
+reconciled: true
+tags:
+  - IP Intelligence
+  - IP Geolocation
+  - ASN
+  - Privacy Detection
+  - Tiered Subscription
+description: >-
+  IPinfo prices its IP intelligence API across a free Lite tier and four paid
+  subscription tiers (Core, Plus, Max, Enterprise), each escalating in number
+  of returned attributes and detection depth. Paid tiers ship a base monthly
+  commitment with a slider that adjusts the included monthly request quota
+  from 150k up to 5M, plus per-1k overage rates. Enterprise pricing is custom
+  and bundles full WHOIS, IP ranges, dedicated account manager, and SLA. The
+  downloadable IP database product (CSV, MMDB, JSON, Parquet) is sold
+  separately via sales. The free IPinfo Lite tier requires no credit card and
+  has no daily or hourly caps, with attribution required for commercial use.
+sources:
+  - https://ipinfo.io/pricing
+  - https://ipinfo.io/developers
+  - https://ipinfo.io/products/free-ip-database
+plans:
+  - id: ipinfo-lite
+    name: IPinfo Lite
+    type: freemium
+    description: Free tier with unlimited requests, returning 7 essential IP attributes (country, continent, ASN).
+    entries:
+      - label: Monthly requests
+        name: monthly_requests
+        type: quota
+        metric: request
+        limit: -1
+        timeFrame: month
+      - label: IP attributes
+        name: ip_attributes
+        type: flat
+        metric: attribute
+        limit: 7
+        timeFrame: usage
+    elements:
+      - name: Country and continent geolocation
+      - name: ASN name and domain
+      - name: Unlimited API requests
+      - name: Database downloads (CSV, MMDB, JSON, Parquet)
+      - name: Daily refresh of data
+      - name: Community support
+      - name: CC BY-SA 4.0 license (attribution required)
+
+  - id: ipinfo-core
+    name: IPinfo Core
+    type: subscription
+    description: Entry paid tier ($49/month base) with 16 IP attributes including city-level geolocation and basic privacy detection.
+    entries:
+      - label: Monthly base price
+        name: monthly_base
+        type: subscription
+        metric: month
+        limit: 1
+        timeFrame: month
+      - label: Included requests (adjustable)
+        name: included_requests
+        type: quota
+        metric: request
+        limit: 150000
+        timeFrame: month
+        notes: Slider adjusts from 150k to 5M requests; price scales accordingly.
+      - label: Overage rate
+        name: overage
+        type: metered
+        metric: request
+        limit: 1000
+        timeFrame: usage
+        notes: $0.54 per 1,000 additional requests.
+      - label: IP attributes
+        name: ip_attributes
+        type: flat
+        metric: attribute
+        limit: 16
+        timeFrame: usage
+    elements:
+      - name: City-level geolocation with coordinates
+      - name: Postal code and timezone
+      - name: Privacy detection (VPN, Tor, proxy, relay)
+      - name: Connection context (hosting, mobile, satellite, anycast)
+      - name: Standard email/chat support
+      - name: Configurable usage alerts
+
+  - id: ipinfo-plus
+    name: IPinfo Plus
+    type: subscription
+    description: Most popular tier ($74/month base) with 32 attributes including carrier data and named privacy services.
+    entries:
+      - label: Monthly base price
+        name: monthly_base
+        type: subscription
+        metric: month
+        limit: 1
+        timeFrame: month
+      - label: Included requests (adjustable)
+        name: included_requests
+        type: quota
+        metric: request
+        limit: 150000
+        timeFrame: month
+        notes: Slider adjusts from 150k to 5M requests; price scales accordingly.
+      - label: Overage rate
+        name: overage
+        type: metered
+        metric: request
+        limit: 1000
+        timeFrame: usage
+        notes: $0.81 per 1,000 additional requests.
+      - label: IP attributes
+        name: ip_attributes
+        type: flat
+        metric: attribute
+        limit: 32
+        timeFrame: usage
+    elements:
+      - name: All Core features
+      - name: Accuracy radius for geolocation
+      - name: Change-tracking timestamps for geo/ASN data
+      - name: Named privacy service identification
+      - name: Carrier information (name, MCC, MNC)
+
+  - id: ipinfo-max
+    name: IPinfo Max
+    type: subscription
+    description: Top self-serve tier ($94/month base) with 35 attributes including residential proxy detection.
+    entries:
+      - label: Monthly base price
+        name: monthly_base
+        type: subscription
+        metric: month
+        limit: 1
+        timeFrame: month
+      - label: Included requests (adjustable)
+        name: included_requests
+        type: quota
+        metric: request
+        limit: 150000
+        timeFrame: month
+        notes: Slider adjusts from 150k to 5M requests; price scales accordingly.
+      - label: Overage rate
+        name: overage
+        type: metered
+        metric: request
+        limit: 1000
+        timeFrame: usage
+        notes: $1.03 per 1,000 additional requests.
+      - label: IP attributes
+        name: ip_attributes
+        type: flat
+        metric: attribute
+        limit: 35
+        timeFrame: usage
+    elements:
+      - name: All Plus features
+      - name: Residential proxy detection
+      - name: Recency and persistence metrics
+      - name: 100% coverage for residential proxy service name
+
+  - id: ipinfo-enterprise
+    name: IPinfo Enterprise
+    type: enterprise
+    description: Custom-priced tier with 40+ attributes, full WHOIS, IP ranges, dedicated account manager, SLA.
+    entries:
+      - label: Custom monthly commit
+        name: monthly_commit
+        type: subscription
+        metric: month
+        limit: 1
+        timeFrame: month
+      - label: Custom request volume
+        name: custom_volume
+        type: quota
+        metric: request
+        limit: -1
+        timeFrame: month
+        notes: Volume negotiated with sales.
+      - label: IP attributes
+        name: ip_attributes
+        type: flat
+        metric: attribute
+        limit: 40
+        timeFrame: usage
+        notes: 40+ attributes including full WHOIS and company IP ranges.
+    elements:
+      - name: All Max features
+      - name: Full WHOIS data access
+      - name: IP ranges owned by companies
+      - name: Hosted domains data
+      - name: Abuse contact data
+      - name: Dedicated account manager
+      - name: Premium support with guaranteed SLA
+
+  - id: ipinfo-database
+    name: IPinfo Database
+    type: enterprise
+    description: Downloadable IP database product (CSV, MMDB, JSON, Parquet) sold separately via sales.
+    entries:
+      - label: Database license
+        name: database_license
+        type: subscription
+        metric: year
+        limit: 1
+        timeFrame: year
+        notes: Pricing not listed on self-serve page; contact sales.
+    elements:
+      - name: Daily-refreshed IP database
+      - name: Multiple formats (CSV, MMDB, JSON, Parquet)
+      - name: Customizable fields
+      - name: Offline lookups (no API rate limits)

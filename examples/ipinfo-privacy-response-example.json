@@ -1,0 +1,8 @@
+{
+  "vpn": true,
+  "proxy": false,
+  "tor": false,
+  "hosting": false,
+  "relay": false,
+  "service": ""
+}

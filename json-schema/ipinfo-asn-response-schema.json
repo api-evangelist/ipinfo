@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/ipinfo-asn-response-schema.json",
+  "title": "AsnResponse",
+  "description": "AsnResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "asn": {
+      "type": "string",
+      "example": "AS10507"
+    },
+    "name": {
+      "type": "string",
+      "example": "Sprint Personal Communications Systems"
+    },
+    "country": {
+      "type": "string",
+      "example": "US"
+    },
+    "allocated": {
+      "type": "string",
+      "example": "1997-02-14"
+    },
+    "registry": {
+      "type": "string",
+      "example": "arin"
+    },
+    "domain": {
+      "type": "string",
+      "example": "sprint.net"
+    },
+    "num_ips": {
+      "type": "integer",
+      "example": 71224576
+    },
+    "route": {
+      "type": "string",
+      "example": "66.87.125.0/24"
+    },
+    "type": {
+      "type": "string",
+      "example": "isp",
+      "enum": [
+        "isp",
+        "business",
+        "education",
+        "hosting",
+        "inactive"
+      ]
+    },
+    "prefixes": {
+      "type": "array",
+      "items": {
+        "$ref": "./ipinfo-prefix-schema.json"
+      }
+    },
+    "prefixes6": {
+      "type": "array",
+      "items": {
+        "$ref": "./ipinfo-prefix6-schema.json"
+      }
+    },
+    "peers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "example": "1299"
+      }
+    },
+    "upstreams": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "example": "1299"
+      }
+    },
+    "downstreams": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "example": "109"
+      }
+    }
+  },
+  "required": [
+    "asn",
+    "name",
+    "domain",
+    "type"
+  ]
+}

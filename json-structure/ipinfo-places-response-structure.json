@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/ipinfo-places-response-structure.json",
+  "name": "PlacesResponse",
+  "description": "PlacesResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "ip": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "ssid": {
+      "type": "string"
+    },
+    "latitude": {
+      "type": "double"
+    },
+    "longitude": {
+      "type": "double"
+    }
+  },
+  "required": [
+    "ip",
+    "name",
+    "category",
+    "ssid",
+    "latitude",
+    "longitude"
+  ]
+}

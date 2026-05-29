@@ -1,0 +1,22 @@
+{
+  "net": "AS9541",
+  "total": 47,
+  "page": 0,
+  "records": [
+    {
+      "range": "58.65.203.0/24",
+      "id": "CYBERNET",
+      "name": "Broadband Services",
+      "country": "PK",
+      "org": null,
+      "status": "ALLOCATED NON-PORTABLE",
+      "admin": "POC object or null",
+      "abuse": "POC object or null",
+      "tech": "POC object or null",
+      "maintainer": "POC object or null",
+      "updated": "2021-01-27",
+      "source": "apnic",
+      "raw": "<raw data>"
+    }
+  ]
+}

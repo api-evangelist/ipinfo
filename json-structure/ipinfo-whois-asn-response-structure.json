@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/ipinfo-whois-asn-response-structure.json",
+  "name": "WhoisAsnResponse",
+  "description": "WhoisAsnResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "net": {
+      "type": "string"
+    },
+    "total": {
+      "type": "int32"
+    },
+    "page": {
+      "type": "int32"
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "range": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "org": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "admin": {
+            "type": "string"
+          },
+          "abuse": {
+            "type": "string"
+          },
+          "tech": {
+            "type": "string"
+          },
+          "maintainer": {
+            "type": "string"
+          },
+          "updated": {
+            "type": "date"
+          },
+          "source": {
+            "type": "string"
+          },
+          "raw": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

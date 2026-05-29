@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/ipinfo-lite-response-schema.json",
+  "title": "LiteResponse",
+  "description": "LiteResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "ip": {
+      "type": "string",
+      "example": "8.8.8.8"
+    },
+    "asn": {
+      "type": "string",
+      "example": "AS15169"
+    },
+    "as_name": {
+      "type": "string",
+      "example": "Google LLC"
+    },
+    "as_domain": {
+      "type": "string",
+      "example": "google.com"
+    },
+    "country_code": {
+      "type": "string",
+      "example": "US"
+    },
+    "country": {
+      "type": "string",
+      "example": "United States"
+    },
+    "continent_code": {
+      "type": "string",
+      "example": "NA"
+    },
+    "continent": {
+      "type": "string",
+      "example": "North America"
+    }
+  },
+  "required": [
+    "ip",
+    "asn",
+    "as_name",
+    "as_domain",
+    "country_code",
+    "country",
+    "continent_code",
+    "continent"
+  ]
+}

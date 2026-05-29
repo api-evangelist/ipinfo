@@ -1,0 +1,36 @@
+capability: 1.0.0
+info:
+  name: IPinfo Asn
+  description: IPinfo asn capability — exposes operations grouped under the OpenAPI tag 'asn'.
+  version: 1.0.0
+  provider: IPinfo
+  domain: IP Intelligence
+consumes:
+  namespace: ipinfo.asn
+  baseURI: https://api.ipinfo.io
+  authentication:
+    type: bearer
+    header: Authorization
+    scheme: Bearer
+    envVar: IPINFO_TOKEN
+  operations:
+  - name: getAsn
+    method: GET
+    path: "/AS{asn}"
+    summary: IPinfo Returns Information About an ASN
+    description: "Returns information about an ASN, such as the assigned prefixes, related domain, and more.\nThe ASN API provides comprehensive information about an Autonomous System (AS) entity.\nIt delivers data on the AS's registration, ASN type, network details, associated prefixes (including IPv6), and relationsh"
+exposes:
+  rest:
+    namespace: ipinfo.asn
+    port: 8080
+    operations:
+    - name: getAsn
+      method: GET
+      path: "/AS{asn}"
+      consumes: getAsn
+  mcp:
+    namespace: ipinfo.asn
+    tools:
+    - name: getAsn
+      description: IPinfo Returns Information About an ASN
+      consumes: getAsn

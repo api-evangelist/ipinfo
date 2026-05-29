@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/ipinfo-plus-response-schema.json",
+  "title": "PlusResponse",
+  "description": "PlusResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "ip": {
+      "type": "string",
+      "example": "206.47.33.149"
+    },
+    "geo": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string",
+          "example": "Toronto"
+        },
+        "region": {
+          "type": "string",
+          "example": "Ontario"
+        },
+        "region_code": {
+          "type": "string",
+          "example": "ON"
+        },
+        "country": {
+          "type": "string",
+          "example": "Canada"
+        },
+        "country_code": {
+          "type": "string",
+          "example": "CA"
+        },
+        "continent": {
+          "type": "string",
+          "example": "North America"
+        },
+        "continent_code": {
+          "type": "string",
+          "example": "NA"
+        },
+        "latitude": {
+          "type": "number",
+          "example": 43.6561
+        },
+        "longitude": {
+          "type": "number",
+          "example": -79.3406
+        },
+        "timezone": {
+          "type": "string",
+          "example": "America/Toronto"
+        },
+        "postal_code": {
+          "type": "string",
+          "example": "M4M"
+        },
+        "dma_code": {
+          "type": "string",
+          "example": "57"
+        },
+        "geoname_id": {
+          "type": "string",
+          "example": "6167865"
+        },
+        "radius": {
+          "type": "integer",
+          "example": 50
+        },
+        "last_changed": {
+          "type": "string",
+          "format": "date",
+          "example": "2025-09-21"
+        }
+      }
+    },
+    "as": {
+      "type": "object",
+      "properties": {
+        "asn": {
+          "type": "string",
+          "example": "AS577"
+        },
+        "name": {
+          "type": "string",
+          "example": "Bell Canada"
+        },
+        "domain": {
+          "type": "string",
+          "example": "bell.ca"
+        },
+        "type": {
+          "type": "string",
+          "example": "isp"
+        },
+        "last_changed": {
+          "type": "string",
+          "format": "date",
+          "example": "2025-09-28"
+        }
+      }
+    },
+    "mobile": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Bell Mobility"
+        },
+        "mcc": {
+          "type": "string",
+          "example": "302"
+        },
+        "mnc": {
+          "type": "string",
+          "example": "610"
+        }
+      }
+    },
+    "anonymous": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Google One VPN"
+        },
+        "is_proxy": {
+          "type": "boolean",
+          "example": false
+        },
+        "is_relay": {
+          "type": "boolean",
+          "example": false
+        },
+        "is_tor": {
+          "type": "boolean",
+          "example": false
+        },
+        "is_vpn": {
+          "type": "boolean",
+          "example": false
+        }
+      }
+    },
+    "is_anonymous": {
+      "type": "boolean",
+      "example": false
+    },
+    "is_anycast": {
+      "type": "boolean",
+      "example": false
+    },
+    "is_hosting": {
+      "type": "boolean",
+      "example": false
+    },
+    "is_mobile": {
+      "type": "boolean",
+      "example": true
+    },
+    "is_satellite": {
+      "type": "boolean",
+      "example": false
+    }
+  },
+  "required": [
+    "ip"
+  ]
+}

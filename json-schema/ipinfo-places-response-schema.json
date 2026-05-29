@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/ipinfo-places-response-schema.json",
+  "title": "PlacesResponse",
+  "description": "PlacesResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "ip": {
+      "type": "string",
+      "example": "65.144.40.106"
+    },
+    "name": {
+      "type": "string",
+      "example": "Museum of History and Industry (MOHAI)"
+    },
+    "category": {
+      "type": "string",
+      "example": "museum"
+    },
+    "ssid": {
+      "type": "string",
+      "example": "MOHAI-Guest"
+    },
+    "latitude": {
+      "type": "number",
+      "example": 47.6275
+    },
+    "longitude": {
+      "type": "number",
+      "example": -122.3367
+    }
+  },
+  "required": [
+    "ip",
+    "name",
+    "category",
+    "ssid",
+    "latitude",
+    "longitude"
+  ]
+}

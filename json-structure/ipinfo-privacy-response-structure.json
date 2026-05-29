@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/ipinfo-privacy-response-structure.json",
+  "name": "PrivacyResponse",
+  "description": "PrivacyResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "vpn": {
+      "type": "boolean"
+    },
+    "proxy": {
+      "type": "boolean"
+    },
+    "tor": {
+      "type": "boolean"
+    },
+    "hosting": {
+      "type": "boolean"
+    },
+    "relay": {
+      "type": "boolean"
+    },
+    "service": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "vpn",
+    "proxy",
+    "tor",
+    "hosting",
+    "relay",
+    "service"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/ipinfo-full-response-structure.json",
+  "name": "FullResponse",
+  "description": "FullResponse schema from IPinfo API",
+  "type": "object",
+  "properties": {
+    "ip": {
+      "type": "string"
+    },
+    "bogon": {
+      "type": "boolean"
+    },
+    "hostname": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "loc": {
+      "type": "string"
+    },
+    "postal": {
+      "type": "string"
+    },
+    "timezone": {
+      "type": "string"
+    },
+    "org": {
+      "type": "string"
+    },
+    "asn": {
+      "$ref": "./ipinfo-asn-response-structure.json"
+    },
+    "company": {
+      "$ref": "./ipinfo-company-response-structure.json"
+    },
+    "carrier": {
+      "$ref": "./ipinfo-carrier-response-structure.json"
+    },
+    "privacy": {
+      "$ref": "./ipinfo-privacy-response-structure.json"
+    },
+    "domains": {
+      "$ref": "./ipinfo-domains-response-structure.json"
+    }
+  },
+  "required": [
+    "ip"
+  ]
+}
