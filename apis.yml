@@ -120,6 +120,30 @@ apis:
       - type: Plans
         url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
 common:
+  - type: ArazzoWorkflows
+    url: arazzo/
+    workflows:
+    - url: arazzo/ipinfo-abuse-reporting-workflow.yml
+      name: IPinfo Abuse Contact and Hosted Domains
+      summary: Resolve an IP to its abuse contact and the domains hosted on it.
+    - url: arazzo/ipinfo-asn-prefix-recon-workflow.yml
+      name: IPinfo ASN Prefix Reconnaissance
+      summary: Verify token access, then pull ASN detail and the domain ranges behind it.
+    - url: arazzo/ipinfo-batch-then-detail-workflow.yml
+      name: IPinfo Batch Enrich then Detail
+      summary: Bulk-enrich a list of IPs, then pull the full record for one focus IP.
+    - url: arazzo/ipinfo-ip-to-company-workflow.yml
+      name: IPinfo IP to Operating Company
+      summary: Resolve an IP address to its full record and then to the company operating it.
+    - url: arazzo/ipinfo-my-ip-enrichment-workflow.yml
+      name: IPinfo Enrich My Current IP
+      summary: Discover the caller's own public IP and then pull full IP intelligence for it.
+    - url: arazzo/ipinfo-summarize-and-map-workflow.yml
+      name: IPinfo Summarize and Map IP Addresses
+      summary: Generate a summary report for a list of IPs, then a map visualization for them.
+    - url: arazzo/ipinfo-threat-screening-workflow.yml
+      name: IPinfo IP Threat Screening
+      summary: Screen an IP for privacy/anonymizer signals and confirm residential proxy use.
   - type: Website
     url: https://ipinfo.io
   - type: DeveloperPortal

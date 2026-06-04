@@ -1,0 +1,89 @@
+arazzo: 1.0.1
+info:
+  title: IPinfo ASN Prefix Reconnaissance
+  summary: Verify token access, then pull ASN detail and the domain ranges behind it.
+  description: >-
+    A network reconnaissance flow. It first verifies the access token and its
+    product entitlements with the /me endpoint, then pulls full detail for an
+    Autonomous System (registry, allocation, prefixes, peers, and the related
+    domain), and finally resolves the IP ranges associated with that ASN's
+    related domain. Each step spells out its request inline, including the access
+    token, so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: ipinfoApi
+  url: ../openapi/ipinfo-openapi.yml
+  type: openapi
+workflows:
+- workflowId: asn-prefix-recon
+  summary: Verify the token, resolve ASN detail, and list the domain's IP ranges.
+  description: >-
+    Confirms token access, returns full information about an ASN including its
+    related domain, and resolves the IP ranges associated with that domain.
+  inputs:
+    type: object
+    required:
+    - asn
+    - token
+    properties:
+      asn:
+        type: integer
+        description: An ASN number (integer) to investigate, e.g. 10507.
+      token:
+        type: string
+        description: IPinfo API access token used to authorize each request.
+  steps:
+  - stepId: verifyToken
+    description: >-
+      Call the /me endpoint to verify the access token and report its request
+      limits and product access before running ASN lookups.
+    operationId: getMe
+    parameters:
+    - name: token
+      in: query
+      value: $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      token: $response.body#/token
+  - stepId: getAsnDetail
+    description: >-
+      Return full information about the ASN, including registry, allocation,
+      prefixes, peers, and the related domain used for range lookup.
+    operationId: getAsn
+    parameters:
+    - name: asn
+      in: path
+      value: $inputs.asn
+    - name: token
+      in: query
+      value: $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      asnName: $response.body#/name
+      asnDomain: $response.body#/domain
+      asnCountry: $response.body#/country
+  - stepId: resolveRanges
+    description: >-
+      Return the IP ranges associated with the ASN's related domain to map the
+      address space operated under that organization.
+    operationId: getRanges
+    parameters:
+    - name: domain
+      in: path
+      value: $steps.getAsnDetail.outputs.asnDomain
+    - name: token
+      in: query
+      value: $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      numRanges: $response.body#/num_ranges
+      ranges: $response.body#/ranges
+  outputs:
+    asnName: $steps.getAsnDetail.outputs.asnName
+    asnDomain: $steps.getAsnDetail.outputs.asnDomain
+    numRanges: $steps.resolveRanges.outputs.numRanges
+    ranges: $steps.resolveRanges.outputs.ranges

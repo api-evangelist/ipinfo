@@ -1,0 +1,80 @@
+arazzo: 1.0.1
+info:
+  title: IPinfo Batch Enrich then Detail
+  summary: Bulk-enrich a list of IPs, then pull the full record for one focus IP.
+  description: >-
+    A scale-out enrichment flow. It first submits a list of IP addresses to the
+    batch endpoint for a single round-trip bulk lookup, and then pulls the
+    complete IPinfo record for one focus IP from that list so a caller can drill
+    into a single address after surveying the batch. Each step spells out its
+    request inline, including the access token, so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: ipinfoApi
+  url: ../openapi/ipinfo-openapi.yml
+  type: openapi
+workflows:
+- workflowId: batch-then-detail
+  summary: Bulk-enrich a list of IPs and then drill into one focus IP.
+  description: >-
+    Submits a JSON array of IPs to the batch endpoint, then resolves the full
+    IPinfo record for the supplied focus IP for deeper inspection.
+  inputs:
+    type: object
+    required:
+    - ips
+    - focusIp
+    - token
+    properties:
+      ips:
+        type: array
+        items:
+          type: string
+        description: A JSON array of IPv4/IPv6 addresses (optionally with /field paths).
+      focusIp:
+        type: string
+        description: One IP from the batch to inspect in full detail afterward.
+      token:
+        type: string
+        description: IPinfo API access token used to authorize each request.
+  steps:
+  - stepId: batchLookup
+    description: >-
+      Submit the JSON array of IP addresses to the batch endpoint for a single
+      bulk enrichment round-trip.
+    operationId: batch
+    parameters:
+    - name: token
+      in: query
+      value: $inputs.token
+    requestBody:
+      contentType: application/json
+      payload: $inputs.ips
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      results: $response.body
+  - stepId: detailFocusIp
+    description: >-
+      Return the full IPinfo record for the supplied focus IP so a caller can
+      drill into a single address surveyed in the batch.
+    operationId: getInformationByIp
+    parameters:
+    - name: ip
+      in: path
+      value: $inputs.focusIp
+    - name: token
+      in: query
+      value: $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      ip: $response.body#/ip
+      city: $response.body#/city
+      country: $response.body#/country
+      org: $response.body#/org
+  outputs:
+    batchResults: $steps.batchLookup.outputs.results
+    focusIp: $steps.detailFocusIp.outputs.ip
+    focusOrg: $steps.detailFocusIp.outputs.org

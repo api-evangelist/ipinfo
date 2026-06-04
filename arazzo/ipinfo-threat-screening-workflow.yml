@@ -1,0 +1,104 @@
+arazzo: 1.0.1
+info:
+  title: IPinfo IP Threat Screening
+  summary: Screen an IP for privacy/anonymizer signals and confirm residential proxy use.
+  description: >-
+    A fraud and abuse screening flow. It first pulls the full IPinfo record for
+    a supplied IP, then checks the dedicated privacy endpoint for VPN, proxy,
+    Tor, hosting, and relay signals. When any anonymizer signal is present it
+    branches to the residential proxy endpoint for deeper confirmation;
+    otherwise it ends as a clean result. Each step spells out its request
+    inline, including the access token, so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: ipinfoApi
+  url: ../openapi/ipinfo-openapi.yml
+  type: openapi
+workflows:
+- workflowId: screen-ip-threat
+  summary: Resolve an IP, evaluate privacy signals, and confirm residential proxy use.
+  description: >-
+    Enriches the supplied IP, evaluates its privacy/anonymizer flags, and when
+    any flag is set drills into residential proxy detection for confirmation.
+  inputs:
+    type: object
+    required:
+    - ip
+    - token
+    properties:
+      ip:
+        type: string
+        description: A single IPv4 or IPv6 IP address to screen.
+      token:
+        type: string
+        description: IPinfo API access token used to authorize each request.
+  steps:
+  - stepId: enrichIp
+    description: >-
+      Return the full IPinfo record for the supplied IP to confirm it resolves
+      before running privacy screening.
+    operationId: getInformationByIp
+    parameters:
+    - name: ip
+      in: path
+      value: $inputs.ip
+    - name: token
+      in: query
+      value: $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      ip: $response.body#/ip
+  - stepId: checkPrivacy
+    description: >-
+      Return privacy information about the IP, including VPN, proxy, Tor,
+      hosting, and relay anonymizer signals.
+    operationId: getPrivacyInformationByIp
+    parameters:
+    - name: ip
+      in: path
+      value: $steps.enrichIp.outputs.ip
+    - name: token
+      in: query
+      value: $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      vpn: $response.body#/vpn
+      proxy: $response.body#/proxy
+      tor: $response.body#/tor
+      hosting: $response.body#/hosting
+    onSuccess:
+    - name: anonymizerDetected
+      type: goto
+      stepId: confirmResidentialProxy
+      criteria:
+      - context: $response.body
+        condition: $.vpn == true || $.proxy == true || $.tor == true || $.hosting == true
+        type: jsonpath
+    - name: clean
+      type: end
+  - stepId: confirmResidentialProxy
+    description: >-
+      Return residential proxy detection information for the IP to confirm and
+      quantify anonymizer usage flagged by the privacy check.
+    operationId: getResidentialProxyByIp
+    parameters:
+    - name: ip
+      in: path
+      value: $steps.enrichIp.outputs.ip
+    - name: token
+      in: query
+      value: $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      lastSeen: $response.body#/last_seen
+      percentDaysSeen: $response.body#/percent_days_seen
+      service: $response.body#/service
+  outputs:
+    ip: $steps.enrichIp.outputs.ip
+    vpn: $steps.checkPrivacy.outputs.vpn
+    proxy: $steps.checkPrivacy.outputs.proxy
+    residentialProxyLastSeen: $steps.confirmResidentialProxy.outputs.lastSeen

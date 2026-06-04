@@ -1,0 +1,75 @@
+arazzo: 1.0.1
+info:
+  title: IPinfo IP to Operating Company
+  summary: Resolve an IP address to its full record and then to the company operating it.
+  description: >-
+    A B2B firmographic enrichment flow. It first pulls the full IPinfo record
+    for a supplied IP address, confirms the lookup succeeded, and then resolves
+    the dedicated company endpoint to return the name, type, and official domain
+    of the organization operating that IP. Each step spells out its request
+    inline, including the access token, so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: ipinfoApi
+  url: ../openapi/ipinfo-openapi.yml
+  type: openapi
+workflows:
+- workflowId: ip-to-company
+  summary: Enrich an IP address and resolve the company that operates it.
+  description: >-
+    Looks up the supplied IP for its full IPinfo record, then calls the company
+    endpoint for the same IP to return firmographic detail about its operator.
+  inputs:
+    type: object
+    required:
+    - ip
+    - token
+    properties:
+      ip:
+        type: string
+        description: A single IPv4 or IPv6 IP address to investigate.
+      token:
+        type: string
+        description: IPinfo API access token used to authorize each request.
+  steps:
+  - stepId: enrichIp
+    description: >-
+      Return the full IPinfo record for the supplied IP address to confirm it is
+      a valid, resolvable address before resolving its operating company.
+    operationId: getInformationByIp
+    parameters:
+    - name: ip
+      in: path
+      value: $inputs.ip
+    - name: token
+      in: query
+      value: $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      ip: $response.body#/ip
+      org: $response.body#/org
+  - stepId: resolveCompany
+    description: >-
+      Return information about the organization operating the supplied IP,
+      including its name, organization type, and official domain.
+    operationId: getCompany
+    parameters:
+    - name: ip
+      in: path
+      value: $steps.enrichIp.outputs.ip
+    - name: token
+      in: query
+      value: $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      companyName: $response.body#/name
+      companyDomain: $response.body#/domain
+      companyType: $response.body#/type
+  outputs:
+    ip: $steps.enrichIp.outputs.ip
+    org: $steps.enrichIp.outputs.org
+    companyName: $steps.resolveCompany.outputs.companyName
+    companyDomain: $steps.resolveCompany.outputs.companyDomain

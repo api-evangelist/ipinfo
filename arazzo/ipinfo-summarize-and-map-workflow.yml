@@ -1,0 +1,73 @@
+arazzo: 1.0.1
+info:
+  title: IPinfo Summarize and Map IP Addresses
+  summary: Generate a summary report for a list of IPs, then a map visualization for them.
+  description: >-
+    A reporting flow that runs both IPinfo visualization tools over the same
+    newline-delimited list of IP addresses. It first generates a summary report
+    of the IPs and captures its report URL, then renders a map highlighting the
+    same IPs and captures that report URL, producing two shareable artifacts in
+    one pass. Each step spells out its request inline, including the access
+    token, so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: ipinfoApi
+  url: ../openapi/ipinfo-openapi.yml
+  type: openapi
+workflows:
+- workflowId: summarize-and-map
+  summary: Summarize a list of IPs and then map the same list.
+  description: >-
+    Submits a newline-delimited list of IPs to the summarize tool for a report
+    URL, then submits the same list to the map tool for a map report URL.
+  inputs:
+    type: object
+    required:
+    - ipList
+    - token
+    properties:
+      ipList:
+        type: string
+        description: A newline-delimited list of IP addresses, one IP per line.
+      token:
+        type: string
+        description: IPinfo API access token used to authorize each request.
+  steps:
+  - stepId: summarizeIps
+    description: >-
+      Submit the newline-delimited IP list to the summarize tool to generate a
+      summary report and capture its report URL.
+    operationId: summarize
+    parameters:
+    - name: token
+      in: query
+      value: $inputs.token
+    requestBody:
+      contentType: text/plain
+      payload: $inputs.ipList
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      summaryStatus: $response.body#/status
+      summaryReportUrl: $response.body#/reportUrl
+  - stepId: mapIps
+    description: >-
+      Submit the same newline-delimited IP list to the map tool to highlight the
+      addresses on a map and capture its report URL.
+    operationId: map
+    parameters:
+    - name: token
+      in: query
+      value: $inputs.token
+    requestBody:
+      contentType: text/plain
+      payload: $inputs.ipList
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      mapStatus: $response.body#/status
+      mapReportUrl: $response.body#/reportUrl
+  outputs:
+    summaryReportUrl: $steps.summarizeIps.outputs.summaryReportUrl
+    mapReportUrl: $steps.mapIps.outputs.mapReportUrl

@@ -1,0 +1,97 @@
+arazzo: 1.0.1
+info:
+  title: IPinfo Abuse Contact and Hosted Domains
+  summary: Resolve an IP to its abuse contact and the domains hosted on it.
+  description: >-
+    An abuse-handling and reconnaissance flow. It first pulls the full IPinfo
+    record for a supplied IP, then resolves the abuse contact (email, phone,
+    network, and address) responsible for the IP, and finally lists the domains
+    hosted on that same IP so a report can name affected sites. Each step spells
+    out its request inline, including the access token, so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: ipinfoApi
+  url: ../openapi/ipinfo-openapi.yml
+  type: openapi
+workflows:
+- workflowId: abuse-and-domains
+  summary: Resolve an IP's abuse contact and enumerate the domains hosted on it.
+  description: >-
+    Enriches the supplied IP, resolves its abuse contact details, and then lists
+    the domains hosted on the IP to scope an abuse report.
+  inputs:
+    type: object
+    required:
+    - ip
+    - token
+    properties:
+      ip:
+        type: string
+        description: A single IPv4 or IPv6 IP address to report on.
+      token:
+        type: string
+        description: IPinfo API access token used to authorize each request.
+      limit:
+        type: integer
+        description: Number of hosted domains to return per page (1-1000, default 100).
+  steps:
+  - stepId: enrichIp
+    description: >-
+      Return the full IPinfo record for the supplied IP to confirm it resolves
+      before gathering abuse and hosting context.
+    operationId: getInformationByIp
+    parameters:
+    - name: ip
+      in: path
+      value: $inputs.ip
+    - name: token
+      in: query
+      value: $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      ip: $response.body#/ip
+  - stepId: resolveAbuse
+    description: >-
+      Return the abuse contact information belonging to the IP, including the
+      responsible email, phone, network, and postal address.
+    operationId: getAbuse
+    parameters:
+    - name: ip
+      in: path
+      value: $steps.enrichIp.outputs.ip
+    - name: token
+      in: query
+      value: $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      abuseEmail: $response.body#/email
+      abuseName: $response.body#/name
+      abuseNetwork: $response.body#/network
+  - stepId: listDomains
+    description: >-
+      Return the list of domains hosted on the IP so an abuse report can name
+      the affected sites.
+    operationId: getDomains
+    parameters:
+    - name: ip
+      in: path
+      value: $steps.enrichIp.outputs.ip
+    - name: limit
+      in: query
+      value: $inputs.limit
+    - name: token
+      in: query
+      value: $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      total: $response.body#/total
+      domains: $response.body#/domains
+  outputs:
+    ip: $steps.enrichIp.outputs.ip
+    abuseEmail: $steps.resolveAbuse.outputs.abuseEmail
+    hostedDomainTotal: $steps.listDomains.outputs.total
+    hostedDomains: $steps.listDomains.outputs.domains

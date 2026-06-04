@@ -1,0 +1,67 @@
+arazzo: 1.0.1
+info:
+  title: IPinfo Enrich My Current IP
+  summary: Discover the caller's own public IP and then pull full IP intelligence for it.
+  description: >-
+    A foundational IPinfo flow that first resolves the public IP address the
+    request is originating from, and then enriches that exact address with the
+    full IPinfo response (geolocation, ASN, company, and privacy signals). Each
+    step spells out its request inline, including the access token, so the flow
+    can be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: ipinfoApi
+  url: ../openapi/ipinfo-openapi.yml
+  type: openapi
+workflows:
+- workflowId: enrich-my-ip
+  summary: Resolve the caller's public IP and return full enrichment for it.
+  description: >-
+    Calls the root endpoint to learn the caller's current public IP, then looks
+    that IP up by address to retrieve the complete IPinfo intelligence record.
+  inputs:
+    type: object
+    required:
+    - token
+    properties:
+      token:
+        type: string
+        description: IPinfo API access token used to authorize each request.
+  steps:
+  - stepId: getMyIp
+    description: >-
+      Call the root endpoint to return IP information about the current IP,
+      capturing the public IP address the request originated from.
+    operationId: getCurrentInformation
+    parameters:
+    - name: token
+      in: query
+      value: $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      myIp: $response.body#/ip
+  - stepId: enrichIp
+    description: >-
+      Look up the resolved public IP by address to return the full IPinfo
+      record, including geolocation, ASN, company, and privacy details.
+    operationId: getInformationByIp
+    parameters:
+    - name: ip
+      in: path
+      value: $steps.getMyIp.outputs.myIp
+    - name: token
+      in: query
+      value: $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      ip: $response.body#/ip
+      city: $response.body#/city
+      region: $response.body#/region
+      country: $response.body#/country
+      org: $response.body#/org
+  outputs:
+    myIp: $steps.getMyIp.outputs.myIp
+    country: $steps.enrichIp.outputs.country
+    org: $steps.enrichIp.outputs.org
