@@ -1,0 +1,1404 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "IPinfo.io OpenAPI Specification",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ipinfo max",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns Max API Information About the Provided IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/max/:ip",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns the most comprehensive IP intelligence, including geolocation, ASN, privacy detection (VPN, proxy, Tor, relay, residential proxy), carrier data, and network flags for advanced threat analysis and bot detection.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "places",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns Building-level Place Information for the Provided IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/places/:ip",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns the real-world location associated with an IP address at the building level, including hotels, airports, museums, stadiums, and 30+ other categories. Includes venue name, category, SSID, and coordinates.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "general",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns IP Information About the Current IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns IP information about the current IP.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns Information About the Provided IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The ipinfo.io/{ip} endpoint provides comprehensive information about a specified IP address, including geographic location (city, region, country), coordinates, postal code, and timezone.\nBased on the pricing tier, it also provides ASN (Autonomous System Number) details, associated company information, privacy settings (e.g., VPN, proxy usage), abuse contact information, and hosted domains associated with the IP.\nThis endpoint is useful for applications needing detailed IP intelligence, such as "
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns API Service Request Limit by Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/me",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The `/me` API endpoint can be used to provide summary information on the access token limits, access to API products, and other related information.\nThe `/me` endpoint can be used in verifying access tokens as well.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Bulk IPinfo API Enrichment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ipinfo.io/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Bulk or batch enrich IP addresses with IP information. See [documentation](https://ipinfo.io/developers/batch-enrichment-api)."
+        },
+        {
+          "info": {
+            "name": "IPinfo Summarize IP Addresses",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ipinfo.io/tools/summarize-ips",
+            "params": [
+              {
+                "name": "cli",
+                "value": "",
+                "type": "query",
+                "description": "CLI flag parameter"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Get summary-level information of upto 500,000 IP addresses, including IP location on a map, IP types, privacy detection flags, top ASNs, top cities, and more. [Explore the IPinfo Summarize tool](https://ipinfo.io/tools/summarize-ips)."
+        },
+        {
+          "info": {
+            "name": "IPinfo Highlight IP Addresses on a Map",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ipinfo.io/tools/map",
+            "params": [
+              {
+                "name": "cli",
+                "value": "",
+                "type": "query",
+                "description": "CLI flag parameter"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Visualize upto 500,000 IP addresses on an interactive map. [Explore the IPinfo Map IPs tool](https://ipinfo.io/tools/map)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "asn",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns Information About an ASN",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/AS:asn",
+            "params": [
+              {
+                "name": "asn",
+                "value": "",
+                "type": "path",
+                "description": "an ASN number."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns information about an ASN, such as the assigned prefixes, related domain, and more.\nThe ASN API provides comprehensive information about an Autonomous System (AS) entity.\nIt delivers data on the AS's registration, ASN type, network details, associated prefixes (including IPv6), and relationships with other ASNs (peers, upstreams and downstreams).\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "company",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns Information About the Company That Operates or is Assigned the IP Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/company",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns information of the organization that is operating an IP address such as name, organization type and their official domain.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "carrier",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Detects if the IP Address is Being Used in a Mobile Carrier Network. it Returns the Mobile Country Code (MCC), Mobile Network Code (MNC), and the Originating Country of the Carrier",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/carrier",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Detects if the IP address is being used in a mobile carrier network. This API endpoint can be used to detect the usage of a phone device through an IP address. It returns the Mobile Country Code (MCC), Mobile Network Code (MNC), and the originating country of the carrier.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ranges",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns Information About a Domain Ranges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/ranges/:domain",
+            "params": [
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path",
+                "description": "a domain."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The IP address ranges API endpoint provides information about IP address ranges assigned to or operated by a specific organization, identified by its domain name. This includes the number of IP ranges, specific IP range blocks (both IPv4 and IPv6), and any domain redirection information.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "domains",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns a List of All of the Domains Hosted on the Provided IP Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/domains/:ip",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The API returns 100 domains per page and has a limit of 1000 domains per page. We return up to 10 million results. The limit parameter can be used to control the number of domains per page."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The Hosted Domains or Reverse IP API endpoint returns a list of domains hosted on a specified IP address, including the total number of domains and the specific names associated with that address.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "abuse",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns Data Containing Information Belonging to the Abuse Contact of the IP Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/abuse",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The IP to abuse contact information API endpoint provides detailed information about the abuse contact associated with a specific IP address.\nThe response includes the abuse contact's name, email address, postal address, city, state, country, phone number, and the network associated with the IP. \n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "privacy detection",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns Privacy Information About the Selected IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/privacy",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The IP to Privacy Detection or Anonymous IP API provides privacy-related information about a specified IP address.\nThis includes whether the IP is associated with a VPN, proxy, Tor network, relay service, or a hosting service/data center (indicative of bots).\nThe response details the privacy status of the IP, indicating any anonymizing services in use and specifies the type of service (e.g., NordVPN, TunnelBear, Mullvad, ProtonVPN, CyberGhost, ExpressVPN, Surfshark etc.).\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "residential proxy detection",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns Residential Proxy Detection Information for the Selected IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/resproxy",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The Residential Proxy Detection API provides detailed insights into IP addresses associated with residential, mobile, or datacenter proxy networks.\nThis includes activity patterns (last seen date, percentage of days active), and proxy service identification.\nServices are suffixed with `_mobile` for carrier/mobile proxies or `_datacenter` for datacenter proxies.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "privacy detection extended",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns Extended Privacy Detection Information with Detailed Methodologies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/privacy_extended",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The Privacy Detection Extended API provides detection methodology metadata to support risk scoring, confidence metrics, and IP reputation aspects.\nUses multi-modal detection methods including internet measurement, IP behavior analysis, and internet records metadata.\nIncludes detailed flags for VPN, proxy, Tor, relay, hosting, and service identification with confidence metrics.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "whois",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns the WHOIS Information by Net ID Lookup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/whois/net/:whoisnetid",
+            "params": [
+              {
+                "name": "whoisnetid",
+                "value": "",
+                "type": "path",
+                "description": "The Network (NET) ID of an internet organization."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request."
+              },
+              {
+                "name": "whoissource",
+                "value": "",
+                "type": "query",
+                "description": "Source query parameter to filter records by provided Whois source."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "This API endpoint allows users to retrieve WHOIS information based on a specified Net ID.\nThe response includes details such as the IP address range, organization name, country, and various administrative information related to the network.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns the WHOIS Information by WHOIS IP Address or IP Address Range",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/whois/net/:whoisip",
+            "params": [
+              {
+                "name": "whoisip",
+                "value": "",
+                "type": "path",
+                "description": "The IP address or an IP address range of an internet organization."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request."
+              },
+              {
+                "name": "whoissource",
+                "value": "",
+                "type": "query",
+                "description": "Source query parameter to filter records by provided Whois source."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The WHOIS API lookup via IP address provides WHOIS information based on a specific IP address or IP address range.\nThe response contains detailed information about the organization associated with the IP, including the range of addresses, organization name, administrative contacts, abuse contacts, and additional metadata such as the country and contact details for both technical and administrative support.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns the WHOIS Information by WHOIS Domain of an Internet Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/whois/net/:domain",
+            "params": [
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path",
+                "description": "a domain."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request."
+              },
+              {
+                "name": "whoissource",
+                "value": "",
+                "type": "query",
+                "description": "Source query parameter to filter records by provided Whois source."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The IPinfo WHOIS API lookup via organization organization domain name provides comprehensive WHOIS information for specified organization, enabling users to gain insights into the registration and organizational details of internet entities. The response includes a total count of records, and detailed records for each associated IP range.  Querying the organization domain reveals critical information such as the organization's name, country, and contact details for technical and administrative p"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns the WHOIS Information by WHOIS ASN",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/whois/net/AS:asn",
+            "params": [
+              {
+                "name": "asn",
+                "value": "",
+                "type": "path",
+                "description": "an ASN number."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request."
+              },
+              {
+                "name": "whoissource",
+                "value": "",
+                "type": "query",
+                "description": "Source query parameter to filter records by provided Whois source."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The IPinfo WHOIS API lookup via ASN provides in-depth WHOIS information associated with a specific Autonomous System Number (ASN). Querying ASN reveals critical data, including the organization's name, the allocated IP range, and the country of operation. The response includes administrative and technical contact information, highlighting the contact person along with their address and phone number. Additionally, the API provides details for abuse reporting, including a dedicated email for abuse"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns the WHOIS Information by WHOIS Organization (ORG) ID of an Internet Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/whois/org/:whoisorgid",
+            "params": [
+              {
+                "name": "whoisorgid",
+                "value": "",
+                "type": "path",
+                "description": "The WHOIS organization (ORG) ID of an internet organization."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request."
+              },
+              {
+                "name": "whoissource",
+                "value": "",
+                "type": "query",
+                "description": "Source query parameter to filter records by provided Whois source."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The IPinfo WHOIS API lookup via organization IDs (Org) provides comprehensive information about a specific internet organization identified by its WHOIS organization ID. Querying a WHOIS org key returns data about the internet organization. The response includes critical details such as the organization's address, along with the contact information for various roles within the organization. This includes administrative, technical, and abuse contacts. The API also offers timestamps for when the o"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns the WHOIS Information by WHOIS Point of Contact (POC) Value of an Internet Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/whois/poc/:whoispoc",
+            "params": [
+              {
+                "name": "whoispoc",
+                "value": "",
+                "type": "path",
+                "description": "The WHOIS Point of Contact (POC) value of an internet organization."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request."
+              },
+              {
+                "name": "whoissource",
+                "value": "",
+                "type": "query",
+                "description": "Source query parameter to filter records by provided Whois source."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The IPinfo WHOIS API lookup via Points of Contact (POC) provides essential details about an individual associated with an internet organization identified by their WHOIS POC ID. For instance, querying the POC ID yields information about the name of the point of contact and their organization location. The response includes the organization's physical address, email address, and contact numbers. Additional metadata indicates when the record was created and last updated, alongside the source of th"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "single",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns the Current IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/ip",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns the current public/external IP address.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a IP for the Selected IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/ip",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a ip for the selected IP.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns the Current Hostname",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/hostname",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns the current hostname.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a Hostname for the Selected IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/hostname",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a hostname for the selected IP.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns the Current City",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/city",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns the current city.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a City for the Selected IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/city",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a city for the selected IP.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns the Current Region",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/region",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns the current region. If the region is not available, it will return an empty string.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a Region for the Selected IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/region",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a region for the selected IP. If the region is not available, it will return an empty string.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns the Current Country",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/country",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a concise response consisting of a two-letter country code. If the country is not available, it will return an empty string.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a Country for the Selected IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/country",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a country for the selected IP in two letter ISO-3166 format. If the country is not available, it will return an empty string.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns the Current Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/loc",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The '/loc' API endpoint provides the geographical location of a user's IP address in a response with latitude and longitude in comma-separated text format.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo GET a Location for the Selected IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/loc",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The '/loc' API endpoint provides the geographic location of an IP address as latitude and longitude separated by a comma in text form.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns the Current Postal Code or Zip Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/postal",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The `/postal` API endpoint provides a straightforward method for retrieving the current postal code or zip code. When this endpoint is queried, the API responds with a simple string indicating the postal code for the current IP address.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a Postal for the Selected IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/postal",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The `/postal` API lets users input an IP address to get back the corresponding postal or zip code in a simple string format.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns the Current Timezone",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/timezone",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The '/timezone' API endpoint returns the user's timezone based on their IP address in IANA format.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a Timezone for the Selected IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/timezone",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The `/timezone` API endpoint returns the IANA timezone based on the user's input IP address.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns the Current ASN and as Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/org",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The '/org' API endpoint identifies the Autonomous System Number (ASN) and ASN organization associated with the user's IP address. When called, the API returns a string with the ASN (prefixed by 'AS') and organization name.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a Organization for the Selected IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/org",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The '/org' API endpoint provides the ASN and organization related to the user's input IP address. It returns a string including the ASN (prefixed by 'AS') and AS organization name.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ipinfo lite",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns Lightweight IP Information About the Current IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/lite/me",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns lightweight IP information about the current IP including ASN details, country, and continent information.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns Lightweight IP Information About the Provided IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/lite/:ip",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns lightweight IP information about the provided IP including ASN details, country, and continent information. For bogon/private IPs, returns a response with bogon: true.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a Specific Field from Lightweight IP Information About the Current IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/lite/me/:field",
+            "params": [
+              {
+                "name": "field",
+                "value": "",
+                "type": "path",
+                "description": "A specific field from the lite response (ip, asn, as_name, as_domain, country_code, country, continent_code, continent)."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a specific field from lightweight IP information about the current IP.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a Specific Field from Lightweight IP Information About the Provided IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/lite/:ip/:field",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              },
+              {
+                "name": "field",
+                "value": "",
+                "type": "path",
+                "description": "A specific field from the lite response (ip, asn, as_name, as_domain, country_code, country, continent_code, continent)."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a specific field from lightweight IP information about the provided IP.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ipinfo core",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns Core IP Information About the Current IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/lookup/me",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns comprehensive core IP information about the current IP including geolocation, ASN details, and various IP characteristics.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns Core IP Information About the Provided IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/lookup/:ip",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns comprehensive core IP information about the provided IP including geolocation, ASN details, and various IP characteristics.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a Specific Field from Core IP Information About the Current IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/lookup/me/:field",
+            "params": [
+              {
+                "name": "field",
+                "value": "",
+                "type": "path",
+                "description": "A specific field from the core response or nested geo/as fields."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a specific field from core IP information about the current IP.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a Specific Field from Core IP Information About the Provided IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/lookup/:ip/:field",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              },
+              {
+                "name": "field",
+                "value": "",
+                "type": "path",
+                "description": "A specific field from the core response or nested geo/as fields."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a specific field from core IP information about the provided IP.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ipinfo plus",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns Plus IP Information About the Current IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/plus/me",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns comprehensive plus IP information about the current IP including enhanced geolocation, ASN details, mobile/carrier information, anonymity detection, and various IP characteristics.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns Plus IP Information About the Provided IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/plus/:ip",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns comprehensive plus IP information about the provided IP including enhanced geolocation, ASN details, mobile/carrier information, anonymity detection, and various IP characteristics.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a Specific Field from Plus IP Information About the Current IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/plus/me/:field",
+            "params": [
+              {
+                "name": "field",
+                "value": "",
+                "type": "path",
+                "description": "A specific field from the plus response or nested geo/as/mobile/anonymous fields."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a specific field from plus IP information about the current IP.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a Specific Field from Plus IP Information About the Provided IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/plus/:ip/:field",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              },
+              {
+                "name": "field",
+                "value": "",
+                "type": "path",
+                "description": "A specific field from the plus response or nested geo/as/mobile/anonymous fields."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a specific field from plus IP information about the provided IP.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,22 +1,19 @@
 aid: ipinfo
 name: IPinfo
 description: >-
-  IPinfo is an IP address data and intelligence platform that provides
-  geolocation (country, region, city, coordinates, postal, timezone), ASN data,
-  company association, mobile carrier identification, hosted domains lookup,
-  privacy detection (VPN, proxy, Tor, relay, hosting), residential proxy
-  detection, WHOIS, IP ranges, abuse contacts, and an IP-to-Places product.
-  Data is available via a unified REST API (Lite, Core, Plus, Max, Enterprise
-  tiers), a Batch Enrichment endpoint, and downloadable databases (CSV, MMDB,
-  JSON, Parquet). Authentication uses access tokens via Basic Auth, Bearer
-  Token, or query parameter; dual-stack IPv4/IPv6 endpoints are available.
+  IPinfo is an IP address data and intelligence platform that provides geolocation (country, region, city, coordinates,
+  postal, timezone), ASN data, company association, mobile carrier identification, hosted domains lookup, privacy
+  detection (VPN, proxy, Tor, relay, hosting), residential proxy detection, WHOIS, IP ranges, abuse contacts, and an
+  IP-to-Places product. Data is available via a unified REST API (Lite, Core, Plus, Max, Enterprise tiers), a Batch
+  Enrichment endpoint, and downloadable databases (CSV, MMDB, JSON, Parquet). Authentication uses access tokens via
+  Basic Auth, Bearer Token, or query parameter; dual-stack IPv4/IPv6 endpoints are available.
 url: https://ipinfo.io/developers
 image: https://ipinfo.io/static/images/logo.svg
 specificationVersion: '0.20'
 created: '2026-05-28'
 modified: '2026-05-29'
 x-source: public-apis/public-apis
-x-category: "Development"
+x-category: Development
 x-tier: 3
 x-tier-reason: bulk-registered-from-public-apis
 tags:
@@ -34,12 +31,10 @@ tags:
 apis:
   - name: IPinfo Core API
     description: >-
-      Unified IP intelligence REST API exposing the Lite, Core, Plus, Max,
-      Enterprise, Places, ASN, Company, Carrier, Hosted Domains, Privacy
-      Detection (Standard and Extended), Residential Proxy Detection, WHOIS,
-      IP Ranges, Abuse Contact, Batch Enrichment, and Tools (Summarize IPs,
-      Map IPs) endpoints. All endpoints share the same `api.ipinfo.io` base
-      URL and the same token-based authentication.
+      Unified IP intelligence REST API exposing the Lite, Core, Plus, Max, Enterprise, Places, ASN, Company, Carrier,
+      Hosted Domains, Privacy Detection (Standard and Extended), Residential Proxy Detection, WHOIS, IP Ranges, Abuse
+      Contact, Batch Enrichment, and Tools (Summarize IPs, Map IPs) endpoints. All endpoints share the same
+      `api.ipinfo.io` base URL and the same token-based authentication.
     humanURL: https://ipinfo.io/developers
     baseURL: https://api.ipinfo.io
     tags:
@@ -123,27 +118,27 @@ common:
   - type: ArazzoWorkflows
     url: arazzo/
     workflows:
-    - url: arazzo/ipinfo-abuse-reporting-workflow.yml
-      name: IPinfo Abuse Contact and Hosted Domains
-      summary: Resolve an IP to its abuse contact and the domains hosted on it.
-    - url: arazzo/ipinfo-asn-prefix-recon-workflow.yml
-      name: IPinfo ASN Prefix Reconnaissance
-      summary: Verify token access, then pull ASN detail and the domain ranges behind it.
-    - url: arazzo/ipinfo-batch-then-detail-workflow.yml
-      name: IPinfo Batch Enrich then Detail
-      summary: Bulk-enrich a list of IPs, then pull the full record for one focus IP.
-    - url: arazzo/ipinfo-ip-to-company-workflow.yml
-      name: IPinfo IP to Operating Company
-      summary: Resolve an IP address to its full record and then to the company operating it.
-    - url: arazzo/ipinfo-my-ip-enrichment-workflow.yml
-      name: IPinfo Enrich My Current IP
-      summary: Discover the caller's own public IP and then pull full IP intelligence for it.
-    - url: arazzo/ipinfo-summarize-and-map-workflow.yml
-      name: IPinfo Summarize and Map IP Addresses
-      summary: Generate a summary report for a list of IPs, then a map visualization for them.
-    - url: arazzo/ipinfo-threat-screening-workflow.yml
-      name: IPinfo IP Threat Screening
-      summary: Screen an IP for privacy/anonymizer signals and confirm residential proxy use.
+      - url: arazzo/ipinfo-abuse-reporting-workflow.yml
+        name: IPinfo Abuse Contact and Hosted Domains
+        summary: Resolve an IP to its abuse contact and the domains hosted on it.
+      - url: arazzo/ipinfo-asn-prefix-recon-workflow.yml
+        name: IPinfo ASN Prefix Reconnaissance
+        summary: Verify token access, then pull ASN detail and the domain ranges behind it.
+      - url: arazzo/ipinfo-batch-then-detail-workflow.yml
+        name: IPinfo Batch Enrich then Detail
+        summary: Bulk-enrich a list of IPs, then pull the full record for one focus IP.
+      - url: arazzo/ipinfo-ip-to-company-workflow.yml
+        name: IPinfo IP to Operating Company
+        summary: Resolve an IP address to its full record and then to the company operating it.
+      - url: arazzo/ipinfo-my-ip-enrichment-workflow.yml
+        name: IPinfo Enrich My Current IP
+        summary: Discover the caller's own public IP and then pull full IP intelligence for it.
+      - url: arazzo/ipinfo-summarize-and-map-workflow.yml
+        name: IPinfo Summarize and Map IP Addresses
+        summary: Generate a summary report for a list of IPs, then a map visualization for them.
+      - url: arazzo/ipinfo-threat-screening-workflow.yml
+        name: IPinfo IP Threat Screening
+        summary: Screen an IP for privacy/anonymizer signals and confirm residential proxy use.
   - type: Website
     url: https://ipinfo.io
   - type: DeveloperPortal
@@ -200,57 +195,6 @@ common:
     url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/vocabulary/ipinfo-vocabulary.yml
   - type: JSON-LD
     url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-ld/ipinfo-context.jsonld
-  - type: NaftikoCapability
-    title: General
-    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-general.yaml
-  - type: NaftikoCapability
-    title: IPinfo Lite
-    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-ipinfo-lite.yaml
-  - type: NaftikoCapability
-    title: IPinfo Core
-    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-ipinfo-core.yaml
-  - type: NaftikoCapability
-    title: IPinfo Plus
-    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-ipinfo-plus.yaml
-  - type: NaftikoCapability
-    title: IPinfo Max
-    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-ipinfo-max.yaml
-  - type: NaftikoCapability
-    title: Places
-    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-places.yaml
-  - type: NaftikoCapability
-    title: ASN
-    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-asn.yaml
-  - type: NaftikoCapability
-    title: Company
-    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-company.yaml
-  - type: NaftikoCapability
-    title: Carrier
-    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-carrier.yaml
-  - type: NaftikoCapability
-    title: Ranges
-    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-ranges.yaml
-  - type: NaftikoCapability
-    title: Domains
-    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-domains.yaml
-  - type: NaftikoCapability
-    title: Abuse
-    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-abuse.yaml
-  - type: NaftikoCapability
-    title: Privacy Detection
-    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-privacy-detection.yaml
-  - type: NaftikoCapability
-    title: Privacy Detection Extended
-    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-privacy-detection-extended.yaml
-  - type: NaftikoCapability
-    title: Residential Proxy Detection
-    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-residential-proxy-detection.yaml
-  - type: NaftikoCapability
-    title: WHOIS
-    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-whois.yaml
-  - type: NaftikoCapability
-    title: Single Field
-    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/capabilities/ipinfo-single.yaml
   - type: PublicAPIsListing
     url: https://github.com/public-apis/public-apis
   - type: Features
