@@ -3,19 +3,12 @@
   "feeds": [
     {
       "source": "https://ipinfo.io/blog",
-      "feed_url": "https://ipinfo.io/blog",
-      "title": "",
-      "saved": 0,
-      "method": "none"
-    },
-    {
-      "source": "https://ipinfo.io/account",
-      "feed_url": "https://ipinfo.io/account",
-      "title": "",
-      "saved": 0,
-      "method": "none"
+      "feed_url": "",
+      "saved": 1,
+      "method": "agent-scrape"
     }
   ],
-  "post_count": 1,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 4,
+  "fetched": "2026-06-27T12:48:41Z",
+  "agent_pulled": "2026-06-27"
 }

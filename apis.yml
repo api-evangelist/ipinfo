@@ -54,60 +54,60 @@ apis:
         url: https://ipinfo.io/developers/getting-started
       - type: Authentication
         url: https://ipinfo.io/developers#authentication
-      - type: Quickstart
+      - type: GettingStarted
         url: https://ipinfo.io/developers/lite-api
       - type: JSONSchema
         url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/
       - type: JSONStructure
         url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/
-      - type: Example
+      - type: Examples
         url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/examples/
-      - type: SDK
+      - type: SDKs
         title: Python SDK
         url: https://github.com/ipinfo/python
-      - type: SDK
+      - type: SDKs
         title: Node.js SDK
         url: https://github.com/ipinfo/node
-      - type: SDK
+      - type: SDKs
         title: Java SDK
         url: https://github.com/ipinfo/java
-      - type: SDK
+      - type: SDKs
         title: Go SDK
         url: https://github.com/ipinfo/go
-      - type: SDK
+      - type: SDKs
         title: Ruby SDK
         url: https://github.com/ipinfo/ruby
-      - type: SDK
+      - type: SDKs
         title: PHP SDK
         url: https://github.com/ipinfo/php
-      - type: SDK
+      - type: SDKs
         title: C# SDK
         url: https://github.com/ipinfo/csharp
-      - type: SDK
+      - type: SDKs
         title: Rust SDK
         url: https://github.com/ipinfo/rust
-      - type: SDK
+      - type: SDKs
         title: Perl SDK
         url: https://github.com/ipinfo/perl
-      - type: SDK
+      - type: SDKs
         title: Swift SDK
         url: https://github.com/ipinfo/swift
-      - type: SDK
+      - type: SDKs
         title: Erlang SDK
         url: https://github.com/ipinfo/erlang
-      - type: SDK
+      - type: SDKs
         title: Django SDK
         url: https://github.com/ipinfo/django
-      - type: SDK
+      - type: SDKs
         title: Laravel SDK
         url: https://github.com/ipinfo/laravel
-      - type: SDK
+      - type: SDKs
         title: Spring SDK
         url: https://github.com/ipinfo/spring
-      - type: SDK
+      - type: SDKs
         title: Rails SDK
         url: https://github.com/ipinfo/rails
-      - type: SDK
+      - type: SDKs
         title: Node Express SDK
         url: https://github.com/ipinfo/node-express
       - type: RateLimits
@@ -115,35 +115,32 @@ apis:
       - type: Plans
         url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
 common:
-  - type: ArazzoWorkflows
-    url: arazzo/
-    workflows:
-      - url: arazzo/ipinfo-abuse-reporting-workflow.yml
-        name: IPinfo Abuse Contact and Hosted Domains
-        summary: Resolve an IP to its abuse contact and the domains hosted on it.
-      - url: arazzo/ipinfo-asn-prefix-recon-workflow.yml
-        name: IPinfo ASN Prefix Reconnaissance
-        summary: Verify token access, then pull ASN detail and the domain ranges behind it.
-      - url: arazzo/ipinfo-batch-then-detail-workflow.yml
-        name: IPinfo Batch Enrich then Detail
-        summary: Bulk-enrich a list of IPs, then pull the full record for one focus IP.
-      - url: arazzo/ipinfo-ip-to-company-workflow.yml
-        name: IPinfo IP to Operating Company
-        summary: Resolve an IP address to its full record and then to the company operating it.
-      - url: arazzo/ipinfo-my-ip-enrichment-workflow.yml
-        name: IPinfo Enrich My Current IP
-        summary: Discover the caller's own public IP and then pull full IP intelligence for it.
-      - url: arazzo/ipinfo-summarize-and-map-workflow.yml
-        name: IPinfo Summarize and Map IP Addresses
-        summary: Generate a summary report for a list of IPs, then a map visualization for them.
-      - url: arazzo/ipinfo-threat-screening-workflow.yml
-        name: IPinfo IP Threat Screening
-        summary: Screen an IP for privacy/anonymizer signals and confirm residential proxy use.
+  - type: Arazzo
+    url: arazzo/ipinfo-abuse-reporting-workflow.yml
+    name: IPinfo Abuse Contact and Hosted Domains
+  - type: Arazzo
+    url: arazzo/ipinfo-asn-prefix-recon-workflow.yml
+    name: IPinfo ASN Prefix Reconnaissance
+  - type: Arazzo
+    url: arazzo/ipinfo-batch-then-detail-workflow.yml
+    name: IPinfo Batch Enrich then Detail
+  - type: Arazzo
+    url: arazzo/ipinfo-ip-to-company-workflow.yml
+    name: IPinfo IP to Operating Company
+  - type: Arazzo
+    url: arazzo/ipinfo-my-ip-enrichment-workflow.yml
+    name: IPinfo Enrich My Current IP
+  - type: Arazzo
+    url: arazzo/ipinfo-summarize-and-map-workflow.yml
+    name: IPinfo Summarize and Map IP Addresses
+  - type: Arazzo
+    url: arazzo/ipinfo-threat-screening-workflow.yml
+    name: IPinfo IP Threat Screening
   - type: Website
     url: https://ipinfo.io
   - type: DeveloperPortal
     url: https://ipinfo.io/developers
-  - type: SignUp
+  - type: Signup
     url: https://ipinfo.io/signup
   - type: Login
     url: https://ipinfo.io/login
@@ -193,7 +190,7 @@ common:
     url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/rules/ipinfo-spectral-rules.yml
   - type: Vocabulary
     url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/vocabulary/ipinfo-vocabulary.yml
-  - type: JSON-LD
+  - type: JSONLD
     url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-ld/ipinfo-context.jsonld
   - type: PublicAPIsListing
     url: https://github.com/public-apis/public-apis
