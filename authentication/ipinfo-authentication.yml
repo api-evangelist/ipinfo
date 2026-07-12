@@ -1,0 +1,26 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/ipinfo-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - query
+schemes:
+- name: BasicAuth
+  type: http
+  scheme: basic
+  sources:
+  - openapi/ipinfo-openapi.yml
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  sources:
+  - openapi/ipinfo-openapi.yml
+- name: ApiKeyAuth
+  type: apiKey
+  in: query
+  parameter: token
+  sources:
+  - openapi/ipinfo-openapi.yml

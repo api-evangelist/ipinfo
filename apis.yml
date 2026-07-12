@@ -115,6 +115,10 @@ apis:
       - type: Plans
         url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
 common:
+  - type: DomainSecurity
+    url: security/ipinfo-domain-security.yml
+  - type: Authentication
+    url: authentication/ipinfo-authentication.yml
   - type: Arazzo
     url: arazzo/ipinfo-abuse-reporting-workflow.yml
     name: IPinfo Abuse Contact and Hosted Domains
