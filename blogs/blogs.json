@@ -2,13 +2,14 @@
   "repo": "ipinfo",
   "feeds": [
     {
-      "source": "https://ipinfo.io/blog",
-      "feed_url": "",
-      "saved": 1,
-      "method": "agent-scrape"
+      "source": "https://ipinfo.io/account",
+      "feed_url": "https://ipinfo.io/account",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
   "post_count": 4,
-  "fetched": "2026-06-27T12:48:41Z",
+  "fetched": "2026-07-11T11:50:51Z",
   "agent_pulled": "2026-06-27"
 }

@@ -1,270 +1,269 @@
+# ipinfo — Spectral ruleset (strengthened)
+# Plain Spectral. Existing hand-authored rules preserved; measured rules added
+# from this provider's own OpenAPI conventions by strengthen_ruleset.py,
+# then self-validated against the spec.
+#
+# Provenance:
+#   - servers-https-only: 100% of servers already https (error)
+#   - servers-expected-domain: 3/3 servers on ipinfo.io
+#   - path-params-casing: snake @ 100% (n=39)
+#   - query-params-casing: snake @ 100% (n=16)
+#   - operationid-casing: camel @ 94% (n=47)
+#   - schema-names-casing: pascal @ 100% (n=43)
+#   - schema-properties-casing: snake @ 100% (n=188)
+#   - operation-security-required: 53/53 ops declare per-op security
+#   - error-schema-defined: Error404
+#   - operation-documents-500: 81% adherence
+#   - pagination params observed: ['limit', 'page']
+#   - merge: kept 24 existing, added 6 measured, upgraded 0
+#   - added: servers-https-only, query-params-casing, schema-names-casing, error-schema-defined, operation-documents-500, no-empty-descriptions
 extends:
   - spectral:oas
-
-documentationUrl: https://github.com/api-evangelist/ipinfo
-
-# Spectral ruleset enforcing IPinfo OpenAPI conventions, derived from analysis of
-# the official IPinfo OpenAPI specification (https://ipinfo.io/developers/openapi.yaml).
-# IPinfo's API is read-heavy (almost all GET), uses snake_case for response fields,
-# token-based auth (Basic / Bearer / query), and tag-grouped surfaces per data type
-# (lite, core, plus, max, places, asn, company, carrier, ranges, domains, abuse,
-# privacy detection, residential proxy detection, privacy detection extended, whois).
-
 rules:
-
-  # ----------------------------------------------------------------------------
-  # INFO / METADATA
-  # ----------------------------------------------------------------------------
-
   ipinfo-info-contact:
     description: Info object should specify a contact for support.
-    message: "Info object should include contact information."
+    message: Info object should include contact information.
     severity: warn
-    given: "$.info"
+    given: $.info
     then:
       field: contact
       function: truthy
-
   ipinfo-info-license:
     description: Info object should specify a license.
-    message: "Info object should include license information."
+    message: Info object should include license information.
     severity: warn
-    given: "$.info"
+    given: $.info
     then:
       field: license
       function: truthy
-
   ipinfo-info-version-semver:
     description: Info version should follow semantic versioning.
-    message: "Info version '{{value}}' should follow semver (e.g. 1.0.0)."
+    message: Info version '{{value}}' should follow semver (e.g. 1.0.0).
     severity: warn
-    given: "$.info.version"
+    given: $.info.version
     then:
       function: pattern
       functionOptions:
-        match: "^\\d+\\.\\d+\\.\\d+"
-
-  # ----------------------------------------------------------------------------
-  # SERVERS
-  # ----------------------------------------------------------------------------
-
+        match: ^\d+\.\d+\.\d+
   ipinfo-server-uses-api-subdomain:
     description: Servers should target the api.ipinfo.io host (or its v4/v6 variants).
-    message: "Server URL should reference api.ipinfo.io, v4.api.ipinfo.io, or v6.api.ipinfo.io."
+    message: Server URL should reference api.ipinfo.io, v4.api.ipinfo.io, or v6.api.ipinfo.io.
     severity: warn
-    given: "$.servers[*].url"
+    given: $.servers[*].url
     then:
       function: pattern
       functionOptions:
-        match: "ipinfo\\.io"
-
-  # ----------------------------------------------------------------------------
-  # SECURITY
-  # ----------------------------------------------------------------------------
-
+        match: ipinfo\.io
   ipinfo-security-schemes-defined:
     description: Specs must define at least one security scheme (Basic, Bearer, or ApiKey).
-    message: "components.securitySchemes must define BasicAuth, BearerAuth, or ApiKeyAuth."
+    message: components.securitySchemes must define BasicAuth, BearerAuth, or ApiKeyAuth.
     severity: error
-    given: "$.components.securitySchemes"
+    given: $.components.securitySchemes
     then:
       function: truthy
-
   ipinfo-operation-has-security:
     description: Every operation should declare an explicit security requirement.
-    message: "Operation '{{property}}' is missing a security requirement."
+    message: Operation '{{property}}' is missing a security requirement.
     severity: warn
-    given: "$.paths[*][get,post,put,patch,delete]"
+    given: $.paths[*][get,post,put,patch,delete]
     then:
       field: security
       function: truthy
-
-  # ----------------------------------------------------------------------------
-  # PATH / OPERATION CONVENTIONS
-  # ----------------------------------------------------------------------------
-
   ipinfo-path-no-trailing-slash:
     description: Paths should not have trailing slashes (except root).
-    message: "Path '{{property}}' should not end with a trailing slash."
+    message: Path '{{property}}' should not end with a trailing slash.
     severity: warn
-    given: "$.paths"
+    given: $.paths
     then:
-      field: "@key"
+      field: '@key'
       function: pattern
       functionOptions:
-        notMatch: ".+/$"
-
+        notMatch: .+/$
   ipinfo-operation-id-camel:
     description: operationId should be camelCase (e.g. getInformationByIp).
-    message: "operationId '{{value}}' should be camelCase."
+    message: operationId '{{value}}' should be camelCase.
     severity: warn
-    given: "$.paths[*][get,post,put,patch,delete].operationId"
+    given: $.paths[*][get,post,put,patch,delete].operationId
     then:
       function: pattern
       functionOptions:
-        match: "^[a-z][a-zA-Z0-9]*$"
-
+        match: ^[a-z][a-zA-Z0-9]*$
   ipinfo-operation-has-tag:
     description: Every operation should declare at least one tag.
-    message: "Operation '{{property}}' must declare a tag."
+    message: Operation '{{property}}' must declare a tag.
     severity: error
-    given: "$.paths[*][get,post,put,patch,delete]"
+    given: $.paths[*][get,post,put,patch,delete]
     then:
       field: tags
       function: truthy
-
   ipinfo-operation-single-tag:
     description: IPinfo operations carry exactly one tag.
-    message: "Operation should declare exactly one tag."
+    message: Operation should declare exactly one tag.
     severity: warn
-    given: "$.paths[*][get,post,put,patch,delete].tags"
+    given: $.paths[*][get,post,put,patch,delete].tags
     then:
       function: length
       functionOptions:
         max: 1
-
   ipinfo-operation-has-summary:
     description: Every operation should have a summary.
-    message: "Operation '{{property}}' must have a summary."
+    message: Operation '{{property}}' must have a summary.
     severity: error
-    given: "$.paths[*][get,post,put,patch,delete]"
+    given: $.paths[*][get,post,put,patch,delete]
     then:
       field: summary
       function: truthy
-
   ipinfo-operation-has-description:
     description: Every operation should have a description.
-    message: "Operation '{{property}}' should have a description."
+    message: Operation '{{property}}' should have a description.
     severity: warn
-    given: "$.paths[*][get,post,put,patch,delete]"
+    given: $.paths[*][get,post,put,patch,delete]
     then:
       field: description
       function: truthy
-
   ipinfo-summary-title-case:
     description: Operation summaries should be Title Case and start with IPinfo.
-    message: "Summary '{{value}}' should start with 'IPinfo'."
+    message: Summary '{{value}}' should start with 'IPinfo'.
     severity: warn
-    given: "$.paths[*][get,post,put,patch,delete].summary"
+    given: $.paths[*][get,post,put,patch,delete].summary
     then:
       function: pattern
       functionOptions:
-        match: "^IPinfo "
-
+        match: '^IPinfo '
   ipinfo-summary-no-trailing-period:
     description: Operation summaries should not end with a period.
-    message: "Summary '{{value}}' should not end with a period."
+    message: Summary '{{value}}' should not end with a period.
     severity: warn
-    given: "$.paths[*][get,post,put,patch,delete].summary"
+    given: $.paths[*][get,post,put,patch,delete].summary
     then:
       function: pattern
       functionOptions:
-        notMatch: "\\.$"
-
-  # ----------------------------------------------------------------------------
-  # RESPONSES
-  # ----------------------------------------------------------------------------
-
+        notMatch: \.$
   ipinfo-response-has-200:
     description: GET operations should declare a 200 response.
-    message: "Operation '{{property}}' should declare a 200 response."
+    message: Operation '{{property}}' should declare a 200 response.
     severity: warn
-    given: "$.paths[*].get.responses"
+    given: $.paths[*].get.responses
     then:
-      field: "200"
+      field: '200'
       function: truthy
-
   ipinfo-response-has-429:
     description: Operations should declare a 429 Too Many Requests response.
-    message: "Operation '{{property}}' should declare a 429 response (rate limit)."
+    message: Operation '{{property}}' should declare a 429 response (rate limit).
     severity: warn
-    given: "$.paths[*][get,post].responses"
+    given: $.paths[*][get,post].responses
     then:
-      field: "429"
+      field: '429'
       function: truthy
-
   ipinfo-response-json-media:
     description: Responses should use application/json content type.
-    message: "Response must include application/json content."
+    message: Response must include application/json content.
     severity: warn
-    given: "$.paths[*][get,post].responses[200].content"
+    given: $.paths[*][get,post].responses[200].content
     then:
-      field: "application/json"
+      field: application/json
       function: truthy
-
-  # ----------------------------------------------------------------------------
-  # PARAMETERS
-  # ----------------------------------------------------------------------------
-
   ipinfo-parameter-has-description:
     description: All parameters should have a description.
-    message: "Parameter '{{property}}' should have a description."
+    message: Parameter '{{property}}' should have a description.
     severity: warn
-    given: "$.paths[*][*].parameters[*]"
+    given: $.paths[*][*].parameters[*]
     then:
       field: description
       function: truthy
-
   ipinfo-path-parameter-snake-case:
     description: Path parameter names should be snake_case (e.g. ip, asn, field).
-    message: "Path parameter '{{value}}' should be snake_case."
+    message: Path parameter '{{value}}' should be snake_case.
     severity: warn
-    given: "$.paths[*][*].parameters[?(@.in=='path')].name"
+    given: $.paths[*][*].parameters[?(@.in=='path')].name
     then:
       function: pattern
       functionOptions:
-        match: "^[a-z][a-z0-9_]*$"
-
-  # ----------------------------------------------------------------------------
-  # SCHEMAS
-  # ----------------------------------------------------------------------------
-
+        match: ^[a-z][a-z0-9_]*$
   ipinfo-schema-property-snake-case:
     description: Schema property names should be snake_case.
-    message: "Schema property '{{property}}' should be snake_case (e.g. 'region_code', 'country_code')."
+    message: Schema property '{{property}}' should be snake_case (e.g. 'region_code', 'country_code').
     severity: warn
-    given: "$.components.schemas[*].properties"
+    given: $.components.schemas[*].properties
     then:
-      field: "@key"
+      field: '@key'
       function: pattern
       functionOptions:
-        match: "^[a-z_][a-z0-9_]*$"
-
+        match: ^[a-z_][a-z0-9_]*$
   ipinfo-schema-has-type:
     description: All schemas should declare a type.
-    message: "Schema '{{property}}' should declare a type."
+    message: Schema '{{property}}' should declare a type.
     severity: warn
-    given: "$.components.schemas[*]"
+    given: $.components.schemas[*]
     then:
       field: type
       function: truthy
-
   ipinfo-schema-has-example:
     description: Top-level response schemas should include an example.
-    message: "Schema '{{property}}' should include an example."
+    message: Schema '{{property}}' should include an example.
     severity: info
-    given: "$.components.schemas[?(@property.match(/Response$/))]"
+    given: $.components.schemas[?(@property.match(/Response$/))]
     then:
       field: example
       function: truthy
-
-  # ----------------------------------------------------------------------------
-  # TAGS
-  # ----------------------------------------------------------------------------
-
   ipinfo-tags-declared-globally:
     description: Tags should be declared globally with a description.
-    message: "Tags must be declared at the spec root with descriptions."
+    message: Tags must be declared at the spec root with descriptions.
     severity: warn
-    given: "$.tags"
+    given: $.tags
     then:
       function: truthy
-
   ipinfo-global-tag-has-description:
     description: Each globally declared tag should have a description.
-    message: "Tag '{{value}}' should have a description."
+    message: Tag '{{value}}' should have a description.
     severity: info
-    given: "$.tags[*]"
+    given: $.tags[*]
     then:
       field: description
+      function: truthy
+  servers-https-only:
+    description: Server URLs must use HTTPS.
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: ^https://
+  query-params-casing:
+    description: Query parameters should be snake_case (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].parameters[?(@.in=='query')]
+    then:
+      field: name
+      function: casing
+      functionOptions:
+        type: snake
+  schema-names-casing:
+    description: Component schema names should be PascalCase (the dominant convention in this API).
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: '@key'
+      function: pattern
+      functionOptions:
+        match: ^[A-Z][A-Za-z0-9]*$
+  error-schema-defined:
+    description: A shared error schema (Error404) should be defined for error payloads.
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: Error404
+      function: truthy
+  operation-documents-500:
+    description: Operations should document a 500 response (documented on 81% of this API's operations).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      field: '500'
+      function: truthy
+  no-empty-descriptions:
+    description: Descriptions must not be empty strings.
+    severity: warn
+    given: $..description
+    then:
       function: truthy
