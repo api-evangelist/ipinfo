@@ -1,0 +1,71 @@
+generated: '2026-06-20'
+method: derived
+source: openapi/ipinfo-openapi.yml
+docs: https://ipinfo.io/developers
+authentication:
+  style: token
+  methods:
+    - HTTP Basic Auth (token as username, empty password)
+    - Bearer token (Authorization header)
+    - Query parameter (?token=YOUR_TOKEN)
+  reference: authentication/ipinfo-authentication.yml
+  docs: https://ipinfo.io/developers#authentication
+base_urls:
+  primary: https://api.ipinfo.io
+  ipv4_only: https://v4.api.ipinfo.io
+  ipv6_only: https://v6.api.ipinfo.io
+  legacy_web: https://ipinfo.io
+field_filtering:
+  supported: true
+  style: path-suffix
+  note: >-
+    Append a field name to a lookup path to return just that value. Single-field
+    requests return text/plain (e.g. /{ip}/country -> "US"); tiered field routes
+    (/lite/{ip}/{field}, /lookup/{ip}/{field}, /plus/{ip}/{field}) return the
+    scalar as text/plain or a filtered object as JSON.
+pagination:
+  style: page-offset
+  applies_to:
+    - /domains/{ip}
+    - /whois/*
+  params:
+    - name: page
+      in: query
+      description: Zero/one-based page index of results.
+    - name: limit
+      in: query
+      description: Max results per page (Hosted Domains returns up to 1,000 per request).
+  response_fields:
+    - total
+batch:
+  supported: true
+  endpoint: /batch
+  method: POST
+  note: Submit an array of IPs / IP+field paths; response is a map keyed by the requested value. Up to thousands of IPs per request.
+  bulk_tools:
+    - /tools/summarize-ips (POST, up to 500,000 IPs, 5/day on free)
+    - /tools/map (POST, up to 500,000 IPs, 5/day on free)
+metadata:
+  token_info_endpoint: /me
+  note: /me returns token limits, per-product access, and remaining daily/monthly requests.
+request_tracing:
+  request_id_header: null
+  note: No documented request-id/trace header.
+versioning:
+  scheme: unversioned-product-path
+  reference: lifecycle/ipinfo-lifecycle.yml
+error_envelope:
+  format: custom-json
+  shapes:
+    - '{"title": ..., "message": ...}'
+    - '{"status": 404, "error": {"title": ..., "message": ...}}'
+    - '{"error": "..."}'
+  reference: errors/ipinfo-problem-types.yml
+rate_limiting:
+  signal: HTTP 429 with {"title":"Rate limit exceeded","message":...}
+  model: monthly request quota per token (plan-based); IPinfo Lite is unlimited on paid plans
+  reference: rate-limits/ipinfo-rate-limits.yml
+content_negotiation:
+  default: application/json
+  scalar_fields: text/plain
+  note: Full/tiered lookups return JSON; single-field routes return plaintext scalars.

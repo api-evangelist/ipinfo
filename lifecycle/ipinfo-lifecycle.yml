@@ -1,0 +1,28 @@
+generated: '2026-06-20'
+method: searched
+source: https://ipinfo.io/developers
+versioning:
+  scheme: unversioned-product-path
+  current: null
+  docs: https://ipinfo.io/developers
+  note: >-
+    IPinfo does not use a numbered API version prefix. Product tiers are separate
+    path families on the same api.ipinfo.io host (/lite, /lookup [Core], /plus,
+    /max, /places) plus classic per-attribute endpoints (/{ip}/company, /privacy,
+    etc.). New capability ships as new tiers/endpoints rather than a versioned base.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: >-
+    Legacy products (IP-to-Geolocation, ASN, Company, Hosted Domains, Carrier,
+    Abuse, WHOIS, proxy/VPN) remain available for backwards compatibility and are
+    documented as "use Core/Plus instead" without a dated sunset. No RFC 8594
+    Sunset/Deprecation headers observed.
+sla:
+  url: https://ipinfo.io/pricing
+  uptime_target: "99.999%"
+  note: 99.999% uptime with 50-200 ms typical response time (per provider marketing); formal SLA terms are plan-dependent (Enterprise).
+status_page: https://status.ipinfo.io
+changelog: https://ipinfo.io/blog
+support: https://support.ipinfo.io
+deprecated_operations: []

@@ -1,6 +1,12 @@
-generated: '2026-07-11'
-method: derived
+generated: '2026-06-20'
+method: searched
 source: openapi/ipinfo-openapi.yml
+docs: https://ipinfo.io/developers#authentication
+note: >-
+  IPinfo uses a single access token accepted three ways, all documented: HTTP
+  Basic Auth (token as username, empty password), Bearer token in the
+  Authorization header, and a ?token= query parameter. There is no OAuth or
+  scope system.
 summary:
   types:
   - apiKey

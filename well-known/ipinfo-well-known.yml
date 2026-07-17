@@ -1,0 +1,33 @@
+generated: '2026-06-20'
+method: searched
+source: probe of /.well-known/* on IPinfo base hosts
+note: >-
+  No /.well-known/ discovery documents are published on either host. IPinfo uses
+  token-based auth (Basic / Bearer / query token), not OAuth/OIDC, so there is no
+  authorization-server or openid-configuration metadata to serve. Absence recorded
+  as valid data. No raw files saved (nothing returned 200).
+hosts:
+  - host: https://ipinfo.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://api.ipinfo.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404

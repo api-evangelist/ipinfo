@@ -1,0 +1,47 @@
+generated: '2026-06-20'
+method: searched
+status: published
+source: https://ipinfo.io/developers/mcp-server
+docs: https://ipinfo.io/developers/mcp-server
+blog: https://ipinfo.io/blog/ipinfo-data-mcp-server
+server:
+  name: ipinfo
+  transport: http
+  url: https://mcp.ipinfo.io/
+  authentication:
+    type: bearer
+    description: >-
+      The MCP server reads the IPinfo API token from the Authorization: Bearer
+      header on each request; no server-side account or login is required.
+  clients:
+    - Claude Desktop
+    - Claude Code
+    - VS Code
+    - Cursor
+    - LM Studio
+    - Gemini CLI
+    - Codex CLI
+  notes: >-
+    Maintains an in-memory cache for the lifetime of the MCP session, so repeat
+    lookups of the same IP are served from cache and do not consume API quota.
+    Visit https://mcp.ipinfo.io/ in a browser and paste a token to generate
+    ready-to-copy client configurations.
+tools:
+  - name: ipinfo_lookup
+    description: Geolocation, network, and metadata for IP addresses, with an optional detailed mode for city-level data and privacy flags.
+    source_operation: openapi/ipinfo-openapi.yml#getInformationByIp
+  - name: ipinfo_geolocate
+    description: Geographic location data returning country/continent (free tier) or city, region, coordinates, timezone, and postal code (detailed mode).
+    source_operation: openapi/ipinfo-openapi.yml#getCoreInformationByIp
+  - name: ipinfo_asn
+    description: Autonomous system and network ownership information, including ASN, organization name, and domain.
+    source_operation: openapi/ipinfo-openapi.yml#getAsn
+  - name: ipinfo_check_privacy
+    description: Detects VPN, proxy, relay, and Tor usage and flags for anycast, hosting, mobile, and satellite networks.
+    source_operation: openapi/ipinfo-openapi.yml#getPrivacyInformationByIp
+  - name: ipinfo_check_residential_proxy
+    description: Detects residential proxy usage and returns the proxy service name, last seen date, and observation frequency.
+    source_operation: openapi/ipinfo-openapi.yml#getResidentialProxyByIp
+  - name: ipinfo_quota
+    description: Returns API usage, quota limits, and remaining daily/monthly requests.
+    source_operation: openapi/ipinfo-openapi.yml#getMe

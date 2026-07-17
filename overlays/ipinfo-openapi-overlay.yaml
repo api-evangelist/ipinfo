@@ -1,0 +1,47 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for IPinfo.io OpenAPI Specification
+  version: 1.0.0
+extends: openapi/ipinfo-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: ipinfo
+      x-apievangelist-category: IP Intelligence
+      x-apievangelist-artifacts:
+        packages: packages/ipinfo-packages.yml
+        mcp: mcp/ipinfo-mcp.yml
+        cli: cli/ipinfo-cli.yml
+        authentication: authentication/ipinfo-authentication.yml
+        conventions: conventions/ipinfo-conventions.yml
+        errors: errors/ipinfo-problem-types.yml
+        lifecycle: lifecycle/ipinfo-lifecycle.yml
+        conformance: conformance/ipinfo-conformance.yml
+        data_model: data-model/ipinfo-data-model.yml
+        agentic_access: agentic-access/ipinfo-agentic-access.yml
+  - target: $.info
+    update:
+      x-apievangelist-auth-note: >-
+        All operations accept the same access token via HTTP Basic (token as
+        username), Bearer header, or ?token= query parameter.
+  - target: $.servers
+    update:
+      x-apievangelist-hosts:
+        primary: https://api.ipinfo.io
+        ipv4: https://v4.api.ipinfo.io
+        ipv6: https://v6.api.ipinfo.io
+  - target: "$.paths['/{ip}'].get"
+    update:
+      x-apievangelist-mcp-tool: ipinfo_lookup
+  - target: "$.paths['/AS{asn}'].get"
+    update:
+      x-apievangelist-mcp-tool: ipinfo_asn
+  - target: "$.paths['/{ip}/privacy'].get"
+    update:
+      x-apievangelist-mcp-tool: ipinfo_check_privacy
+  - target: "$.paths['/{ip}/resproxy'].get"
+    update:
+      x-apievangelist-mcp-tool: ipinfo_check_residential_proxy
+  - target: "$.paths['/me'].get"
+    update:
+      x-apievangelist-mcp-tool: ipinfo_quota

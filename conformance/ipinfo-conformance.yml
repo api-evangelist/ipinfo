@@ -1,0 +1,51 @@
+generated: '2026-06-20'
+method: derived
+source: openapi/ipinfo-openapi.yml
+standards:
+  - id: rest
+    conforms: true
+    evidence: Resource-oriented HTTP GET/POST JSON API over api.ipinfo.io.
+  - id: http-basic-auth
+    conforms: true
+    evidence: securityScheme BasicAuth (token as username, empty password).
+  - id: http-bearer-auth
+    conforms: true
+    evidence: securityScheme BearerAuth (Authorization Bearer token).
+  - id: api-key-auth
+    conforms: true
+    evidence: securityScheme ApiKeyAuth (?token= query parameter).
+  - id: oauth2
+    conforms: false
+    evidence: No oauth2 securityScheme; token-based auth only.
+  - id: oidc
+    conforms: false
+  - id: ipv6
+    conforms: true
+    evidence: Dual-stack service with explicit v4.api.ipinfo.io and v6.api.ipinfo.io endpoints and IPv6 prefixes6 data.
+  - id: pagination
+    conforms: true
+    evidence: Hosted Domains and WHOIS endpoints accept page and limit query parameters (offset/page style).
+  - id: idempotency
+    conforms: true
+    evidence: All lookup endpoints are HTTP GET (safe/idempotent by method); no Idempotency-Key header mechanism for the POST batch/tools endpoints.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a custom {title,message} / {status,error} JSON envelope, not application/problem+json.
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: /.well-known/security.txt returns 404 on both hosts.
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: No documented Sunset/Deprecation header support; legacy products remain available without dated sunset.
+  - id: json-api
+    conforms: false
+  - id: odata
+    conforms: false
+  - id: fhir-r4
+    conforms: false
+  - id: fapi
+    conforms: false
+  - id: scim
+    conforms: false
+  - id: psd2
+    conforms: false

@@ -11,7 +11,7 @@ url: https://ipinfo.io/developers
 image: https://ipinfo.io/static/images/logo.svg
 specificationVersion: '0.20'
 created: '2026-05-28'
-modified: '2026-05-29'
+modified: '2026-06-20'
 x-source: public-apis/public-apis
 x-category: Development
 x-tier: 3
@@ -142,6 +142,29 @@ common:
   - type: Arazzo
     url: arazzo/ipinfo-threat-screening-workflow.yml
     name: IPinfo IP Threat Screening
+  - type: Packages
+    url: packages/ipinfo-packages.yml
+  - type: MCPServer
+    url: mcp/ipinfo-mcp.yml
+  - type: LLMsTxt
+    url: llms/ipinfo-llms.txt
+  - type: WellKnown
+    url: well-known/ipinfo-well-known.yml
+  - type: Overlay
+    url: overlays/ipinfo-openapi-overlay.yaml
+  - type: Conformance
+    url: conformance/ipinfo-conformance.yml
+  - type: ErrorCatalog
+    url: errors/ipinfo-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/ipinfo-lifecycle.yml
+  - type: Conventions
+    url: conventions/ipinfo-conventions.yml
+  - type: DataModel
+    url: data-model/ipinfo-data-model.yml
+  - type: CLI
+    title: IPinfo CLI command surface
+    url: cli/ipinfo-cli.yml
   - type: Website
     url: https://ipinfo.io
   - type: DeveloperPortal

@@ -1,0 +1,128 @@
+generated: '2026-06-20'
+method: searched
+source: https://ipinfo.io/developers/libraries
+packages:
+  - language: javascript
+    registry: npm
+    name: node-ipinfo
+    url: https://www.npmjs.com/package/node-ipinfo
+    install: npm install node-ipinfo
+    repo: https://github.com/ipinfo/node
+    official: true
+  - language: python
+    registry: pypi
+    name: ipinfo
+    url: https://pypi.org/project/ipinfo/
+    install: pip install ipinfo
+    repo: https://github.com/ipinfo/python
+    official: true
+  - language: java
+    registry: maven
+    name: io.ipinfo:ipinfo-api
+    url: https://central.sonatype.com/artifact/io.ipinfo/ipinfo-api
+    install: 'maven: io.ipinfo:ipinfo-api'
+    repo: https://github.com/ipinfo/java
+    official: true
+  - language: go
+    registry: pkg.go.dev
+    name: github.com/ipinfo/go/v2/ipinfo
+    url: https://pkg.go.dev/github.com/ipinfo/go/v2/ipinfo
+    install: go get github.com/ipinfo/go/v2/ipinfo
+    repo: https://github.com/ipinfo/go
+    official: true
+  - language: ruby
+    registry: rubygems
+    name: IPinfo
+    url: https://rubygems.org/gems/IPinfo
+    install: gem install IPinfo
+    repo: https://github.com/ipinfo/ruby
+    official: true
+  - language: php
+    registry: packagist
+    name: ipinfo/ipinfo
+    url: https://packagist.org/packages/ipinfo/ipinfo
+    install: composer require ipinfo/ipinfo
+    repo: https://github.com/ipinfo/php
+    official: true
+  - language: csharp
+    registry: nuget
+    name: IPinfo
+    url: https://www.nuget.org/packages/IPinfo
+    install: dotnet add package IPinfo
+    repo: https://github.com/ipinfo/csharp
+    official: true
+  - language: rust
+    registry: crates.io
+    name: ipinfo
+    url: https://crates.io/crates/ipinfo
+    install: cargo add ipinfo
+    repo: https://github.com/ipinfo/rust
+    official: true
+  - language: perl
+    registry: github
+    name: ipinfo/perl
+    url: https://github.com/ipinfo/perl
+    repo: https://github.com/ipinfo/perl
+    official: true
+  - language: swift
+    registry: github
+    name: ipinfo/swift
+    url: https://github.com/ipinfo/swift
+    repo: https://github.com/ipinfo/swift
+    official: true
+  - language: erlang
+    registry: github
+    name: ipinfo/erlang
+    url: https://github.com/ipinfo/erlang
+    repo: https://github.com/ipinfo/erlang
+    official: true
+  - language: python
+    registry: github
+    name: ipinfo/django
+    url: https://github.com/ipinfo/django
+    repo: https://github.com/ipinfo/django
+    official: true
+    note: Django integration built on the Python client.
+  - language: php
+    registry: github
+    name: ipinfo/laravel
+    url: https://github.com/ipinfo/laravel
+    repo: https://github.com/ipinfo/laravel
+    official: true
+    note: Laravel integration built on the PHP client.
+  - language: java
+    registry: github
+    name: ipinfo/spring
+    url: https://github.com/ipinfo/spring
+    repo: https://github.com/ipinfo/spring
+    official: true
+  - language: ruby
+    registry: github
+    name: ipinfo/rails
+    url: https://github.com/ipinfo/rails
+    repo: https://github.com/ipinfo/rails
+    official: true
+  - language: javascript
+    registry: github
+    name: ipinfo/node-express
+    url: https://github.com/ipinfo/node-express
+    repo: https://github.com/ipinfo/node-express
+    official: true
+  - language: go
+    registry: homebrew
+    name: ipinfo-cli
+    url: https://github.com/ipinfo/cli
+    install: brew install ipinfo-cli
+    repo: https://github.com/ipinfo/cli
+    official: true
+    kind: cli
+    note: Official IPinfo command-line client; also installable via go install github.com/ipinfo/cli/ipinfo@latest. See cli/ipinfo-cli.yml.
+  - language: go
+    registry: github
+    name: mmdbctl
+    url: https://github.com/ipinfo/mmdbctl
+    install: brew install mmdbctl
+    repo: https://github.com/ipinfo/mmdbctl
+    official: true
+    kind: cli
+    note: MMDB database file management CLI.

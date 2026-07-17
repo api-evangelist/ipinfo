@@ -1,0 +1,71 @@
+generated: '2026-06-20'
+method: searched
+source: https://github.com/ipinfo/cli
+docs: https://ipinfo.io/developers/cli
+clis:
+  - name: ipinfo
+    description: Official IPinfo command-line client for looking up and enriching IP addresses, ASNs, and ranges.
+    repo: https://github.com/ipinfo/cli
+    install:
+      - method: homebrew
+        command: brew install ipinfo-cli
+      - method: apt
+        command: sudo apt install ipinfo
+      - method: docker
+        command: docker run --rm -it ipinfo/ipinfo:latest
+      - method: go
+        command: go install github.com/ipinfo/cli/ipinfo@latest
+      - method: curl
+        command: curl -Ls https://github.com/ipinfo/cli/releases/latest/download/ipinfo_install.sh | sh
+    commands:
+      - name: init
+        description: Authenticate and store your IPinfo API token.
+      - name: myip
+        description: Look up details for your own current IP address.
+      - name: bulk
+        description: Enrich many IP addresses at once from stdin or a file.
+      - name: summarize
+        description: Summarize a large set of IPs (types, privacy flags, top ASNs/cities, map link).
+      - name: completion
+        description: Generate shell completion scripts.
+      - name: asn
+        description: Look up ASN details.
+      - name: map
+        description: Open an interactive map of IP locations in the browser.
+      - name: prips
+        description: Print all IP addresses within a CIDR block or range.
+    utilities:
+      description: The CLI ships companion IP/CIDR manipulation and filtering binaries.
+      binaries:
+        - grepip
+        - grepdomain
+        - matchip
+        - prips
+        - cidr2range
+        - cidr2ip
+        - range2cidr
+        - range2ip
+        - splitcidr
+        - randip
+        - mmdb
+  - name: mmdbctl
+    description: CLI for reading, importing, exporting, and managing MMDB (MaxMind DB) database files.
+    repo: https://github.com/ipinfo/mmdbctl
+    install:
+      - method: homebrew
+        command: brew install mmdbctl
+      - method: go
+        command: go install github.com/ipinfo/mmdbctl@latest
+    commands:
+      - name: read
+        description: Read one or more records from an MMDB file by IP.
+      - name: import
+        description: Import CSV/TSV/JSON data into an MMDB file.
+      - name: export
+        description: Export an MMDB file to CSV/TSV/JSON.
+      - name: metadata
+        description: Print MMDB file metadata.
+      - name: diff
+        description: Diff two MMDB files.
+      - name: verify
+        description: Verify the integrity of an MMDB file.

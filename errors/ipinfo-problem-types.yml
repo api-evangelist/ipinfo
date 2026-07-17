@@ -1,0 +1,70 @@
+generated: '2026-06-20'
+method: derived
+source: openapi/ipinfo-openapi.yml
+format: custom-json
+note: >-
+  IPinfo does not use RFC 9457 application/problem+json. Errors are returned as a
+  small JSON envelope. Three envelope shapes appear across the surface:
+  (1) {"title": ..., "message": ...} for most tiered/product errors;
+  (2) {"status": 404, "error": {"title": ..., "message": ...}} for the classic
+  /{ip} not-found case; (3) {"error": "..."} for ASN-not-found, the /me token
+  error, and the Lite/Core/Plus tier errors. 500 is returned as plain text.
+envelopes:
+  - name: title-message
+    example: '{"title": "Rate limit exceeded", "message": "Upgrade to increase your usage limits..."}'
+  - name: status-error-object
+    example: '{"status": 404, "error": {"title": "Wrong ip", "message": "Please provide a valid IP address"}}'
+  - name: error-string
+    example: '{"error": "ASN Not Found!"}'
+problems:
+  - status: 400
+    title: Wrong module or field type
+    message: No module or field of type exists for the provided field. Please check our documentation https://ipinfo.io/developers.
+    envelope: title-message
+    remediation: Request a valid module/field for your plan tier; check field names against the docs.
+    source_operation: openapi/ipinfo-openapi.yml#getInformationByIp
+  - status: 400
+    title: Invalid API token
+    message: The passed IPinfo access token is not present or is invalid.
+    envelope: error-string
+    remediation: Provide a valid token via Basic Auth username, Bearer header, or ?token= query.
+    source_operation: openapi/ipinfo-openapi.yml#getMe
+  - status: 403
+    title: Unknown token
+    message: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact support@ipinfo.io. The same error is returned for blocked malicious IP addresses and for tokens lacking permission for the requested product.
+    envelope: title-message
+    remediation: Verify the token and that your plan includes the requested product/field.
+    source_operation: openapi/ipinfo-openapi.yml#getInformationByIp
+  - status: 404
+    title: Wrong ip
+    message: Please provide a valid IP address.
+    envelope: status-error-object
+    remediation: Pass a syntactically valid IPv4/IPv6 address.
+    source_operation: openapi/ipinfo-openapi.yml#getInformationByIp
+  - status: 404
+    title: ASN Not Found!
+    message: The requested ASN does not exist in IPinfo data.
+    envelope: error-string
+    remediation: Use a valid AS number (e.g. AS15169).
+    source_operation: openapi/ipinfo-openapi.yml#getAsn
+  - status: 422
+    title: No IPs Found
+    message: There were no valid IPs in the text (Summarize / Map tools).
+    envelope: title-message
+    remediation: Provide at least one valid IP in the request payload.
+    source_operation: openapi/ipinfo-openapi.yml#summarize
+  - status: 429
+    title: Rate limit exceeded
+    message: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support.
+    envelope: title-message
+    remediation: Reduce request volume, upgrade the plan, or use IPinfo Lite / downloadable databases. The Summarize and Map tools are additionally limited to 5 uses per day.
+    source_operation: openapi/ipinfo-openapi.yml#getInformationByIp
+  - status: 500
+    title: Internal server error
+    message: Internal server error or server unavailable (returned as plain text).
+    envelope: plain-text
+    remediation: Retry with backoff; check https://status.ipinfo.io.
+    source_operation: openapi/ipinfo-openapi.yml#getInformationByIp
+tier_specific:
+  note: The Lite, Core, and Plus tier endpoints return the same status codes with tier-scoped error schemas (LiteError*, CoreError*, PlusError*) covering bad-request (invalid IP format), forbidden (auth/permission), and invalid-field cases.
+  statuses: [400, 403, 404, 500]

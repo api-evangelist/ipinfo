@@ -1,0 +1,107 @@
+generated: '2026-06-20'
+method: derived
+source: openapi/ipinfo-openapi.yml
+note: >-
+  Entity graph derived from OpenAPI schema $ref links and id-reference fields.
+  The IP address is the central key; tiered lookup responses (Full/Core/Plus/Max)
+  embed the network, company, carrier, privacy, and hosted-domains sub-objects.
+entities:
+  - name: IPLookup
+    key: ip
+    description: Tiered IP lookup response (Full / Core / Plus / Max / Lite).
+    schemas: [FullResponse, CoreResponse, PlusResponse, MaxResponse, LiteResponse]
+    relationships:
+      - type: has_one
+        target: ASN
+        via: asn / as
+      - type: has_one
+        target: Company
+        via: company
+      - type: has_one
+        target: Carrier
+        via: carrier
+      - type: has_one
+        target: Privacy
+        via: privacy / anonymous
+      - type: has_one
+        target: HostedDomains
+        via: domains
+  - name: ASN
+    key: asn
+    id_prefix: "AS"
+    description: Autonomous System record.
+    schemas: [AsnResponse]
+    relationships:
+      - type: has_many
+        target: Prefix
+        via: prefixes
+      - type: has_many
+        target: Prefix6
+        via: prefixes6
+      - type: has_many
+        target: ASN
+        via: peers
+      - type: has_many
+        target: ASN
+        via: upstreams
+      - type: has_many
+        target: ASN
+        via: downstreams
+  - name: Prefix
+    key: netblock
+    description: IPv4 network prefix allocated to an ASN.
+    schemas: [Prefix]
+    relationships:
+      - type: belongs_to
+        target: ASN
+  - name: Prefix6
+    key: netblock
+    description: IPv6 network prefix allocated to an ASN.
+    schemas: [Prefix6]
+    relationships:
+      - type: belongs_to
+        target: ASN
+  - name: Company
+    key: domain
+    description: Organization operating or assigned an IP block.
+    schemas: [CompanyResponse]
+  - name: Carrier
+    key: mnc
+    description: Mobile carrier (MCC/MNC) associated with a mobile IP.
+    schemas: [CarrierResponse]
+  - name: Privacy
+    description: Anonymization signals (VPN/proxy/Tor/relay/hosting, residential proxy).
+    schemas: [PrivacyResponse, PrivacyExtendedResponse, ResidentialProxyResponse]
+  - name: HostedDomains
+    key: ip
+    description: Domains hosted on an IP (reverse IP).
+    schemas: [DomainsResponse]
+    relationships:
+      - type: belongs_to
+        target: IPLookup
+        via: ip
+  - name: Ranges
+    key: domain
+    description: IP ranges operated by an organization identified by domain.
+    schemas: [RangesResponse]
+  - name: Place
+    key: ip
+    description: Building-level real-world location for an IP.
+    schemas: [PlacesResponse]
+  - name: Whois
+    description: WHOIS records keyed by Net ID, IP, domain, ASN, org ID, or point-of-contact.
+    schemas:
+      - WhoisNetIdResponse
+      - WhoisIpResponse
+      - WhoisDomainResponse
+      - WhoisAsnResponse
+      - WhoisOrgResponse
+      - WhoisPocResponse
+    relationships:
+      - type: has_one
+        target: ASN
+        via: asn
+  - name: TokenInfo
+    key: token
+    description: Access-token quota and product-access summary (/me).
+    schemas: [MeResponse]

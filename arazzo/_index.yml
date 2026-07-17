@@ -1,0 +1,32 @@
+generated: '2026-06-20'
+method: derived
+source: arazzo/*.yml
+workflows:
+  - file: ipinfo-abuse-reporting-workflow.yml
+    workflowId: abuse-and-domains
+    title: IPinfo Abuse Contact and Hosted Domains
+    summary: Resolve an IP's abuse contact and enumerate the domains hosted on it.
+  - file: ipinfo-asn-prefix-recon-workflow.yml
+    workflowId: asn-prefix-recon
+    title: IPinfo ASN Prefix Reconnaissance
+    summary: Verify the token, resolve ASN detail, and list the domain's IP ranges.
+  - file: ipinfo-batch-then-detail-workflow.yml
+    workflowId: batch-then-detail
+    title: IPinfo Batch Enrich then Detail
+    summary: Bulk-enrich a list of IPs and then drill into one focus IP.
+  - file: ipinfo-ip-to-company-workflow.yml
+    workflowId: ip-to-company
+    title: IPinfo IP to Operating Company
+    summary: Enrich an IP address and resolve the company that operates it.
+  - file: ipinfo-my-ip-enrichment-workflow.yml
+    workflowId: enrich-my-ip
+    title: IPinfo Enrich My Current IP
+    summary: Resolve the caller's public IP and return full enrichment for it.
+  - file: ipinfo-summarize-and-map-workflow.yml
+    workflowId: summarize-and-map
+    title: IPinfo Summarize and Map IP Addresses
+    summary: Summarize a list of IPs and then map the same list.
+  - file: ipinfo-threat-screening-workflow.yml
+    workflowId: screen-ip-threat
+    title: IPinfo IP Threat Screening
+    summary: Resolve an IP, evaluate privacy signals, and confirm residential proxy use.
