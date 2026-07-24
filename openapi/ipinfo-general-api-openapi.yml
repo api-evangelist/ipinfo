@@ -1,0 +1,987 @@
+openapi: 3.0.0
+info:
+  description: 'Official OpenAPI Specification for IPinfo''s comprehensive IP intelligence API. This specification defines all endpoints for IP geolocation, ASN data, company information, privacy detection, and specialized data services.
+
+
+    ## Authentication
+
+
+    All endpoints support three authentication methods:
+
+    - **HTTP Basic Auth**: Use your token as the username with empty password
+
+    - **Bearer Token**: Include token in Authorization header
+
+    - **Query Parameter**: Pass token as `?token=YOUR_TOKEN`
+
+
+    [Learn more about authentication](https://ipinfo.io/developers#authentication)
+
+
+    ## IPinfo API Tiers
+
+
+    IPinfo offers three main API tiers with different feature sets:
+
+
+    ### IPinfo Lite
+
+    Lightweight IP geolocation with essential information including ASN details, country, and continent data. Perfect for basic geolocation needs with fast response times. Unlimited requests on paid plans.
+
+    - Endpoints: `/lite/me`, `/lite/{ip}`, `/lite/{ip}/{field}`
+
+    - Base URL: `https://api.ipinfo.io/`
+
+    - [Documentation](https://ipinfo.io/developers/lite-api)
+
+
+    ### IPinfo Core
+
+    Comprehensive IP information with detailed geolocation data (city, region, coordinates, postal code, timezone), ASN information, and classification boolean flags (anycast, hosting, mobile, satellite).
+
+    - Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}`
+
+    - Base URL: `https://api.ipinfo.io/`
+
+    - [Documentation](https://ipinfo.io/developers/core-api)
+
+
+    ### IPinfo Plus
+
+    All Core features plus mobile/carrier detection, anonymity analysis (VPN, proxy, Tor, relay detection), service identification, and extended geographic metadata. Ideal for security, fraud prevention, and advanced analytics.
+
+    - Endpoints: `/plus/me`, `/plus/{ip}`, `/plus/{ip}/{field}`
+
+    - Base URL: `https://api.ipinfo.io/`
+
+    - [Documentation](https://ipinfo.io/developers/plus-api)
+
+
+    ## Specialized Detection APIs
+
+
+    ### Residential Proxy Detection
+
+    Detect residential, mobile, and datacenter proxy IPs with activity insights, last seen dates, and proxy service identification.
+
+    - Endpoints: `/{ip}/resproxy`
+
+    - [Documentation](https://ipinfo.io/developers/residential-proxy-api)
+
+
+    ### Privacy Detection Standard
+
+    Detect VPNs, proxies, Tor exit nodes, relays, and hosting providers associated with an IP address. Returns core privacy signals including service provider identification.
+
+    - Endpoints: `/{ip}/privacy`
+
+    - [Documentation](https://ipinfo.io/developers/privacy-standard-api)
+
+
+    ### Privacy Detection Extended
+
+    Advanced anonymous IP detection with detailed methodologies, confidence metrics, and metadata for VPNs, proxies, Tor, hosting providers, and relays.
+
+    - Endpoints: `/{ip}/privacy_extended`
+
+    - [Documentation](https://ipinfo.io/developers/privacy-extended-api)
+
+
+    ## Legacy API Products
+
+
+    For backwards compatibility, legacy endpoints remain available:
+
+    - [IP to Geolocation API](https://ipinfo.io/products/ip-geolocation-api) - Use Core or Plus instead
+
+    - [IP to Privacy Detection API](https://ipinfo.io/products/proxy-vpn-detection-api) - Use Plus instead
+
+    - [ASN API](https://ipinfo.io/products/asn-api) - `/AS{asn}` endpoint
+
+    - [IP to Company API](https://ipinfo.io/products/ip-company-api) - `/{ip}/company` endpoint
+
+    - [Hosted Domains API](https://ipinfo.io/products/reverse-ip-api) - `/domains/{ip}` endpoint
+
+    - [IP to Phone Carrier Detection API](https://ipinfo.io/products/ip-carrier-api) - `/{ip}/carrier` endpoint
+
+    - [IP to Abuse Contact API](https://ipinfo.io/products/ip-abuse-contact-api) - `/{ip}/abuse` endpoint
+
+    - [IP WHOIS API](https://ipinfo.io/products/whois-api) - `/whois/*` endpoints
+
+
+    ## Special Endpoints
+
+
+    - **Token Info**: `/me` - View request limits and API access for your token
+
+    - **Batch Requests**: `/batch` - Enrich multiple IPs in a single request
+
+    - **IP Summarization**: `/tools/summarize-ips` - Analyze up to 500,000 IPs
+
+    - **IP Mapping**: `/tools/map` - Visualize up to 500,000 IPs on an interactive map
+
+    - **Single Field**: `/{ip}/{field}` - Get specific field values as plaintext
+
+
+    ## Rate Limits
+
+
+    - **IPinfo Lite**: Unlimited requests on paid plans
+
+    - **Paid Plans**: Monthly request limits with configurable alerts and automatic metered billing
+
+    - **Rate Limit Exceeded**: 429 HTTP status code when limit reached
+
+
+    [View pricing and limits](https://ipinfo.io/pricing)
+
+
+    ## Resources
+
+
+    - **Developer Portal**: [https://ipinfo.io/developers](https://ipinfo.io/developers)
+
+    - **API Libraries**: Official libraries for Python, Node.js, Java, Ruby, PHP, Go, and more
+
+    - **Sign Up**: [Free account](https://ipinfo.io/signup) with up to 50,000 requests/month
+
+    - **Community Support**: [https://community.ipinfo.io/](https://community.ipinfo.io/)
+
+    - **Email Support**: support@ipinfo.io
+
+
+    ---
+
+    '
+  version: 1.0.0
+  title: IPinfo.io OpenAPI Specification abuse general API
+  contact:
+    name: IPinfo
+    email: support@ipinfo.io
+    url: https://ipinfo.io/
+servers:
+- url: https://ipinfo.io/
+- url: https://v6.ipinfo.io/
+- url: https://api.ipinfo.io/
+tags:
+- name: general
+  description: General API.
+paths:
+  /:
+    get:
+      tags:
+      - general
+      summary: IPinfo Returns IP Information About the Current IP
+      description: 'Returns IP information about the current IP.
+
+        '
+      operationId: getCurrentInformation
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      responses:
+        '200':
+          $ref: '#/components/responses/FullResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /{ip}:
+    get:
+      tags:
+      - general
+      summary: IPinfo Returns Information About the Provided IP
+      description: 'The ipinfo.io/{ip} endpoint provides comprehensive information about a specified IP address, including geographic location (city, region, country), coordinates, postal code, and timezone.
+
+        Based on the pricing tier, it also provides ASN (Autonomous System Number) details, associated company information, privacy settings (e.g., VPN, proxy usage), abuse contact information, and hosted domains associated with the IP.
+
+        This endpoint is useful for applications needing detailed IP intelligence, such as identifying geographic origin, privacy status, and potential abuse reporting information.
+
+        '
+      operationId: getInformationByIp
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/Ip'
+      responses:
+        '200':
+          $ref: '#/components/responses/FullResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /me:
+    get:
+      tags:
+      - general
+      summary: IPinfo Returns API Service Request Limit by Access Token
+      description: 'The `/me` API endpoint can be used to provide summary information on the access token limits, access to API products, and other related information.
+
+        The `/me` endpoint can be used in verifying access tokens as well.
+
+        '
+      operationId: getMe
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      responses:
+        '200':
+          $ref: '#/components/responses/Me'
+        '400':
+          $ref: '#/components/responses/BadRequestMe'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /batch:
+    post:
+      tags:
+      - general
+      summary: IPinfo Bulk IPinfo API Enrichment
+      description: Bulk or batch enrich IP addresses with IP information. See [documentation](https://ipinfo.io/developers/batch-enrichment-api).
+      operationId: batch
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      requestBody:
+        $ref: '#/components/requestBodies/Batch'
+      responses:
+        '200':
+          $ref: '#/components/responses/Batch'
+  /tools/summarize-ips:
+    post:
+      tags:
+      - general
+      summary: IPinfo Summarize IP Addresses
+      description: Get summary-level information of upto 500,000 IP addresses, including IP location on a map, IP types, privacy detection flags, top ASNs, top cities, and more. [Explore the IPinfo Summarize tool](https://ipinfo.io/tools/summarize-ips).
+      operationId: summarize
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      parameters:
+      - name: cli
+        in: query
+        description: CLI flag parameter
+        required: false
+        schema:
+          type: integer
+          example: 1
+      requestBody:
+        $ref: '#/components/requestBodies/Summarize'
+      responses:
+        '200':
+          $ref: '#/components/responses/Summarize'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Rate limit exceeded. You can use the Summarize IPs tool up to 5 times per day. Please wait 24 hours or use our IPinfo Lite API service
+  /tools/map:
+    post:
+      tags:
+      - general
+      summary: IPinfo Highlight IP Addresses on a Map
+      description: Visualize upto 500,000 IP addresses on an interactive map. [Explore the IPinfo Map IPs tool](https://ipinfo.io/tools/map).
+      operationId: map
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      parameters:
+      - name: cli
+        in: query
+        description: CLI flag parameter
+        required: false
+        schema:
+          type: integer
+          example: 1
+      requestBody:
+        $ref: '#/components/requestBodies/Map'
+      responses:
+        '200':
+          $ref: '#/components/responses/Map'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Rate limit exceeded. You can use the IP Map tool up to 5 times per day. Please wait 24 hours or use our IPinfo Lite API service
+components:
+  schemas:
+    FullResponse:
+      type: object
+      required:
+      - ip
+      properties:
+        ip:
+          type: string
+          example: 66.87.125.72
+        bogon:
+          type: boolean
+          example: false
+        hostname:
+          type: string
+          example: ip-66-87-125-72.spfdma.spcsdns.net
+        city:
+          type: string
+          example: Springfield
+        region:
+          type: string
+          example: Massachusetts
+        country:
+          type: string
+          example: US
+        loc:
+          type: string
+          example: 42.0999,-72.5783
+        postal:
+          type: string
+          example: '01105'
+        timezone:
+          type: string
+          example: America/New_York
+        org:
+          type: string
+          example: AS51501 Khabarovsk home networks Ltd
+        asn:
+          $ref: '#/components/schemas/AsnResponse'
+        company:
+          $ref: '#/components/schemas/CompanyResponse'
+        carrier:
+          $ref: '#/components/schemas/CarrierResponse'
+        privacy:
+          $ref: '#/components/schemas/PrivacyResponse'
+        domains:
+          $ref: '#/components/schemas/DomainsResponse'
+    PrivacyResponse:
+      type: object
+      required:
+      - vpn
+      - proxy
+      - tor
+      - hosting
+      - relay
+      - service
+      properties:
+        vpn:
+          type: boolean
+          example: true
+        proxy:
+          type: boolean
+          example: false
+        tor:
+          type: boolean
+          example: false
+        hosting:
+          type: boolean
+          example: false
+        relay:
+          type: boolean
+          example: false
+        service:
+          type: string
+          example: ''
+    Prefix:
+      type: object
+      required:
+      - netblock
+      - id
+      - name
+      - country
+      properties:
+        netblock:
+          type: string
+          example: 104.69.216.0/22
+        id:
+          type: string
+          example: AKAMAI
+        name:
+          type: string
+          example: Akamai Technologies, Inc.
+        country:
+          type: string
+          example: US
+        size:
+          type: string
+          example: '256'
+        status:
+          type: string
+          example: ALLOCATION
+        domain:
+          type: string
+          nullable: true
+          example: quadranet.com
+    AsnResponse:
+      type: object
+      required:
+      - asn
+      - name
+      - domain
+      - type
+      properties:
+        asn:
+          type: string
+          example: AS10507
+        name:
+          type: string
+          example: Sprint Personal Communications Systems
+        country:
+          type: string
+          example: US
+        allocated:
+          type: string
+          example: '1997-02-14'
+        registry:
+          type: string
+          example: arin
+        domain:
+          type: string
+          example: sprint.net
+        num_ips:
+          type: integer
+          example: 71224576
+        route:
+          type: string
+          example: 66.87.125.0/24
+        type:
+          type: string
+          example: isp
+          enum:
+          - isp
+          - business
+          - education
+          - hosting
+          - inactive
+        prefixes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Prefix'
+        prefixes6:
+          type: array
+          items:
+            $ref: '#/components/schemas/Prefix6'
+        peers:
+          type: array
+          items:
+            type: string
+            example: '1299'
+        upstreams:
+          type: array
+          items:
+            type: string
+            example: '1299'
+        downstreams:
+          type: array
+          items:
+            type: string
+            example: '109'
+    Error429:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Rate limit exceeded
+        message:
+          type: string
+          example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
+    CarrierResponse:
+      type: object
+      required:
+      - name
+      - mcc
+      - mnc
+      properties:
+        name:
+          type: string
+          example: Sprint Corporation
+        mcc:
+          type: string
+          example: '310'
+        mnc:
+          type: string
+          example: '120'
+    Error400:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Wrong module or field type
+        message:
+          type: string
+          example: No module or field of type exists for the provided field. Please check our documentation https://ipinfo.io/developers.
+    DomainsResponse:
+      type: object
+      required:
+      - total
+      properties:
+        ip:
+          type: string
+          example: 1.1.1.1
+        page:
+          type: integer
+          example: 1
+        total:
+          type: integer
+          example: 17939
+        domains:
+          type: array
+          items:
+            type: string
+            example: udemy.com
+    MeResponse:
+      type: object
+      required:
+      - token
+      - requests
+      - features
+      properties:
+        token:
+          type: string
+          example: TOKEN
+        requests:
+          type: object
+          properties:
+            day:
+              type: integer
+              example: 0
+            month:
+              type: integer
+              example: 69
+            limit:
+              type: integer
+              example: 50000
+            remaining:
+              type: integer
+              example: 2147483578
+        features:
+          type: object
+          properties:
+            core:
+              type: object
+              properties:
+                daily:
+                  type: integer
+                  example: 50000
+                monthly:
+                  type: integer
+                  example: 50000
+            hostio:
+              type: object
+              properties:
+                daily:
+                  type: integer
+                  example: 50000
+                monthly:
+                  type: integer
+                  example: 50000
+                result_limit:
+                  type: integer
+                  example: 5
+                asn:
+                  type: object
+                  properties:
+                    daily:
+                      type: integer
+                      example: 50000
+                    monthly:
+                      type: integer
+                      example: 50000
+                abuse:
+                  type: object
+                  properties:
+                    daily:
+                      type: integer
+                      example: 50000
+                    monthly:
+                      type: integer
+                      example: 50000
+                whois:
+                  type: object
+                  properties:
+                    daily:
+                      type: integer
+                      example: 50000
+                    monthly:
+                      type: integer
+                      example: 50000
+                ranges:
+                  type: object
+                  properties:
+                    daily:
+                      type: integer
+                      example: 50000
+                    monthly:
+                      type: integer
+                      example: 50000
+                carrier:
+                  type: object
+                  properties:
+                    daily:
+                      type: integer
+                      example: 50000
+                    monthly:
+                      type: integer
+                      example: 50000
+                company:
+                  type: object
+                  properties:
+                    daily:
+                      type: integer
+                      example: 50000
+                    monthly:
+                      type: integer
+                      example: 50000
+                    firmographics:
+                      type: boolean
+                      example: false
+                    org_additional:
+                      type: boolean
+                      example: false
+                privacy:
+                  type: object
+                  properties:
+                    daily:
+                      type: integer
+                      example: 50000
+                    monthly:
+                      type: integer
+                      example: 50000
+                    vpn_provider:
+                      type: boolean
+                      example: false
+                hosted_domains:
+                  type: object
+                  properties:
+                    daily:
+                      type: integer
+                      example: 50000
+                    monthly:
+                      type: integer
+                      example: 50000
+                    result_limit:
+                      type: integer
+                      example: 5
+    Error500:
+      type: string
+      example: Internal server error
+    Error400Me:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: string
+          example: Invalid API token
+        token:
+          type: string
+          example: TOKEN
+    Prefix6:
+      type: object
+      required:
+      - netblock
+      - id
+      - name
+      - country
+      properties:
+        netblock:
+          type: string
+          example: 2601::/20
+        id:
+          type: string
+          example: COMCAST6NET
+        name:
+          type: string
+          example: Comcast Cable Communications, LLC
+        country:
+          type: string
+          example: US
+        size:
+          type: string
+          example: '20282409603651670423947251286016'
+        status:
+          type: string
+          example: ASSIGNMENT
+        domain:
+          type: string
+          example: comcast.com
+    Error404:
+      type: object
+      required:
+      - status
+      - error
+      properties:
+        status:
+          type: integer
+          example: 404
+        error:
+          type: object
+          required:
+          - title
+          - message
+          properties:
+            title:
+              type: string
+              example: Wrong ip
+            message:
+              type: string
+              example: Please provide a valid IP address
+    Error403:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Unknown token
+        message:
+          type: string
+          example: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help
+    Error422:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: No IPs Found
+        message:
+          type: string
+          example: There were no valid IPs in the text.
+    CompanyResponse:
+      type: object
+      required:
+      - name
+      - domain
+      - type
+      properties:
+        name:
+          type: string
+          example: Sprint Springfield POP
+        domain:
+          type: string
+          example: sprint.com
+        type:
+          type: string
+          example: isp
+          enum:
+          - isp
+          - business
+          - education
+          - hosting
+  responses:
+    BadRequest:
+      description: If users try to access a field type that does not exist or do not have permissions to access it, they will encounter a wrong module or field type error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error400'
+    InternalServerError:
+      description: Internal server error or server unavailable.
+      content:
+        text/plain:
+          schema:
+            $ref: '#/components/schemas/Error500'
+    Batch:
+      description: Batch response object.
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+            example:
+              8.8.8.8/city: Mountain View
+              8.8.8.8:
+                ip: 8.8.8.8
+                hostname: dns.google
+                city: Mountain View
+                region: California
+                country: US
+                loc: 37.4056,-122.0775
+                org: AS15169 Google LLC
+                postal: 94043
+                timezone: America/Los_Angeles
+    TooManyRequests:
+      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error429'
+    FullResponse:
+      description: Full response object.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FullResponse'
+    NotFound:
+      description: Wrong ip. Please provide a valid IP address.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error404'
+    Summarize:
+      description: Summarize response object.
+      content:
+        application/json:
+          schema:
+            type: object
+            example:
+              summary: Example of summarizing IP addresses
+              value:
+                status: Report Generated
+                reportUrl: https://ipinfo.io/tools/summarize-ips/3ea606f3-b3ad-4a37-a875-b897a0c2e718
+    Forbidden:
+      description: Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error403'
+    UnprocessableEntity:
+      description: The input payload does not meet the specification.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error422'
+    Me:
+      description: IPinfo access token rate and access information.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MeResponse'
+    Map:
+      description: Map response object.
+      content:
+        application/json:
+          schema:
+            type: object
+            example:
+              summary: Example of mapping IP addresses
+              value:
+                status: Report Generated
+                reportUrl: https://ipinfo.io/tools/map/40c04638-a340-44b8-90de-f95afdff99d8
+    BadRequestMe:
+      description: If the passed IPinfo access token is not present or is invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error400Me'
+  requestBodies:
+    Summarize:
+      description: A file containing IP addresses with each IP on a separate line.
+      required: true
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: '42.77.204.9
+
+              2a02:1811:1424:a200:a307:b776:645b:46b5
+
+              84.74.205.0
+
+              2601:19b:4980:2270:8869:1575:ffd0:5ba0
+
+              2a01:e0a:a2d:fd70::8056:6278
+
+              75.136.126.2
+
+              2400:4052:244:a900:8b5:16e9:badb:a2bd
+
+              104.103.81.185
+
+              2603:7000:8d40:47d7:64fc:6:56cf:1b54
+
+              216.211.59.51
+
+              '
+    Map:
+      description: A file containing IP addresses with each IP on a separate line.
+      required: true
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: '46.95.248.61
+
+              215.113.215.175
+
+              27.7.158.28
+
+              209.99.186.255
+
+              192.40.165.85
+
+              2a02:c7f:f8c4:ca00:356d:ac4c:954c:e46
+
+              2001:16a2:9432:8126:2dbf:9aa0:8057:1246
+
+              2600:8807:a788:7c00:c828:264:8dcf:b37f
+
+              181.200.55.93
+
+              77.222.8.184
+
+              '
+    Batch:
+      description: A JSON array containing IP addresses.
+      required: true
+      content:
+        application/json:
+          schema:
+            type: array
+            example:
+            - 8.8.8.8/city
+            - 8.8.8.8
+  parameters:
+    Ip:
+      name: ip
+      in: path
+      description: A single IPv4 or IPv6 IP address.
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: token
+externalDocs:
+  description: IPinfo Developers Portal / Documentation
+  url: https://ipinfo.io/developers

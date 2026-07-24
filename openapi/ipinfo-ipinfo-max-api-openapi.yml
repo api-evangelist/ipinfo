@@ -1,0 +1,426 @@
+openapi: 3.0.0
+info:
+  description: 'Official OpenAPI Specification for IPinfo''s comprehensive IP intelligence API. This specification defines all endpoints for IP geolocation, ASN data, company information, privacy detection, and specialized data services.
+
+
+    ## Authentication
+
+
+    All endpoints support three authentication methods:
+
+    - **HTTP Basic Auth**: Use your token as the username with empty password
+
+    - **Bearer Token**: Include token in Authorization header
+
+    - **Query Parameter**: Pass token as `?token=YOUR_TOKEN`
+
+
+    [Learn more about authentication](https://ipinfo.io/developers#authentication)
+
+
+    ## IPinfo API Tiers
+
+
+    IPinfo offers three main API tiers with different feature sets:
+
+
+    ### IPinfo Lite
+
+    Lightweight IP geolocation with essential information including ASN details, country, and continent data. Perfect for basic geolocation needs with fast response times. Unlimited requests on paid plans.
+
+    - Endpoints: `/lite/me`, `/lite/{ip}`, `/lite/{ip}/{field}`
+
+    - Base URL: `https://api.ipinfo.io/`
+
+    - [Documentation](https://ipinfo.io/developers/lite-api)
+
+
+    ### IPinfo Core
+
+    Comprehensive IP information with detailed geolocation data (city, region, coordinates, postal code, timezone), ASN information, and classification boolean flags (anycast, hosting, mobile, satellite).
+
+    - Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}`
+
+    - Base URL: `https://api.ipinfo.io/`
+
+    - [Documentation](https://ipinfo.io/developers/core-api)
+
+
+    ### IPinfo Plus
+
+    All Core features plus mobile/carrier detection, anonymity analysis (VPN, proxy, Tor, relay detection), service identification, and extended geographic metadata. Ideal for security, fraud prevention, and advanced analytics.
+
+    - Endpoints: `/plus/me`, `/plus/{ip}`, `/plus/{ip}/{field}`
+
+    - Base URL: `https://api.ipinfo.io/`
+
+    - [Documentation](https://ipinfo.io/developers/plus-api)
+
+
+    ## Specialized Detection APIs
+
+
+    ### Residential Proxy Detection
+
+    Detect residential, mobile, and datacenter proxy IPs with activity insights, last seen dates, and proxy service identification.
+
+    - Endpoints: `/{ip}/resproxy`
+
+    - [Documentation](https://ipinfo.io/developers/residential-proxy-api)
+
+
+    ### Privacy Detection Standard
+
+    Detect VPNs, proxies, Tor exit nodes, relays, and hosting providers associated with an IP address. Returns core privacy signals including service provider identification.
+
+    - Endpoints: `/{ip}/privacy`
+
+    - [Documentation](https://ipinfo.io/developers/privacy-standard-api)
+
+
+    ### Privacy Detection Extended
+
+    Advanced anonymous IP detection with detailed methodologies, confidence metrics, and metadata for VPNs, proxies, Tor, hosting providers, and relays.
+
+    - Endpoints: `/{ip}/privacy_extended`
+
+    - [Documentation](https://ipinfo.io/developers/privacy-extended-api)
+
+
+    ## Legacy API Products
+
+
+    For backwards compatibility, legacy endpoints remain available:
+
+    - [IP to Geolocation API](https://ipinfo.io/products/ip-geolocation-api) - Use Core or Plus instead
+
+    - [IP to Privacy Detection API](https://ipinfo.io/products/proxy-vpn-detection-api) - Use Plus instead
+
+    - [ASN API](https://ipinfo.io/products/asn-api) - `/AS{asn}` endpoint
+
+    - [IP to Company API](https://ipinfo.io/products/ip-company-api) - `/{ip}/company` endpoint
+
+    - [Hosted Domains API](https://ipinfo.io/products/reverse-ip-api) - `/domains/{ip}` endpoint
+
+    - [IP to Phone Carrier Detection API](https://ipinfo.io/products/ip-carrier-api) - `/{ip}/carrier` endpoint
+
+    - [IP to Abuse Contact API](https://ipinfo.io/products/ip-abuse-contact-api) - `/{ip}/abuse` endpoint
+
+    - [IP WHOIS API](https://ipinfo.io/products/whois-api) - `/whois/*` endpoints
+
+
+    ## Special Endpoints
+
+
+    - **Token Info**: `/me` - View request limits and API access for your token
+
+    - **Batch Requests**: `/batch` - Enrich multiple IPs in a single request
+
+    - **IP Summarization**: `/tools/summarize-ips` - Analyze up to 500,000 IPs
+
+    - **IP Mapping**: `/tools/map` - Visualize up to 500,000 IPs on an interactive map
+
+    - **Single Field**: `/{ip}/{field}` - Get specific field values as plaintext
+
+
+    ## Rate Limits
+
+
+    - **IPinfo Lite**: Unlimited requests on paid plans
+
+    - **Paid Plans**: Monthly request limits with configurable alerts and automatic metered billing
+
+    - **Rate Limit Exceeded**: 429 HTTP status code when limit reached
+
+
+    [View pricing and limits](https://ipinfo.io/pricing)
+
+
+    ## Resources
+
+
+    - **Developer Portal**: [https://ipinfo.io/developers](https://ipinfo.io/developers)
+
+    - **API Libraries**: Official libraries for Python, Node.js, Java, Ruby, PHP, Go, and more
+
+    - **Sign Up**: [Free account](https://ipinfo.io/signup) with up to 50,000 requests/month
+
+    - **Community Support**: [https://community.ipinfo.io/](https://community.ipinfo.io/)
+
+    - **Email Support**: support@ipinfo.io
+
+
+    ---
+
+    '
+  version: 1.0.0
+  title: IPinfo.io OpenAPI Specification abuse ipinfo max API
+  contact:
+    name: IPinfo
+    email: support@ipinfo.io
+    url: https://ipinfo.io/
+servers:
+- url: https://ipinfo.io/
+- url: https://v6.ipinfo.io/
+- url: https://api.ipinfo.io/
+tags:
+- name: ipinfo max
+  description: IPinfo Max API - Most comprehensive IP intelligence with residential proxy detection.
+  externalDocs:
+    description: Find more info here
+    url: https://ipinfo.io/developers/max-api
+paths:
+  /max/{ip}:
+    get:
+      tags:
+      - ipinfo max
+      summary: IPinfo Returns Max API Information About the Provided IP
+      description: 'Returns the most comprehensive IP intelligence, including geolocation, ASN, privacy detection (VPN, proxy, Tor, relay, residential proxy), carrier data, and network flags for advanced threat analysis and bot detection.
+
+        '
+      operationId: getMaxInformationByIp
+      servers:
+      - url: https://api.ipinfo.io/
+      - url: https://v4.api.ipinfo.io/
+      - url: https://v6.api.ipinfo.io/
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/Ip'
+      responses:
+        '200':
+          description: Max API response object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaxResponse'
+        '400':
+          $ref: '#/components/responses/PlusBadRequest'
+        '403':
+          $ref: '#/components/responses/PlusForbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  parameters:
+    Ip:
+      name: ip
+      in: path
+      description: A single IPv4 or IPv6 IP address.
+      required: true
+      schema:
+        type: string
+  schemas:
+    Error500:
+      type: string
+      example: Internal server error
+    Error429:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Rate limit exceeded
+        message:
+          type: string
+          example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
+    PlusErrorBadRequest:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: string
+          example: Please provide a valid IP address
+    MaxResponse:
+      type: object
+      required:
+      - ip
+      - geo
+      - as
+      - anonymous
+      properties:
+        ip:
+          type: string
+          example: 1.0.126.158
+        hostname:
+          type: string
+          example: 158.126.0.1.megaegg.ne.jp
+        geo:
+          type: object
+          properties:
+            city:
+              type: string
+              example: Izumo
+            region:
+              type: string
+              example: Shimane
+            region_code:
+              type: string
+              example: '32'
+            country:
+              type: string
+              example: Japan
+            country_code:
+              type: string
+              example: JP
+            continent:
+              type: string
+              example: Asia
+            continent_code:
+              type: string
+              example: AS
+            latitude:
+              type: number
+              example: 35.36667
+            longitude:
+              type: number
+              example: 132.76667
+            timezone:
+              type: string
+              example: Asia/Tokyo
+            postal_code:
+              type: string
+              example: 693-0001
+            dma_code:
+              type: string
+              example: '501'
+            geoname_id:
+              type: string
+              example: '1861084'
+            radius:
+              type: integer
+              example: 50
+            last_changed:
+              type: string
+              format: date
+              example: '2026-03-22'
+        as:
+          type: object
+          properties:
+            asn:
+              type: string
+              example: AS18144
+            name:
+              type: string
+              example: Enecom,Inc.
+            domain:
+              type: string
+              example: enecom.co.jp
+            type:
+              type: string
+              example: business
+            last_changed:
+              type: string
+              format: date
+              example: '2021-05-01'
+        mobile:
+          type: object
+        anonymous:
+          type: object
+          properties:
+            name:
+              type: string
+              example: Ping Proxies
+            last_seen:
+              type: string
+              format: date
+              example: '2026-03-29'
+            percent_days_seen:
+              type: integer
+              example: 63
+            is_proxy:
+              type: boolean
+              example: false
+            is_relay:
+              type: boolean
+              example: false
+            is_tor:
+              type: boolean
+              example: false
+            is_vpn:
+              type: boolean
+              example: false
+            is_res_proxy:
+              type: boolean
+              example: true
+        is_anonymous:
+          type: boolean
+          example: true
+        is_anycast:
+          type: boolean
+          example: false
+        is_hosting:
+          type: boolean
+          example: false
+        is_mobile:
+          type: boolean
+          example: false
+        is_satellite:
+          type: boolean
+          example: false
+    PlusErrorForbidden:
+      type: object
+      required:
+      - status
+      - error
+      properties:
+        status:
+          type: integer
+          example: 403
+        error:
+          type: object
+          required:
+          - title
+          - message
+          properties:
+            title:
+              type: string
+              example: Unknown token
+            message:
+              type: string
+              example: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help
+  responses:
+    PlusForbidden:
+      description: Forbidden error (authentication issues).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PlusErrorForbidden'
+    InternalServerError:
+      description: Internal server error or server unavailable.
+      content:
+        text/plain:
+          schema:
+            $ref: '#/components/schemas/Error500'
+    PlusBadRequest:
+      description: Bad request error (invalid IP format).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PlusErrorBadRequest'
+    TooManyRequests:
+      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error429'
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: token
+externalDocs:
+  description: IPinfo Developers Portal / Documentation
+  url: https://ipinfo.io/developers
