@@ -8,6 +8,19 @@ description: >-
   Enrichment endpoint, and downloadable databases (CSV, MMDB, JSON, Parquet). Authentication uses access tokens via
   Basic Auth, Bearer Token, or query parameter; dual-stack IPv4/IPv6 endpoints are available.
 url: https://ipinfo.io/developers
+accessModel:
+  pricing: paid
+  onboarding: open
+  trial: false
+  try_now: false
+  public: true
+  label: Paid · Open access
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://ipinfo.io/static/images/logo.svg
 specificationVersion: '0.20'
 created: '2026-05-28'
@@ -29,92 +42,1097 @@ tags:
   - Public APIs
   - Development
 apis:
-  - name: IPinfo Core API
-    description: >-
-      Unified IP intelligence REST API exposing the Lite, Core, Plus, Max, Enterprise, Places, ASN, Company, Carrier,
-      Hosted Domains, Privacy Detection (Standard and Extended), Residential Proxy Detection, WHOIS, IP Ranges, Abuse
-      Contact, Batch Enrichment, and Tools (Summarize IPs, Map IPs) endpoints. All endpoints share the same
-      `api.ipinfo.io` base URL and the same token-based authentication.
-    humanURL: https://ipinfo.io/developers
-    baseURL: https://api.ipinfo.io
-    tags:
-      - IP Intelligence
-      - REST API
-      - Geolocation
-      - ASN
-      - Privacy Detection
-    properties:
-      - type: Documentation
-        url: https://ipinfo.io/developers
-      - type: APIReference
-        url: https://ipinfo.io/developers
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/openapi/ipinfo-openapi.yml
-      - type: GettingStarted
-        url: https://ipinfo.io/developers/getting-started
-      - type: Authentication
-        url: https://ipinfo.io/developers#authentication
-      - type: GettingStarted
-        url: https://ipinfo.io/developers/lite-api
-      - type: JSONSchema
-        url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/
-      - type: JSONStructure
-        url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/
-      - type: Examples
-        url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/examples/
-      - type: SDKs
-        title: Python SDK
-        url: https://github.com/ipinfo/python
-      - type: SDKs
-        title: Node.js SDK
-        url: https://github.com/ipinfo/node
-      - type: SDKs
-        title: Java SDK
-        url: https://github.com/ipinfo/java
-      - type: SDKs
-        title: Go SDK
-        url: https://github.com/ipinfo/go
-      - type: SDKs
-        title: Ruby SDK
-        url: https://github.com/ipinfo/ruby
-      - type: SDKs
-        title: PHP SDK
-        url: https://github.com/ipinfo/php
-      - type: SDKs
-        title: C# SDK
-        url: https://github.com/ipinfo/csharp
-      - type: SDKs
-        title: Rust SDK
-        url: https://github.com/ipinfo/rust
-      - type: SDKs
-        title: Perl SDK
-        url: https://github.com/ipinfo/perl
-      - type: SDKs
-        title: Swift SDK
-        url: https://github.com/ipinfo/swift
-      - type: SDKs
-        title: Erlang SDK
-        url: https://github.com/ipinfo/erlang
-      - type: SDKs
-        title: Django SDK
-        url: https://github.com/ipinfo/django
-      - type: SDKs
-        title: Laravel SDK
-        url: https://github.com/ipinfo/laravel
-      - type: SDKs
-        title: Spring SDK
-        url: https://github.com/ipinfo/spring
-      - type: SDKs
-        title: Rails SDK
-        url: https://github.com/ipinfo/rails
-      - type: SDKs
-        title: Node Express SDK
-        url: https://github.com/ipinfo/node-express
-      - type: RateLimits
-        url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/rate-limits/ipinfo-rate-limits.yml
-      - type: Plans
-        url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
+- aid: ipinfo:ipinfo-abuse-api
+  name: IPinfo abuse API
+  description: Abuse Contact API.
+  humanURL: https://ipinfo.io/developers
+  baseURL: https://api.ipinfo.io
+  tags:
+  - abuse
+  properties:
+  - type: OpenAPI
+    url: openapi/ipinfo-abuse-api-openapi.yml
+  - type: Documentation
+    url: https://ipinfo.io/developers
+  - type: APIReference
+    url: https://ipinfo.io/developers
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/getting-started
+  - type: Authentication
+    url: https://ipinfo.io/developers#authentication
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/lite-api
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/examples/
+  - type: SDKs
+    url: https://github.com/ipinfo/python
+  - type: SDKs
+    url: https://github.com/ipinfo/node
+  - type: SDKs
+    url: https://github.com/ipinfo/java
+  - type: SDKs
+    url: https://github.com/ipinfo/go
+  - type: SDKs
+    url: https://github.com/ipinfo/ruby
+  - type: SDKs
+    url: https://github.com/ipinfo/php
+  - type: SDKs
+    url: https://github.com/ipinfo/csharp
+  - type: SDKs
+    url: https://github.com/ipinfo/rust
+  - type: SDKs
+    url: https://github.com/ipinfo/perl
+  - type: SDKs
+    url: https://github.com/ipinfo/swift
+  - type: SDKs
+    url: https://github.com/ipinfo/erlang
+  - type: SDKs
+    url: https://github.com/ipinfo/django
+  - type: SDKs
+    url: https://github.com/ipinfo/laravel
+  - type: SDKs
+    url: https://github.com/ipinfo/spring
+  - type: SDKs
+    url: https://github.com/ipinfo/rails
+  - type: SDKs
+    url: https://github.com/ipinfo/node-express
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/rate-limits/ipinfo-rate-limits.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
+- aid: ipinfo:ipinfo-asn-api
+  name: IPinfo asn API
+  description: ASN API.
+  humanURL: https://ipinfo.io/developers
+  baseURL: https://api.ipinfo.io
+  tags:
+  - asn
+  properties:
+  - type: OpenAPI
+    url: openapi/ipinfo-asn-api-openapi.yml
+  - type: Documentation
+    url: https://ipinfo.io/developers
+  - type: APIReference
+    url: https://ipinfo.io/developers
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/getting-started
+  - type: Authentication
+    url: https://ipinfo.io/developers#authentication
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/lite-api
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/examples/
+  - type: SDKs
+    url: https://github.com/ipinfo/python
+  - type: SDKs
+    url: https://github.com/ipinfo/node
+  - type: SDKs
+    url: https://github.com/ipinfo/java
+  - type: SDKs
+    url: https://github.com/ipinfo/go
+  - type: SDKs
+    url: https://github.com/ipinfo/ruby
+  - type: SDKs
+    url: https://github.com/ipinfo/php
+  - type: SDKs
+    url: https://github.com/ipinfo/csharp
+  - type: SDKs
+    url: https://github.com/ipinfo/rust
+  - type: SDKs
+    url: https://github.com/ipinfo/perl
+  - type: SDKs
+    url: https://github.com/ipinfo/swift
+  - type: SDKs
+    url: https://github.com/ipinfo/erlang
+  - type: SDKs
+    url: https://github.com/ipinfo/django
+  - type: SDKs
+    url: https://github.com/ipinfo/laravel
+  - type: SDKs
+    url: https://github.com/ipinfo/spring
+  - type: SDKs
+    url: https://github.com/ipinfo/rails
+  - type: SDKs
+    url: https://github.com/ipinfo/node-express
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/rate-limits/ipinfo-rate-limits.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
+- aid: ipinfo:ipinfo-carrier-api
+  name: IPinfo carrier API
+  description: IP to Phone Carrier Detection API.
+  humanURL: https://ipinfo.io/developers
+  baseURL: https://api.ipinfo.io
+  tags:
+  - carrier
+  properties:
+  - type: OpenAPI
+    url: openapi/ipinfo-carrier-api-openapi.yml
+  - type: Documentation
+    url: https://ipinfo.io/developers
+  - type: APIReference
+    url: https://ipinfo.io/developers
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/getting-started
+  - type: Authentication
+    url: https://ipinfo.io/developers#authentication
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/lite-api
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/examples/
+  - type: SDKs
+    url: https://github.com/ipinfo/python
+  - type: SDKs
+    url: https://github.com/ipinfo/node
+  - type: SDKs
+    url: https://github.com/ipinfo/java
+  - type: SDKs
+    url: https://github.com/ipinfo/go
+  - type: SDKs
+    url: https://github.com/ipinfo/ruby
+  - type: SDKs
+    url: https://github.com/ipinfo/php
+  - type: SDKs
+    url: https://github.com/ipinfo/csharp
+  - type: SDKs
+    url: https://github.com/ipinfo/rust
+  - type: SDKs
+    url: https://github.com/ipinfo/perl
+  - type: SDKs
+    url: https://github.com/ipinfo/swift
+  - type: SDKs
+    url: https://github.com/ipinfo/erlang
+  - type: SDKs
+    url: https://github.com/ipinfo/django
+  - type: SDKs
+    url: https://github.com/ipinfo/laravel
+  - type: SDKs
+    url: https://github.com/ipinfo/spring
+  - type: SDKs
+    url: https://github.com/ipinfo/rails
+  - type: SDKs
+    url: https://github.com/ipinfo/node-express
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/rate-limits/ipinfo-rate-limits.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
+- aid: ipinfo:ipinfo-company-api
+  name: IPinfo company API
+  description: IP to Company API.
+  humanURL: https://ipinfo.io/developers
+  baseURL: https://api.ipinfo.io
+  tags:
+  - company
+  properties:
+  - type: OpenAPI
+    url: openapi/ipinfo-company-api-openapi.yml
+  - type: Documentation
+    url: https://ipinfo.io/developers
+  - type: APIReference
+    url: https://ipinfo.io/developers
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/getting-started
+  - type: Authentication
+    url: https://ipinfo.io/developers#authentication
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/lite-api
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/examples/
+  - type: SDKs
+    url: https://github.com/ipinfo/python
+  - type: SDKs
+    url: https://github.com/ipinfo/node
+  - type: SDKs
+    url: https://github.com/ipinfo/java
+  - type: SDKs
+    url: https://github.com/ipinfo/go
+  - type: SDKs
+    url: https://github.com/ipinfo/ruby
+  - type: SDKs
+    url: https://github.com/ipinfo/php
+  - type: SDKs
+    url: https://github.com/ipinfo/csharp
+  - type: SDKs
+    url: https://github.com/ipinfo/rust
+  - type: SDKs
+    url: https://github.com/ipinfo/perl
+  - type: SDKs
+    url: https://github.com/ipinfo/swift
+  - type: SDKs
+    url: https://github.com/ipinfo/erlang
+  - type: SDKs
+    url: https://github.com/ipinfo/django
+  - type: SDKs
+    url: https://github.com/ipinfo/laravel
+  - type: SDKs
+    url: https://github.com/ipinfo/spring
+  - type: SDKs
+    url: https://github.com/ipinfo/rails
+  - type: SDKs
+    url: https://github.com/ipinfo/node-express
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/rate-limits/ipinfo-rate-limits.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
+- aid: ipinfo:ipinfo-domains-api
+  name: IPinfo domains API
+  description: Hosted Domains API.
+  humanURL: https://ipinfo.io/developers
+  baseURL: https://api.ipinfo.io
+  tags:
+  - domains
+  properties:
+  - type: OpenAPI
+    url: openapi/ipinfo-domains-api-openapi.yml
+  - type: Documentation
+    url: https://ipinfo.io/developers
+  - type: APIReference
+    url: https://ipinfo.io/developers
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/getting-started
+  - type: Authentication
+    url: https://ipinfo.io/developers#authentication
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/lite-api
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/examples/
+  - type: SDKs
+    url: https://github.com/ipinfo/python
+  - type: SDKs
+    url: https://github.com/ipinfo/node
+  - type: SDKs
+    url: https://github.com/ipinfo/java
+  - type: SDKs
+    url: https://github.com/ipinfo/go
+  - type: SDKs
+    url: https://github.com/ipinfo/ruby
+  - type: SDKs
+    url: https://github.com/ipinfo/php
+  - type: SDKs
+    url: https://github.com/ipinfo/csharp
+  - type: SDKs
+    url: https://github.com/ipinfo/rust
+  - type: SDKs
+    url: https://github.com/ipinfo/perl
+  - type: SDKs
+    url: https://github.com/ipinfo/swift
+  - type: SDKs
+    url: https://github.com/ipinfo/erlang
+  - type: SDKs
+    url: https://github.com/ipinfo/django
+  - type: SDKs
+    url: https://github.com/ipinfo/laravel
+  - type: SDKs
+    url: https://github.com/ipinfo/spring
+  - type: SDKs
+    url: https://github.com/ipinfo/rails
+  - type: SDKs
+    url: https://github.com/ipinfo/node-express
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/rate-limits/ipinfo-rate-limits.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
+- aid: ipinfo:ipinfo-general-api
+  name: IPinfo general API
+  description: General API.
+  humanURL: https://ipinfo.io/developers
+  baseURL: https://api.ipinfo.io
+  tags:
+  - general
+  properties:
+  - type: OpenAPI
+    url: openapi/ipinfo-general-api-openapi.yml
+  - type: Documentation
+    url: https://ipinfo.io/developers
+  - type: APIReference
+    url: https://ipinfo.io/developers
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/getting-started
+  - type: Authentication
+    url: https://ipinfo.io/developers#authentication
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/lite-api
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/examples/
+  - type: SDKs
+    url: https://github.com/ipinfo/python
+  - type: SDKs
+    url: https://github.com/ipinfo/node
+  - type: SDKs
+    url: https://github.com/ipinfo/java
+  - type: SDKs
+    url: https://github.com/ipinfo/go
+  - type: SDKs
+    url: https://github.com/ipinfo/ruby
+  - type: SDKs
+    url: https://github.com/ipinfo/php
+  - type: SDKs
+    url: https://github.com/ipinfo/csharp
+  - type: SDKs
+    url: https://github.com/ipinfo/rust
+  - type: SDKs
+    url: https://github.com/ipinfo/perl
+  - type: SDKs
+    url: https://github.com/ipinfo/swift
+  - type: SDKs
+    url: https://github.com/ipinfo/erlang
+  - type: SDKs
+    url: https://github.com/ipinfo/django
+  - type: SDKs
+    url: https://github.com/ipinfo/laravel
+  - type: SDKs
+    url: https://github.com/ipinfo/spring
+  - type: SDKs
+    url: https://github.com/ipinfo/rails
+  - type: SDKs
+    url: https://github.com/ipinfo/node-express
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/rate-limits/ipinfo-rate-limits.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
+- aid: ipinfo:ipinfo-ipinfo-core-api
+  name: IPinfo ipinfo core API
+  description: IPinfo Core API - Core IP information service.
+  humanURL: https://ipinfo.io/developers
+  baseURL: https://api.ipinfo.io
+  tags:
+  - ipinfo core
+  properties:
+  - type: OpenAPI
+    url: openapi/ipinfo-ipinfo-core-api-openapi.yml
+  - type: Documentation
+    url: https://ipinfo.io/developers
+  - type: APIReference
+    url: https://ipinfo.io/developers
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/getting-started
+  - type: Authentication
+    url: https://ipinfo.io/developers#authentication
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/lite-api
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/examples/
+  - type: SDKs
+    url: https://github.com/ipinfo/python
+  - type: SDKs
+    url: https://github.com/ipinfo/node
+  - type: SDKs
+    url: https://github.com/ipinfo/java
+  - type: SDKs
+    url: https://github.com/ipinfo/go
+  - type: SDKs
+    url: https://github.com/ipinfo/ruby
+  - type: SDKs
+    url: https://github.com/ipinfo/php
+  - type: SDKs
+    url: https://github.com/ipinfo/csharp
+  - type: SDKs
+    url: https://github.com/ipinfo/rust
+  - type: SDKs
+    url: https://github.com/ipinfo/perl
+  - type: SDKs
+    url: https://github.com/ipinfo/swift
+  - type: SDKs
+    url: https://github.com/ipinfo/erlang
+  - type: SDKs
+    url: https://github.com/ipinfo/django
+  - type: SDKs
+    url: https://github.com/ipinfo/laravel
+  - type: SDKs
+    url: https://github.com/ipinfo/spring
+  - type: SDKs
+    url: https://github.com/ipinfo/rails
+  - type: SDKs
+    url: https://github.com/ipinfo/node-express
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/rate-limits/ipinfo-rate-limits.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
+- aid: ipinfo:ipinfo-ipinfo-lite-api
+  name: IPinfo ipinfo lite API
+  description: IPinfo Lite API - IPinfo's free API service for country and ASN information.
+  humanURL: https://ipinfo.io/developers
+  baseURL: https://api.ipinfo.io
+  tags:
+  - ipinfo lite
+  properties:
+  - type: OpenAPI
+    url: openapi/ipinfo-ipinfo-lite-api-openapi.yml
+  - type: Documentation
+    url: https://ipinfo.io/developers
+  - type: APIReference
+    url: https://ipinfo.io/developers
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/getting-started
+  - type: Authentication
+    url: https://ipinfo.io/developers#authentication
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/lite-api
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/examples/
+  - type: SDKs
+    url: https://github.com/ipinfo/python
+  - type: SDKs
+    url: https://github.com/ipinfo/node
+  - type: SDKs
+    url: https://github.com/ipinfo/java
+  - type: SDKs
+    url: https://github.com/ipinfo/go
+  - type: SDKs
+    url: https://github.com/ipinfo/ruby
+  - type: SDKs
+    url: https://github.com/ipinfo/php
+  - type: SDKs
+    url: https://github.com/ipinfo/csharp
+  - type: SDKs
+    url: https://github.com/ipinfo/rust
+  - type: SDKs
+    url: https://github.com/ipinfo/perl
+  - type: SDKs
+    url: https://github.com/ipinfo/swift
+  - type: SDKs
+    url: https://github.com/ipinfo/erlang
+  - type: SDKs
+    url: https://github.com/ipinfo/django
+  - type: SDKs
+    url: https://github.com/ipinfo/laravel
+  - type: SDKs
+    url: https://github.com/ipinfo/spring
+  - type: SDKs
+    url: https://github.com/ipinfo/rails
+  - type: SDKs
+    url: https://github.com/ipinfo/node-express
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/rate-limits/ipinfo-rate-limits.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
+- aid: ipinfo:ipinfo-ipinfo-max-api
+  name: IPinfo ipinfo max API
+  description: IPinfo Max API - Most comprehensive IP intelligence with residential proxy detection.
+  humanURL: https://ipinfo.io/developers
+  baseURL: https://api.ipinfo.io
+  tags:
+  - ipinfo max
+  properties:
+  - type: OpenAPI
+    url: openapi/ipinfo-ipinfo-max-api-openapi.yml
+  - type: Documentation
+    url: https://ipinfo.io/developers
+  - type: APIReference
+    url: https://ipinfo.io/developers
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/getting-started
+  - type: Authentication
+    url: https://ipinfo.io/developers#authentication
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/lite-api
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/examples/
+  - type: SDKs
+    url: https://github.com/ipinfo/python
+  - type: SDKs
+    url: https://github.com/ipinfo/node
+  - type: SDKs
+    url: https://github.com/ipinfo/java
+  - type: SDKs
+    url: https://github.com/ipinfo/go
+  - type: SDKs
+    url: https://github.com/ipinfo/ruby
+  - type: SDKs
+    url: https://github.com/ipinfo/php
+  - type: SDKs
+    url: https://github.com/ipinfo/csharp
+  - type: SDKs
+    url: https://github.com/ipinfo/rust
+  - type: SDKs
+    url: https://github.com/ipinfo/perl
+  - type: SDKs
+    url: https://github.com/ipinfo/swift
+  - type: SDKs
+    url: https://github.com/ipinfo/erlang
+  - type: SDKs
+    url: https://github.com/ipinfo/django
+  - type: SDKs
+    url: https://github.com/ipinfo/laravel
+  - type: SDKs
+    url: https://github.com/ipinfo/spring
+  - type: SDKs
+    url: https://github.com/ipinfo/rails
+  - type: SDKs
+    url: https://github.com/ipinfo/node-express
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/rate-limits/ipinfo-rate-limits.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
+- aid: ipinfo:ipinfo-ipinfo-plus-api
+  name: IPinfo ipinfo plus API
+  description: IPinfo Plus API - Enhanced IP information service with mobile and anonymity detection.
+  humanURL: https://ipinfo.io/developers
+  baseURL: https://api.ipinfo.io
+  tags:
+  - ipinfo plus
+  properties:
+  - type: OpenAPI
+    url: openapi/ipinfo-ipinfo-plus-api-openapi.yml
+  - type: Documentation
+    url: https://ipinfo.io/developers
+  - type: APIReference
+    url: https://ipinfo.io/developers
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/getting-started
+  - type: Authentication
+    url: https://ipinfo.io/developers#authentication
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/lite-api
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/examples/
+  - type: SDKs
+    url: https://github.com/ipinfo/python
+  - type: SDKs
+    url: https://github.com/ipinfo/node
+  - type: SDKs
+    url: https://github.com/ipinfo/java
+  - type: SDKs
+    url: https://github.com/ipinfo/go
+  - type: SDKs
+    url: https://github.com/ipinfo/ruby
+  - type: SDKs
+    url: https://github.com/ipinfo/php
+  - type: SDKs
+    url: https://github.com/ipinfo/csharp
+  - type: SDKs
+    url: https://github.com/ipinfo/rust
+  - type: SDKs
+    url: https://github.com/ipinfo/perl
+  - type: SDKs
+    url: https://github.com/ipinfo/swift
+  - type: SDKs
+    url: https://github.com/ipinfo/erlang
+  - type: SDKs
+    url: https://github.com/ipinfo/django
+  - type: SDKs
+    url: https://github.com/ipinfo/laravel
+  - type: SDKs
+    url: https://github.com/ipinfo/spring
+  - type: SDKs
+    url: https://github.com/ipinfo/rails
+  - type: SDKs
+    url: https://github.com/ipinfo/node-express
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/rate-limits/ipinfo-rate-limits.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
+- aid: ipinfo:ipinfo-places-api
+  name: IPinfo places API
+  description: IPinfo Places API - Building-level IP intelligence for physical locations.
+  humanURL: https://ipinfo.io/developers
+  baseURL: https://api.ipinfo.io
+  tags:
+  - places
+  properties:
+  - type: OpenAPI
+    url: openapi/ipinfo-places-api-openapi.yml
+  - type: Documentation
+    url: https://ipinfo.io/developers
+  - type: APIReference
+    url: https://ipinfo.io/developers
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/getting-started
+  - type: Authentication
+    url: https://ipinfo.io/developers#authentication
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/lite-api
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/examples/
+  - type: SDKs
+    url: https://github.com/ipinfo/python
+  - type: SDKs
+    url: https://github.com/ipinfo/node
+  - type: SDKs
+    url: https://github.com/ipinfo/java
+  - type: SDKs
+    url: https://github.com/ipinfo/go
+  - type: SDKs
+    url: https://github.com/ipinfo/ruby
+  - type: SDKs
+    url: https://github.com/ipinfo/php
+  - type: SDKs
+    url: https://github.com/ipinfo/csharp
+  - type: SDKs
+    url: https://github.com/ipinfo/rust
+  - type: SDKs
+    url: https://github.com/ipinfo/perl
+  - type: SDKs
+    url: https://github.com/ipinfo/swift
+  - type: SDKs
+    url: https://github.com/ipinfo/erlang
+  - type: SDKs
+    url: https://github.com/ipinfo/django
+  - type: SDKs
+    url: https://github.com/ipinfo/laravel
+  - type: SDKs
+    url: https://github.com/ipinfo/spring
+  - type: SDKs
+    url: https://github.com/ipinfo/rails
+  - type: SDKs
+    url: https://github.com/ipinfo/node-express
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/rate-limits/ipinfo-rate-limits.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
+- aid: ipinfo:ipinfo-privacy-detection-api
+  name: IPinfo privacy detection API
+  description: Privacy Detection Standard API.
+  humanURL: https://ipinfo.io/developers
+  baseURL: https://api.ipinfo.io
+  tags:
+  - privacy detection
+  properties:
+  - type: OpenAPI
+    url: openapi/ipinfo-privacy-detection-api-openapi.yml
+  - type: Documentation
+    url: https://ipinfo.io/developers
+  - type: APIReference
+    url: https://ipinfo.io/developers
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/getting-started
+  - type: Authentication
+    url: https://ipinfo.io/developers#authentication
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/lite-api
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/examples/
+  - type: SDKs
+    url: https://github.com/ipinfo/python
+  - type: SDKs
+    url: https://github.com/ipinfo/node
+  - type: SDKs
+    url: https://github.com/ipinfo/java
+  - type: SDKs
+    url: https://github.com/ipinfo/go
+  - type: SDKs
+    url: https://github.com/ipinfo/ruby
+  - type: SDKs
+    url: https://github.com/ipinfo/php
+  - type: SDKs
+    url: https://github.com/ipinfo/csharp
+  - type: SDKs
+    url: https://github.com/ipinfo/rust
+  - type: SDKs
+    url: https://github.com/ipinfo/perl
+  - type: SDKs
+    url: https://github.com/ipinfo/swift
+  - type: SDKs
+    url: https://github.com/ipinfo/erlang
+  - type: SDKs
+    url: https://github.com/ipinfo/django
+  - type: SDKs
+    url: https://github.com/ipinfo/laravel
+  - type: SDKs
+    url: https://github.com/ipinfo/spring
+  - type: SDKs
+    url: https://github.com/ipinfo/rails
+  - type: SDKs
+    url: https://github.com/ipinfo/node-express
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/rate-limits/ipinfo-rate-limits.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
+- aid: ipinfo:ipinfo-privacy-detection-extended-api
+  name: IPinfo privacy detection extended API
+  description: Privacy Detection Extended API with detailed methodologies.
+  humanURL: https://ipinfo.io/developers
+  baseURL: https://api.ipinfo.io
+  tags:
+  - privacy detection extended
+  properties:
+  - type: OpenAPI
+    url: openapi/ipinfo-privacy-detection-extended-api-openapi.yml
+  - type: Documentation
+    url: https://ipinfo.io/developers
+  - type: APIReference
+    url: https://ipinfo.io/developers
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/getting-started
+  - type: Authentication
+    url: https://ipinfo.io/developers#authentication
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/lite-api
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/examples/
+  - type: SDKs
+    url: https://github.com/ipinfo/python
+  - type: SDKs
+    url: https://github.com/ipinfo/node
+  - type: SDKs
+    url: https://github.com/ipinfo/java
+  - type: SDKs
+    url: https://github.com/ipinfo/go
+  - type: SDKs
+    url: https://github.com/ipinfo/ruby
+  - type: SDKs
+    url: https://github.com/ipinfo/php
+  - type: SDKs
+    url: https://github.com/ipinfo/csharp
+  - type: SDKs
+    url: https://github.com/ipinfo/rust
+  - type: SDKs
+    url: https://github.com/ipinfo/perl
+  - type: SDKs
+    url: https://github.com/ipinfo/swift
+  - type: SDKs
+    url: https://github.com/ipinfo/erlang
+  - type: SDKs
+    url: https://github.com/ipinfo/django
+  - type: SDKs
+    url: https://github.com/ipinfo/laravel
+  - type: SDKs
+    url: https://github.com/ipinfo/spring
+  - type: SDKs
+    url: https://github.com/ipinfo/rails
+  - type: SDKs
+    url: https://github.com/ipinfo/node-express
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/rate-limits/ipinfo-rate-limits.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
+- aid: ipinfo:ipinfo-ranges-api
+  name: IPinfo ranges API
+  description: IP Ranges API.
+  humanURL: https://ipinfo.io/developers
+  baseURL: https://api.ipinfo.io
+  tags:
+  - ranges
+  properties:
+  - type: OpenAPI
+    url: openapi/ipinfo-ranges-api-openapi.yml
+  - type: Documentation
+    url: https://ipinfo.io/developers
+  - type: APIReference
+    url: https://ipinfo.io/developers
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/getting-started
+  - type: Authentication
+    url: https://ipinfo.io/developers#authentication
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/lite-api
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/examples/
+  - type: SDKs
+    url: https://github.com/ipinfo/python
+  - type: SDKs
+    url: https://github.com/ipinfo/node
+  - type: SDKs
+    url: https://github.com/ipinfo/java
+  - type: SDKs
+    url: https://github.com/ipinfo/go
+  - type: SDKs
+    url: https://github.com/ipinfo/ruby
+  - type: SDKs
+    url: https://github.com/ipinfo/php
+  - type: SDKs
+    url: https://github.com/ipinfo/csharp
+  - type: SDKs
+    url: https://github.com/ipinfo/rust
+  - type: SDKs
+    url: https://github.com/ipinfo/perl
+  - type: SDKs
+    url: https://github.com/ipinfo/swift
+  - type: SDKs
+    url: https://github.com/ipinfo/erlang
+  - type: SDKs
+    url: https://github.com/ipinfo/django
+  - type: SDKs
+    url: https://github.com/ipinfo/laravel
+  - type: SDKs
+    url: https://github.com/ipinfo/spring
+  - type: SDKs
+    url: https://github.com/ipinfo/rails
+  - type: SDKs
+    url: https://github.com/ipinfo/node-express
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/rate-limits/ipinfo-rate-limits.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
+- aid: ipinfo:ipinfo-residential-proxy-detection-api
+  name: IPinfo residential proxy detection API
+  description: Residential Proxy Detection API.
+  humanURL: https://ipinfo.io/developers
+  baseURL: https://api.ipinfo.io
+  tags:
+  - residential proxy detection
+  properties:
+  - type: OpenAPI
+    url: openapi/ipinfo-residential-proxy-detection-api-openapi.yml
+  - type: Documentation
+    url: https://ipinfo.io/developers
+  - type: APIReference
+    url: https://ipinfo.io/developers
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/getting-started
+  - type: Authentication
+    url: https://ipinfo.io/developers#authentication
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/lite-api
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/examples/
+  - type: SDKs
+    url: https://github.com/ipinfo/python
+  - type: SDKs
+    url: https://github.com/ipinfo/node
+  - type: SDKs
+    url: https://github.com/ipinfo/java
+  - type: SDKs
+    url: https://github.com/ipinfo/go
+  - type: SDKs
+    url: https://github.com/ipinfo/ruby
+  - type: SDKs
+    url: https://github.com/ipinfo/php
+  - type: SDKs
+    url: https://github.com/ipinfo/csharp
+  - type: SDKs
+    url: https://github.com/ipinfo/rust
+  - type: SDKs
+    url: https://github.com/ipinfo/perl
+  - type: SDKs
+    url: https://github.com/ipinfo/swift
+  - type: SDKs
+    url: https://github.com/ipinfo/erlang
+  - type: SDKs
+    url: https://github.com/ipinfo/django
+  - type: SDKs
+    url: https://github.com/ipinfo/laravel
+  - type: SDKs
+    url: https://github.com/ipinfo/spring
+  - type: SDKs
+    url: https://github.com/ipinfo/rails
+  - type: SDKs
+    url: https://github.com/ipinfo/node-express
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/rate-limits/ipinfo-rate-limits.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
+- aid: ipinfo:ipinfo-single-api
+  name: IPinfo single API
+  description: Single info API.
+  humanURL: https://ipinfo.io/developers
+  baseURL: https://api.ipinfo.io
+  tags:
+  - single
+  properties:
+  - type: OpenAPI
+    url: openapi/ipinfo-single-api-openapi.yml
+  - type: Documentation
+    url: https://ipinfo.io/developers
+  - type: APIReference
+    url: https://ipinfo.io/developers
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/getting-started
+  - type: Authentication
+    url: https://ipinfo.io/developers#authentication
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/lite-api
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/examples/
+  - type: SDKs
+    url: https://github.com/ipinfo/python
+  - type: SDKs
+    url: https://github.com/ipinfo/node
+  - type: SDKs
+    url: https://github.com/ipinfo/java
+  - type: SDKs
+    url: https://github.com/ipinfo/go
+  - type: SDKs
+    url: https://github.com/ipinfo/ruby
+  - type: SDKs
+    url: https://github.com/ipinfo/php
+  - type: SDKs
+    url: https://github.com/ipinfo/csharp
+  - type: SDKs
+    url: https://github.com/ipinfo/rust
+  - type: SDKs
+    url: https://github.com/ipinfo/perl
+  - type: SDKs
+    url: https://github.com/ipinfo/swift
+  - type: SDKs
+    url: https://github.com/ipinfo/erlang
+  - type: SDKs
+    url: https://github.com/ipinfo/django
+  - type: SDKs
+    url: https://github.com/ipinfo/laravel
+  - type: SDKs
+    url: https://github.com/ipinfo/spring
+  - type: SDKs
+    url: https://github.com/ipinfo/rails
+  - type: SDKs
+    url: https://github.com/ipinfo/node-express
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/rate-limits/ipinfo-rate-limits.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
+- aid: ipinfo:ipinfo-whois-api
+  name: IPinfo whois API
+  description: IP WHOIS API
+  humanURL: https://ipinfo.io/developers
+  baseURL: https://api.ipinfo.io
+  tags:
+  - whois
+  properties:
+  - type: OpenAPI
+    url: openapi/ipinfo-whois-api-openapi.yml
+  - type: Documentation
+    url: https://ipinfo.io/developers
+  - type: APIReference
+    url: https://ipinfo.io/developers
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/getting-started
+  - type: Authentication
+    url: https://ipinfo.io/developers#authentication
+  - type: GettingStarted
+    url: https://ipinfo.io/developers/lite-api
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/examples/
+  - type: SDKs
+    url: https://github.com/ipinfo/python
+  - type: SDKs
+    url: https://github.com/ipinfo/node
+  - type: SDKs
+    url: https://github.com/ipinfo/java
+  - type: SDKs
+    url: https://github.com/ipinfo/go
+  - type: SDKs
+    url: https://github.com/ipinfo/ruby
+  - type: SDKs
+    url: https://github.com/ipinfo/php
+  - type: SDKs
+    url: https://github.com/ipinfo/csharp
+  - type: SDKs
+    url: https://github.com/ipinfo/rust
+  - type: SDKs
+    url: https://github.com/ipinfo/perl
+  - type: SDKs
+    url: https://github.com/ipinfo/swift
+  - type: SDKs
+    url: https://github.com/ipinfo/erlang
+  - type: SDKs
+    url: https://github.com/ipinfo/django
+  - type: SDKs
+    url: https://github.com/ipinfo/laravel
+  - type: SDKs
+    url: https://github.com/ipinfo/spring
+  - type: SDKs
+    url: https://github.com/ipinfo/rails
+  - type: SDKs
+    url: https://github.com/ipinfo/node-express
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/rate-limits/ipinfo-rate-limits.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/ipinfo/overview
   - type: AgenticAccess
     url: agentic-access/ipinfo-agentic-access.yml
   - type: DomainSecurity
