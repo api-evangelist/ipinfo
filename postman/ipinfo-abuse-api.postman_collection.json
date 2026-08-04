@@ -1,0 +1,333 @@
+{
+  "info": {
+    "_postman_id": "f48b8514-10a3-4367-b64e-1ae59705f597",
+    "name": "IPinfo.io OpenAPI Specification abuse API",
+    "description": "Official OpenAPI Specification for IPinfo's comprehensive IP intelligence API. This specification defines all endpoints for IP geolocation, ASN data, company information, privacy detection, and specialized data services.\n\n## Authentication\n\nAll endpoints support three authentication methods:\n- **HTTP Basic Auth**: Use your token as the username with empty password\n- **Bearer Token**: Include token in Authorization header\n- **Query Parameter**: Pass token as `?token=YOUR_TOKEN`\n\n[Learn more about authentication](https://ipinfo.io/developers#authentication)\n\n## IPinfo API Tiers\n\nIPinfo offers three main API tiers with different feature sets:\n\n### IPinfo Lite\nLightweight IP geolocation with essential information including ASN details, country, and continent data. Perfect for basic geolocation needs with fast response times. Unlimited requests on paid plans.\n- Endpoints: `/lite/me`, `/lite/{ip}`, `/lite/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/lite-api)\n\n### IPinfo Core\nComprehensive IP information with detailed geolocation data (city, region, coordinates, postal code, timezone), ASN information, and classification boolean flags (anycast, hosting, mobile, satellite).\n- Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/core-api)\n\n### IPinfo Plus\nAll Core features plus mobile/carrier detection, anonymity analysis (VPN, proxy, Tor, relay detection), service identification, and extended geographic metadata. Ideal for security, fraud prevention, and advanced analytics.\n- Endpoints: `/plus/me`, `/plus/{ip}`, `/plus/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/plus-api)\n\n## Specialized Detection APIs\n\n### Residential Proxy Detection\nDetect residential, mobile, and datacenter proxy IPs with activity insights, last seen dates, and proxy service identification.\n- Endpoints: `/{ip}/resproxy`\n- [Documentation](https://ipinfo.io/developers/residential-proxy-api)\n\n### Privacy Detection Standard\nDetect VPNs, proxies, Tor exit nodes, relays, and hosting providers associated with an IP address. Returns core privacy signals including service provider identification.\n- Endpoints: `/{ip}/privacy`\n- [Documentation](https://ipinfo.io/developers/privacy-standard-api)\n\n### Privacy Detection Extended\nAdvanced anonymous IP detection with detailed methodologies, confidence metrics, and metadata for VPNs, proxies, Tor, hosting providers, and relays.\n- Endpoints: `/{ip}/privacy_extended`\n- [Documentation](https://ipinfo.io/developers/privacy-extended-api)\n\n## Legacy API Products\n\nFor backwards compatibility, legacy endpoints remain available:\n- [IP to Geolocation API](https://ipinfo.io/products/ip-geolocation-api) - Use Core or Plus instead\n- [IP to Privacy Detection API](https://ipinfo.io/products/proxy-vpn-detection-api) - Use Plus instead\n- [ASN API](https://ipinfo.io/products/asn-api) - `/AS{asn}` endpoint\n- [IP to Company API](https://ipinfo.io/products/ip-company-api) - `/{ip}/company` endpoint\n- [Hosted Domains API](https://ipinfo.io/products/reverse-ip-api) - `/domains/{ip}` endpoint\n- [IP to Phone Carrier Detection API](https://ipinfo.io/products/ip-carrier-api) - `/{ip}/carrier` endpoint\n- [IP to Abuse Contact API](https://ipinfo.io/products/ip-abuse-contact-api) - `/{ip}/abuse` endpoint\n- [IP WHOIS API](https://ipinfo.io/products/whois-api) - `/whois/*` endpoints\n\n## Special Endpoints\n\n- **Token Info**: `/me` - View request limits and API access for your token\n- **Batch Requests**: `/batch` - Enrich multiple IPs in a single request\n- **IP Summarization**: `/tools/summarize-ips` - Analyze up to 500,000 IPs\n- **IP Mapping**: `/tools/map` - Visualize up to 500,000 IPs on an interactive map\n- **Single Field**: `/{ip}/{field}` - Get specific field values as plaintext\n\n## Rate Limits\n\n- **IPinfo Lite**: Unlimited requests on paid plans\n- **Paid Plans**: Monthly request limits with configurable alerts and automatic metered billing\n- **Rate Limit Exceeded**: 429 HTTP status code when limit reached\n\n[View pricing and limits](https://ipinfo.io/pricing)\n\n## Resources\n\n- **Developer Portal**: [https://ipinfo.io/developers](https://ipinfo.io/developers)\n- **API Libraries**: Official libraries for Python, Node.js, Java, Ruby, PHP, Go, and more\n- **Sign Up**: [Free account](https://ipinfo.io/signup) with up to 50,000 requests/month\n- **Community Support**: [https://community.ipinfo.io/](https://community.ipinfo.io/)\n- **Email Support**: support@ipinfo.io\n\n---\n\n\nContact Support:\n Name: IPinfo\n Email: support@ipinfo.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:59:07.000Z",
+    "updatedAt": "2026-07-28T01:59:07.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f48b8514-10a3-4367-b64e-1ae59705f597"
+  },
+  "item": [
+    {
+      "name": "{ip}",
+      "item": [
+        {
+          "name": "abuse",
+          "item": [
+            {
+              "name": "IPinfo Returns Data Containing Information Belonging to the Abuse Contact of the IP Address",
+              "id": "35cf49fd-0ce4-44ec-b413-a9c65cb0c42c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:ip/abuse",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":ip",
+                    "abuse"
+                  ],
+                  "variable": [
+                    {
+                      "id": "3aedf835-225d-4f6c-875b-d46866715482",
+                      "key": "ip",
+                      "value": "<string>",
+                      "description": "(Required) A single IPv4 or IPv6 IP address."
+                    }
+                  ]
+                },
+                "description": "The IP to abuse contact information API endpoint provides detailed information about the abuse contact associated with a specific IP address.\nThe response includes the abuse contact's name, email address, postal address, city, state, country, phone number, and the network associated with the IP. \n"
+              },
+              "response": [
+                {
+                  "id": "ea9e4ccb-ce1b-4349-9158-5268a03fef28",
+                  "name": "Abuse response object.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:ip/abuse",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":ip",
+                        "abuse"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ip"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"address\": \"<string>\",\n  \"country\": \"<string>\",\n  \"email\": \"<string>\",\n  \"name\": \"<string>\",\n  \"network\": \"<string>\",\n  \"phone\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:59:07.000Z",
+                  "updatedAt": "2026-07-28T01:59:07.000Z",
+                  "uid": "35240-ea9e4ccb-ce1b-4349-9158-5268a03fef28"
+                },
+                {
+                  "id": "87469126-94e5-4525-b7aa-890fa5b2b390",
+                  "name": "Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:ip/abuse",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":ip",
+                        "abuse"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ip"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"title\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:59:07.000Z",
+                  "updatedAt": "2026-07-28T01:59:07.000Z",
+                  "uid": "35240-87469126-94e5-4525-b7aa-890fa5b2b390"
+                },
+                {
+                  "id": "7edd1516-a911-4200-a27e-472eee8bbaa9",
+                  "name": "Wrong ip. Please provide a valid IP address.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:ip/abuse",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":ip",
+                        "abuse"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ip"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"title\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:59:07.000Z",
+                  "updatedAt": "2026-07-28T01:59:07.000Z",
+                  "uid": "35240-7edd1516-a911-4200-a27e-472eee8bbaa9"
+                },
+                {
+                  "id": "6801f095-4558-4d15-abd7-dd1fc9c362cb",
+                  "name": "Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:ip/abuse",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":ip",
+                        "abuse"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ip"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"title\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:59:07.000Z",
+                  "updatedAt": "2026-07-28T01:59:07.000Z",
+                  "uid": "35240-6801f095-4558-4d15-abd7-dd1fc9c362cb"
+                },
+                {
+                  "id": "65f49436-f41b-4d01-9266-aa3c301551a2",
+                  "name": "Internal server error or server unavailable.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:ip/abuse",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":ip",
+                        "abuse"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ip"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T01:59:07.000Z",
+                  "updatedAt": "2026-07-28T01:59:07.000Z",
+                  "uid": "35240-65f49436-f41b-4d01-9266-aa3c301551a2"
+                }
+              ],
+              "createdAt": "2026-07-28T01:59:07.000Z",
+              "updatedAt": "2026-07-28T01:59:07.000Z",
+              "uid": "35240-35cf49fd-0ce4-44ec-b413-a9c65cb0c42c"
+            }
+          ],
+          "id": "57971ba2-1b8a-4035-af76-57341568ada5",
+          "createdAt": "2026-07-28T01:59:07.000Z",
+          "updatedAt": "2026-07-28T01:59:07.000Z",
+          "uid": "35240-57971ba2-1b8a-4035-af76-57341568ada5"
+        }
+      ],
+      "id": "603a16ba-a1a1-474c-9eac-d157110dec47",
+      "createdAt": "2026-07-28T01:59:07.000Z",
+      "updatedAt": "2026-07-28T01:59:07.000Z",
+      "uid": "35240-603a16ba-a1a1-474c-9eac-d157110dec47"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://ipinfo.io/"
+    }
+  ]
+}

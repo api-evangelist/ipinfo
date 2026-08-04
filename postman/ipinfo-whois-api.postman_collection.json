@@ -1,0 +1,875 @@
+{
+  "info": {
+    "_postman_id": "91677a7f-7904-4703-9d5c-d5e23a932a2f",
+    "name": "IPinfo.io OpenAPI Specification abuse whois API",
+    "description": "Official OpenAPI Specification for IPinfo's comprehensive IP intelligence API. This specification defines all endpoints for IP geolocation, ASN data, company information, privacy detection, and specialized data services.\n\n## Authentication\n\nAll endpoints support three authentication methods:\n- **HTTP Basic Auth**: Use your token as the username with empty password\n- **Bearer Token**: Include token in Authorization header\n- **Query Parameter**: Pass token as `?token=YOUR_TOKEN`\n\n[Learn more about authentication](https://ipinfo.io/developers#authentication)\n\n## IPinfo API Tiers\n\nIPinfo offers three main API tiers with different feature sets:\n\n### IPinfo Lite\nLightweight IP geolocation with essential information including ASN details, country, and continent data. Perfect for basic geolocation needs with fast response times. Unlimited requests on paid plans.\n- Endpoints: `/lite/me`, `/lite/{ip}`, `/lite/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/lite-api)\n\n### IPinfo Core\nComprehensive IP information with detailed geolocation data (city, region, coordinates, postal code, timezone), ASN information, and classification boolean flags (anycast, hosting, mobile, satellite).\n- Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/core-api)\n\n### IPinfo Plus\nAll Core features plus mobile/carrier detection, anonymity analysis (VPN, proxy, Tor, relay detection), service identification, and extended geographic metadata. Ideal for security, fraud prevention, and advanced analytics.\n- Endpoints: `/plus/me`, `/plus/{ip}`, `/plus/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/plus-api)\n\n## Specialized Detection APIs\n\n### Residential Proxy Detection\nDetect residential, mobile, and datacenter proxy IPs with activity insights, last seen dates, and proxy service identification.\n- Endpoints: `/{ip}/resproxy`\n- [Documentation](https://ipinfo.io/developers/residential-proxy-api)\n\n### Privacy Detection Standard\nDetect VPNs, proxies, Tor exit nodes, relays, and hosting providers associated with an IP address. Returns core privacy signals including service provider identification.\n- Endpoints: `/{ip}/privacy`\n- [Documentation](https://ipinfo.io/developers/privacy-standard-api)\n\n### Privacy Detection Extended\nAdvanced anonymous IP detection with detailed methodologies, confidence metrics, and metadata for VPNs, proxies, Tor, hosting providers, and relays.\n- Endpoints: `/{ip}/privacy_extended`\n- [Documentation](https://ipinfo.io/developers/privacy-extended-api)\n\n## Legacy API Products\n\nFor backwards compatibility, legacy endpoints remain available:\n- [IP to Geolocation API](https://ipinfo.io/products/ip-geolocation-api) - Use Core or Plus instead\n- [IP to Privacy Detection API](https://ipinfo.io/products/proxy-vpn-detection-api) - Use Plus instead\n- [ASN API](https://ipinfo.io/products/asn-api) - `/AS{asn}` endpoint\n- [IP to Company API](https://ipinfo.io/products/ip-company-api) - `/{ip}/company` endpoint\n- [Hosted Domains API](https://ipinfo.io/products/reverse-ip-api) - `/domains/{ip}` endpoint\n- [IP to Phone Carrier Detection API](https://ipinfo.io/products/ip-carrier-api) - `/{ip}/carrier` endpoint\n- [IP to Abuse Contact API](https://ipinfo.io/products/ip-abuse-contact-api) - `/{ip}/abuse` endpoint\n- [IP WHOIS API](https://ipinfo.io/products/whois-api) - `/whois/*` endpoints\n\n## Special Endpoints\n\n- **Token Info**: `/me` - View request limits and API access for your token\n- **Batch Requests**: `/batch` - Enrich multiple IPs in a single request\n- **IP Summarization**: `/tools/summarize-ips` - Analyze up to 500,000 IPs\n- **IP Mapping**: `/tools/map` - Visualize up to 500,000 IPs on an interactive map\n- **Single Field**: `/{ip}/{field}` - Get specific field values as plaintext\n\n## Rate Limits\n\n- **IPinfo Lite**: Unlimited requests on paid plans\n- **Paid Plans**: Monthly request limits with configurable alerts and automatic metered billing\n- **Rate Limit Exceeded**: 429 HTTP status code when limit reached\n\n[View pricing and limits](https://ipinfo.io/pricing)\n\n## Resources\n\n- **Developer Portal**: [https://ipinfo.io/developers](https://ipinfo.io/developers)\n- **API Libraries**: Official libraries for Python, Node.js, Java, Ruby, PHP, Go, and more\n- **Sign Up**: [Free account](https://ipinfo.io/signup) with up to 50,000 requests/month\n- **Community Support**: [https://community.ipinfo.io/](https://community.ipinfo.io/)\n- **Email Support**: support@ipinfo.io\n\n---\n\n\nContact Support:\n Name: IPinfo\n Email: support@ipinfo.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:59:36.000Z",
+    "updatedAt": "2026-07-28T01:59:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-91677a7f-7904-4703-9d5c-d5e23a932a2f"
+  },
+  "item": [
+    {
+      "name": "whois",
+      "item": [
+        {
+          "name": "net",
+          "item": [
+            {
+              "name": "{whoisnetid}",
+              "item": [
+                {
+                  "name": "IPinfo Returns the WHOIS Information by Net ID Lookup",
+                  "id": "557cf69a-5869-447e-b4af-cb72686a66aa",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "username",
+                          "value": "{{basicAuthUsername}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "{{basicAuthPassword}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/whois/net/:whoisnetid?page=<integer>&whoissource=ripe",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "whois",
+                        "net",
+                        ":whoisnetid"
+                      ],
+                      "query": [
+                        {
+                          "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Source query parameter to filter records by provided Whois source.",
+                          "key": "whoissource",
+                          "value": "ripe"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "8f95b1e9-97ba-4cd9-aef3-fdce87e317c6",
+                          "key": "whoisnetid",
+                          "value": "<string>",
+                          "description": "(Required) The Network (NET) ID of an internet organization."
+                        }
+                      ]
+                    },
+                    "description": "This API endpoint allows users to retrieve WHOIS information based on a specified Net ID.\nThe response includes details such as the IP address range, organization name, country, and various administrative information related to the network.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "0764578b-9eb8-4a8a-9968-44aecc977a80",
+                      "name": "WHOIS Network (NET) ID response.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/whois/net/:whoisnetid?page=<integer>&whoissource=ripe",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "whois",
+                            "net",
+                            ":whoisnetid"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Source query parameter to filter records by provided Whois source.",
+                              "key": "whoissource",
+                              "value": "ripe"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "whoisnetid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"net\": \"<string>\",\n  \"total\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"records\": [\n    {\n      \"range\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"country\": \"<string>\",\n      \"org\": \"<string>\",\n      \"admin\": \"<string>\",\n      \"abuse\": \"<string>\",\n      \"tech\": \"<string>\",\n      \"maintainer\": \"<string>\",\n      \"updated\": \"<date>\",\n      \"status\": \"<string>\",\n      \"source\": \"<string>\",\n      \"raw\": \"<string>\"\n    },\n    {\n      \"range\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"country\": \"<string>\",\n      \"org\": \"<string>\",\n      \"admin\": \"<string>\",\n      \"abuse\": \"<string>\",\n      \"tech\": \"<string>\",\n      \"maintainer\": \"<string>\",\n      \"updated\": \"<date>\",\n      \"status\": \"<string>\",\n      \"source\": \"<string>\",\n      \"raw\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:59:36.000Z",
+                      "updatedAt": "2026-07-28T01:59:36.000Z",
+                      "uid": "35240-0764578b-9eb8-4a8a-9968-44aecc977a80"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:59:36.000Z",
+                  "updatedAt": "2026-07-28T01:59:36.000Z",
+                  "uid": "35240-557cf69a-5869-447e-b4af-cb72686a66aa"
+                }
+              ],
+              "id": "b271f738-7a8c-4355-895d-d69c24b51165",
+              "createdAt": "2026-07-28T01:59:36.000Z",
+              "updatedAt": "2026-07-28T01:59:36.000Z",
+              "uid": "35240-b271f738-7a8c-4355-895d-d69c24b51165"
+            },
+            {
+              "name": "{whoisip}",
+              "item": [
+                {
+                  "name": "IPinfo Returns the WHOIS Information by WHOIS IP Address or IP Address Range",
+                  "id": "87982ee1-3c0c-4794-a0e4-5626b409d348",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "username",
+                          "value": "{{basicAuthUsername}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "{{basicAuthPassword}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/whois/net/:whoisip?page=<integer>&whoissource=ripe",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "whois",
+                        "net",
+                        ":whoisip"
+                      ],
+                      "query": [
+                        {
+                          "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Source query parameter to filter records by provided Whois source.",
+                          "key": "whoissource",
+                          "value": "ripe"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "e29459b0-7fd5-49d1-a0f1-9b93f984bf77",
+                          "key": "whoisip",
+                          "value": "<string>",
+                          "description": "(Required) The IP address or an IP address range of an internet organization."
+                        }
+                      ]
+                    },
+                    "description": "The WHOIS API lookup via IP address provides WHOIS information based on a specific IP address or IP address range.\nThe response contains detailed information about the organization associated with the IP, including the range of addresses, organization name, administrative contacts, abuse contacts, and additional metadata such as the country and contact details for both technical and administrative support.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "5a1fe779-e4c0-40e1-b606-c66de454d5f7",
+                      "name": "WHOIS IP  and IP range response.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/whois/net/:whoisip?page=<integer>&whoissource=ripe",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "whois",
+                            "net",
+                            ":whoisip"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Source query parameter to filter records by provided Whois source.",
+                              "key": "whoissource",
+                              "value": "ripe"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "whoisip"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"net\": \"<string>\",\n  \"total\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"records\": [\n    {\n      \"range\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"country\": \"<string>\",\n      \"org\": \"<string>\",\n      \"updated\": \"<date>\",\n      \"status\": \"<string>\",\n      \"source\": \"<string>\",\n      \"raw\": \"<string>\"\n    },\n    {\n      \"range\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"country\": \"<string>\",\n      \"org\": \"<string>\",\n      \"updated\": \"<date>\",\n      \"status\": \"<string>\",\n      \"source\": \"<string>\",\n      \"raw\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:59:36.000Z",
+                      "updatedAt": "2026-07-28T01:59:36.000Z",
+                      "uid": "35240-5a1fe779-e4c0-40e1-b606-c66de454d5f7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:59:36.000Z",
+                  "updatedAt": "2026-07-28T01:59:36.000Z",
+                  "uid": "35240-87982ee1-3c0c-4794-a0e4-5626b409d348"
+                }
+              ],
+              "id": "60fafbba-6088-4d11-b43a-ce3bbc3e6b74",
+              "createdAt": "2026-07-28T01:59:36.000Z",
+              "updatedAt": "2026-07-28T01:59:36.000Z",
+              "uid": "35240-60fafbba-6088-4d11-b43a-ce3bbc3e6b74"
+            },
+            {
+              "name": "{domain}",
+              "item": [
+                {
+                  "name": "IPinfo Returns the WHOIS Information by WHOIS Domain of an Internet Organization",
+                  "id": "2e714148-2565-4db7-a648-a2c1bf65bcfe",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "username",
+                          "value": "{{basicAuthUsername}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "{{basicAuthPassword}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/whois/net/:domain?page=<integer>&whoissource=ripe",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "whois",
+                        "net",
+                        ":domain"
+                      ],
+                      "query": [
+                        {
+                          "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Source query parameter to filter records by provided Whois source.",
+                          "key": "whoissource",
+                          "value": "ripe"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "680b90a4-6288-432a-9b1a-198547a44323",
+                          "key": "domain",
+                          "value": "<string>",
+                          "description": "(Required) a domain."
+                        }
+                      ]
+                    },
+                    "description": "The IPinfo WHOIS API lookup via organization organization domain name provides comprehensive WHOIS information for specified organization, enabling users to gain insights into the registration and organizational details of internet entities. The response includes a total count of records, and detailed records for each associated IP range.  Querying the organization domain reveals critical information such as the organization's name, country, and contact details for technical and administrative personnel, including names, emails, and physical addresses. Additionally, the response features abuse contact information and registration dates, which are essential for addressing network issues and potential abuse.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "a32cca42-0aa1-458d-b610-7de172c54512",
+                      "name": "WHOIS Domain response.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/whois/net/:domain?page=<integer>&whoissource=ripe",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "whois",
+                            "net",
+                            ":domain"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Source query parameter to filter records by provided Whois source.",
+                              "key": "whoissource",
+                              "value": "ripe"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "domain"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"net\": \"<string>\",\n  \"total\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"records\": [\n    {\n      \"range\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"country\": \"<string>\",\n      \"org\": \"<string>\",\n      \"status\": \"<string>\",\n      \"tech\": \"<string>\",\n      \"maintainer\": \"<string>\",\n      \"admin\": \"<string>\",\n      \"abuse\": \"<string>\",\n      \"updated\": \"<date>\",\n      \"source\": \"<string>\",\n      \"raw\": \"<string>\",\n      \"domain\": \"<string>\"\n    },\n    {\n      \"range\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"country\": \"<string>\",\n      \"org\": \"<string>\",\n      \"status\": \"<string>\",\n      \"tech\": \"<string>\",\n      \"maintainer\": \"<string>\",\n      \"admin\": \"<string>\",\n      \"abuse\": \"<string>\",\n      \"updated\": \"<date>\",\n      \"source\": \"<string>\",\n      \"raw\": \"<string>\",\n      \"domain\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:59:36.000Z",
+                      "updatedAt": "2026-07-28T01:59:36.000Z",
+                      "uid": "35240-a32cca42-0aa1-458d-b610-7de172c54512"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:59:36.000Z",
+                  "updatedAt": "2026-07-28T01:59:36.000Z",
+                  "uid": "35240-2e714148-2565-4db7-a648-a2c1bf65bcfe"
+                }
+              ],
+              "id": "20224cf9-1713-4836-856d-41d19efd4acc",
+              "createdAt": "2026-07-28T01:59:36.000Z",
+              "updatedAt": "2026-07-28T01:59:36.000Z",
+              "uid": "35240-20224cf9-1713-4836-856d-41d19efd4acc"
+            },
+            {
+              "name": "AS{asn}",
+              "item": [
+                {
+                  "name": "IPinfo Returns the WHOIS Information by WHOIS ASN",
+                  "id": "6f2431d8-1740-4d2e-a73f-8877f4c7c553",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "username",
+                          "value": "{{basicAuthUsername}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "{{basicAuthPassword}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/whois/net/AS{{asn}}?page=<integer>&whoissource=ripe",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "whois",
+                        "net",
+                        "AS{{asn}}"
+                      ],
+                      "query": [
+                        {
+                          "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Source query parameter to filter records by provided Whois source.",
+                          "key": "whoissource",
+                          "value": "ripe"
+                        }
+                      ]
+                    },
+                    "description": "The IPinfo WHOIS API lookup via ASN provides in-depth WHOIS information associated with a specific Autonomous System Number (ASN). Querying ASN reveals critical data, including the organization's name, the allocated IP range, and the country of operation. The response includes administrative and technical contact information, highlighting the contact person along with their address and phone number. Additionally, the API provides details for abuse reporting, including a dedicated email for abuse contacts. This comprehensive dataset is essential for network administrators, security professionals, and organizations needing to investigate ASN ownership and maintain network integrity.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "2c744a36-0bd3-4934-942d-b0fc2ba8a2f2",
+                      "name": "WHOIS ASN response.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/whois/net/AS{{asn}}?page=<integer>&whoissource=ripe",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "whois",
+                            "net",
+                            "AS{{asn}}"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Source query parameter to filter records by provided Whois source.",
+                              "key": "whoissource",
+                              "value": "ripe"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"net\": \"<string>\",\n  \"total\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"records\": [\n    {\n      \"range\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"country\": \"<string>\",\n      \"org\": \"<string>\",\n      \"status\": \"<string>\",\n      \"admin\": \"<string>\",\n      \"abuse\": \"<string>\",\n      \"tech\": \"<string>\",\n      \"maintainer\": \"<string>\",\n      \"updated\": \"<date>\",\n      \"source\": \"<string>\",\n      \"raw\": \"<string>\"\n    },\n    {\n      \"range\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"country\": \"<string>\",\n      \"org\": \"<string>\",\n      \"status\": \"<string>\",\n      \"admin\": \"<string>\",\n      \"abuse\": \"<string>\",\n      \"tech\": \"<string>\",\n      \"maintainer\": \"<string>\",\n      \"updated\": \"<date>\",\n      \"source\": \"<string>\",\n      \"raw\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:59:36.000Z",
+                      "updatedAt": "2026-07-28T01:59:36.000Z",
+                      "uid": "35240-2c744a36-0bd3-4934-942d-b0fc2ba8a2f2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:59:36.000Z",
+                  "updatedAt": "2026-07-28T01:59:36.000Z",
+                  "uid": "35240-6f2431d8-1740-4d2e-a73f-8877f4c7c553"
+                }
+              ],
+              "id": "a46a9d38-d71f-4446-8227-f58aad2e45ab",
+              "createdAt": "2026-07-28T01:59:36.000Z",
+              "updatedAt": "2026-07-28T01:59:36.000Z",
+              "uid": "35240-a46a9d38-d71f-4446-8227-f58aad2e45ab"
+            }
+          ],
+          "id": "c5f7b22f-0ffe-411a-b627-988b7a3cf6e5",
+          "createdAt": "2026-07-28T01:59:36.000Z",
+          "updatedAt": "2026-07-28T01:59:36.000Z",
+          "uid": "35240-c5f7b22f-0ffe-411a-b627-988b7a3cf6e5"
+        },
+        {
+          "name": "org",
+          "item": [
+            {
+              "name": "{whoisorgid}",
+              "item": [
+                {
+                  "name": "IPinfo Returns the WHOIS Information by WHOIS Organization (ORG) ID of an Internet Organization",
+                  "id": "0774bb50-9777-4456-a247-9db7e7a91951",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "username",
+                          "value": "{{basicAuthUsername}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "{{basicAuthPassword}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/whois/org/:whoisorgid?page=<integer>&whoissource=ripe",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "whois",
+                        "org",
+                        ":whoisorgid"
+                      ],
+                      "query": [
+                        {
+                          "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Source query parameter to filter records by provided Whois source.",
+                          "key": "whoissource",
+                          "value": "ripe"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "4d9cbf3f-4c8e-4699-92cb-51196f9210b7",
+                          "key": "whoisorgid",
+                          "value": "<string>",
+                          "description": "(Required) The WHOIS organization (ORG) ID of an internet organization."
+                        }
+                      ]
+                    },
+                    "description": "The IPinfo WHOIS API lookup via organization IDs (Org) provides comprehensive information about a specific internet organization identified by its WHOIS organization ID. Querying a WHOIS org key returns data about the internet organization. The response includes critical details such as the organization's address, along with the contact information for various roles within the organization. This includes administrative, technical, and abuse contacts. The API also offers timestamps for when the organization was created and last updated, which is essential for maintaining accurate records.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "80bb2ea7-0bfd-43c2-baa4-2c5b88b3ff5d",
+                      "name": "WHOIS organization (ORG) ID response.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/whois/org/:whoisorgid?page=<integer>&whoissource=ripe",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "whois",
+                            "org",
+                            ":whoisorgid"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Source query parameter to filter records by provided Whois source.",
+                              "key": "whoissource",
+                              "value": "ripe"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "whoisorgid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"org\": \"<string>\",\n  \"total\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"records\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"address\": \"<string>\",\n      \"country\": \"<string>\",\n      \"admin\": \"<string>\",\n      \"abuse\": \"<string>\",\n      \"tech\": \"<string>\",\n      \"maintainer\": \"<string>\",\n      \"created\": \"<date>\",\n      \"updated\": \"<date>\",\n      \"source\": \"<string>\",\n      \"raw\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"address\": \"<string>\",\n      \"country\": \"<string>\",\n      \"admin\": \"<string>\",\n      \"abuse\": \"<string>\",\n      \"tech\": \"<string>\",\n      \"maintainer\": \"<string>\",\n      \"created\": \"<date>\",\n      \"updated\": \"<date>\",\n      \"source\": \"<string>\",\n      \"raw\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:59:36.000Z",
+                      "updatedAt": "2026-07-28T01:59:36.000Z",
+                      "uid": "35240-80bb2ea7-0bfd-43c2-baa4-2c5b88b3ff5d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:59:36.000Z",
+                  "updatedAt": "2026-07-28T01:59:36.000Z",
+                  "uid": "35240-0774bb50-9777-4456-a247-9db7e7a91951"
+                }
+              ],
+              "id": "73a7c3e3-02ff-46ea-ab41-cb3abe3ef0b8",
+              "createdAt": "2026-07-28T01:59:36.000Z",
+              "updatedAt": "2026-07-28T01:59:36.000Z",
+              "uid": "35240-73a7c3e3-02ff-46ea-ab41-cb3abe3ef0b8"
+            }
+          ],
+          "id": "cf2dd47a-ca52-4a07-ba36-1154cda162e3",
+          "createdAt": "2026-07-28T01:59:36.000Z",
+          "updatedAt": "2026-07-28T01:59:36.000Z",
+          "uid": "35240-cf2dd47a-ca52-4a07-ba36-1154cda162e3"
+        },
+        {
+          "name": "poc",
+          "item": [
+            {
+              "name": "{whoispoc}",
+              "item": [
+                {
+                  "name": "IPinfo Returns the WHOIS Information by WHOIS Point of Contact (POC) Value of an Internet Organization",
+                  "id": "deecd19a-43d4-41ab-8464-25382db5ac26",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "username",
+                          "value": "{{basicAuthUsername}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "{{basicAuthPassword}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/whois/poc/:whoispoc?page=<integer>&whoissource=ripe",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "whois",
+                        "poc",
+                        ":whoispoc"
+                      ],
+                      "query": [
+                        {
+                          "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Source query parameter to filter records by provided Whois source.",
+                          "key": "whoissource",
+                          "value": "ripe"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "17813a1d-5c08-4029-8f05-e82a93a297cb",
+                          "key": "whoispoc",
+                          "value": "<string>",
+                          "description": "(Required) The WHOIS Point of Contact (POC) value of an internet organization."
+                        }
+                      ]
+                    },
+                    "description": "The IPinfo WHOIS API lookup via Points of Contact (POC) provides essential details about an individual associated with an internet organization identified by their WHOIS POC ID. For instance, querying the POC ID yields information about the name of the point of contact and their organization location. The response includes the organization's physical address, email address, and contact numbers. Additional metadata indicates when the record was created and last updated, alongside the source of the information.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "bf13c891-7a4d-4351-b23c-365991569759",
+                      "name": "WHOIS Point of Contact (POC) response.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/whois/poc/:whoispoc?page=<integer>&whoissource=ripe",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "whois",
+                            "poc",
+                            ":whoispoc"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Source query parameter to filter records by provided Whois source.",
+                              "key": "whoissource",
+                              "value": "ripe"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "whoispoc"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"poc\": \"<string>\",\n  \"total\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"records\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"address\": \"<string>\",\n      \"country\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"fax\": \"<string>\",\n      \"created\": \"<date>\",\n      \"updated\": \"<date>\",\n      \"source\": \"<string>\",\n      \"raw\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"address\": \"<string>\",\n      \"country\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"fax\": \"<string>\",\n      \"created\": \"<date>\",\n      \"updated\": \"<date>\",\n      \"source\": \"<string>\",\n      \"raw\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:59:36.000Z",
+                      "updatedAt": "2026-07-28T01:59:36.000Z",
+                      "uid": "35240-bf13c891-7a4d-4351-b23c-365991569759"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:59:36.000Z",
+                  "updatedAt": "2026-07-28T01:59:36.000Z",
+                  "uid": "35240-deecd19a-43d4-41ab-8464-25382db5ac26"
+                }
+              ],
+              "id": "ea646917-2440-44b5-a703-9fd19a5379c1",
+              "createdAt": "2026-07-28T01:59:36.000Z",
+              "updatedAt": "2026-07-28T01:59:36.000Z",
+              "uid": "35240-ea646917-2440-44b5-a703-9fd19a5379c1"
+            }
+          ],
+          "id": "c2df25e6-622d-419e-a961-f37f0fec59f1",
+          "createdAt": "2026-07-28T01:59:36.000Z",
+          "updatedAt": "2026-07-28T01:59:36.000Z",
+          "uid": "35240-c2df25e6-622d-419e-a961-f37f0fec59f1"
+        }
+      ],
+      "id": "cfda7a92-219e-4072-9da1-343d8ab58766",
+      "createdAt": "2026-07-28T01:59:36.000Z",
+      "updatedAt": "2026-07-28T01:59:36.000Z",
+      "uid": "35240-cfda7a92-219e-4072-9da1-343d8ab58766"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://ipinfo.io/"
+    },
+    {
+      "key": "asn",
+      "value": "<integer>"
+    }
+  ]
+}

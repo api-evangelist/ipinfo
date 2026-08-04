@@ -1,0 +1,1326 @@
+{
+  "info": {
+    "_postman_id": "5259af4f-1a10-40df-8fe0-4cb76c947a6b",
+    "name": "IPinfo.io OpenAPI Specification abuse ipinfo plus API",
+    "description": "Official OpenAPI Specification for IPinfo's comprehensive IP intelligence API. This specification defines all endpoints for IP geolocation, ASN data, company information, privacy detection, and specialized data services.\n\n## Authentication\n\nAll endpoints support three authentication methods:\n- **HTTP Basic Auth**: Use your token as the username with empty password\n- **Bearer Token**: Include token in Authorization header\n- **Query Parameter**: Pass token as `?token=YOUR_TOKEN`\n\n[Learn more about authentication](https://ipinfo.io/developers#authentication)\n\n## IPinfo API Tiers\n\nIPinfo offers three main API tiers with different feature sets:\n\n### IPinfo Lite\nLightweight IP geolocation with essential information including ASN details, country, and continent data. Perfect for basic geolocation needs with fast response times. Unlimited requests on paid plans.\n- Endpoints: `/lite/me`, `/lite/{ip}`, `/lite/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/lite-api)\n\n### IPinfo Core\nComprehensive IP information with detailed geolocation data (city, region, coordinates, postal code, timezone), ASN information, and classification boolean flags (anycast, hosting, mobile, satellite).\n- Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/core-api)\n\n### IPinfo Plus\nAll Core features plus mobile/carrier detection, anonymity analysis (VPN, proxy, Tor, relay detection), service identification, and extended geographic metadata. Ideal for security, fraud prevention, and advanced analytics.\n- Endpoints: `/plus/me`, `/plus/{ip}`, `/plus/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/plus-api)\n\n## Specialized Detection APIs\n\n### Residential Proxy Detection\nDetect residential, mobile, and datacenter proxy IPs with activity insights, last seen dates, and proxy service identification.\n- Endpoints: `/{ip}/resproxy`\n- [Documentation](https://ipinfo.io/developers/residential-proxy-api)\n\n### Privacy Detection Standard\nDetect VPNs, proxies, Tor exit nodes, relays, and hosting providers associated with an IP address. Returns core privacy signals including service provider identification.\n- Endpoints: `/{ip}/privacy`\n- [Documentation](https://ipinfo.io/developers/privacy-standard-api)\n\n### Privacy Detection Extended\nAdvanced anonymous IP detection with detailed methodologies, confidence metrics, and metadata for VPNs, proxies, Tor, hosting providers, and relays.\n- Endpoints: `/{ip}/privacy_extended`\n- [Documentation](https://ipinfo.io/developers/privacy-extended-api)\n\n## Legacy API Products\n\nFor backwards compatibility, legacy endpoints remain available:\n- [IP to Geolocation API](https://ipinfo.io/products/ip-geolocation-api) - Use Core or Plus instead\n- [IP to Privacy Detection API](https://ipinfo.io/products/proxy-vpn-detection-api) - Use Plus instead\n- [ASN API](https://ipinfo.io/products/asn-api) - `/AS{asn}` endpoint\n- [IP to Company API](https://ipinfo.io/products/ip-company-api) - `/{ip}/company` endpoint\n- [Hosted Domains API](https://ipinfo.io/products/reverse-ip-api) - `/domains/{ip}` endpoint\n- [IP to Phone Carrier Detection API](https://ipinfo.io/products/ip-carrier-api) - `/{ip}/carrier` endpoint\n- [IP to Abuse Contact API](https://ipinfo.io/products/ip-abuse-contact-api) - `/{ip}/abuse` endpoint\n- [IP WHOIS API](https://ipinfo.io/products/whois-api) - `/whois/*` endpoints\n\n## Special Endpoints\n\n- **Token Info**: `/me` - View request limits and API access for your token\n- **Batch Requests**: `/batch` - Enrich multiple IPs in a single request\n- **IP Summarization**: `/tools/summarize-ips` - Analyze up to 500,000 IPs\n- **IP Mapping**: `/tools/map` - Visualize up to 500,000 IPs on an interactive map\n- **Single Field**: `/{ip}/{field}` - Get specific field values as plaintext\n\n## Rate Limits\n\n- **IPinfo Lite**: Unlimited requests on paid plans\n- **Paid Plans**: Monthly request limits with configurable alerts and automatic metered billing\n- **Rate Limit Exceeded**: 429 HTTP status code when limit reached\n\n[View pricing and limits](https://ipinfo.io/pricing)\n\n## Resources\n\n- **Developer Portal**: [https://ipinfo.io/developers](https://ipinfo.io/developers)\n- **API Libraries**: Official libraries for Python, Node.js, Java, Ruby, PHP, Go, and more\n- **Sign Up**: [Free account](https://ipinfo.io/signup) with up to 50,000 requests/month\n- **Community Support**: [https://community.ipinfo.io/](https://community.ipinfo.io/)\n- **Email Support**: support@ipinfo.io\n\n---\n\n\nContact Support:\n Name: IPinfo\n Email: support@ipinfo.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:59:28.000Z",
+    "updatedAt": "2026-07-28T01:59:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5259af4f-1a10-40df-8fe0-4cb76c947a6b"
+  },
+  "item": [
+    {
+      "name": "plus",
+      "item": [
+        {
+          "name": "me",
+          "item": [
+            {
+              "name": "{field}",
+              "item": [
+                {
+                  "name": "IPinfo Returns a Specific Field from Plus IP Information About the Current IP",
+                  "id": "9ba79959-16d7-48e0-8cdc-6f8aacaf91b2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "username",
+                          "value": "{{basicAuthUsername}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "{{basicAuthPassword}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://api.ipinfo.io/plus/me/:field",
+                      "protocol": "https",
+                      "host": [
+                        "api",
+                        "ipinfo",
+                        "io"
+                      ],
+                      "path": [
+                        "plus",
+                        "me",
+                        ":field"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7fe59ded-c3f8-4279-86b9-0165b3c3c09d",
+                          "key": "field",
+                          "value": "geo/continent",
+                          "description": "(Required) A specific field from the plus response or nested geo/as/mobile/anonymous fields."
+                        }
+                      ]
+                    },
+                    "description": "Returns a specific field from plus IP information about the current IP.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "6bdba3f0-09a5-4452-a732-68fe19fd67a7",
+                      "name": "A specific field value from the plus response.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://api.ipinfo.io/plus/me/:field",
+                          "protocol": "https",
+                          "host": [
+                            "api",
+                            "ipinfo",
+                            "io"
+                          ],
+                          "path": [
+                            "plus",
+                            "me",
+                            ":field"
+                          ],
+                          "variable": [
+                            {
+                              "key": "field"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T01:59:29.000Z",
+                      "updatedAt": "2026-07-28T01:59:29.000Z",
+                      "uid": "35240-6bdba3f0-09a5-4452-a732-68fe19fd67a7"
+                    },
+                    {
+                      "id": "83384641-27c8-470a-a7c8-a68a752cafe6",
+                      "name": "Forbidden error (authentication issues).",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://api.ipinfo.io/plus/me/:field",
+                          "protocol": "https",
+                          "host": [
+                            "api",
+                            "ipinfo",
+                            "io"
+                          ],
+                          "path": [
+                            "plus",
+                            "me",
+                            ":field"
+                          ],
+                          "variable": [
+                            {
+                              "key": "field"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"title\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:59:29.000Z",
+                      "updatedAt": "2026-07-28T01:59:29.000Z",
+                      "uid": "35240-83384641-27c8-470a-a7c8-a68a752cafe6"
+                    },
+                    {
+                      "id": "fe6a00a0-0123-4123-9886-549e1cd00196",
+                      "name": "Invalid field name error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://api.ipinfo.io/plus/me/:field",
+                          "protocol": "https",
+                          "host": [
+                            "api",
+                            "ipinfo",
+                            "io"
+                          ],
+                          "path": [
+                            "plus",
+                            "me",
+                            ":field"
+                          ],
+                          "variable": [
+                            {
+                              "key": "field"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:59:29.000Z",
+                      "updatedAt": "2026-07-28T01:59:29.000Z",
+                      "uid": "35240-fe6a00a0-0123-4123-9886-549e1cd00196"
+                    },
+                    {
+                      "id": "4c07cb7c-fcd9-4c8a-985c-014f98046964",
+                      "name": "Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://api.ipinfo.io/plus/me/:field",
+                          "protocol": "https",
+                          "host": [
+                            "api",
+                            "ipinfo",
+                            "io"
+                          ],
+                          "path": [
+                            "plus",
+                            "me",
+                            ":field"
+                          ],
+                          "variable": [
+                            {
+                              "key": "field"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"title\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:59:29.000Z",
+                      "updatedAt": "2026-07-28T01:59:29.000Z",
+                      "uid": "35240-4c07cb7c-fcd9-4c8a-985c-014f98046964"
+                    },
+                    {
+                      "id": "cdedd94c-ba51-44b1-9786-04716467d1ea",
+                      "name": "Internal server error or server unavailable.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://api.ipinfo.io/plus/me/:field",
+                          "protocol": "https",
+                          "host": [
+                            "api",
+                            "ipinfo",
+                            "io"
+                          ],
+                          "path": [
+                            "plus",
+                            "me",
+                            ":field"
+                          ],
+                          "variable": [
+                            {
+                              "key": "field"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-07-28T01:59:29.000Z",
+                      "updatedAt": "2026-07-28T01:59:29.000Z",
+                      "uid": "35240-cdedd94c-ba51-44b1-9786-04716467d1ea"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:59:29.000Z",
+                  "updatedAt": "2026-07-28T01:59:29.000Z",
+                  "uid": "35240-9ba79959-16d7-48e0-8cdc-6f8aacaf91b2"
+                }
+              ],
+              "id": "04cecbcd-01da-4119-b219-4e63fbb5309d",
+              "createdAt": "2026-07-28T01:59:29.000Z",
+              "updatedAt": "2026-07-28T01:59:29.000Z",
+              "uid": "35240-04cecbcd-01da-4119-b219-4e63fbb5309d"
+            },
+            {
+              "name": "IPinfo Returns Plus IP Information About the Current IP",
+              "id": "f37ad996-539a-46b9-a508-e0e9994e9001",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "https://api.ipinfo.io/plus/me",
+                  "protocol": "https",
+                  "host": [
+                    "api",
+                    "ipinfo",
+                    "io"
+                  ],
+                  "path": [
+                    "plus",
+                    "me"
+                  ]
+                },
+                "description": "Returns comprehensive plus IP information about the current IP including enhanced geolocation, ASN details, mobile/carrier information, anonymity detection, and various IP characteristics.\n"
+              },
+              "response": [
+                {
+                  "id": "029db5d1-868d-4575-8f90-e09eb57bfd2d",
+                  "name": "Plus response object.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://api.ipinfo.io/plus/me",
+                      "protocol": "https",
+                      "host": [
+                        "api",
+                        "ipinfo",
+                        "io"
+                      ],
+                      "path": [
+                        "plus",
+                        "me"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ip\": \"<string>\",\n  \"geo\": {\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"country_code\": \"<string>\",\n    \"continent\": \"<string>\",\n    \"continent_code\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\",\n    \"timezone\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"dma_code\": \"<string>\",\n    \"geoname_id\": \"<string>\",\n    \"radius\": \"<integer>\",\n    \"last_changed\": \"<date>\"\n  },\n  \"as\": {\n    \"asn\": \"<string>\",\n    \"name\": \"<string>\",\n    \"domain\": \"<string>\",\n    \"type\": \"<string>\",\n    \"last_changed\": \"<date>\"\n  },\n  \"mobile\": {\n    \"name\": \"<string>\",\n    \"mcc\": \"<string>\",\n    \"mnc\": \"<string>\"\n  },\n  \"anonymous\": {\n    \"name\": \"<string>\",\n    \"is_proxy\": \"<boolean>\",\n    \"is_relay\": \"<boolean>\",\n    \"is_tor\": \"<boolean>\",\n    \"is_vpn\": \"<boolean>\"\n  },\n  \"is_anonymous\": \"<boolean>\",\n  \"is_anycast\": \"<boolean>\",\n  \"is_hosting\": \"<boolean>\",\n  \"is_mobile\": \"<boolean>\",\n  \"is_satellite\": \"<boolean>\"\n}",
+                  "createdAt": "2026-07-28T01:59:29.000Z",
+                  "updatedAt": "2026-07-28T01:59:29.000Z",
+                  "uid": "35240-029db5d1-868d-4575-8f90-e09eb57bfd2d"
+                },
+                {
+                  "id": "0358440a-4667-4230-a91d-b1d1f0fd49b7",
+                  "name": "Forbidden error (authentication issues).",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://api.ipinfo.io/plus/me",
+                      "protocol": "https",
+                      "host": [
+                        "api",
+                        "ipinfo",
+                        "io"
+                      ],
+                      "path": [
+                        "plus",
+                        "me"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"title\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:59:29.000Z",
+                  "updatedAt": "2026-07-28T01:59:29.000Z",
+                  "uid": "35240-0358440a-4667-4230-a91d-b1d1f0fd49b7"
+                },
+                {
+                  "id": "1c555509-7eff-4ef3-80bf-ba47c9505146",
+                  "name": "Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://api.ipinfo.io/plus/me",
+                      "protocol": "https",
+                      "host": [
+                        "api",
+                        "ipinfo",
+                        "io"
+                      ],
+                      "path": [
+                        "plus",
+                        "me"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"title\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:59:29.000Z",
+                  "updatedAt": "2026-07-28T01:59:29.000Z",
+                  "uid": "35240-1c555509-7eff-4ef3-80bf-ba47c9505146"
+                },
+                {
+                  "id": "e8f209ae-ff8b-4abb-b519-3cd27100a0c2",
+                  "name": "Internal server error or server unavailable.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://api.ipinfo.io/plus/me",
+                      "protocol": "https",
+                      "host": [
+                        "api",
+                        "ipinfo",
+                        "io"
+                      ],
+                      "path": [
+                        "plus",
+                        "me"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T01:59:29.000Z",
+                  "updatedAt": "2026-07-28T01:59:29.000Z",
+                  "uid": "35240-e8f209ae-ff8b-4abb-b519-3cd27100a0c2"
+                }
+              ],
+              "createdAt": "2026-07-28T01:59:29.000Z",
+              "updatedAt": "2026-07-28T01:59:29.000Z",
+              "uid": "35240-f37ad996-539a-46b9-a508-e0e9994e9001"
+            }
+          ],
+          "id": "5dc9fb02-e385-4d9f-8793-e308533d5f55",
+          "createdAt": "2026-07-28T01:59:29.000Z",
+          "updatedAt": "2026-07-28T01:59:29.000Z",
+          "uid": "35240-5dc9fb02-e385-4d9f-8793-e308533d5f55"
+        },
+        {
+          "name": "{ip}",
+          "item": [
+            {
+              "name": "{field}",
+              "item": [
+                {
+                  "name": "IPinfo Returns a Specific Field from Plus IP Information About the Provided IP",
+                  "id": "9c4717cf-f393-4bc7-8240-54f369cfce3e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "username",
+                          "value": "{{basicAuthUsername}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "{{basicAuthPassword}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://api.ipinfo.io/plus/:ip/:field",
+                      "protocol": "https",
+                      "host": [
+                        "api",
+                        "ipinfo",
+                        "io"
+                      ],
+                      "path": [
+                        "plus",
+                        ":ip",
+                        ":field"
+                      ],
+                      "variable": [
+                        {
+                          "id": "bf04a80b-0787-4cdd-b079-8e424205c1a2",
+                          "key": "ip",
+                          "value": "<string>",
+                          "description": "(Required) A single IPv4 or IPv6 IP address."
+                        },
+                        {
+                          "id": "021c2424-34ef-4bda-bad3-0e21d38ad257",
+                          "key": "field",
+                          "value": "geo/continent",
+                          "description": "(Required) A specific field from the plus response or nested geo/as/mobile/anonymous fields."
+                        }
+                      ]
+                    },
+                    "description": "Returns a specific field from plus IP information about the provided IP.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "a6f14574-fe05-4c47-9488-5e72ddd6eebd",
+                      "name": "A specific field value from the plus response.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://api.ipinfo.io/plus/:ip/:field",
+                          "protocol": "https",
+                          "host": [
+                            "api",
+                            "ipinfo",
+                            "io"
+                          ],
+                          "path": [
+                            "plus",
+                            ":ip",
+                            ":field"
+                          ],
+                          "variable": [
+                            {
+                              "key": "ip"
+                            },
+                            {
+                              "key": "field"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T01:59:29.000Z",
+                      "updatedAt": "2026-07-28T01:59:29.000Z",
+                      "uid": "35240-a6f14574-fe05-4c47-9488-5e72ddd6eebd"
+                    },
+                    {
+                      "id": "facc4289-325e-424e-b55d-690afc911cda",
+                      "name": "Bad request error (invalid IP format).",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://api.ipinfo.io/plus/:ip/:field",
+                          "protocol": "https",
+                          "host": [
+                            "api",
+                            "ipinfo",
+                            "io"
+                          ],
+                          "path": [
+                            "plus",
+                            ":ip",
+                            ":field"
+                          ],
+                          "variable": [
+                            {
+                              "key": "ip"
+                            },
+                            {
+                              "key": "field"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:59:29.000Z",
+                      "updatedAt": "2026-07-28T01:59:29.000Z",
+                      "uid": "35240-facc4289-325e-424e-b55d-690afc911cda"
+                    },
+                    {
+                      "id": "88b8f64e-f221-4c7f-826f-42e6b9aec910",
+                      "name": "Forbidden error (authentication issues).",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://api.ipinfo.io/plus/:ip/:field",
+                          "protocol": "https",
+                          "host": [
+                            "api",
+                            "ipinfo",
+                            "io"
+                          ],
+                          "path": [
+                            "plus",
+                            ":ip",
+                            ":field"
+                          ],
+                          "variable": [
+                            {
+                              "key": "ip"
+                            },
+                            {
+                              "key": "field"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"title\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:59:29.000Z",
+                      "updatedAt": "2026-07-28T01:59:29.000Z",
+                      "uid": "35240-88b8f64e-f221-4c7f-826f-42e6b9aec910"
+                    },
+                    {
+                      "id": "aec66ac5-5205-46a6-b9cb-0436daf068b0",
+                      "name": "Invalid field name error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://api.ipinfo.io/plus/:ip/:field",
+                          "protocol": "https",
+                          "host": [
+                            "api",
+                            "ipinfo",
+                            "io"
+                          ],
+                          "path": [
+                            "plus",
+                            ":ip",
+                            ":field"
+                          ],
+                          "variable": [
+                            {
+                              "key": "ip"
+                            },
+                            {
+                              "key": "field"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:59:29.000Z",
+                      "updatedAt": "2026-07-28T01:59:29.000Z",
+                      "uid": "35240-aec66ac5-5205-46a6-b9cb-0436daf068b0"
+                    },
+                    {
+                      "id": "89f10ade-bed7-46dd-809a-9527073b8a0c",
+                      "name": "Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://api.ipinfo.io/plus/:ip/:field",
+                          "protocol": "https",
+                          "host": [
+                            "api",
+                            "ipinfo",
+                            "io"
+                          ],
+                          "path": [
+                            "plus",
+                            ":ip",
+                            ":field"
+                          ],
+                          "variable": [
+                            {
+                              "key": "ip"
+                            },
+                            {
+                              "key": "field"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"title\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:59:29.000Z",
+                      "updatedAt": "2026-07-28T01:59:29.000Z",
+                      "uid": "35240-89f10ade-bed7-46dd-809a-9527073b8a0c"
+                    },
+                    {
+                      "id": "b0e13305-3ee2-4d5b-bf4c-1f280f2ae3a0",
+                      "name": "Internal server error or server unavailable.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://api.ipinfo.io/plus/:ip/:field",
+                          "protocol": "https",
+                          "host": [
+                            "api",
+                            "ipinfo",
+                            "io"
+                          ],
+                          "path": [
+                            "plus",
+                            ":ip",
+                            ":field"
+                          ],
+                          "variable": [
+                            {
+                              "key": "ip"
+                            },
+                            {
+                              "key": "field"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-07-28T01:59:29.000Z",
+                      "updatedAt": "2026-07-28T01:59:29.000Z",
+                      "uid": "35240-b0e13305-3ee2-4d5b-bf4c-1f280f2ae3a0"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:59:29.000Z",
+                  "updatedAt": "2026-07-28T01:59:29.000Z",
+                  "uid": "35240-9c4717cf-f393-4bc7-8240-54f369cfce3e"
+                }
+              ],
+              "id": "89695252-bfed-461a-b49b-1370d6a7aebe",
+              "createdAt": "2026-07-28T01:59:29.000Z",
+              "updatedAt": "2026-07-28T01:59:29.000Z",
+              "uid": "35240-89695252-bfed-461a-b49b-1370d6a7aebe"
+            },
+            {
+              "name": "IPinfo Returns Plus IP Information About the Provided IP",
+              "id": "5eb680f5-a86d-4e67-81af-079d02ded92b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "https://api.ipinfo.io/plus/:ip",
+                  "protocol": "https",
+                  "host": [
+                    "api",
+                    "ipinfo",
+                    "io"
+                  ],
+                  "path": [
+                    "plus",
+                    ":ip"
+                  ],
+                  "variable": [
+                    {
+                      "id": "05d1d23e-6c2b-4974-8c70-a86f9f6a2c8c",
+                      "key": "ip",
+                      "value": "<string>",
+                      "description": "(Required) A single IPv4 or IPv6 IP address."
+                    }
+                  ]
+                },
+                "description": "Returns comprehensive plus IP information about the provided IP including enhanced geolocation, ASN details, mobile/carrier information, anonymity detection, and various IP characteristics.\n"
+              },
+              "response": [
+                {
+                  "id": "087bd6a3-10ef-4b38-9fcf-50c505da5af4",
+                  "name": "Plus response object.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://api.ipinfo.io/plus/:ip",
+                      "protocol": "https",
+                      "host": [
+                        "api",
+                        "ipinfo",
+                        "io"
+                      ],
+                      "path": [
+                        "plus",
+                        ":ip"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ip"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ip\": \"<string>\",\n  \"geo\": {\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"country_code\": \"<string>\",\n    \"continent\": \"<string>\",\n    \"continent_code\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\",\n    \"timezone\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"dma_code\": \"<string>\",\n    \"geoname_id\": \"<string>\",\n    \"radius\": \"<integer>\",\n    \"last_changed\": \"<date>\"\n  },\n  \"as\": {\n    \"asn\": \"<string>\",\n    \"name\": \"<string>\",\n    \"domain\": \"<string>\",\n    \"type\": \"<string>\",\n    \"last_changed\": \"<date>\"\n  },\n  \"mobile\": {\n    \"name\": \"<string>\",\n    \"mcc\": \"<string>\",\n    \"mnc\": \"<string>\"\n  },\n  \"anonymous\": {\n    \"name\": \"<string>\",\n    \"is_proxy\": \"<boolean>\",\n    \"is_relay\": \"<boolean>\",\n    \"is_tor\": \"<boolean>\",\n    \"is_vpn\": \"<boolean>\"\n  },\n  \"is_anonymous\": \"<boolean>\",\n  \"is_anycast\": \"<boolean>\",\n  \"is_hosting\": \"<boolean>\",\n  \"is_mobile\": \"<boolean>\",\n  \"is_satellite\": \"<boolean>\"\n}",
+                  "createdAt": "2026-07-28T01:59:29.000Z",
+                  "updatedAt": "2026-07-28T01:59:29.000Z",
+                  "uid": "35240-087bd6a3-10ef-4b38-9fcf-50c505da5af4"
+                },
+                {
+                  "id": "0b25712b-8a0c-4319-a4bf-074836689281",
+                  "name": "Bad request error (invalid IP format).",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://api.ipinfo.io/plus/:ip",
+                      "protocol": "https",
+                      "host": [
+                        "api",
+                        "ipinfo",
+                        "io"
+                      ],
+                      "path": [
+                        "plus",
+                        ":ip"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ip"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:59:29.000Z",
+                  "updatedAt": "2026-07-28T01:59:29.000Z",
+                  "uid": "35240-0b25712b-8a0c-4319-a4bf-074836689281"
+                },
+                {
+                  "id": "fc50bc63-07ad-4948-9b41-44ef4334b6ec",
+                  "name": "Forbidden error (authentication issues).",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://api.ipinfo.io/plus/:ip",
+                      "protocol": "https",
+                      "host": [
+                        "api",
+                        "ipinfo",
+                        "io"
+                      ],
+                      "path": [
+                        "plus",
+                        ":ip"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ip"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"title\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:59:29.000Z",
+                  "updatedAt": "2026-07-28T01:59:29.000Z",
+                  "uid": "35240-fc50bc63-07ad-4948-9b41-44ef4334b6ec"
+                },
+                {
+                  "id": "32801be6-6ce6-4c0c-b36d-bf0856fbe0c3",
+                  "name": "Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://api.ipinfo.io/plus/:ip",
+                      "protocol": "https",
+                      "host": [
+                        "api",
+                        "ipinfo",
+                        "io"
+                      ],
+                      "path": [
+                        "plus",
+                        ":ip"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ip"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"title\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:59:29.000Z",
+                  "updatedAt": "2026-07-28T01:59:29.000Z",
+                  "uid": "35240-32801be6-6ce6-4c0c-b36d-bf0856fbe0c3"
+                },
+                {
+                  "id": "caf638dc-fc0b-4a7c-be9c-f0fce1bb3ba2",
+                  "name": "Internal server error or server unavailable.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://api.ipinfo.io/plus/:ip",
+                      "protocol": "https",
+                      "host": [
+                        "api",
+                        "ipinfo",
+                        "io"
+                      ],
+                      "path": [
+                        "plus",
+                        ":ip"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ip"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T01:59:29.000Z",
+                  "updatedAt": "2026-07-28T01:59:29.000Z",
+                  "uid": "35240-caf638dc-fc0b-4a7c-be9c-f0fce1bb3ba2"
+                }
+              ],
+              "createdAt": "2026-07-28T01:59:29.000Z",
+              "updatedAt": "2026-07-28T01:59:29.000Z",
+              "uid": "35240-5eb680f5-a86d-4e67-81af-079d02ded92b"
+            }
+          ],
+          "id": "31b4ea6a-f378-4cfb-92a5-347fd5d7b9a5",
+          "createdAt": "2026-07-28T01:59:29.000Z",
+          "updatedAt": "2026-07-28T01:59:29.000Z",
+          "uid": "35240-31b4ea6a-f378-4cfb-92a5-347fd5d7b9a5"
+        }
+      ],
+      "id": "0061c5d9-fb9e-4d91-859b-718a5bcb5ca3",
+      "createdAt": "2026-07-28T01:59:29.000Z",
+      "updatedAt": "2026-07-28T01:59:29.000Z",
+      "uid": "35240-0061c5d9-fb9e-4d91-859b-718a5bcb5ca3"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://ipinfo.io/"
+    }
+  ]
+}

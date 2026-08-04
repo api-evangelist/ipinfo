@@ -1,0 +1,333 @@
+{
+  "info": {
+    "_postman_id": "0f6bbd16-8e5c-4d5c-bb17-b5c0d14d3e14",
+    "name": "IPinfo.io OpenAPI Specification abuse residential proxy detection API",
+    "description": "Official OpenAPI Specification for IPinfo's comprehensive IP intelligence API. This specification defines all endpoints for IP geolocation, ASN data, company information, privacy detection, and specialized data services.\n\n## Authentication\n\nAll endpoints support three authentication methods:\n- **HTTP Basic Auth**: Use your token as the username with empty password\n- **Bearer Token**: Include token in Authorization header\n- **Query Parameter**: Pass token as `?token=YOUR_TOKEN`\n\n[Learn more about authentication](https://ipinfo.io/developers#authentication)\n\n## IPinfo API Tiers\n\nIPinfo offers three main API tiers with different feature sets:\n\n### IPinfo Lite\nLightweight IP geolocation with essential information including ASN details, country, and continent data. Perfect for basic geolocation needs with fast response times. Unlimited requests on paid plans.\n- Endpoints: `/lite/me`, `/lite/{ip}`, `/lite/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/lite-api)\n\n### IPinfo Core\nComprehensive IP information with detailed geolocation data (city, region, coordinates, postal code, timezone), ASN information, and classification boolean flags (anycast, hosting, mobile, satellite).\n- Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/core-api)\n\n### IPinfo Plus\nAll Core features plus mobile/carrier detection, anonymity analysis (VPN, proxy, Tor, relay detection), service identification, and extended geographic metadata. Ideal for security, fraud prevention, and advanced analytics.\n- Endpoints: `/plus/me`, `/plus/{ip}`, `/plus/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/plus-api)\n\n## Specialized Detection APIs\n\n### Residential Proxy Detection\nDetect residential, mobile, and datacenter proxy IPs with activity insights, last seen dates, and proxy service identification.\n- Endpoints: `/{ip}/resproxy`\n- [Documentation](https://ipinfo.io/developers/residential-proxy-api)\n\n### Privacy Detection Standard\nDetect VPNs, proxies, Tor exit nodes, relays, and hosting providers associated with an IP address. Returns core privacy signals including service provider identification.\n- Endpoints: `/{ip}/privacy`\n- [Documentation](https://ipinfo.io/developers/privacy-standard-api)\n\n### Privacy Detection Extended\nAdvanced anonymous IP detection with detailed methodologies, confidence metrics, and metadata for VPNs, proxies, Tor, hosting providers, and relays.\n- Endpoints: `/{ip}/privacy_extended`\n- [Documentation](https://ipinfo.io/developers/privacy-extended-api)\n\n## Legacy API Products\n\nFor backwards compatibility, legacy endpoints remain available:\n- [IP to Geolocation API](https://ipinfo.io/products/ip-geolocation-api) - Use Core or Plus instead\n- [IP to Privacy Detection API](https://ipinfo.io/products/proxy-vpn-detection-api) - Use Plus instead\n- [ASN API](https://ipinfo.io/products/asn-api) - `/AS{asn}` endpoint\n- [IP to Company API](https://ipinfo.io/products/ip-company-api) - `/{ip}/company` endpoint\n- [Hosted Domains API](https://ipinfo.io/products/reverse-ip-api) - `/domains/{ip}` endpoint\n- [IP to Phone Carrier Detection API](https://ipinfo.io/products/ip-carrier-api) - `/{ip}/carrier` endpoint\n- [IP to Abuse Contact API](https://ipinfo.io/products/ip-abuse-contact-api) - `/{ip}/abuse` endpoint\n- [IP WHOIS API](https://ipinfo.io/products/whois-api) - `/whois/*` endpoints\n\n## Special Endpoints\n\n- **Token Info**: `/me` - View request limits and API access for your token\n- **Batch Requests**: `/batch` - Enrich multiple IPs in a single request\n- **IP Summarization**: `/tools/summarize-ips` - Analyze up to 500,000 IPs\n- **IP Mapping**: `/tools/map` - Visualize up to 500,000 IPs on an interactive map\n- **Single Field**: `/{ip}/{field}` - Get specific field values as plaintext\n\n## Rate Limits\n\n- **IPinfo Lite**: Unlimited requests on paid plans\n- **Paid Plans**: Monthly request limits with configurable alerts and automatic metered billing\n- **Rate Limit Exceeded**: 429 HTTP status code when limit reached\n\n[View pricing and limits](https://ipinfo.io/pricing)\n\n## Resources\n\n- **Developer Portal**: [https://ipinfo.io/developers](https://ipinfo.io/developers)\n- **API Libraries**: Official libraries for Python, Node.js, Java, Ruby, PHP, Go, and more\n- **Sign Up**: [Free account](https://ipinfo.io/signup) with up to 50,000 requests/month\n- **Community Support**: [https://community.ipinfo.io/](https://community.ipinfo.io/)\n- **Email Support**: support@ipinfo.io\n\n---\n\n\nContact Support:\n Name: IPinfo\n Email: support@ipinfo.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:59:33.000Z",
+    "updatedAt": "2026-07-28T01:59:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0f6bbd16-8e5c-4d5c-bb17-b5c0d14d3e14"
+  },
+  "item": [
+    {
+      "name": "{ip}",
+      "item": [
+        {
+          "name": "resproxy",
+          "item": [
+            {
+              "name": "IPinfo Returns Residential Proxy Detection Information for the Selected IP",
+              "id": "f2a5e94b-ba6e-435c-af94-0f9089b93b26",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:ip/resproxy",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":ip",
+                    "resproxy"
+                  ],
+                  "variable": [
+                    {
+                      "id": "b317c720-414d-4abc-8311-d524f476d9f9",
+                      "key": "ip",
+                      "value": "<string>",
+                      "description": "(Required) A single IPv4 or IPv6 IP address."
+                    }
+                  ]
+                },
+                "description": "The Residential Proxy Detection API provides detailed insights into IP addresses associated with residential, mobile, or datacenter proxy networks.\nThis includes activity patterns (last seen date, percentage of days active), and proxy service identification.\nServices are suffixed with `_mobile` for carrier/mobile proxies or `_datacenter` for datacenter proxies.\n"
+              },
+              "response": [
+                {
+                  "id": "185581ff-dedf-444b-b1de-d1f7da498d3a",
+                  "name": "Residential Proxy detection response.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:ip/resproxy",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":ip",
+                        "resproxy"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ip"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ip\": \"<string>\",\n  \"last_seen\": \"<date>\",\n  \"percent_days_seen\": \"<integer>\",\n  \"service\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:59:34.000Z",
+                  "updatedAt": "2026-07-28T01:59:34.000Z",
+                  "uid": "35240-185581ff-dedf-444b-b1de-d1f7da498d3a"
+                },
+                {
+                  "id": "3dbebc97-be2f-400e-8fe7-b44ef1382205",
+                  "name": "Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:ip/resproxy",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":ip",
+                        "resproxy"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ip"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"title\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:59:34.000Z",
+                  "updatedAt": "2026-07-28T01:59:34.000Z",
+                  "uid": "35240-3dbebc97-be2f-400e-8fe7-b44ef1382205"
+                },
+                {
+                  "id": "c262470b-3349-408c-be8d-bf68fe89d4ef",
+                  "name": "Wrong ip. Please provide a valid IP address.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:ip/resproxy",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":ip",
+                        "resproxy"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ip"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"title\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:59:34.000Z",
+                  "updatedAt": "2026-07-28T01:59:34.000Z",
+                  "uid": "35240-c262470b-3349-408c-be8d-bf68fe89d4ef"
+                },
+                {
+                  "id": "1e788da3-95e4-453e-b740-c247b97e2dfa",
+                  "name": "Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:ip/resproxy",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":ip",
+                        "resproxy"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ip"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"title\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:59:34.000Z",
+                  "updatedAt": "2026-07-28T01:59:34.000Z",
+                  "uid": "35240-1e788da3-95e4-453e-b740-c247b97e2dfa"
+                },
+                {
+                  "id": "5a59791b-f06c-445b-b333-22bdd7281efd",
+                  "name": "Internal server error or server unavailable.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:ip/resproxy",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":ip",
+                        "resproxy"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ip"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T01:59:34.000Z",
+                  "updatedAt": "2026-07-28T01:59:34.000Z",
+                  "uid": "35240-5a59791b-f06c-445b-b333-22bdd7281efd"
+                }
+              ],
+              "createdAt": "2026-07-28T01:59:34.000Z",
+              "updatedAt": "2026-07-28T01:59:34.000Z",
+              "uid": "35240-f2a5e94b-ba6e-435c-af94-0f9089b93b26"
+            }
+          ],
+          "id": "5b6e9472-0e7d-440d-a9f9-db40d54aeb35",
+          "createdAt": "2026-07-28T01:59:34.000Z",
+          "updatedAt": "2026-07-28T01:59:34.000Z",
+          "uid": "35240-5b6e9472-0e7d-440d-a9f9-db40d54aeb35"
+        }
+      ],
+      "id": "d1b070b9-af87-41af-91a6-301ae04aa265",
+      "createdAt": "2026-07-28T01:59:34.000Z",
+      "updatedAt": "2026-07-28T01:59:34.000Z",
+      "uid": "35240-d1b070b9-af87-41af-91a6-301ae04aa265"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://ipinfo.io/"
+    }
+  ]
+}

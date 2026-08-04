@@ -1,0 +1,333 @@
+{
+  "info": {
+    "_postman_id": "fb45eab4-0bf9-4db4-b706-3cdf4b73b24c",
+    "name": "IPinfo.io OpenAPI Specification abuse ranges API",
+    "description": "Official OpenAPI Specification for IPinfo's comprehensive IP intelligence API. This specification defines all endpoints for IP geolocation, ASN data, company information, privacy detection, and specialized data services.\n\n## Authentication\n\nAll endpoints support three authentication methods:\n- **HTTP Basic Auth**: Use your token as the username with empty password\n- **Bearer Token**: Include token in Authorization header\n- **Query Parameter**: Pass token as `?token=YOUR_TOKEN`\n\n[Learn more about authentication](https://ipinfo.io/developers#authentication)\n\n## IPinfo API Tiers\n\nIPinfo offers three main API tiers with different feature sets:\n\n### IPinfo Lite\nLightweight IP geolocation with essential information including ASN details, country, and continent data. Perfect for basic geolocation needs with fast response times. Unlimited requests on paid plans.\n- Endpoints: `/lite/me`, `/lite/{ip}`, `/lite/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/lite-api)\n\n### IPinfo Core\nComprehensive IP information with detailed geolocation data (city, region, coordinates, postal code, timezone), ASN information, and classification boolean flags (anycast, hosting, mobile, satellite).\n- Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/core-api)\n\n### IPinfo Plus\nAll Core features plus mobile/carrier detection, anonymity analysis (VPN, proxy, Tor, relay detection), service identification, and extended geographic metadata. Ideal for security, fraud prevention, and advanced analytics.\n- Endpoints: `/plus/me`, `/plus/{ip}`, `/plus/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/plus-api)\n\n## Specialized Detection APIs\n\n### Residential Proxy Detection\nDetect residential, mobile, and datacenter proxy IPs with activity insights, last seen dates, and proxy service identification.\n- Endpoints: `/{ip}/resproxy`\n- [Documentation](https://ipinfo.io/developers/residential-proxy-api)\n\n### Privacy Detection Standard\nDetect VPNs, proxies, Tor exit nodes, relays, and hosting providers associated with an IP address. Returns core privacy signals including service provider identification.\n- Endpoints: `/{ip}/privacy`\n- [Documentation](https://ipinfo.io/developers/privacy-standard-api)\n\n### Privacy Detection Extended\nAdvanced anonymous IP detection with detailed methodologies, confidence metrics, and metadata for VPNs, proxies, Tor, hosting providers, and relays.\n- Endpoints: `/{ip}/privacy_extended`\n- [Documentation](https://ipinfo.io/developers/privacy-extended-api)\n\n## Legacy API Products\n\nFor backwards compatibility, legacy endpoints remain available:\n- [IP to Geolocation API](https://ipinfo.io/products/ip-geolocation-api) - Use Core or Plus instead\n- [IP to Privacy Detection API](https://ipinfo.io/products/proxy-vpn-detection-api) - Use Plus instead\n- [ASN API](https://ipinfo.io/products/asn-api) - `/AS{asn}` endpoint\n- [IP to Company API](https://ipinfo.io/products/ip-company-api) - `/{ip}/company` endpoint\n- [Hosted Domains API](https://ipinfo.io/products/reverse-ip-api) - `/domains/{ip}` endpoint\n- [IP to Phone Carrier Detection API](https://ipinfo.io/products/ip-carrier-api) - `/{ip}/carrier` endpoint\n- [IP to Abuse Contact API](https://ipinfo.io/products/ip-abuse-contact-api) - `/{ip}/abuse` endpoint\n- [IP WHOIS API](https://ipinfo.io/products/whois-api) - `/whois/*` endpoints\n\n## Special Endpoints\n\n- **Token Info**: `/me` - View request limits and API access for your token\n- **Batch Requests**: `/batch` - Enrich multiple IPs in a single request\n- **IP Summarization**: `/tools/summarize-ips` - Analyze up to 500,000 IPs\n- **IP Mapping**: `/tools/map` - Visualize up to 500,000 IPs on an interactive map\n- **Single Field**: `/{ip}/{field}` - Get specific field values as plaintext\n\n## Rate Limits\n\n- **IPinfo Lite**: Unlimited requests on paid plans\n- **Paid Plans**: Monthly request limits with configurable alerts and automatic metered billing\n- **Rate Limit Exceeded**: 429 HTTP status code when limit reached\n\n[View pricing and limits](https://ipinfo.io/pricing)\n\n## Resources\n\n- **Developer Portal**: [https://ipinfo.io/developers](https://ipinfo.io/developers)\n- **API Libraries**: Official libraries for Python, Node.js, Java, Ruby, PHP, Go, and more\n- **Sign Up**: [Free account](https://ipinfo.io/signup) with up to 50,000 requests/month\n- **Community Support**: [https://community.ipinfo.io/](https://community.ipinfo.io/)\n- **Email Support**: support@ipinfo.io\n\n---\n\n\nContact Support:\n Name: IPinfo\n Email: support@ipinfo.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:59:32.000Z",
+    "updatedAt": "2026-07-28T01:59:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fb45eab4-0bf9-4db4-b706-3cdf4b73b24c"
+  },
+  "item": [
+    {
+      "name": "ranges",
+      "item": [
+        {
+          "name": "{domain}",
+          "item": [
+            {
+              "name": "IPinfo Returns Information About a Domain Ranges",
+              "id": "6a7927e0-193b-425a-b38d-ba1820a31196",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/ranges/:domain",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "ranges",
+                    ":domain"
+                  ],
+                  "variable": [
+                    {
+                      "id": "dc39887b-047b-4ee0-b200-40c238201de0",
+                      "key": "domain",
+                      "value": "<string>",
+                      "description": "(Required) a domain."
+                    }
+                  ]
+                },
+                "description": "The IP address ranges API endpoint provides information about IP address ranges assigned to or operated by a specific organization, identified by its domain name. This includes the number of IP ranges, specific IP range blocks (both IPv4 and IPv6), and any domain redirection information.\n"
+              },
+              "response": [
+                {
+                  "id": "e3d387cd-92a6-4589-8f90-143c848e8843",
+                  "name": "Ranges response object.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/ranges/:domain",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ranges",
+                        ":domain"
+                      ],
+                      "variable": [
+                        {
+                          "key": "domain"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"domain\": \"<string>\",\n  \"redirects_to\": \"<string>\",\n  \"num_ranges\": \"<string>\",\n  \"ranges\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T01:59:33.000Z",
+                  "updatedAt": "2026-07-28T01:59:33.000Z",
+                  "uid": "35240-e3d387cd-92a6-4589-8f90-143c848e8843"
+                },
+                {
+                  "id": "8f80510c-f149-4045-add2-3278204b8be9",
+                  "name": "Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/ranges/:domain",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ranges",
+                        ":domain"
+                      ],
+                      "variable": [
+                        {
+                          "key": "domain"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"title\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:59:33.000Z",
+                  "updatedAt": "2026-07-28T01:59:33.000Z",
+                  "uid": "35240-8f80510c-f149-4045-add2-3278204b8be9"
+                },
+                {
+                  "id": "4f6cc6dc-5aed-4886-86e2-bef97f1781df",
+                  "name": "Wrong ip. Please provide a valid IP address.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/ranges/:domain",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ranges",
+                        ":domain"
+                      ],
+                      "variable": [
+                        {
+                          "key": "domain"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": {\n    \"title\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:59:33.000Z",
+                  "updatedAt": "2026-07-28T01:59:33.000Z",
+                  "uid": "35240-4f6cc6dc-5aed-4886-86e2-bef97f1781df"
+                },
+                {
+                  "id": "89ee8e78-4aee-4ea4-8ca6-d5da38a941c3",
+                  "name": "Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/ranges/:domain",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ranges",
+                        ":domain"
+                      ],
+                      "variable": [
+                        {
+                          "key": "domain"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"title\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:59:33.000Z",
+                  "updatedAt": "2026-07-28T01:59:33.000Z",
+                  "uid": "35240-89ee8e78-4aee-4ea4-8ca6-d5da38a941c3"
+                },
+                {
+                  "id": "24973fcc-718b-48bb-ad22-ae6e3c5e9d57",
+                  "name": "Internal server error or server unavailable.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/ranges/:domain",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ranges",
+                        ":domain"
+                      ],
+                      "variable": [
+                        {
+                          "key": "domain"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T01:59:33.000Z",
+                  "updatedAt": "2026-07-28T01:59:33.000Z",
+                  "uid": "35240-24973fcc-718b-48bb-ad22-ae6e3c5e9d57"
+                }
+              ],
+              "createdAt": "2026-07-28T01:59:33.000Z",
+              "updatedAt": "2026-07-28T01:59:33.000Z",
+              "uid": "35240-6a7927e0-193b-425a-b38d-ba1820a31196"
+            }
+          ],
+          "id": "886a057a-e96a-449e-ae8f-1cfcd0c3d32f",
+          "createdAt": "2026-07-28T01:59:33.000Z",
+          "updatedAt": "2026-07-28T01:59:33.000Z",
+          "uid": "35240-886a057a-e96a-449e-ae8f-1cfcd0c3d32f"
+        }
+      ],
+      "id": "107c75d0-6be6-4e07-a5e9-4d303f0fe508",
+      "createdAt": "2026-07-28T01:59:33.000Z",
+      "updatedAt": "2026-07-28T01:59:33.000Z",
+      "uid": "35240-107c75d0-6be6-4e07-a5e9-4d303f0fe508"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://ipinfo.io/"
+    }
+  ]
+}
