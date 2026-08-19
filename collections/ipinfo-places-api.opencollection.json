@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "IPinfo.io OpenAPI Specification abuse places API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "places",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns Building-level Place Information for the Provided IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/places/:ip",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns the real-world location associated with an IP address at the building level, including hotels, airports, museums, stadiums, and 30+ other categories. Includes venue name, category, SSID, and coordinates.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

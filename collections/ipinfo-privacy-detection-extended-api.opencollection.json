@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "IPinfo.io OpenAPI Specification abuse privacy detection extended API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "privacy detection extended",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns Extended Privacy Detection Information with Detailed Methodologies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/privacy_extended",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The Privacy Detection Extended API provides detection methodology metadata to support risk scoring, confidence metrics, and IP reputation aspects.\nUses multi-modal detection methods including internet measurement, IP behavior analysis, and internet records metadata.\nIncludes detailed flags for VPN, proxy, Tor, relay, hosting, and service identification with confidence metrics.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

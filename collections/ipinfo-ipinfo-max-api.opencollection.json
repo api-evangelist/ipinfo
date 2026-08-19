@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "IPinfo.io OpenAPI Specification abuse ipinfo max API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ipinfo max",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns Max API Information About the Provided IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/max/:ip",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns the most comprehensive IP intelligence, including geolocation, ASN, privacy detection (VPN, proxy, Tor, relay, residential proxy), carrier data, and network flags for advanced threat analysis and bot detection.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

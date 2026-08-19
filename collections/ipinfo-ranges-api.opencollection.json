@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "IPinfo.io OpenAPI Specification abuse ranges API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ranges",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns Information About a Domain Ranges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/ranges/:domain",
+            "params": [
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path",
+                "description": "a domain."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The IP address ranges API endpoint provides information about IP address ranges assigned to or operated by a specific organization, identified by its domain name. This includes the number of IP ranges, specific IP range blocks (both IPv4 and IPv6), and any domain redirection information.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "IPinfo.io OpenAPI Specification abuse ipinfo lite API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ipinfo lite",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns Lightweight IP Information About the Current IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/lite/me",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns lightweight IP information about the current IP including ASN details, country, and continent information.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns Lightweight IP Information About the Provided IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/lite/:ip",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns lightweight IP information about the provided IP including ASN details, country, and continent information. For bogon/private IPs, returns a response with bogon: true.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a Specific Field from Lightweight IP Information About the Current IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/lite/me/:field",
+            "params": [
+              {
+                "name": "field",
+                "value": "",
+                "type": "path",
+                "description": "A specific field from the lite response (ip, asn, as_name, as_domain, country_code, country, continent_code, continent)."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a specific field from lightweight IP information about the current IP.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a Specific Field from Lightweight IP Information About the Provided IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/lite/:ip/:field",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              },
+              {
+                "name": "field",
+                "value": "",
+                "type": "path",
+                "description": "A specific field from the lite response (ip, asn, as_name, as_domain, country_code, country, continent_code, continent)."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a specific field from lightweight IP information about the provided IP.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

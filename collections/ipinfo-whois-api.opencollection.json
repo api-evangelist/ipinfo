@@ -1,0 +1,234 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "IPinfo.io OpenAPI Specification abuse whois API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "whois",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns the WHOIS Information by Net ID Lookup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/whois/net/:whoisnetid",
+            "params": [
+              {
+                "name": "whoisnetid",
+                "value": "",
+                "type": "path",
+                "description": "The Network (NET) ID of an internet organization."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request."
+              },
+              {
+                "name": "whoissource",
+                "value": "",
+                "type": "query",
+                "description": "Source query parameter to filter records by provided Whois source."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "This API endpoint allows users to retrieve WHOIS information based on a specified Net ID.\nThe response includes details such as the IP address range, organization name, country, and various administrative information related to the network.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns the WHOIS Information by WHOIS IP Address or IP Address Range",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/whois/net/:whoisip",
+            "params": [
+              {
+                "name": "whoisip",
+                "value": "",
+                "type": "path",
+                "description": "The IP address or an IP address range of an internet organization."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request."
+              },
+              {
+                "name": "whoissource",
+                "value": "",
+                "type": "query",
+                "description": "Source query parameter to filter records by provided Whois source."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The WHOIS API lookup via IP address provides WHOIS information based on a specific IP address or IP address range.\nThe response contains detailed information about the organization associated with the IP, including the range of addresses, organization name, administrative contacts, abuse contacts, and additional metadata such as the country and contact details for both technical and administrative support.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns the WHOIS Information by WHOIS Domain of an Internet Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/whois/net/:domain",
+            "params": [
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path",
+                "description": "a domain."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request."
+              },
+              {
+                "name": "whoissource",
+                "value": "",
+                "type": "query",
+                "description": "Source query parameter to filter records by provided Whois source."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The IPinfo WHOIS API lookup via organization organization domain name provides comprehensive WHOIS information for specified organization, enabling users to gain insights into the registration and organizational details of internet entities. The response includes a total count of records, and detailed records for each associated IP range.  Querying the organization domain reveals critical information such as the organization's name, country, and contact details for technical and administrative p"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns the WHOIS Information by WHOIS ASN",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/whois/net/AS:asn",
+            "params": [
+              {
+                "name": "asn",
+                "value": "",
+                "type": "path",
+                "description": "an ASN number."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request."
+              },
+              {
+                "name": "whoissource",
+                "value": "",
+                "type": "query",
+                "description": "Source query parameter to filter records by provided Whois source."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The IPinfo WHOIS API lookup via ASN provides in-depth WHOIS information associated with a specific Autonomous System Number (ASN). Querying ASN reveals critical data, including the organization's name, the allocated IP range, and the country of operation. The response includes administrative and technical contact information, highlighting the contact person along with their address and phone number. Additionally, the API provides details for abuse reporting, including a dedicated email for abuse"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns the WHOIS Information by WHOIS Organization (ORG) ID of an Internet Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/whois/org/:whoisorgid",
+            "params": [
+              {
+                "name": "whoisorgid",
+                "value": "",
+                "type": "path",
+                "description": "The WHOIS organization (ORG) ID of an internet organization."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request."
+              },
+              {
+                "name": "whoissource",
+                "value": "",
+                "type": "query",
+                "description": "Source query parameter to filter records by provided Whois source."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The IPinfo WHOIS API lookup via organization IDs (Org) provides comprehensive information about a specific internet organization identified by its WHOIS organization ID. Querying a WHOIS org key returns data about the internet organization. The response includes critical details such as the organization's address, along with the contact information for various roles within the organization. This includes administrative, technical, and abuse contacts. The API also offers timestamps for when the o"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns the WHOIS Information by WHOIS Point of Contact (POC) Value of an Internet Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/whois/poc/:whoispoc",
+            "params": [
+              {
+                "name": "whoispoc",
+                "value": "",
+                "type": "path",
+                "description": "The WHOIS Point of Contact (POC) value of an internet organization."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request."
+              },
+              {
+                "name": "whoissource",
+                "value": "",
+                "type": "query",
+                "description": "Source query parameter to filter records by provided Whois source."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The IPinfo WHOIS API lookup via Points of Contact (POC) provides essential details about an individual associated with an internet organization identified by their WHOIS POC ID. For instance, querying the POC ID yields information about the name of the point of contact and their organization location. The response includes the organization's physical address, email address, and contact numbers. Additional metadata indicates when the record was created and last updated, alongside the source of th"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

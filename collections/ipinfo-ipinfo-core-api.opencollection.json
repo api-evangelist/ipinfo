@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "IPinfo.io OpenAPI Specification abuse ipinfo core API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ipinfo core",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns Core IP Information About the Current IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/lookup/me",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns comprehensive core IP information about the current IP including geolocation, ASN details, and various IP characteristics.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns Core IP Information About the Provided IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/lookup/:ip",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns comprehensive core IP information about the provided IP including geolocation, ASN details, and various IP characteristics.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a Specific Field from Core IP Information About the Current IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/lookup/me/:field",
+            "params": [
+              {
+                "name": "field",
+                "value": "",
+                "type": "path",
+                "description": "A specific field from the core response or nested geo/as fields."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a specific field from core IP information about the current IP.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a Specific Field from Core IP Information About the Provided IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/lookup/:ip/:field",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              },
+              {
+                "name": "field",
+                "value": "",
+                "type": "path",
+                "description": "A specific field from the core response or nested geo/as fields."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a specific field from core IP information about the provided IP.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

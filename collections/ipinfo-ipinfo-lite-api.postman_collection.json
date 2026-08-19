@@ -1,0 +1,1189 @@
+{
+  "item": [
+    {
+      "id": "490ec160-68be-4afa-9ca3-e630eb44f013",
+      "name": "ipinfo lite",
+      "description": {
+        "content": "IPinfo Lite API - IPinfo's free API service for country and ASN information.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "33367bb2-5130-4191-9fa8-f522d67fea03",
+          "name": "IPinfo Returns Lightweight IP Information About the Current IP",
+          "request": {
+            "name": "IPinfo Returns Lightweight IP Information About the Current IP",
+            "description": {
+              "content": "Returns lightweight IP information about the current IP including ASN details, country, and continent information.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "lite",
+                "me"
+              ],
+              "host": [
+                "api",
+                "ipinfo",
+                "io"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f74276fb-fa8e-4a44-881f-3a16fedfea09",
+              "name": "Lite response object.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "lite",
+                    "me"
+                  ],
+                  "host": [
+                    "api",
+                    "ipinfo",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ip\": \"8.8.8.8\",\n  \"asn\": \"AS15169\",\n  \"as_name\": \"Google LLC\",\n  \"as_domain\": \"google.com\",\n  \"country_code\": \"US\",\n  \"country\": \"United States\",\n  \"continent_code\": \"NA\",\n  \"continent\": \"North America\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a5a6ba3-91e2-46a7-8323-f4c751d6de2b",
+              "name": "Forbidden error (authentication issues).",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "lite",
+                    "me"
+                  ],
+                  "host": [
+                    "api",
+                    "ipinfo",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 403,\n  \"error\": {\n    \"title\": \"Unknown token\",\n    \"message\": \"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44c7c94e-8a7c-4078-9dc5-df34dc966916",
+              "name": "Internal server error or server unavailable.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "lite",
+                    "me"
+                  ],
+                  "host": [
+                    "api",
+                    "ipinfo",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Internal server error",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d27b1366-33fb-43cb-acab-f30df842acf7",
+          "name": "IPinfo Returns Lightweight IP Information About the Provided IP",
+          "request": {
+            "name": "IPinfo Returns Lightweight IP Information About the Provided IP",
+            "description": {
+              "content": "Returns lightweight IP information about the provided IP including ASN details, country, and continent information. For bogon/private IPs, returns a response with bogon: true.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "lite",
+                ":ip"
+              ],
+              "host": [
+                "api",
+                "ipinfo",
+                "io"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ip",
+                  "description": "(Required) A single IPv4 or IPv6 IP address."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4a48f236-e423-44d5-9684-b76bc982784f",
+              "name": "Lite response object or bogon response.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "lite",
+                    ":ip"
+                  ],
+                  "host": [
+                    "api",
+                    "ipinfo",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ip",
+                      "description": "(Required) A single IPv4 or IPv6 IP address."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ip\": \"8.8.8.8\",\n  \"asn\": \"AS15169\",\n  \"as_name\": \"Google LLC\",\n  \"as_domain\": \"google.com\",\n  \"country_code\": \"US\",\n  \"country\": \"United States\",\n  \"continent_code\": \"NA\",\n  \"continent\": \"North America\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b4902fd-66a2-475c-8764-cd3269bcce73",
+              "name": "Bad request error (invalid IP format).",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "lite",
+                    ":ip"
+                  ],
+                  "host": [
+                    "api",
+                    "ipinfo",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ip",
+                      "description": "(Required) A single IPv4 or IPv6 IP address."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Please provide a valid IP address\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eea59862-f07a-4160-a79f-e42882a22f07",
+              "name": "Forbidden error (authentication issues).",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "lite",
+                    ":ip"
+                  ],
+                  "host": [
+                    "api",
+                    "ipinfo",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ip",
+                      "description": "(Required) A single IPv4 or IPv6 IP address."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 403,\n  \"error\": {\n    \"title\": \"Unknown token\",\n    \"message\": \"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16618e5e-4bf8-4c86-b9d8-897113164260",
+              "name": "Internal server error or server unavailable.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "lite",
+                    ":ip"
+                  ],
+                  "host": [
+                    "api",
+                    "ipinfo",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ip",
+                      "description": "(Required) A single IPv4 or IPv6 IP address."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Internal server error",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93bbb52b-3559-4819-a119-43066fd7fdab",
+          "name": "IPinfo Returns a Specific Field from Lightweight IP Information About the Current IP",
+          "request": {
+            "name": "IPinfo Returns a Specific Field from Lightweight IP Information About the Current IP",
+            "description": {
+              "content": "Returns a specific field from lightweight IP information about the current IP.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "lite",
+                "me",
+                ":field"
+              ],
+              "host": [
+                "api",
+                "ipinfo",
+                "io"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "field",
+                  "description": "(Required) A specific field from the lite response (ip, asn, as_name, as_domain, country_code, country, continent_code, continent)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ef82ed18-dc3a-4d69-bce5-804bfad9e120",
+              "name": "A specific field value from the lite response.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "lite",
+                    "me",
+                    ":field"
+                  ],
+                  "host": [
+                    "api",
+                    "ipinfo",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "field",
+                      "description": "(Required) A specific field from the lite response (ip, asn, as_name, as_domain, country_code, country, continent_code, continent)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "United States",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ddb3cdc2-6a65-46d7-b536-fec8fd925a1e",
+              "name": "Forbidden error (authentication issues).",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "lite",
+                    "me",
+                    ":field"
+                  ],
+                  "host": [
+                    "api",
+                    "ipinfo",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "field",
+                      "description": "(Required) A specific field from the lite response (ip, asn, as_name, as_domain, country_code, country, continent_code, continent)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 403,\n  \"error\": {\n    \"title\": \"Unknown token\",\n    \"message\": \"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18a1519b-cd66-4428-b32e-91034e1e00ee",
+              "name": "Invalid field name error.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "lite",
+                    "me",
+                    ":field"
+                  ],
+                  "host": [
+                    "api",
+                    "ipinfo",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "field",
+                      "description": "(Required) A specific field from the lite response (ip, asn, as_name, as_domain, country_code, country, continent_code, continent)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_field is not a valid field.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dbb464a0-c15e-4acb-a77c-f0e4ee8185ba",
+              "name": "Internal server error or server unavailable.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "lite",
+                    "me",
+                    ":field"
+                  ],
+                  "host": [
+                    "api",
+                    "ipinfo",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "field",
+                      "description": "(Required) A specific field from the lite response (ip, asn, as_name, as_domain, country_code, country, continent_code, continent)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Internal server error",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c659b23-5ae9-4c14-9ab8-3392e4385e68",
+          "name": "IPinfo Returns a Specific Field from Lightweight IP Information About the Provided IP",
+          "request": {
+            "name": "IPinfo Returns a Specific Field from Lightweight IP Information About the Provided IP",
+            "description": {
+              "content": "Returns a specific field from lightweight IP information about the provided IP.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "lite",
+                ":ip",
+                ":field"
+              ],
+              "host": [
+                "api",
+                "ipinfo",
+                "io"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ip",
+                  "description": "(Required) A single IPv4 or IPv6 IP address."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "field",
+                  "description": "(Required) A specific field from the lite response (ip, asn, as_name, as_domain, country_code, country, continent_code, continent)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a5c0473c-8593-4cae-9e3c-c5d760a49760",
+              "name": "A specific field value from the lite response.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "lite",
+                    ":ip",
+                    ":field"
+                  ],
+                  "host": [
+                    "api",
+                    "ipinfo",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ip",
+                      "description": "(Required) A single IPv4 or IPv6 IP address."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "field",
+                      "description": "(Required) A specific field from the lite response (ip, asn, as_name, as_domain, country_code, country, continent_code, continent)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "United States",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ebde1d04-9257-4c4b-9aeb-2fcf4ba002d1",
+              "name": "Bad request error (invalid IP format).",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "lite",
+                    ":ip",
+                    ":field"
+                  ],
+                  "host": [
+                    "api",
+                    "ipinfo",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ip",
+                      "description": "(Required) A single IPv4 or IPv6 IP address."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "field",
+                      "description": "(Required) A specific field from the lite response (ip, asn, as_name, as_domain, country_code, country, continent_code, continent)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Please provide a valid IP address\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f6c8eb79-131d-4aff-9a7f-38b530978f48",
+              "name": "Forbidden error (authentication issues).",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "lite",
+                    ":ip",
+                    ":field"
+                  ],
+                  "host": [
+                    "api",
+                    "ipinfo",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ip",
+                      "description": "(Required) A single IPv4 or IPv6 IP address."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "field",
+                      "description": "(Required) A specific field from the lite response (ip, asn, as_name, as_domain, country_code, country, continent_code, continent)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 403,\n  \"error\": {\n    \"title\": \"Unknown token\",\n    \"message\": \"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bcf1e8b4-1f6e-43f9-9f6e-0f67dad537fd",
+              "name": "Invalid field name error.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "lite",
+                    ":ip",
+                    ":field"
+                  ],
+                  "host": [
+                    "api",
+                    "ipinfo",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ip",
+                      "description": "(Required) A single IPv4 or IPv6 IP address."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "field",
+                      "description": "(Required) A specific field from the lite response (ip, asn, as_name, as_domain, country_code, country, continent_code, continent)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_field is not a valid field.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d58ed6ae-52f3-4bff-92fc-15992725003c",
+              "name": "Internal server error or server unavailable.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "lite",
+                    ":ip",
+                    ":field"
+                  ],
+                  "host": [
+                    "api",
+                    "ipinfo",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ip",
+                      "description": "(Required) A single IPv4 or IPv6 IP address."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "field",
+                      "description": "(Required) A specific field from the lite response (ip, asn, as_name, as_domain, country_code, country, continent_code, continent)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Internal server error",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ipinfo.io/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b5a50b6d-b98a-4655-9b49-eb8bcafd09b6",
+    "name": "IPinfo.io OpenAPI Specification abuse ipinfo lite API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Official OpenAPI Specification for IPinfo's comprehensive IP intelligence API. This specification defines all endpoints for IP geolocation, ASN data, company information, privacy detection, and specialized data services.\n\n## Authentication\n\nAll endpoints support three authentication methods:\n- **HTTP Basic Auth**: Use your token as the username with empty password\n- **Bearer Token**: Include token in Authorization header\n- **Query Parameter**: Pass token as `?token=YOUR_TOKEN`\n\n[Learn more about authentication](https://ipinfo.io/developers#authentication)\n\n## IPinfo API Tiers\n\nIPinfo offers three main API tiers with different feature sets:\n\n### IPinfo Lite\nLightweight IP geolocation with essential information including ASN details, country, and continent data. Perfect for basic geolocation needs with fast response times. Unlimited requests on paid plans.\n- Endpoints: `/lite/me`, `/lite/{ip}`, `/lite/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/lite-api)\n\n### IPinfo Core\nComprehensive IP information with detailed geolocation data (city, region, coordinates, postal code, timezone), ASN information, and classification boolean flags (anycast, hosting, mobile, satellite).\n- Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/core-api)\n\n### IPinfo Plus\nAll Core features plus mobile/carrier detection, anonymity analysis (VPN, proxy, Tor, relay detection), service identification, and extended geographic metadata. Ideal for security, fraud prevention, and advanced analytics.\n- Endpoints: `/plus/me`, `/plus/{ip}`, `/plus/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/plus-api)\n\n## Specialized Detection APIs\n\n### Residential Proxy Detection\nDetect residential, mobile, and datacenter proxy IPs with activity insights, last seen dates, and proxy service identification.\n- Endpoints: `/{ip}/resproxy`\n- [Documentation](https://ipinfo.io/developers/residential-proxy-api)\n\n### Privacy Detection Standard\nDetect VPNs, proxies, Tor exit nodes, relays, and hosting providers associated with an IP address. Returns core privacy signals including service provider identification.\n- Endpoints: `/{ip}/privacy`\n- [Documentation](https://ipinfo.io/developers/privacy-standard-api)\n\n### Privacy Detection Extended\nAdvanced anonymous IP detection with detailed methodologies, confidence metrics, and metadata for VPNs, proxies, Tor, hosting providers, and relays.\n- Endpoints: `/{ip}/privacy_extended`\n- [Documentation](https://ipinfo.io/developers/privacy-extended-api)\n\n## Legacy API Products\n\nFor backwards compatibility, legacy endpoints remain available:\n- [IP to Geolocation API](https://ipinfo.io/products/ip-geolocation-api) - Use Core or Plus instead\n- [IP to Privacy Detection API](https://ipinfo.io/products/proxy-vpn-detection-api) - Use Plus instead\n- [ASN API](https://ipinfo.io/products/asn-api) - `/AS{asn}` endpoint\n- [IP to Company API](https://ipinfo.io/products/ip-company-api) - `/{ip}/company` endpoint\n- [Hosted Domains API](https://ipinfo.io/products/reverse-ip-api) - `/domains/{ip}` endpoint\n- [IP to Phone Carrier Detection API](https://ipinfo.io/products/ip-carrier-api) - `/{ip}/carrier` endpoint\n- [IP to Abuse Contact API](https://ipinfo.io/products/ip-abuse-contact-api) - `/{ip}/abuse` endpoint\n- [IP WHOIS API](https://ipinfo.io/products/whois-api) - `/whois/*` endpoints\n\n## Special Endpoints\n\n- **Token Info**: `/me` - View request limits and API access for your token\n- **Batch Requests**: `/batch` - Enrich multiple IPs in a single request\n- **IP Summarization**: `/tools/summarize-ips` - Analyze up to 500,000 IPs\n- **IP Mapping**: `/tools/map` - Visualize up to 500,000 IPs on an interactive map\n- **Single Field**: `/{ip}/{field}` - Get specific field values as plaintext\n\n## Rate Limits\n\n- **IPinfo Lite**: Unlimited requests on paid plans\n- **Paid Plans**: Monthly request limits with configurable alerts and automatic metered billing\n- **Rate Limit Exceeded**: 429 HTTP status code when limit reached\n\n[View pricing and limits](https://ipinfo.io/pricing)\n\n## Resources\n\n- **Developer Portal**: [https://ipinfo.io/developers](https://ipinfo.io/developers)\n- **API Libraries**: Official libraries for Python, Node.js, Java, Ruby, PHP, Go, and more\n- **Sign Up**: [Free account](https://ipinfo.io/signup) with up to 50,000 requests/month\n- **Community Support**: [https://community.ipinfo.io/](https://community.ipinfo.io/)\n- **Email Support**: support@ipinfo.io\n\n---\n\n\nContact Support:\n Name: IPinfo\n Email: support@ipinfo.io",
+      "type": "text/plain"
+    }
+  }
+}

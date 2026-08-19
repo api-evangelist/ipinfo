@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "IPinfo.io OpenAPI Specification abuse asn API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "asn",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns Information About an ASN",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/AS:asn",
+            "params": [
+              {
+                "name": "asn",
+                "value": "",
+                "type": "path",
+                "description": "an ASN number."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns information about an ASN, such as the assigned prefixes, related domain, and more.\nThe ASN API provides comprehensive information about an Autonomous System (AS) entity.\nIt delivers data on the AS's registration, ASN type, network details, associated prefixes (including IPv6), and relationships with other ASNs (peers, upstreams and downstreams).\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

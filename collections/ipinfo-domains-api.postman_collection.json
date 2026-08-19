@@ -1,0 +1,162 @@
+{
+  "item": [
+    {
+      "id": "ed28f495-e669-4107-ba43-d7f5a20737e9",
+      "name": "domains",
+      "description": {
+        "content": "Hosted Domains API.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d6a110d0-ff4c-4621-bed5-5beddcd312ce",
+          "name": "IPinfo Returns a List of All of the Domains Hosted on the Provided IP Address",
+          "request": {
+            "name": "IPinfo Returns a List of All of the Domains Hosted on the Provided IP Address",
+            "description": {
+              "content": "The Hosted Domains or Reverse IP API endpoint returns a list of domains hosted on a specified IP address, including the total number of domains and the specific names associated with that address.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domains",
+                ":ip"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "The API returns 100 domains per page and has a limit of 1000 domains per page. We return up to 10 million results. The limit parameter can be used to control the number of domains per page."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ip",
+                  "description": "(Required) A single IPv4 or IPv6 IP address."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "eec7159d-e671-4dc2-837a-a241f35c9500",
+              "name": "Domains response object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains",
+                    ":ip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ip",
+                      "description": "(Required) A single IPv4 or IPv6 IP address."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 17939,\n  \"ip\": \"1.1.1.1\",\n  \"page\": 1,\n  \"domains\": [\n    \"udemy.com\",\n    \"udemy.com\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ipinfo.io/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2df66d09-9212-4864-8141-df60be9f4909",
+    "name": "IPinfo.io OpenAPI Specification abuse domains API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Official OpenAPI Specification for IPinfo's comprehensive IP intelligence API. This specification defines all endpoints for IP geolocation, ASN data, company information, privacy detection, and specialized data services.\n\n## Authentication\n\nAll endpoints support three authentication methods:\n- **HTTP Basic Auth**: Use your token as the username with empty password\n- **Bearer Token**: Include token in Authorization header\n- **Query Parameter**: Pass token as `?token=YOUR_TOKEN`\n\n[Learn more about authentication](https://ipinfo.io/developers#authentication)\n\n## IPinfo API Tiers\n\nIPinfo offers three main API tiers with different feature sets:\n\n### IPinfo Lite\nLightweight IP geolocation with essential information including ASN details, country, and continent data. Perfect for basic geolocation needs with fast response times. Unlimited requests on paid plans.\n- Endpoints: `/lite/me`, `/lite/{ip}`, `/lite/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/lite-api)\n\n### IPinfo Core\nComprehensive IP information with detailed geolocation data (city, region, coordinates, postal code, timezone), ASN information, and classification boolean flags (anycast, hosting, mobile, satellite).\n- Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/core-api)\n\n### IPinfo Plus\nAll Core features plus mobile/carrier detection, anonymity analysis (VPN, proxy, Tor, relay detection), service identification, and extended geographic metadata. Ideal for security, fraud prevention, and advanced analytics.\n- Endpoints: `/plus/me`, `/plus/{ip}`, `/plus/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/plus-api)\n\n## Specialized Detection APIs\n\n### Residential Proxy Detection\nDetect residential, mobile, and datacenter proxy IPs with activity insights, last seen dates, and proxy service identification.\n- Endpoints: `/{ip}/resproxy`\n- [Documentation](https://ipinfo.io/developers/residential-proxy-api)\n\n### Privacy Detection Standard\nDetect VPNs, proxies, Tor exit nodes, relays, and hosting providers associated with an IP address. Returns core privacy signals including service provider identification.\n- Endpoints: `/{ip}/privacy`\n- [Documentation](https://ipinfo.io/developers/privacy-standard-api)\n\n### Privacy Detection Extended\nAdvanced anonymous IP detection with detailed methodologies, confidence metrics, and metadata for VPNs, proxies, Tor, hosting providers, and relays.\n- Endpoints: `/{ip}/privacy_extended`\n- [Documentation](https://ipinfo.io/developers/privacy-extended-api)\n\n## Legacy API Products\n\nFor backwards compatibility, legacy endpoints remain available:\n- [IP to Geolocation API](https://ipinfo.io/products/ip-geolocation-api) - Use Core or Plus instead\n- [IP to Privacy Detection API](https://ipinfo.io/products/proxy-vpn-detection-api) - Use Plus instead\n- [ASN API](https://ipinfo.io/products/asn-api) - `/AS{asn}` endpoint\n- [IP to Company API](https://ipinfo.io/products/ip-company-api) - `/{ip}/company` endpoint\n- [Hosted Domains API](https://ipinfo.io/products/reverse-ip-api) - `/domains/{ip}` endpoint\n- [IP to Phone Carrier Detection API](https://ipinfo.io/products/ip-carrier-api) - `/{ip}/carrier` endpoint\n- [IP to Abuse Contact API](https://ipinfo.io/products/ip-abuse-contact-api) - `/{ip}/abuse` endpoint\n- [IP WHOIS API](https://ipinfo.io/products/whois-api) - `/whois/*` endpoints\n\n## Special Endpoints\n\n- **Token Info**: `/me` - View request limits and API access for your token\n- **Batch Requests**: `/batch` - Enrich multiple IPs in a single request\n- **IP Summarization**: `/tools/summarize-ips` - Analyze up to 500,000 IPs\n- **IP Mapping**: `/tools/map` - Visualize up to 500,000 IPs on an interactive map\n- **Single Field**: `/{ip}/{field}` - Get specific field values as plaintext\n\n## Rate Limits\n\n- **IPinfo Lite**: Unlimited requests on paid plans\n- **Paid Plans**: Monthly request limits with configurable alerts and automatic metered billing\n- **Rate Limit Exceeded**: 429 HTTP status code when limit reached\n\n[View pricing and limits](https://ipinfo.io/pricing)\n\n## Resources\n\n- **Developer Portal**: [https://ipinfo.io/developers](https://ipinfo.io/developers)\n- **API Libraries**: Official libraries for Python, Node.js, Java, Ruby, PHP, Go, and more\n- **Sign Up**: [Free account](https://ipinfo.io/signup) with up to 50,000 requests/month\n- **Community Support**: [https://community.ipinfo.io/](https://community.ipinfo.io/)\n- **Email Support**: support@ipinfo.io\n\n---\n\n\nContact Support:\n Name: IPinfo\n Email: support@ipinfo.io",
+      "type": "text/plain"
+    }
+  }
+}

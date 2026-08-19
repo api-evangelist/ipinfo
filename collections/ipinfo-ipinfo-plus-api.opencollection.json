@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "IPinfo.io OpenAPI Specification abuse ipinfo plus API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ipinfo plus",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns Plus IP Information About the Current IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/plus/me",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns comprehensive plus IP information about the current IP including enhanced geolocation, ASN details, mobile/carrier information, anonymity detection, and various IP characteristics.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns Plus IP Information About the Provided IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/plus/:ip",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns comprehensive plus IP information about the provided IP including enhanced geolocation, ASN details, mobile/carrier information, anonymity detection, and various IP characteristics.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a Specific Field from Plus IP Information About the Current IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/plus/me/:field",
+            "params": [
+              {
+                "name": "field",
+                "value": "",
+                "type": "path",
+                "description": "A specific field from the plus response or nested geo/as/mobile/anonymous fields."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a specific field from plus IP information about the current IP.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a Specific Field from Plus IP Information About the Provided IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/plus/:ip/:field",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              },
+              {
+                "name": "field",
+                "value": "",
+                "type": "path",
+                "description": "A specific field from the plus response or nested geo/as/mobile/anonymous fields."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a specific field from plus IP information about the provided IP.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

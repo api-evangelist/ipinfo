@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "IPinfo.io OpenAPI Specification abuse general API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "general",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns IP Information About the Current IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns IP information about the current IP.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns Information About the Provided IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The ipinfo.io/{ip} endpoint provides comprehensive information about a specified IP address, including geographic location (city, region, country), coordinates, postal code, and timezone.\nBased on the pricing tier, it also provides ASN (Autonomous System Number) details, associated company information, privacy settings (e.g., VPN, proxy usage), abuse contact information, and hosted domains associated with the IP.\nThis endpoint is useful for applications needing detailed IP intelligence, such as "
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns API Service Request Limit by Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/me",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The `/me` API endpoint can be used to provide summary information on the access token limits, access to API products, and other related information.\nThe `/me` endpoint can be used in verifying access tokens as well.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Bulk IPinfo API Enrichment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ipinfo.io/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Bulk or batch enrich IP addresses with IP information. See [documentation](https://ipinfo.io/developers/batch-enrichment-api)."
+        },
+        {
+          "info": {
+            "name": "IPinfo Summarize IP Addresses",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ipinfo.io/tools/summarize-ips",
+            "params": [
+              {
+                "name": "cli",
+                "value": "",
+                "type": "query",
+                "description": "CLI flag parameter"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Get summary-level information of upto 500,000 IP addresses, including IP location on a map, IP types, privacy detection flags, top ASNs, top cities, and more. [Explore the IPinfo Summarize tool](https://ipinfo.io/tools/summarize-ips)."
+        },
+        {
+          "info": {
+            "name": "IPinfo Highlight IP Addresses on a Map",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ipinfo.io/tools/map",
+            "params": [
+              {
+                "name": "cli",
+                "value": "",
+                "type": "query",
+                "description": "CLI flag parameter"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Visualize upto 500,000 IP addresses on an interactive map. [Explore the IPinfo Map IPs tool](https://ipinfo.io/tools/map)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

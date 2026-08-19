@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "IPinfo.io OpenAPI Specification abuse domains API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "domains",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns a List of All of the Domains Hosted on the Provided IP Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/domains/:ip",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The API returns 100 domains per page and has a limit of 1000 domains per page. We return up to 10 million results. The limit parameter can be used to control the number of domains per page."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The Hosted Domains or Reverse IP API endpoint returns a list of domains hosted on a specified IP address, including the total number of domains and the specific names associated with that address.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

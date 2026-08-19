@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "IPinfo.io OpenAPI Specification abuse carrier API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "carrier",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Detects if the IP Address is Being Used in a Mobile Carrier Network. it Returns the Mobile Country Code (MCC), Mobile Network Code (MNC), and the Originating Country of the Carrier",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/carrier",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Detects if the IP address is being used in a mobile carrier network. This API endpoint can be used to detect the usage of a phone device through an IP address. It returns the Mobile Country Code (MCC), Mobile Network Code (MNC), and the originating country of the carrier.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "IPinfo.io OpenAPI Specification abuse API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "abuse",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns Data Containing Information Belonging to the Abuse Contact of the IP Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/abuse",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The IP to abuse contact information API endpoint provides detailed information about the abuse contact associated with a specific IP address.\nThe response includes the abuse contact's name, email address, postal address, city, state, country, phone number, and the network associated with the IP. \n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

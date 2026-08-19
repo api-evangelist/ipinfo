@@ -1,0 +1,1262 @@
+{
+  "item": [
+    {
+      "id": "6062c0cc-e009-40ca-b3c1-753105d370b2",
+      "name": "general",
+      "description": {
+        "content": "General API.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ba36ec84-26c0-45d1-921f-bc0fe1a991a7",
+          "name": "IPinfo Returns IP Information About the Current IP",
+          "request": {
+            "name": "IPinfo Returns IP Information About the Current IP",
+            "description": {
+              "content": "Returns IP information about the current IP.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9015df55-177a-47ee-92c4-decdf5f940fd",
+              "name": "Full response object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ip\": \"66.87.125.72\",\n  \"bogon\": false,\n  \"hostname\": \"ip-66-87-125-72.spfdma.spcsdns.net\",\n  \"city\": \"Springfield\",\n  \"region\": \"Massachusetts\",\n  \"country\": \"US\",\n  \"loc\": \"42.0999,-72.5783\",\n  \"postal\": \"01105\",\n  \"timezone\": \"America/New_York\",\n  \"org\": \"AS51501 Khabarovsk home networks Ltd\",\n  \"asn\": {\n    \"asn\": \"AS10507\",\n    \"name\": \"Sprint Personal Communications Systems\",\n    \"domain\": \"sprint.net\",\n    \"type\": \"isp\",\n    \"country\": \"US\",\n    \"allocated\": \"1997-02-14\",\n    \"registry\": \"arin\",\n    \"num_ips\": 71224576,\n    \"route\": \"66.87.125.0/24\",\n    \"prefixes\": [\n      {\n        \"netblock\": \"104.69.216.0/22\",\n        \"id\": \"AKAMAI\",\n        \"name\": \"Akamai Technologies, Inc.\",\n        \"country\": \"US\",\n        \"size\": \"256\",\n        \"status\": \"ALLOCATION\",\n        \"domain\": \"quadranet.com\"\n      },\n      {\n        \"netblock\": \"104.69.216.0/22\",\n        \"id\": \"AKAMAI\",\n        \"name\": \"Akamai Technologies, Inc.\",\n        \"country\": \"US\",\n        \"size\": \"256\",\n        \"status\": \"ALLOCATION\",\n        \"domain\": \"quadranet.com\"\n      }\n    ],\n    \"prefixes6\": [\n      {\n        \"netblock\": \"2601::/20\",\n        \"id\": \"COMCAST6NET\",\n        \"name\": \"Comcast Cable Communications, LLC\",\n        \"country\": \"US\",\n        \"size\": \"20282409603651670423947251286016\",\n        \"status\": \"ASSIGNMENT\",\n        \"domain\": \"comcast.com\"\n      },\n      {\n        \"netblock\": \"2601::/20\",\n        \"id\": \"COMCAST6NET\",\n        \"name\": \"Comcast Cable Communications, LLC\",\n        \"country\": \"US\",\n        \"size\": \"20282409603651670423947251286016\",\n        \"status\": \"ASSIGNMENT\",\n        \"domain\": \"comcast.com\"\n      }\n    ],\n    \"peers\": [\n      \"1299\",\n      \"1299\"\n    ],\n    \"upstreams\": [\n      \"1299\",\n      \"1299\"\n    ],\n    \"downstreams\": [\n      \"109\",\n      \"109\"\n    ]\n  },\n  \"company\": {\n    \"name\": \"Sprint Springfield POP\",\n    \"domain\": \"sprint.com\",\n    \"type\": \"isp\"\n  },\n  \"carrier\": {\n    \"name\": \"Sprint Corporation\",\n    \"mcc\": \"310\",\n    \"mnc\": \"120\"\n  },\n  \"privacy\": {\n    \"vpn\": true,\n    \"proxy\": false,\n    \"tor\": false,\n    \"hosting\": false,\n    \"relay\": false,\n    \"service\": \"\"\n  },\n  \"domains\": {\n    \"total\": 17939,\n    \"ip\": \"1.1.1.1\",\n    \"page\": 1,\n    \"domains\": [\n      \"udemy.com\",\n      \"udemy.com\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1e95359-79cf-48df-989e-ec117c5ef937",
+              "name": "Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"Unknown token\",\n  \"message\": \"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06863f0a-45ab-4762-afaf-dfa524329714",
+              "name": "Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"Rate limit exceeded\",\n  \"message\": \"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed5ea419-e906-40cb-b627-d2160b15f97a",
+              "name": "Internal server error or server unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Internal server error",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a4ac98c-9424-4cd2-a837-44b019d43161",
+          "name": "IPinfo Returns Information About the Provided IP",
+          "request": {
+            "name": "IPinfo Returns Information About the Provided IP",
+            "description": {
+              "content": "The ipinfo.io/{ip} endpoint provides comprehensive information about a specified IP address, including geographic location (city, region, country), coordinates, postal code, and timezone.\nBased on the pricing tier, it also provides ASN (Autonomous System Number) details, associated company information, privacy settings (e.g., VPN, proxy usage), abuse contact information, and hosted domains associated with the IP.\nThis endpoint is useful for applications needing detailed IP intelligence, such as identifying geographic origin, privacy status, and potential abuse reporting information.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":ip"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ip",
+                  "description": "(Required) A single IPv4 or IPv6 IP address."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "09379734-661d-4f2a-af98-09fa6b5876a7",
+              "name": "Full response object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":ip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ip",
+                      "description": "(Required) A single IPv4 or IPv6 IP address."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ip\": \"66.87.125.72\",\n  \"bogon\": false,\n  \"hostname\": \"ip-66-87-125-72.spfdma.spcsdns.net\",\n  \"city\": \"Springfield\",\n  \"region\": \"Massachusetts\",\n  \"country\": \"US\",\n  \"loc\": \"42.0999,-72.5783\",\n  \"postal\": \"01105\",\n  \"timezone\": \"America/New_York\",\n  \"org\": \"AS51501 Khabarovsk home networks Ltd\",\n  \"asn\": {\n    \"asn\": \"AS10507\",\n    \"name\": \"Sprint Personal Communications Systems\",\n    \"domain\": \"sprint.net\",\n    \"type\": \"isp\",\n    \"country\": \"US\",\n    \"allocated\": \"1997-02-14\",\n    \"registry\": \"arin\",\n    \"num_ips\": 71224576,\n    \"route\": \"66.87.125.0/24\",\n    \"prefixes\": [\n      {\n        \"netblock\": \"104.69.216.0/22\",\n        \"id\": \"AKAMAI\",\n        \"name\": \"Akamai Technologies, Inc.\",\n        \"country\": \"US\",\n        \"size\": \"256\",\n        \"status\": \"ALLOCATION\",\n        \"domain\": \"quadranet.com\"\n      },\n      {\n        \"netblock\": \"104.69.216.0/22\",\n        \"id\": \"AKAMAI\",\n        \"name\": \"Akamai Technologies, Inc.\",\n        \"country\": \"US\",\n        \"size\": \"256\",\n        \"status\": \"ALLOCATION\",\n        \"domain\": \"quadranet.com\"\n      }\n    ],\n    \"prefixes6\": [\n      {\n        \"netblock\": \"2601::/20\",\n        \"id\": \"COMCAST6NET\",\n        \"name\": \"Comcast Cable Communications, LLC\",\n        \"country\": \"US\",\n        \"size\": \"20282409603651670423947251286016\",\n        \"status\": \"ASSIGNMENT\",\n        \"domain\": \"comcast.com\"\n      },\n      {\n        \"netblock\": \"2601::/20\",\n        \"id\": \"COMCAST6NET\",\n        \"name\": \"Comcast Cable Communications, LLC\",\n        \"country\": \"US\",\n        \"size\": \"20282409603651670423947251286016\",\n        \"status\": \"ASSIGNMENT\",\n        \"domain\": \"comcast.com\"\n      }\n    ],\n    \"peers\": [\n      \"1299\",\n      \"1299\"\n    ],\n    \"upstreams\": [\n      \"1299\",\n      \"1299\"\n    ],\n    \"downstreams\": [\n      \"109\",\n      \"109\"\n    ]\n  },\n  \"company\": {\n    \"name\": \"Sprint Springfield POP\",\n    \"domain\": \"sprint.com\",\n    \"type\": \"isp\"\n  },\n  \"carrier\": {\n    \"name\": \"Sprint Corporation\",\n    \"mcc\": \"310\",\n    \"mnc\": \"120\"\n  },\n  \"privacy\": {\n    \"vpn\": true,\n    \"proxy\": false,\n    \"tor\": false,\n    \"hosting\": false,\n    \"relay\": false,\n    \"service\": \"\"\n  },\n  \"domains\": {\n    \"total\": 17939,\n    \"ip\": \"1.1.1.1\",\n    \"page\": 1,\n    \"domains\": [\n      \"udemy.com\",\n      \"udemy.com\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cccf84aa-caa5-4c30-a55e-462e34155766",
+              "name": "If users try to access a field type that does not exist or do not have permissions to access it, they will encounter a wrong module or field type error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":ip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ip",
+                      "description": "(Required) A single IPv4 or IPv6 IP address."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"Wrong module or field type\",\n  \"message\": \"No module or field of type exists for the provided field. Please check our documentation https://ipinfo.io/developers.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a073ea60-b30d-48fc-8c39-7a974dcc00ca",
+              "name": "Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":ip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ip",
+                      "description": "(Required) A single IPv4 or IPv6 IP address."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"Unknown token\",\n  \"message\": \"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27ebcbac-aa81-4408-a15c-b892024118a6",
+              "name": "Wrong ip. Please provide a valid IP address.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":ip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ip",
+                      "description": "(Required) A single IPv4 or IPv6 IP address."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 404,\n  \"error\": {\n    \"title\": \"Wrong ip\",\n    \"message\": \"Please provide a valid IP address\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8559e671-0564-459f-9c4f-ad7a0a60772c",
+              "name": "Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":ip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ip",
+                      "description": "(Required) A single IPv4 or IPv6 IP address."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"Rate limit exceeded\",\n  \"message\": \"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5aa4f0f4-58a7-4f87-a81b-ae2168673f5c",
+              "name": "Internal server error or server unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":ip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ip",
+                      "description": "(Required) A single IPv4 or IPv6 IP address."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Internal server error",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "222bebb0-c25b-4b13-9162-8e6eab6e1eb1",
+          "name": "IPinfo Returns API Service Request Limit by Access Token",
+          "request": {
+            "name": "IPinfo Returns API Service Request Limit by Access Token",
+            "description": {
+              "content": "The `/me` API endpoint can be used to provide summary information on the access token limits, access to API products, and other related information.\nThe `/me` endpoint can be used in verifying access tokens as well.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d2175406-da26-4aff-b7f8-7e4403d8691d",
+              "name": "IPinfo access token rate and access information.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"TOKEN\",\n  \"requests\": {\n    \"day\": 0,\n    \"month\": 69,\n    \"limit\": 50000,\n    \"remaining\": 2147483578\n  },\n  \"features\": {\n    \"core\": {\n      \"daily\": 50000,\n      \"monthly\": 50000\n    },\n    \"hostio\": {\n      \"daily\": 50000,\n      \"monthly\": 50000,\n      \"result_limit\": 5,\n      \"asn\": {\n        \"daily\": 50000,\n        \"monthly\": 50000\n      },\n      \"abuse\": {\n        \"daily\": 50000,\n        \"monthly\": 50000\n      },\n      \"whois\": {\n        \"daily\": 50000,\n        \"monthly\": 50000\n      },\n      \"ranges\": {\n        \"daily\": 50000,\n        \"monthly\": 50000\n      },\n      \"carrier\": {\n        \"daily\": 50000,\n        \"monthly\": 50000\n      },\n      \"company\": {\n        \"daily\": 50000,\n        \"monthly\": 50000,\n        \"firmographics\": false,\n        \"org_additional\": false\n      },\n      \"privacy\": {\n        \"daily\": 50000,\n        \"monthly\": 50000,\n        \"vpn_provider\": false\n      },\n      \"hosted_domains\": {\n        \"daily\": 50000,\n        \"monthly\": 50000,\n        \"result_limit\": 5\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb0f7f04-ae2a-4e86-80bd-b621a8f33d9c",
+              "name": "If the passed IPinfo access token is not present or is invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Invalid API token\",\n  \"token\": \"TOKEN\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ceb0d2f0-c015-4f6f-bda0-555c98492f75",
+              "name": "Internal server error or server unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Internal server error",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c77a09e2-fcb5-4721-b9ec-6d5f0c5dcd96",
+          "name": "IPinfo Bulk IPinfo API Enrichment",
+          "request": {
+            "name": "IPinfo Bulk IPinfo API Enrichment",
+            "description": {
+              "content": "Bulk or batch enrich IP addresses with IP information. See [documentation](https://ipinfo.io/developers/batch-enrichment-api).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<array>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "06f8580e-150a-424d-aa8e-8b9c0e7a5469",
+              "name": "Batch response object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c2ee4af8-9f38-44e7-af27-e448b4309ae4",
+          "name": "IPinfo Summarize IP Addresses",
+          "request": {
+            "name": "IPinfo Summarize IP Addresses",
+            "description": {
+              "content": "Get summary-level information of upto 500,000 IP addresses, including IP location on a map, IP types, privacy detection flags, top ASNs, top cities, and more. [Explore the IPinfo Summarize tool](https://ipinfo.io/tools/summarize-ips).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tools",
+                "summarize-ips"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cli",
+                  "value": "<integer>",
+                  "description": "CLI flag parameter"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<string>"
+            }
+          },
+          "response": [
+            {
+              "id": "4473e1f2-1e40-42c2-a3d9-c590ea4550d3",
+              "name": "Summarize response object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tools",
+                    "summarize-ips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cli",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Example of summarizing IP addresses\",\n  \"value\": {\n    \"status\": \"Report Generated\",\n    \"reportUrl\": \"https://ipinfo.io/tools/summarize-ips/3ea606f3-b3ad-4a37-a875-b897a0c2e718\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "40b13570-3b43-44c2-8a8d-aea8cc22d0cf",
+              "name": "The input payload does not meet the specification.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tools",
+                    "summarize-ips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cli",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"No IPs Found\",\n  \"message\": \"There were no valid IPs in the text.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17bb67fd-3a24-4b2f-a982-a6fe0d826f45",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tools",
+                    "summarize-ips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cli",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate limit exceeded. You can use the Summarize IPs tool up to 5 times per day. Please wait 24 hours or use our IPinfo Lite API service\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d72d1f1c-0618-43fa-beea-f9b4dfc921f6",
+          "name": "IPinfo Highlight IP Addresses on a Map",
+          "request": {
+            "name": "IPinfo Highlight IP Addresses on a Map",
+            "description": {
+              "content": "Visualize upto 500,000 IP addresses on an interactive map. [Explore the IPinfo Map IPs tool](https://ipinfo.io/tools/map).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tools",
+                "map"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cli",
+                  "value": "<integer>",
+                  "description": "CLI flag parameter"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<string>"
+            }
+          },
+          "response": [
+            {
+              "id": "db2c0653-17da-44c2-92dd-fcca36e373cc",
+              "name": "Map response object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tools",
+                    "map"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cli",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Example of mapping IP addresses\",\n  \"value\": {\n    \"status\": \"Report Generated\",\n    \"reportUrl\": \"https://ipinfo.io/tools/map/40c04638-a340-44b8-90de-f95afdff99d8\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a51ee60c-870d-43c9-b24d-e789797d02fb",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tools",
+                    "map"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cli",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate limit exceeded. You can use the IP Map tool up to 5 times per day. Please wait 24 hours or use our IPinfo Lite API service\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ipinfo.io/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "68d4eeb6-8935-4740-95fa-7e46ebb9cb05",
+    "name": "IPinfo.io OpenAPI Specification abuse general API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Official OpenAPI Specification for IPinfo's comprehensive IP intelligence API. This specification defines all endpoints for IP geolocation, ASN data, company information, privacy detection, and specialized data services.\n\n## Authentication\n\nAll endpoints support three authentication methods:\n- **HTTP Basic Auth**: Use your token as the username with empty password\n- **Bearer Token**: Include token in Authorization header\n- **Query Parameter**: Pass token as `?token=YOUR_TOKEN`\n\n[Learn more about authentication](https://ipinfo.io/developers#authentication)\n\n## IPinfo API Tiers\n\nIPinfo offers three main API tiers with different feature sets:\n\n### IPinfo Lite\nLightweight IP geolocation with essential information including ASN details, country, and continent data. Perfect for basic geolocation needs with fast response times. Unlimited requests on paid plans.\n- Endpoints: `/lite/me`, `/lite/{ip}`, `/lite/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/lite-api)\n\n### IPinfo Core\nComprehensive IP information with detailed geolocation data (city, region, coordinates, postal code, timezone), ASN information, and classification boolean flags (anycast, hosting, mobile, satellite).\n- Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/core-api)\n\n### IPinfo Plus\nAll Core features plus mobile/carrier detection, anonymity analysis (VPN, proxy, Tor, relay detection), service identification, and extended geographic metadata. Ideal for security, fraud prevention, and advanced analytics.\n- Endpoints: `/plus/me`, `/plus/{ip}`, `/plus/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/plus-api)\n\n## Specialized Detection APIs\n\n### Residential Proxy Detection\nDetect residential, mobile, and datacenter proxy IPs with activity insights, last seen dates, and proxy service identification.\n- Endpoints: `/{ip}/resproxy`\n- [Documentation](https://ipinfo.io/developers/residential-proxy-api)\n\n### Privacy Detection Standard\nDetect VPNs, proxies, Tor exit nodes, relays, and hosting providers associated with an IP address. Returns core privacy signals including service provider identification.\n- Endpoints: `/{ip}/privacy`\n- [Documentation](https://ipinfo.io/developers/privacy-standard-api)\n\n### Privacy Detection Extended\nAdvanced anonymous IP detection with detailed methodologies, confidence metrics, and metadata for VPNs, proxies, Tor, hosting providers, and relays.\n- Endpoints: `/{ip}/privacy_extended`\n- [Documentation](https://ipinfo.io/developers/privacy-extended-api)\n\n## Legacy API Products\n\nFor backwards compatibility, legacy endpoints remain available:\n- [IP to Geolocation API](https://ipinfo.io/products/ip-geolocation-api) - Use Core or Plus instead\n- [IP to Privacy Detection API](https://ipinfo.io/products/proxy-vpn-detection-api) - Use Plus instead\n- [ASN API](https://ipinfo.io/products/asn-api) - `/AS{asn}` endpoint\n- [IP to Company API](https://ipinfo.io/products/ip-company-api) - `/{ip}/company` endpoint\n- [Hosted Domains API](https://ipinfo.io/products/reverse-ip-api) - `/domains/{ip}` endpoint\n- [IP to Phone Carrier Detection API](https://ipinfo.io/products/ip-carrier-api) - `/{ip}/carrier` endpoint\n- [IP to Abuse Contact API](https://ipinfo.io/products/ip-abuse-contact-api) - `/{ip}/abuse` endpoint\n- [IP WHOIS API](https://ipinfo.io/products/whois-api) - `/whois/*` endpoints\n\n## Special Endpoints\n\n- **Token Info**: `/me` - View request limits and API access for your token\n- **Batch Requests**: `/batch` - Enrich multiple IPs in a single request\n- **IP Summarization**: `/tools/summarize-ips` - Analyze up to 500,000 IPs\n- **IP Mapping**: `/tools/map` - Visualize up to 500,000 IPs on an interactive map\n- **Single Field**: `/{ip}/{field}` - Get specific field values as plaintext\n\n## Rate Limits\n\n- **IPinfo Lite**: Unlimited requests on paid plans\n- **Paid Plans**: Monthly request limits with configurable alerts and automatic metered billing\n- **Rate Limit Exceeded**: 429 HTTP status code when limit reached\n\n[View pricing and limits](https://ipinfo.io/pricing)\n\n## Resources\n\n- **Developer Portal**: [https://ipinfo.io/developers](https://ipinfo.io/developers)\n- **API Libraries**: Official libraries for Python, Node.js, Java, Ruby, PHP, Go, and more\n- **Sign Up**: [Free account](https://ipinfo.io/signup) with up to 50,000 requests/month\n- **Community Support**: [https://community.ipinfo.io/](https://community.ipinfo.io/)\n- **Email Support**: support@ipinfo.io\n\n---\n\n\nContact Support:\n Name: IPinfo\n Email: support@ipinfo.io",
+      "type": "text/plain"
+    }
+  }
+}

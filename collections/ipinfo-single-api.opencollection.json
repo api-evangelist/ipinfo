@@ -1,0 +1,378 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "IPinfo.io OpenAPI Specification abuse single API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "single",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns the Current IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/ip",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns the current public/external IP address.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a IP for the Selected IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/ip",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a ip for the selected IP.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns the Current Hostname",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/hostname",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns the current hostname.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a Hostname for the Selected IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/hostname",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a hostname for the selected IP.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns the Current City",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/city",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns the current city.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a City for the Selected IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/city",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a city for the selected IP.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns the Current Region",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/region",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns the current region. If the region is not available, it will return an empty string.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a Region for the Selected IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/region",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a region for the selected IP. If the region is not available, it will return an empty string.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns the Current Country",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/country",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a concise response consisting of a two-letter country code. If the country is not available, it will return an empty string.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a Country for the Selected IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/country",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a country for the selected IP in two letter ISO-3166 format. If the country is not available, it will return an empty string.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns the Current Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/loc",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The '/loc' API endpoint provides the geographical location of a user's IP address in a response with latitude and longitude in comma-separated text format.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo GET a Location for the Selected IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/loc",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The '/loc' API endpoint provides the geographic location of an IP address as latitude and longitude separated by a comma in text form.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns the Current Postal Code or Zip Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/postal",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The `/postal` API endpoint provides a straightforward method for retrieving the current postal code or zip code. When this endpoint is queried, the API responds with a simple string indicating the postal code for the current IP address.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a Postal for the Selected IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/postal",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The `/postal` API lets users input an IP address to get back the corresponding postal or zip code in a simple string format.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns the Current Timezone",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/timezone",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The '/timezone' API endpoint returns the user's timezone based on their IP address in IANA format.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a Timezone for the Selected IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/timezone",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The `/timezone` API endpoint returns the IANA timezone based on the user's input IP address.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns the Current ASN and as Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/org",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The '/org' API endpoint identifies the Autonomous System Number (ASN) and ASN organization associated with the user's IP address. When called, the API returns a string with the ASN (prefixed by 'AS') and organization name.\n"
+        },
+        {
+          "info": {
+            "name": "IPinfo Returns a Organization for the Selected IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/org",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The '/org' API endpoint provides the ASN and organization related to the user's input IP address. It returns a string including the ASN (prefixed by 'AS') and AS organization name.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

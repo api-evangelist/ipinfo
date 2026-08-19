@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "IPinfo.io OpenAPI Specification abuse privacy detection API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "privacy detection",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IPinfo Returns Privacy Information About the Selected IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ipinfo.io/:ip/privacy",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "path",
+                "description": "A single IPv4 or IPv6 IP address."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The IP to Privacy Detection or Anonymous IP API provides privacy-related information about a specified IP address.\nThis includes whether the IP is associated with a VPN, proxy, Tor network, relay service, or a hosting service/data center (indicative of bots).\nThe response details the privacy status of the IP, indicating any anonymizing services in use and specifies the type of service (e.g., NordVPN, TunnelBear, Mullvad, ProtonVPN, CyberGhost, ExpressVPN, Surfshark etc.).\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

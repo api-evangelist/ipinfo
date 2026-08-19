@@ -1,0 +1,818 @@
+{
+  "item": [
+    {
+      "id": "34d40b16-b53e-4534-87c5-3f8ad2f4040e",
+      "name": "whois",
+      "description": {
+        "content": "IP WHOIS API",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "65ae3d81-5649-4db2-9220-3a7197c7397e",
+          "name": "IPinfo Returns the WHOIS Information by Net ID Lookup",
+          "request": {
+            "name": "IPinfo Returns the WHOIS Information by Net ID Lookup",
+            "description": {
+              "content": "This API endpoint allows users to retrieve WHOIS information based on a specified Net ID.\nThe response includes details such as the IP address range, organization name, country, and various administrative information related to the network.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "whois",
+                "net",
+                ":whoisnetid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request."
+                },
+                {
+                  "disabled": false,
+                  "key": "whoissource",
+                  "value": "<string>",
+                  "description": "Source query parameter to filter records by provided Whois source."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "whoisnetid",
+                  "description": "(Required) The Network (NET) ID of an internet organization."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b111bf62-0b82-4f47-982d-f8c45111bb1f",
+              "name": "WHOIS Network (NET) ID response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "whois",
+                    "net",
+                    ":whoisnetid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "whoissource",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "whoisnetid",
+                      "description": "(Required) The Network (NET) ID of an internet organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"net\": \"NEW-ENGLAND-5\",\n  \"total\": 100,\n  \"page\": 0,\n  \"records\": [\n    {\n      \"range\": \"24.62.0.0/15\",\n      \"name\": \"Comcast Cable Communications Holdings, Inc\",\n      \"country\": \"US\",\n      \"org\": \"POC object or null\",\n      \"admin\": \"POC object or null\",\n      \"abuse\": \"POC object or null\",\n      \"tech\": \"POC object or null\",\n      \"maintainer\": \"POC object or null\",\n      \"updated\": \"2010-10-18\",\n      \"status\": \"REASSIGNMENT\",\n      \"source\": \"arin\",\n      \"raw\": \"<raw data>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "930b6a40-28b8-4274-84e7-de96fccef6fd",
+          "name": "IPinfo Returns the WHOIS Information by WHOIS IP Address or IP Address Range",
+          "request": {
+            "name": "IPinfo Returns the WHOIS Information by WHOIS IP Address or IP Address Range",
+            "description": {
+              "content": "The WHOIS API lookup via IP address provides WHOIS information based on a specific IP address or IP address range.\nThe response contains detailed information about the organization associated with the IP, including the range of addresses, organization name, administrative contacts, abuse contacts, and additional metadata such as the country and contact details for both technical and administrative support.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "whois",
+                "net",
+                ":whoisip"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request."
+                },
+                {
+                  "disabled": false,
+                  "key": "whoissource",
+                  "value": "<string>",
+                  "description": "Source query parameter to filter records by provided Whois source."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "whoisip",
+                  "description": "(Required) The IP address or an IP address range of an internet organization."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0db3eba0-f85b-4609-9091-74803d7f2a9c",
+              "name": "WHOIS IP  and IP range response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "whois",
+                    "net",
+                    ":whoisip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "whoissource",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "whoisip",
+                      "description": "(Required) The IP address or an IP address range of an internet organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"net\": \"24.62.0.0/15\",\n  \"total\": 100,\n  \"page\": 0,\n  \"records\": [\n    {\n      \"range\": \"24.62.0.0/15\",\n      \"name\": \"Comcast Cable Communications Holdings, Inc\",\n      \"country\": \"US\",\n      \"org\": \"C02610695\",\n      \"updated\": \"2010-10-18\",\n      \"status\": \"REASSIGNMENT\",\n      \"source\": \"arin\",\n      \"raw\": \"<raw data>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aab6319c-5ce0-4e1c-bbc4-7a2695abdb9e",
+          "name": "IPinfo Returns the WHOIS Information by WHOIS Domain of an Internet Organization",
+          "request": {
+            "name": "IPinfo Returns the WHOIS Information by WHOIS Domain of an Internet Organization",
+            "description": {
+              "content": "The IPinfo WHOIS API lookup via organization organization domain name provides comprehensive WHOIS information for specified organization, enabling users to gain insights into the registration and organizational details of internet entities. The response includes a total count of records, and detailed records for each associated IP range.  Querying the organization domain reveals critical information such as the organization's name, country, and contact details for technical and administrative personnel, including names, emails, and physical addresses. Additionally, the response features abuse contact information and registration dates, which are essential for addressing network issues and potential abuse.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "whois",
+                "net",
+                ":domain"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request."
+                },
+                {
+                  "disabled": false,
+                  "key": "whoissource",
+                  "value": "<string>",
+                  "description": "Source query parameter to filter records by provided Whois source."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "domain",
+                  "description": "(Required) a domain."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a91b0cf8-752c-40ad-b725-7ecc9d8481a4",
+              "name": "WHOIS Domain response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "whois",
+                    "net",
+                    ":domain"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "whoissource",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domain",
+                      "description": "(Required) a domain."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"net\": \"comcast.net\",\n  \"total\": 80,\n  \"page\": 0,\n  \"records\": [\n    {\n      \"range\": \"24.147.0.0/17\",\n      \"id\": \"NEW-ENGLAND-10\",\n      \"name\": \"Comcast Cable Communications Holdings, Inc\",\n      \"country\": \"US\",\n      \"org\": \"C02610737\",\n      \"status\": \"REASSIGNMENT\",\n      \"tech\": \"string\",\n      \"maintainer\": \"string\",\n      \"admin\": \"string\",\n      \"abuse\": \"string\",\n      \"updated\": \"2010-10-18\",\n      \"source\": \"arin\",\n      \"raw\": \"<raw data>\",\n      \"domain\": \"comcast.net\"\n    },\n    {\n      \"range\": \"24.147.0.0/17\",\n      \"id\": \"NEW-ENGLAND-10\",\n      \"name\": \"Comcast Cable Communications Holdings, Inc\",\n      \"country\": \"US\",\n      \"org\": \"C02610737\",\n      \"status\": \"REASSIGNMENT\",\n      \"tech\": \"string\",\n      \"maintainer\": \"string\",\n      \"admin\": \"string\",\n      \"abuse\": \"string\",\n      \"updated\": \"2010-10-18\",\n      \"source\": \"arin\",\n      \"raw\": \"<raw data>\",\n      \"domain\": \"comcast.net\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d1e27639-ea55-4a35-89f5-21b85c35fdfc",
+          "name": "IPinfo Returns the WHOIS Information by WHOIS ASN",
+          "request": {
+            "name": "IPinfo Returns the WHOIS Information by WHOIS ASN",
+            "description": {
+              "content": "The IPinfo WHOIS API lookup via ASN provides in-depth WHOIS information associated with a specific Autonomous System Number (ASN). Querying ASN reveals critical data, including the organization's name, the allocated IP range, and the country of operation. The response includes administrative and technical contact information, highlighting the contact person along with their address and phone number. Additionally, the API provides details for abuse reporting, including a dedicated email for abuse contacts. This comprehensive dataset is essential for network administrators, security professionals, and organizations needing to investigate ASN ownership and maintain network integrity.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "whois",
+                "net",
+                "AS{{asn}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request."
+                },
+                {
+                  "disabled": false,
+                  "key": "whoissource",
+                  "value": "<string>",
+                  "description": "Source query parameter to filter records by provided Whois source."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "30c2a494-e333-45cc-901a-f7ad11523ff2",
+              "name": "WHOIS ASN response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "whois",
+                    "net",
+                    "AS{{asn}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "whoissource",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"net\": \"AS9541\",\n  \"total\": 47,\n  \"page\": 0,\n  \"records\": [\n    {\n      \"range\": \"58.65.203.0/24\",\n      \"id\": \"CYBERNET\",\n      \"name\": \"Broadband Services\",\n      \"country\": \"PK\",\n      \"org\": \"string\",\n      \"status\": \"ALLOCATED NON-PORTABLE\",\n      \"admin\": \"POC object or null\",\n      \"abuse\": \"POC object or null\",\n      \"tech\": \"POC object or null\",\n      \"maintainer\": \"POC object or null\",\n      \"updated\": \"2021-01-27\",\n      \"source\": \"apnic\",\n      \"raw\": \"<raw data>\"\n    },\n    {\n      \"range\": \"58.65.203.0/24\",\n      \"id\": \"CYBERNET\",\n      \"name\": \"Broadband Services\",\n      \"country\": \"PK\",\n      \"org\": \"string\",\n      \"status\": \"ALLOCATED NON-PORTABLE\",\n      \"admin\": \"POC object or null\",\n      \"abuse\": \"POC object or null\",\n      \"tech\": \"POC object or null\",\n      \"maintainer\": \"POC object or null\",\n      \"updated\": \"2021-01-27\",\n      \"source\": \"apnic\",\n      \"raw\": \"<raw data>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "71167b4e-517f-4d95-bb34-5627791dec12",
+          "name": "IPinfo Returns the WHOIS Information by WHOIS Organization (ORG) ID of an Internet Organization",
+          "request": {
+            "name": "IPinfo Returns the WHOIS Information by WHOIS Organization (ORG) ID of an Internet Organization",
+            "description": {
+              "content": "The IPinfo WHOIS API lookup via organization IDs (Org) provides comprehensive information about a specific internet organization identified by its WHOIS organization ID. Querying a WHOIS org key returns data about the internet organization. The response includes critical details such as the organization's address, along with the contact information for various roles within the organization. This includes administrative, technical, and abuse contacts. The API also offers timestamps for when the organization was created and last updated, which is essential for maintaining accurate records.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "whois",
+                "org",
+                ":whoisorgid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request."
+                },
+                {
+                  "disabled": false,
+                  "key": "whoissource",
+                  "value": "<string>",
+                  "description": "Source query parameter to filter records by provided Whois source."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "whoisorgid",
+                  "description": "(Required) The WHOIS organization (ORG) ID of an internet organization."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "104b8e93-6fbb-4e22-aa1b-da895a67b321",
+              "name": "WHOIS organization (ORG) ID response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "whois",
+                    "org",
+                    ":whoisorgid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "whoissource",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "whoisorgid",
+                      "description": "(Required) The WHOIS organization (ORG) ID of an internet organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"org\": \"PINEAP\",\n  \"total\": 100,\n  \"page\": 0,\n  \"records\": [\n    {\n      \"id\": \"PINEAP\",\n      \"name\": \"Pineapple Houser\",\n      \"address\": \"string\",\n      \"country\": \"US\",\n      \"admin\": \"POC object or null\",\n      \"abuse\": \"POC object or null\",\n      \"tech\": \"POC object or null\",\n      \"maintainer\": \"POC object or null\",\n      \"created\": \"2000-03-25\",\n      \"updated\": \"2011-09-24\",\n      \"source\": \"arin\",\n      \"raw\": \"<raw data>\"\n    },\n    {\n      \"id\": \"PINEAP\",\n      \"name\": \"Pineapple Houser\",\n      \"address\": \"string\",\n      \"country\": \"US\",\n      \"admin\": \"POC object or null\",\n      \"abuse\": \"POC object or null\",\n      \"tech\": \"POC object or null\",\n      \"maintainer\": \"POC object or null\",\n      \"created\": \"2000-03-25\",\n      \"updated\": \"2011-09-24\",\n      \"source\": \"arin\",\n      \"raw\": \"<raw data>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "795a5925-373d-4891-a8bd-b3578f40f3b1",
+          "name": "IPinfo Returns the WHOIS Information by WHOIS Point of Contact (POC) Value of an Internet Organization",
+          "request": {
+            "name": "IPinfo Returns the WHOIS Information by WHOIS Point of Contact (POC) Value of an Internet Organization",
+            "description": {
+              "content": "The IPinfo WHOIS API lookup via Points of Contact (POC) provides essential details about an individual associated with an internet organization identified by their WHOIS POC ID. For instance, querying the POC ID yields information about the name of the point of contact and their organization location. The response includes the organization's physical address, email address, and contact numbers. Additional metadata indicates when the record was created and last updated, alongside the source of the information.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "whois",
+                "poc",
+                ":whoispoc"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request."
+                },
+                {
+                  "disabled": false,
+                  "key": "whoissource",
+                  "value": "<string>",
+                  "description": "Source query parameter to filter records by provided Whois source."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "whoispoc",
+                  "description": "(Required) The WHOIS Point of Contact (POC) value of an internet organization."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "acb793dd-9ebc-4b04-969f-872708ff1380",
+              "name": "WHOIS Point of Contact (POC) response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "whois",
+                    "poc",
+                    ":whoispoc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "whoissource",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "whoispoc",
+                      "description": "(Required) The WHOIS Point of Contact (POC) value of an internet organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"poc\": \"CP312-ARIN\",\n  \"total\": 1,\n  \"page\": 0,\n  \"records\": [\n    {\n      \"name\": \"Cynthia Pararo\",\n      \"email\": \"spararo@mindspring.com\",\n      \"address\": \"US, GA, Atlanta, Pineapple Houser\\n2131 Plaster Bridge Rd Ne, 303244036\",\n      \"country\": \"US\",\n      \"phone\": \"\",\n      \"fax\": \"\",\n      \"created\": \"2000-03-25\",\n      \"updated\": \"2000-03-25\",\n      \"source\": \"arin\",\n      \"raw\": \"<raw data>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ipinfo.io/",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) an ASN number.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<integer>",
+      "key": "asn"
+    }
+  ],
+  "info": {
+    "_postman_id": "b40f0780-4eeb-48fe-b1e9-a3c6ce13f434",
+    "name": "IPinfo.io OpenAPI Specification abuse whois API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Official OpenAPI Specification for IPinfo's comprehensive IP intelligence API. This specification defines all endpoints for IP geolocation, ASN data, company information, privacy detection, and specialized data services.\n\n## Authentication\n\nAll endpoints support three authentication methods:\n- **HTTP Basic Auth**: Use your token as the username with empty password\n- **Bearer Token**: Include token in Authorization header\n- **Query Parameter**: Pass token as `?token=YOUR_TOKEN`\n\n[Learn more about authentication](https://ipinfo.io/developers#authentication)\n\n## IPinfo API Tiers\n\nIPinfo offers three main API tiers with different feature sets:\n\n### IPinfo Lite\nLightweight IP geolocation with essential information including ASN details, country, and continent data. Perfect for basic geolocation needs with fast response times. Unlimited requests on paid plans.\n- Endpoints: `/lite/me`, `/lite/{ip}`, `/lite/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/lite-api)\n\n### IPinfo Core\nComprehensive IP information with detailed geolocation data (city, region, coordinates, postal code, timezone), ASN information, and classification boolean flags (anycast, hosting, mobile, satellite).\n- Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/core-api)\n\n### IPinfo Plus\nAll Core features plus mobile/carrier detection, anonymity analysis (VPN, proxy, Tor, relay detection), service identification, and extended geographic metadata. Ideal for security, fraud prevention, and advanced analytics.\n- Endpoints: `/plus/me`, `/plus/{ip}`, `/plus/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/plus-api)\n\n## Specialized Detection APIs\n\n### Residential Proxy Detection\nDetect residential, mobile, and datacenter proxy IPs with activity insights, last seen dates, and proxy service identification.\n- Endpoints: `/{ip}/resproxy`\n- [Documentation](https://ipinfo.io/developers/residential-proxy-api)\n\n### Privacy Detection Standard\nDetect VPNs, proxies, Tor exit nodes, relays, and hosting providers associated with an IP address. Returns core privacy signals including service provider identification.\n- Endpoints: `/{ip}/privacy`\n- [Documentation](https://ipinfo.io/developers/privacy-standard-api)\n\n### Privacy Detection Extended\nAdvanced anonymous IP detection with detailed methodologies, confidence metrics, and metadata for VPNs, proxies, Tor, hosting providers, and relays.\n- Endpoints: `/{ip}/privacy_extended`\n- [Documentation](https://ipinfo.io/developers/privacy-extended-api)\n\n## Legacy API Products\n\nFor backwards compatibility, legacy endpoints remain available:\n- [IP to Geolocation API](https://ipinfo.io/products/ip-geolocation-api) - Use Core or Plus instead\n- [IP to Privacy Detection API](https://ipinfo.io/products/proxy-vpn-detection-api) - Use Plus instead\n- [ASN API](https://ipinfo.io/products/asn-api) - `/AS{asn}` endpoint\n- [IP to Company API](https://ipinfo.io/products/ip-company-api) - `/{ip}/company` endpoint\n- [Hosted Domains API](https://ipinfo.io/products/reverse-ip-api) - `/domains/{ip}` endpoint\n- [IP to Phone Carrier Detection API](https://ipinfo.io/products/ip-carrier-api) - `/{ip}/carrier` endpoint\n- [IP to Abuse Contact API](https://ipinfo.io/products/ip-abuse-contact-api) - `/{ip}/abuse` endpoint\n- [IP WHOIS API](https://ipinfo.io/products/whois-api) - `/whois/*` endpoints\n\n## Special Endpoints\n\n- **Token Info**: `/me` - View request limits and API access for your token\n- **Batch Requests**: `/batch` - Enrich multiple IPs in a single request\n- **IP Summarization**: `/tools/summarize-ips` - Analyze up to 500,000 IPs\n- **IP Mapping**: `/tools/map` - Visualize up to 500,000 IPs on an interactive map\n- **Single Field**: `/{ip}/{field}` - Get specific field values as plaintext\n\n## Rate Limits\n\n- **IPinfo Lite**: Unlimited requests on paid plans\n- **Paid Plans**: Monthly request limits with configurable alerts and automatic metered billing\n- **Rate Limit Exceeded**: 429 HTTP status code when limit reached\n\n[View pricing and limits](https://ipinfo.io/pricing)\n\n## Resources\n\n- **Developer Portal**: [https://ipinfo.io/developers](https://ipinfo.io/developers)\n- **API Libraries**: Official libraries for Python, Node.js, Java, Ruby, PHP, Go, and more\n- **Sign Up**: [Free account](https://ipinfo.io/signup) with up to 50,000 requests/month\n- **Community Support**: [https://community.ipinfo.io/](https://community.ipinfo.io/)\n- **Email Support**: support@ipinfo.io\n\n---\n\n\nContact Support:\n Name: IPinfo\n Email: support@ipinfo.io",
+      "type": "text/plain"
+    }
+  }
+}
