@@ -48,6 +48,8 @@ apis:
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
   tags:
+  - Abuse
+  tags_raw:
   - abuse
   properties:
   - type: OpenAPI
@@ -112,6 +114,8 @@ apis:
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
   tags:
+  - ASN
+  tags_raw:
   - asn
   properties:
   - type: OpenAPI
@@ -176,6 +180,8 @@ apis:
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
   tags:
+  - Carrier
+  tags_raw:
   - carrier
   properties:
   - type: OpenAPI
@@ -240,6 +246,8 @@ apis:
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
   tags:
+  - Company
+  tags_raw:
   - company
   properties:
   - type: OpenAPI
@@ -304,6 +312,8 @@ apis:
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
   tags:
+  - Domains
+  tags_raw:
   - domains
   properties:
   - type: OpenAPI
@@ -367,7 +377,8 @@ apis:
   description: General API.
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
-  tags:
+  tags: []
+  tags_raw:
   - general
   properties:
   - type: OpenAPI
@@ -688,6 +699,8 @@ apis:
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
   tags:
+  - Places
+  tags_raw:
   - places
   properties:
   - type: OpenAPI
@@ -752,6 +765,8 @@ apis:
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
   tags:
+  - Privacy Detection
+  tags_raw:
   - privacy detection
   properties:
   - type: OpenAPI
@@ -880,6 +895,8 @@ apis:
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
   tags:
+  - Ranges
+  tags_raw:
   - ranges
   properties:
   - type: OpenAPI
@@ -1008,6 +1025,8 @@ apis:
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
   tags:
+  - Single
+  tags_raw:
   - single
   properties:
   - type: OpenAPI
@@ -1072,6 +1091,8 @@ apis:
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
   tags:
+  - WHOIS
+  tags_raw:
   - whois
   properties:
   - type: OpenAPI
