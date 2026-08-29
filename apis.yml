@@ -8,6 +8,18 @@ description: >-
   Enrichment endpoint, and downloadable databases (CSV, MMDB, JSON, Parquet). Authentication uses access tokens via
   Basic Auth, Bearer Token, or query parameter; dual-stack IPv4/IPv6 endpoints are available.
 url: https://ipinfo.io/developers
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: open
