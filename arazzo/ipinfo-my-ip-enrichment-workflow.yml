@@ -10,8 +10,8 @@ info:
     can be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: ipinfoApi
-  url: ../openapi/ipinfo-openapi.yml
+- name: generalApi
+  url: ../openapi/ipinfo-general-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: enrich-my-ip

@@ -1,6 +1,6 @@
-generated: '2026-06-20'
-method: derived
-source: arazzo/*.yml
+x-generated: '2026-06-20'
+x-method: derived
+x-source: arazzo/*.yml
 workflows:
   - file: ipinfo-abuse-reporting-workflow.yml
     workflowId: abuse-and-domains

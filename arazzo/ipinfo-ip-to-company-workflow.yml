@@ -11,8 +11,11 @@ info:
     without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: ipinfoApi
-  url: ../openapi/ipinfo-openapi.yml
+- name: companyApi
+  url: ../openapi/ipinfo-company-api-openapi.yml
+  type: openapi
+- name: generalApi
+  url: ../openapi/ipinfo-general-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: ip-to-company

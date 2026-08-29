@@ -12,8 +12,14 @@ info:
     OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: ipinfoApi
-  url: ../openapi/ipinfo-openapi.yml
+- name: asnApi
+  url: ../openapi/ipinfo-asn-api-openapi.yml
+  type: openapi
+- name: generalApi
+  url: ../openapi/ipinfo-general-api-openapi.yml
+  type: openapi
+- name: rangesApi
+  url: ../openapi/ipinfo-ranges-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: asn-prefix-recon

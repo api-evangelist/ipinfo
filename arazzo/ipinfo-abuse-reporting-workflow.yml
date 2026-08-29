@@ -11,8 +11,14 @@ info:
     and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: ipinfoApi
-  url: ../openapi/ipinfo-openapi.yml
+- name: abuseApi
+  url: ../openapi/ipinfo-abuse-api-openapi.yml
+  type: openapi
+- name: domainsApi
+  url: ../openapi/ipinfo-domains-api-openapi.yml
+  type: openapi
+- name: generalApi
+  url: ../openapi/ipinfo-general-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: abuse-and-domains
