@@ -60,7 +60,7 @@ apis:
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
   tags:
-  - abuse
+  - Abuse
   tags_raw:
   - abuse
   properties:
@@ -126,7 +126,7 @@ apis:
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
   tags:
-  - asn
+  - ASN
   tags_raw:
   - asn
   properties:
@@ -192,7 +192,7 @@ apis:
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
   tags:
-  - carrier
+  - Carrier
   tags_raw:
   - carrier
   properties:
@@ -258,7 +258,7 @@ apis:
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
   tags:
-  - company
+  - Company
   tags_raw:
   - company
   properties:
@@ -777,7 +777,7 @@ apis:
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
   tags:
-  - privacy detection
+  - Privacy Detection
   tags_raw:
   - privacy detection
   properties:
@@ -907,7 +907,7 @@ apis:
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
   tags:
-  - ranges
+  - Ranges
   tags_raw:
   - ranges
   properties:
@@ -1037,7 +1037,7 @@ apis:
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
   tags:
-  - single
+  - Single
   tags_raw:
   - single
   properties:
@@ -1103,7 +1103,7 @@ apis:
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
   tags:
-  - whois
+  - WHOIS
   tags_raw:
   - whois
   properties:
