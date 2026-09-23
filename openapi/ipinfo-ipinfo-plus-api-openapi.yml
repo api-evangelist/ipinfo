@@ -1,160 +1,8 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  description: 'Official OpenAPI Specification for IPinfo''s comprehensive IP intelligence API. This specification defines all endpoints for IP geolocation, ASN data, company information, privacy detection, and specialized data services.
-
-
-    ## Authentication
-
-
-    All endpoints support three authentication methods:
-
-    - **HTTP Basic Auth**: Use your token as the username with empty password
-
-    - **Bearer Token**: Include token in Authorization header
-
-    - **Query Parameter**: Pass token as `?token=YOUR_TOKEN`
-
-
-    [Learn more about authentication](https://ipinfo.io/developers#authentication)
-
-
-    ## IPinfo API Tiers
-
-
-    IPinfo offers three main API tiers with different feature sets:
-
-
-    ### IPinfo Lite
-
-    Lightweight IP geolocation with essential information including ASN details, country, and continent data. Perfect for basic geolocation needs with fast response times. Unlimited requests on paid plans.
-
-    - Endpoints: `/lite/me`, `/lite/{ip}`, `/lite/{ip}/{field}`
-
-    - Base URL: `https://api.ipinfo.io/`
-
-    - [Documentation](https://ipinfo.io/developers/lite-api)
-
-
-    ### IPinfo Core
-
-    Comprehensive IP information with detailed geolocation data (city, region, coordinates, postal code, timezone), ASN information, and classification boolean flags (anycast, hosting, mobile, satellite).
-
-    - Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}`
-
-    - Base URL: `https://api.ipinfo.io/`
-
-    - [Documentation](https://ipinfo.io/developers/core-api)
-
-
-    ### IPinfo Plus
-
-    All Core features plus mobile/carrier detection, anonymity analysis (VPN, proxy, Tor, relay detection), service identification, and extended geographic metadata. Ideal for security, fraud prevention, and advanced analytics.
-
-    - Endpoints: `/plus/me`, `/plus/{ip}`, `/plus/{ip}/{field}`
-
-    - Base URL: `https://api.ipinfo.io/`
-
-    - [Documentation](https://ipinfo.io/developers/plus-api)
-
-
-    ## Specialized Detection APIs
-
-
-    ### Residential Proxy Detection
-
-    Detect residential, mobile, and datacenter proxy IPs with activity insights, last seen dates, and proxy service identification.
-
-    - Endpoints: `/{ip}/resproxy`
-
-    - [Documentation](https://ipinfo.io/developers/residential-proxy-api)
-
-
-    ### Privacy Detection Standard
-
-    Detect VPNs, proxies, Tor exit nodes, relays, and hosting providers associated with an IP address. Returns core privacy signals including service provider identification.
-
-    - Endpoints: `/{ip}/privacy`
-
-    - [Documentation](https://ipinfo.io/developers/privacy-standard-api)
-
-
-    ### Privacy Detection Extended
-
-    Advanced anonymous IP detection with detailed methodologies, confidence metrics, and metadata for VPNs, proxies, Tor, hosting providers, and relays.
-
-    - Endpoints: `/{ip}/privacy_extended`
-
-    - [Documentation](https://ipinfo.io/developers/privacy-extended-api)
-
-
-    ## Legacy API Products
-
-
-    For backwards compatibility, legacy endpoints remain available:
-
-    - [IP to Geolocation API](https://ipinfo.io/products/ip-geolocation-api) - Use Core or Plus instead
-
-    - [IP to Privacy Detection API](https://ipinfo.io/products/proxy-vpn-detection-api) - Use Plus instead
-
-    - [ASN API](https://ipinfo.io/products/asn-api) - `/AS{asn}` endpoint
-
-    - [IP to Company API](https://ipinfo.io/products/ip-company-api) - `/{ip}/company` endpoint
-
-    - [Hosted Domains API](https://ipinfo.io/products/reverse-ip-api) - `/domains/{ip}` endpoint
-
-    - [IP to Phone Carrier Detection API](https://ipinfo.io/products/ip-carrier-api) - `/{ip}/carrier` endpoint
-
-    - [IP to Abuse Contact API](https://ipinfo.io/products/ip-abuse-contact-api) - `/{ip}/abuse` endpoint
-
-    - [IP WHOIS API](https://ipinfo.io/products/whois-api) - `/whois/*` endpoints
-
-
-    ## Special Endpoints
-
-
-    - **Token Info**: `/me` - View request limits and API access for your token
-
-    - **Batch Requests**: `/batch` - Enrich multiple IPs in a single request
-
-    - **IP Summarization**: `/tools/summarize-ips` - Analyze up to 500,000 IPs
-
-    - **IP Mapping**: `/tools/map` - Visualize up to 500,000 IPs on an interactive map
-
-    - **Single Field**: `/{ip}/{field}` - Get specific field values as plaintext
-
-
-    ## Rate Limits
-
-
-    - **IPinfo Lite**: Unlimited requests on paid plans
-
-    - **Paid Plans**: Monthly request limits with configurable alerts and automatic metered billing
-
-    - **Rate Limit Exceeded**: 429 HTTP status code when limit reached
-
-
-    [View pricing and limits](https://ipinfo.io/pricing)
-
-
-    ## Resources
-
-
-    - **Developer Portal**: [https://ipinfo.io/developers](https://ipinfo.io/developers)
-
-    - **API Libraries**: Official libraries for Python, Node.js, Java, Ruby, PHP, Go, and more
-
-    - **Sign Up**: [Free account](https://ipinfo.io/signup) with up to 50,000 requests/month
-
-    - **Community Support**: [https://community.ipinfo.io/](https://community.ipinfo.io/)
-
-    - **Email Support**: support@ipinfo.io
-
-
-    ---
-
-    '
+  description: Official OpenAPI Specification for IPinfo's comprehensive IP intelligence API.
   version: 1.0.0
-  title: IPinfo.io OpenAPI Specification abuse ipinfo plus API
+  title: IPinfo.io OpenAPI Specification ipinfo plus API
   contact:
     name: IPinfo
     email: support@ipinfo.io
@@ -175,9 +23,7 @@ paths:
       tags:
       - ipinfo plus
       summary: IPinfo Returns Plus IP Information About the Current IP
-      description: 'Returns comprehensive plus IP information about the current IP including enhanced geolocation, ASN details, mobile/carrier information, anonymity detection, and various IP characteristics.
-
-        '
+      description: Returns comprehensive plus IP information about the current IP including enhanced geolocation, ASN details, mobile/carrier information, anonymity detection, and various IP characteristics.
       operationId: getCurrentPlusInformation
       servers:
       - url: https://api.ipinfo.io/
@@ -201,9 +47,7 @@ paths:
       tags:
       - ipinfo plus
       summary: IPinfo Returns Plus IP Information About the Provided IP
-      description: 'Returns comprehensive plus IP information about the provided IP including enhanced geolocation, ASN details, mobile/carrier information, anonymity detection, and various IP characteristics.
-
-        '
+      description: Returns comprehensive plus IP information about the provided IP including enhanced geolocation, ASN details, mobile/carrier information, anonymity detection, and various IP characteristics.
       operationId: getPlusInformationByIp
       servers:
       - url: https://api.ipinfo.io/
@@ -231,9 +75,7 @@ paths:
       tags:
       - ipinfo plus
       summary: IPinfo Returns a Specific Field from Plus IP Information About the Current IP
-      description: 'Returns a specific field from plus IP information about the current IP.
-
-        '
+      description: Returns a specific field from plus IP information about the current IP.
       operationId: getCurrentPlusField
       servers:
       - url: https://api.ipinfo.io/
@@ -261,9 +103,7 @@ paths:
       tags:
       - ipinfo plus
       summary: IPinfo Returns a Specific Field from Plus IP Information About the Provided IP
-      description: 'Returns a specific field from plus IP information about the provided IP.
-
-        '
+      description: Returns a specific field from plus IP information about the provided IP.
       operationId: getPlusFieldByIp
       servers:
       - url: https://api.ipinfo.io/
@@ -290,134 +130,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  responses:
-    PlusInvalidField:
-      description: Invalid field name error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PlusErrorInvalidField'
-    PlusForbidden:
-      description: Forbidden error (authentication issues).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PlusErrorForbidden'
-    InternalServerError:
-      description: Internal server error or server unavailable.
-      content:
-        text/plain:
-          schema:
-            $ref: '#/components/schemas/Error500'
-    PlusResponse:
-      description: Plus response object.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PlusResponse'
-    PlusBadRequest:
-      description: Bad request error (invalid IP format).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PlusErrorBadRequest'
-    PlusField:
-      description: A specific field value from the plus response.
-      content:
-        text/plain:
-          schema:
-            type: string
-            example: Toronto
-        application/json:
-          schema:
-            type: object
-            example:
-              city: Toronto
-              region: Ontario
-    TooManyRequests:
-      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error429'
-  parameters:
-    Ip:
-      name: ip
-      in: path
-      description: A single IPv4 or IPv6 IP address.
-      required: true
-      schema:
-        type: string
-    PlusField:
-      name: field
-      in: path
-      description: A specific field from the plus response or nested geo/as/mobile/anonymous fields.
-      required: true
-      schema:
-        type: string
-        enum:
-        - ip
-        - geo
-        - geo/city
-        - geo/region
-        - geo/region_code
-        - geo/country
-        - geo/country_code
-        - geo/continent
-        - geo/continent_code
-        - geo/latitude
-        - geo/longitude
-        - geo/timezone
-        - geo/postal_code
-        - geo/dma_code
-        - geo/geoname_id
-        - geo/radius
-        - geo/last_changed
-        - as
-        - as/asn
-        - as/name
-        - as/domain
-        - as/type
-        - as/last_changed
-        - mobile
-        - mobile/name
-        - mobile/mcc
-        - mobile/mnc
-        - anonymous
-        - anonymous/name
-        - anonymous/is_proxy
-        - anonymous/is_relay
-        - anonymous/is_tor
-        - anonymous/is_vpn
-        - is_anonymous
-        - is_anycast
-        - is_hosting
-        - is_mobile
-        - is_satellite
   schemas:
-    Error500:
-      type: string
-      example: Internal server error
-    Error429:
-      type: object
-      required:
-      - title
-      - message
-      properties:
-        title:
-          type: string
-          example: Rate limit exceeded
-        message:
-          type: string
-          example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
-    PlusErrorBadRequest:
-      type: object
-      required:
-      - error
-      properties:
-        error:
-          type: string
-          example: Please provide a valid IP address
     PlusErrorForbidden:
       type: object
       required:
@@ -439,14 +152,14 @@ components:
             message:
               type: string
               example: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help
-    PlusErrorInvalidField:
+    PlusErrorBadRequest:
       type: object
       required:
       - error
       properties:
         error:
           type: string
-          example: invalid_field is not a valid field.
+          example: Please provide a valid IP address
     PlusResponse:
       type: object
       required:
@@ -568,6 +281,133 @@ components:
         is_satellite:
           type: boolean
           example: false
+    Error429:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Rate limit exceeded
+        message:
+          type: string
+          example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
+    PlusErrorInvalidField:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: string
+          example: invalid_field is not a valid field.
+    Error500:
+      type: string
+      example: Internal server error
+  responses:
+    TooManyRequests:
+      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error429'
+    InternalServerError:
+      description: Internal server error or server unavailable.
+      content:
+        text/plain:
+          schema:
+            $ref: '#/components/schemas/Error500'
+    PlusForbidden:
+      description: Forbidden error (authentication issues).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PlusErrorForbidden'
+    PlusField:
+      description: A specific field value from the plus response.
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: Toronto
+        application/json:
+          schema:
+            type: object
+            example:
+              city: Toronto
+              region: Ontario
+    PlusBadRequest:
+      description: Bad request error (invalid IP format).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PlusErrorBadRequest'
+    PlusInvalidField:
+      description: Invalid field name error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PlusErrorInvalidField'
+    PlusResponse:
+      description: Plus response object.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PlusResponse'
+  parameters:
+    PlusField:
+      name: field
+      in: path
+      description: A specific field from the plus response or nested geo/as/mobile/anonymous fields.
+      required: true
+      schema:
+        type: string
+        enum:
+        - ip
+        - geo
+        - geo/city
+        - geo/region
+        - geo/region_code
+        - geo/country
+        - geo/country_code
+        - geo/continent
+        - geo/continent_code
+        - geo/latitude
+        - geo/longitude
+        - geo/timezone
+        - geo/postal_code
+        - geo/dma_code
+        - geo/geoname_id
+        - geo/radius
+        - geo/last_changed
+        - as
+        - as/asn
+        - as/name
+        - as/domain
+        - as/type
+        - as/last_changed
+        - mobile
+        - mobile/name
+        - mobile/mcc
+        - mobile/mnc
+        - anonymous
+        - anonymous/name
+        - anonymous/is_proxy
+        - anonymous/is_relay
+        - anonymous/is_tor
+        - anonymous/is_vpn
+        - is_anonymous
+        - is_anycast
+        - is_hosting
+        - is_mobile
+        - is_satellite
+    Ip:
+      name: ip
+      in: path
+      description: A single IPv4 or IPv6 IP address.
+      required: true
+      schema:
+        type: string
   securitySchemes:
     BasicAuth:
       type: http

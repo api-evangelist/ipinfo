@@ -1,0 +1,27 @@
+# Front Door AI Index — ipinfo — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: ipinfo
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: ipinfo.io
+  final_host: ipinfo.io
+  ownership: own
+  owner: ipinfo
+  shares_host_with:
+  - ip-address-details
+  inherited_from: null
+  verdict: scored
+  score: 1
+  host_score: 1
+  density: 1.09
+  words: 920
+  tiers:
+    agentic: 0
+    core: 1
+    model: 0
+  ambiguous: 8
+  top_terms:
+    intelligence: 8
+    AI: 1

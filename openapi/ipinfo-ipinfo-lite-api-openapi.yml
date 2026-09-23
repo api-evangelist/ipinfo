@@ -1,160 +1,8 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  description: 'Official OpenAPI Specification for IPinfo''s comprehensive IP intelligence API. This specification defines all endpoints for IP geolocation, ASN data, company information, privacy detection, and specialized data services.
-
-
-    ## Authentication
-
-
-    All endpoints support three authentication methods:
-
-    - **HTTP Basic Auth**: Use your token as the username with empty password
-
-    - **Bearer Token**: Include token in Authorization header
-
-    - **Query Parameter**: Pass token as `?token=YOUR_TOKEN`
-
-
-    [Learn more about authentication](https://ipinfo.io/developers#authentication)
-
-
-    ## IPinfo API Tiers
-
-
-    IPinfo offers three main API tiers with different feature sets:
-
-
-    ### IPinfo Lite
-
-    Lightweight IP geolocation with essential information including ASN details, country, and continent data. Perfect for basic geolocation needs with fast response times. Unlimited requests on paid plans.
-
-    - Endpoints: `/lite/me`, `/lite/{ip}`, `/lite/{ip}/{field}`
-
-    - Base URL: `https://api.ipinfo.io/`
-
-    - [Documentation](https://ipinfo.io/developers/lite-api)
-
-
-    ### IPinfo Core
-
-    Comprehensive IP information with detailed geolocation data (city, region, coordinates, postal code, timezone), ASN information, and classification boolean flags (anycast, hosting, mobile, satellite).
-
-    - Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}`
-
-    - Base URL: `https://api.ipinfo.io/`
-
-    - [Documentation](https://ipinfo.io/developers/core-api)
-
-
-    ### IPinfo Plus
-
-    All Core features plus mobile/carrier detection, anonymity analysis (VPN, proxy, Tor, relay detection), service identification, and extended geographic metadata. Ideal for security, fraud prevention, and advanced analytics.
-
-    - Endpoints: `/plus/me`, `/plus/{ip}`, `/plus/{ip}/{field}`
-
-    - Base URL: `https://api.ipinfo.io/`
-
-    - [Documentation](https://ipinfo.io/developers/plus-api)
-
-
-    ## Specialized Detection APIs
-
-
-    ### Residential Proxy Detection
-
-    Detect residential, mobile, and datacenter proxy IPs with activity insights, last seen dates, and proxy service identification.
-
-    - Endpoints: `/{ip}/resproxy`
-
-    - [Documentation](https://ipinfo.io/developers/residential-proxy-api)
-
-
-    ### Privacy Detection Standard
-
-    Detect VPNs, proxies, Tor exit nodes, relays, and hosting providers associated with an IP address. Returns core privacy signals including service provider identification.
-
-    - Endpoints: `/{ip}/privacy`
-
-    - [Documentation](https://ipinfo.io/developers/privacy-standard-api)
-
-
-    ### Privacy Detection Extended
-
-    Advanced anonymous IP detection with detailed methodologies, confidence metrics, and metadata for VPNs, proxies, Tor, hosting providers, and relays.
-
-    - Endpoints: `/{ip}/privacy_extended`
-
-    - [Documentation](https://ipinfo.io/developers/privacy-extended-api)
-
-
-    ## Legacy API Products
-
-
-    For backwards compatibility, legacy endpoints remain available:
-
-    - [IP to Geolocation API](https://ipinfo.io/products/ip-geolocation-api) - Use Core or Plus instead
-
-    - [IP to Privacy Detection API](https://ipinfo.io/products/proxy-vpn-detection-api) - Use Plus instead
-
-    - [ASN API](https://ipinfo.io/products/asn-api) - `/AS{asn}` endpoint
-
-    - [IP to Company API](https://ipinfo.io/products/ip-company-api) - `/{ip}/company` endpoint
-
-    - [Hosted Domains API](https://ipinfo.io/products/reverse-ip-api) - `/domains/{ip}` endpoint
-
-    - [IP to Phone Carrier Detection API](https://ipinfo.io/products/ip-carrier-api) - `/{ip}/carrier` endpoint
-
-    - [IP to Abuse Contact API](https://ipinfo.io/products/ip-abuse-contact-api) - `/{ip}/abuse` endpoint
-
-    - [IP WHOIS API](https://ipinfo.io/products/whois-api) - `/whois/*` endpoints
-
-
-    ## Special Endpoints
-
-
-    - **Token Info**: `/me` - View request limits and API access for your token
-
-    - **Batch Requests**: `/batch` - Enrich multiple IPs in a single request
-
-    - **IP Summarization**: `/tools/summarize-ips` - Analyze up to 500,000 IPs
-
-    - **IP Mapping**: `/tools/map` - Visualize up to 500,000 IPs on an interactive map
-
-    - **Single Field**: `/{ip}/{field}` - Get specific field values as plaintext
-
-
-    ## Rate Limits
-
-
-    - **IPinfo Lite**: Unlimited requests on paid plans
-
-    - **Paid Plans**: Monthly request limits with configurable alerts and automatic metered billing
-
-    - **Rate Limit Exceeded**: 429 HTTP status code when limit reached
-
-
-    [View pricing and limits](https://ipinfo.io/pricing)
-
-
-    ## Resources
-
-
-    - **Developer Portal**: [https://ipinfo.io/developers](https://ipinfo.io/developers)
-
-    - **API Libraries**: Official libraries for Python, Node.js, Java, Ruby, PHP, Go, and more
-
-    - **Sign Up**: [Free account](https://ipinfo.io/signup) with up to 50,000 requests/month
-
-    - **Community Support**: [https://community.ipinfo.io/](https://community.ipinfo.io/)
-
-    - **Email Support**: support@ipinfo.io
-
-
-    ---
-
-    '
+  description: Official OpenAPI Specification for IPinfo's comprehensive IP intelligence API.
   version: 1.0.0
-  title: IPinfo.io OpenAPI Specification abuse ipinfo lite API
+  title: IPinfo.io OpenAPI Specification ipinfo lite API
   contact:
     name: IPinfo
     email: support@ipinfo.io
@@ -175,9 +23,7 @@ paths:
       tags:
       - ipinfo lite
       summary: IPinfo Returns Lightweight IP Information About the Current IP
-      description: 'Returns lightweight IP information about the current IP including ASN details, country, and continent information.
-
-        '
+      description: Returns lightweight IP information about the current IP including ASN details, country, and continent information.
       operationId: getCurrentLiteInformation
       servers:
       - url: https://api.ipinfo.io/
@@ -197,9 +43,7 @@ paths:
       tags:
       - ipinfo lite
       summary: IPinfo Returns Lightweight IP Information About the Provided IP
-      description: 'Returns lightweight IP information about the provided IP including ASN details, country, and continent information. For bogon/private IPs, returns a response with bogon: true.
-
-        '
+      description: 'Returns lightweight IP information about the provided IP including ASN details, country, and continent information. For bogon/private IPs, returns a response with bogon: true.'
       operationId: getLiteInformationByIp
       servers:
       - url: https://api.ipinfo.io/
@@ -230,10 +74,8 @@ paths:
     get:
       tags:
       - ipinfo lite
-      summary: IPinfo Returns a Specific Field from Lightweight IP Information About the Current IP
-      description: 'Returns a specific field from lightweight IP information about the current IP.
-
-        '
+      summary: IPinfo Returns a Specific Field from Lightweight IP Information About the…
+      description: Returns a specific field from lightweight IP information about the current IP.
       operationId: getCurrentLiteField
       servers:
       - url: https://api.ipinfo.io/
@@ -258,10 +100,8 @@ paths:
     get:
       tags:
       - ipinfo lite
-      summary: IPinfo Returns a Specific Field from Lightweight IP Information About the Provided IP
-      description: 'Returns a specific field from lightweight IP information about the provided IP.
-
-        '
+      summary: IPinfo Returns a Specific Field from Lightweight IP Information About the…
+      description: Returns a specific field from lightweight IP information about the provided IP.
       operationId: getLiteFieldByIp
       servers:
       - url: https://api.ipinfo.io/
@@ -287,6 +127,21 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
+    LiteBogonResponse:
+      type: object
+      required:
+      - ip
+      - bogon
+      properties:
+        ip:
+          type: string
+          example: 192.168.1.1
+        bogon:
+          type: boolean
+          example: true
+    Error500:
+      type: string
+      example: Internal server error
     LiteResponse:
       type: object
       required:
@@ -323,29 +178,14 @@ components:
         continent:
           type: string
           example: North America
-    Error500:
-      type: string
-      example: Internal server error
-    LiteErrorBadRequest:
+    LiteErrorInvalidField:
       type: object
       required:
       - error
       properties:
         error:
           type: string
-          example: Please provide a valid IP address
-    LiteBogonResponse:
-      type: object
-      required:
-      - ip
-      - bogon
-      properties:
-        ip:
-          type: string
-          example: 192.168.1.1
-        bogon:
-          type: boolean
-          example: true
+          example: invalid_field is not a valid field.
     LiteErrorForbidden:
       type: object
       required:
@@ -367,22 +207,53 @@ components:
             message:
               type: string
               example: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help
-    LiteErrorInvalidField:
+    LiteErrorBadRequest:
       type: object
       required:
       - error
       properties:
         error:
           type: string
-          example: invalid_field is not a valid field.
+          example: Please provide a valid IP address
+  responses:
+    InternalServerError:
+      description: Internal server error or server unavailable.
+      content:
+        text/plain:
+          schema:
+            $ref: '#/components/schemas/Error500'
+    LiteResponse:
+      description: Lite response object.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LiteResponse'
+    LiteForbidden:
+      description: Forbidden error (authentication issues).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LiteErrorForbidden'
+    LiteBadRequest:
+      description: Bad request error (invalid IP format).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LiteErrorBadRequest'
+    LiteField:
+      description: A specific field value from the lite response.
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: United States
+    LiteInvalidField:
+      description: Invalid field name error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LiteErrorInvalidField'
   parameters:
-    Ip:
-      name: ip
-      in: path
-      description: A single IPv4 or IPv6 IP address.
-      required: true
-      schema:
-        type: string
     LiteField:
       name: field
       in: path
@@ -399,44 +270,13 @@ components:
         - country
         - continent_code
         - continent
-  responses:
-    LiteInvalidField:
-      description: Invalid field name error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/LiteErrorInvalidField'
-    LiteBadRequest:
-      description: Bad request error (invalid IP format).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/LiteErrorBadRequest'
-    LiteField:
-      description: A specific field value from the lite response.
-      content:
-        text/plain:
-          schema:
-            type: string
-            example: United States
-    InternalServerError:
-      description: Internal server error or server unavailable.
-      content:
-        text/plain:
-          schema:
-            $ref: '#/components/schemas/Error500'
-    LiteForbidden:
-      description: Forbidden error (authentication issues).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/LiteErrorForbidden'
-    LiteResponse:
-      description: Lite response object.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/LiteResponse'
+    Ip:
+      name: ip
+      in: path
+      description: A single IPv4 or IPv6 IP address.
+      required: true
+      schema:
+        type: string
   securitySchemes:
     BasicAuth:
       type: http

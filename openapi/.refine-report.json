@@ -1,23 +1,7 @@
 {
   "provider": "ipinfo",
   "sources": [
-    "ipinfo-abuse-api-openapi.yml",
-    "ipinfo-asn-api-openapi.yml",
-    "ipinfo-carrier-api-openapi.yml",
-    "ipinfo-company-api-openapi.yml",
-    "ipinfo-domains-api-openapi.yml",
-    "ipinfo-general-api-openapi.yml",
-    "ipinfo-ipinfo-core-api-openapi.yml",
-    "ipinfo-ipinfo-lite-api-openapi.yml",
-    "ipinfo-ipinfo-max-api-openapi.yml",
-    "ipinfo-ipinfo-plus-api-openapi.yml",
-    "ipinfo-places-api-openapi.yml",
-    "ipinfo-privacy-detection-api-openapi.yml",
-    "ipinfo-privacy-detection-extended-api-openapi.yml",
-    "ipinfo-ranges-api-openapi.yml",
-    "ipinfo-residential-proxy-detection-api-openapi.yml",
-    "ipinfo-single-api-openapi.yml",
-    "ipinfo-whois-api-openapi.yml"
+    "_original/ipinfo-openapi.yml"
   ],
   "outputs": [
     "ipinfo-abuse-api-openapi.yml",
@@ -41,6 +25,28 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "ipinfo-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "ipinfo-abuse-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ipinfo-asn-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ipinfo-carrier-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ipinfo-company-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ipinfo-domains-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ipinfo-general-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ipinfo-ipinfo-core-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ipinfo-ipinfo-lite-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ipinfo-ipinfo-max-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ipinfo-ipinfo-plus-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ipinfo-places-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ipinfo-privacy-detection-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ipinfo-privacy-detection-extended-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ipinfo-ranges-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ipinfo-residential-proxy-detection-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ipinfo-single-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ipinfo-whois-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
