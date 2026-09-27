@@ -47,38 +47,59 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  responses:
-    TooManyRequests:
-      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error429'
-    InternalServerError:
-      description: Internal server error or server unavailable.
-      content:
-        text/plain:
-          schema:
-            $ref: '#/components/schemas/Error500'
-    NotFoundASN:
-      description: ASN not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error404ASN'
-    Asn:
-      description: ASN response object.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/AsnResponse'
-    Forbidden:
-      description: Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error403'
   schemas:
+    Error404ASN:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: string
+          example: ASN Not Found!
+    Prefix6:
+      type: object
+      required:
+      - netblock
+      - id
+      - name
+      - country
+      properties:
+        netblock:
+          type: string
+          example: 2601::/20
+        id:
+          type: string
+          example: COMCAST6NET
+        name:
+          type: string
+          example: Comcast Cable Communications, LLC
+        country:
+          type: string
+          example: US
+        size:
+          type: string
+          example: '20282409603651670423947251286016'
+        status:
+          type: string
+          example: ASSIGNMENT
+        domain:
+          type: string
+          example: comcast.com
+    Error429:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Rate limit exceeded
+        message:
+          type: string
+          example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
+    Error500:
+      type: string
+      example: Internal server error
     AsnResponse:
       type: object
       required:
@@ -143,55 +164,6 @@ components:
           items:
             type: string
             example: '109'
-    Prefix6:
-      type: object
-      required:
-      - netblock
-      - id
-      - name
-      - country
-      properties:
-        netblock:
-          type: string
-          example: 2601::/20
-        id:
-          type: string
-          example: COMCAST6NET
-        name:
-          type: string
-          example: Comcast Cable Communications, LLC
-        country:
-          type: string
-          example: US
-        size:
-          type: string
-          example: '20282409603651670423947251286016'
-        status:
-          type: string
-          example: ASSIGNMENT
-        domain:
-          type: string
-          example: comcast.com
-    Error429:
-      type: object
-      required:
-      - title
-      - message
-      properties:
-        title:
-          type: string
-          example: Rate limit exceeded
-        message:
-          type: string
-          example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
-    Error404ASN:
-      type: object
-      required:
-      - error
-      properties:
-        error:
-          type: string
-          example: ASN Not Found!
     Prefix:
       type: object
       required:
@@ -223,9 +195,6 @@ components:
           - string
           - 'null'
           example: quadranet.com
-    Error500:
-      type: string
-      example: Internal server error
     Error403:
       type: object
       required:
@@ -238,6 +207,37 @@ components:
         message:
           type: string
           example: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help
+  responses:
+    Asn:
+      description: ASN response object.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AsnResponse'
+    InternalServerError:
+      description: Internal server error or server unavailable.
+      content:
+        text/plain:
+          schema:
+            $ref: '#/components/schemas/Error500'
+    TooManyRequests:
+      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error429'
+    Forbidden:
+      description: Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error403'
+    NotFoundASN:
+      description: ASN not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error404ASN'
   parameters:
     Asn:
       name: asn

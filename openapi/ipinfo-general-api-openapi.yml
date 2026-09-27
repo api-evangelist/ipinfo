@@ -172,136 +172,113 @@ paths:
                     type: string
                     example: Rate limit exceeded. You can use the IP Map tool up to 5 times per day. Please wait 24 hours or use our IPinfo Lite API service
 components:
-  responses:
-    BadRequestMe:
-      description: If the passed IPinfo access token is not present or is invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error400Me'
-    UnprocessableEntity:
-      description: The input payload does not meet the specification.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error422'
-    BadRequest:
-      description: If users try to access a field type that does not exist or do not have permissions to access it, they will encounter a wrong module or field type error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error400'
-    Map:
-      description: Map response object.
-      content:
-        application/json:
-          schema:
-            type: object
-            example:
-              summary: Example of mapping IP addresses
-              value:
-                status: Report Generated
-                reportUrl: https://ipinfo.io/tools/map/40c04638-a340-44b8-90de-f95afdff99d8
-    FullResponse:
-      description: Full response object.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/FullResponse'
-    TooManyRequests:
-      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error429'
-    Me:
-      description: IPinfo access token rate and access information.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/MeResponse'
-    NotFound:
-      description: Wrong ip. Please provide a valid IP address.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error404'
-    Summarize:
-      description: Summarize response object.
-      content:
-        application/json:
-          schema:
-            type: object
-            example:
-              summary: Example of summarizing IP addresses
-              value:
-                status: Report Generated
-                reportUrl: https://ipinfo.io/tools/summarize-ips/3ea606f3-b3ad-4a37-a875-b897a0c2e718
-    Batch:
-      description: Batch response object.
-      content:
-        application/json:
-          schema:
-            type: object
-            additionalProperties:
-              type: object
-            example:
-              8.8.8.8/city: Mountain View
-              8.8.8.8:
-                ip: 8.8.8.8
-                hostname: dns.google
-                city: Mountain View
-                region: California
-                country: US
-                loc: 37.4056,-122.0775
-                org: AS15169 Google LLC
-                postal: 94043
-                timezone: America/Los_Angeles
-    InternalServerError:
-      description: Internal server error or server unavailable.
-      content:
-        text/plain:
-          schema:
-            $ref: '#/components/schemas/Error500'
-    Forbidden:
-      description: Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error403'
   schemas:
-    Prefix:
+    PrivacyResponse:
       type: object
       required:
-      - netblock
-      - id
-      - name
-      - country
+      - vpn
+      - proxy
+      - tor
+      - hosting
+      - relay
+      - service
       properties:
-        netblock:
+        vpn:
+          type: boolean
+          example: true
+        proxy:
+          type: boolean
+          example: false
+        tor:
+          type: boolean
+          example: false
+        hosting:
+          type: boolean
+          example: false
+        relay:
+          type: boolean
+          example: false
+        service:
           type: string
-          example: 104.69.216.0/22
-        id:
+          example: ''
+    FullResponse:
+      type: object
+      required:
+      - ip
+      properties:
+        ip:
           type: string
-          example: AKAMAI
-        name:
+          example: 66.87.125.72
+        bogon:
+          type: boolean
+          example: false
+        hostname:
           type: string
-          example: Akamai Technologies, Inc.
+          example: ip-66-87-125-72.spfdma.spcsdns.net
+        city:
+          type: string
+          example: Springfield
+        region:
+          type: string
+          example: Massachusetts
         country:
           type: string
           example: US
-        size:
+        loc:
           type: string
-          example: '256'
-        status:
+          example: 42.0999,-72.5783
+        postal:
           type: string
-          example: ALLOCATION
+          example: '01105'
+        timezone:
+          type: string
+          example: America/New_York
+        org:
+          type: string
+          example: AS51501 Khabarovsk home networks Ltd
+        asn:
+          $ref: '#/components/schemas/AsnResponse'
+        company:
+          $ref: '#/components/schemas/CompanyResponse'
+        carrier:
+          $ref: '#/components/schemas/CarrierResponse'
+        privacy:
+          $ref: '#/components/schemas/PrivacyResponse'
+        domains:
+          $ref: '#/components/schemas/DomainsResponse'
+    CompanyResponse:
+      type: object
+      required:
+      - name
+      - domain
+      - type
+      properties:
+        name:
+          type: string
+          example: Sprint Springfield POP
         domain:
-          type:
-          - string
-          - 'null'
-          example: quadranet.com
-    Error403:
+          type: string
+          example: sprint.com
+        type:
+          type: string
+          example: isp
+          enum:
+          - isp
+          - business
+          - education
+          - hosting
+    Error400Me:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: string
+          example: Invalid API token
+        token:
+          type: string
+          example: TOKEN
+    Error429:
       type: object
       required:
       - title
@@ -309,22 +286,10 @@ components:
       properties:
         title:
           type: string
-          example: Unknown token
+          example: Rate limit exceeded
         message:
           type: string
-          example: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help
-    Error422:
-      type: object
-      required:
-      - title
-      - message
-      properties:
-        title:
-          type: string
-          example: No IPs Found
-        message:
-          type: string
-          example: There were no valid IPs in the text.
+          example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
     AsnResponse:
       type: object
       required:
@@ -389,6 +354,49 @@ components:
           items:
             type: string
             example: '109'
+    Error400:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Wrong module or field type
+        message:
+          type: string
+          example: No module or field of type exists for the provided field. Please check our documentation https://ipinfo.io/developers.
+    Error422:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: No IPs Found
+        message:
+          type: string
+          example: There were no valid IPs in the text.
+    CarrierResponse:
+      type: object
+      required:
+      - name
+      - mcc
+      - mnc
+      properties:
+        name:
+          type: string
+          example: Sprint Corporation
+        mcc:
+          type: string
+          example: '310'
+        mnc:
+          type: string
+          example: '120'
+    Error500:
+      type: string
+      example: Internal server error
     DomainsResponse:
       type: object
       required:
@@ -408,6 +416,49 @@ components:
           items:
             type: string
             example: udemy.com
+    Prefix:
+      type: object
+      required:
+      - netblock
+      - id
+      - name
+      - country
+      properties:
+        netblock:
+          type: string
+          example: 104.69.216.0/22
+        id:
+          type: string
+          example: AKAMAI
+        name:
+          type: string
+          example: Akamai Technologies, Inc.
+        country:
+          type: string
+          example: US
+        size:
+          type: string
+          example: '256'
+        status:
+          type: string
+          example: ALLOCATION
+        domain:
+          type:
+          - string
+          - 'null'
+          example: quadranet.com
+    Error403:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Unknown token
+        message:
+          type: string
+          example: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help
     Prefix6:
       type: object
       required:
@@ -437,143 +488,6 @@ components:
         domain:
           type: string
           example: comcast.com
-    Error500:
-      type: string
-      example: Internal server error
-    PrivacyResponse:
-      type: object
-      required:
-      - vpn
-      - proxy
-      - tor
-      - hosting
-      - relay
-      - service
-      properties:
-        vpn:
-          type: boolean
-          example: true
-        proxy:
-          type: boolean
-          example: false
-        tor:
-          type: boolean
-          example: false
-        hosting:
-          type: boolean
-          example: false
-        relay:
-          type: boolean
-          example: false
-        service:
-          type: string
-          example: ''
-    CompanyResponse:
-      type: object
-      required:
-      - name
-      - domain
-      - type
-      properties:
-        name:
-          type: string
-          example: Sprint Springfield POP
-        domain:
-          type: string
-          example: sprint.com
-        type:
-          type: string
-          example: isp
-          enum:
-          - isp
-          - business
-          - education
-          - hosting
-    FullResponse:
-      type: object
-      required:
-      - ip
-      properties:
-        ip:
-          type: string
-          example: 66.87.125.72
-        bogon:
-          type: boolean
-          example: false
-        hostname:
-          type: string
-          example: ip-66-87-125-72.spfdma.spcsdns.net
-        city:
-          type: string
-          example: Springfield
-        region:
-          type: string
-          example: Massachusetts
-        country:
-          type: string
-          example: US
-        loc:
-          type: string
-          example: 42.0999,-72.5783
-        postal:
-          type: string
-          example: '01105'
-        timezone:
-          type: string
-          example: America/New_York
-        org:
-          type: string
-          example: AS51501 Khabarovsk home networks Ltd
-        asn:
-          $ref: '#/components/schemas/AsnResponse'
-        company:
-          $ref: '#/components/schemas/CompanyResponse'
-        carrier:
-          $ref: '#/components/schemas/CarrierResponse'
-        privacy:
-          $ref: '#/components/schemas/PrivacyResponse'
-        domains:
-          $ref: '#/components/schemas/DomainsResponse'
-    CarrierResponse:
-      type: object
-      required:
-      - name
-      - mcc
-      - mnc
-      properties:
-        name:
-          type: string
-          example: Sprint Corporation
-        mcc:
-          type: string
-          example: '310'
-        mnc:
-          type: string
-          example: '120'
-    Error400:
-      type: object
-      required:
-      - title
-      - message
-      properties:
-        title:
-          type: string
-          example: Wrong module or field type
-        message:
-          type: string
-          example: No module or field of type exists for the provided field. Please check our documentation https://ipinfo.io/developers.
-    Error429:
-      type: object
-      required:
-      - title
-      - message
-      properties:
-        title:
-          type: string
-          example: Rate limit exceeded
-        message:
-          type: string
-          example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
     MeResponse:
       type: object
       required:
@@ -707,17 +621,6 @@ components:
                     result_limit:
                       type: integer
                       example: 5
-    Error400Me:
-      type: object
-      required:
-      - error
-      properties:
-        error:
-          type: string
-          example: Invalid API token
-        token:
-          type: string
-          example: TOKEN
     Error404:
       type: object
       required:
@@ -739,7 +642,114 @@ components:
             message:
               type: string
               example: Please provide a valid IP address
+  responses:
+    BadRequestMe:
+      description: If the passed IPinfo access token is not present or is invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error400Me'
+    Batch:
+      description: Batch response object.
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+            example:
+              8.8.8.8/city: Mountain View
+              8.8.8.8:
+                ip: 8.8.8.8
+                hostname: dns.google
+                city: Mountain View
+                region: California
+                country: US
+                loc: 37.4056,-122.0775
+                org: AS15169 Google LLC
+                postal: 94043
+                timezone: America/Los_Angeles
+    Summarize:
+      description: Summarize response object.
+      content:
+        application/json:
+          schema:
+            type: object
+            example:
+              summary: Example of summarizing IP addresses
+              value:
+                status: Report Generated
+                reportUrl: https://ipinfo.io/tools/summarize-ips/3ea606f3-b3ad-4a37-a875-b897a0c2e718
+    Map:
+      description: Map response object.
+      content:
+        application/json:
+          schema:
+            type: object
+            example:
+              summary: Example of mapping IP addresses
+              value:
+                status: Report Generated
+                reportUrl: https://ipinfo.io/tools/map/40c04638-a340-44b8-90de-f95afdff99d8
+    FullResponse:
+      description: Full response object.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FullResponse'
+    TooManyRequests:
+      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error429'
+    Me:
+      description: IPinfo access token rate and access information.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MeResponse'
+    NotFound:
+      description: Wrong ip. Please provide a valid IP address.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error404'
+    InternalServerError:
+      description: Internal server error or server unavailable.
+      content:
+        text/plain:
+          schema:
+            $ref: '#/components/schemas/Error500'
+    BadRequest:
+      description: If users try to access a field type that does not exist or do not have permissions to access it, they will encounter a wrong module or field type error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error400'
+    UnprocessableEntity:
+      description: The input payload does not meet the specification.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error422'
+    Forbidden:
+      description: Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error403'
   requestBodies:
+    Batch:
+      description: A JSON array containing IP addresses.
+      required: true
+      content:
+        application/json:
+          schema:
+            type: array
+            example:
+            - 8.8.8.8/city
+            - 8.8.8.8
     Map:
       description: A file containing IP addresses with each IP on a separate line.
       required: true
@@ -768,16 +778,6 @@ components:
               77.222.8.184
 
               '
-    Batch:
-      description: A JSON array containing IP addresses.
-      required: true
-      content:
-        application/json:
-          schema:
-            type: array
-            example:
-            - 8.8.8.8/city
-            - 8.8.8.8
     Summarize:
       description: A file containing IP addresses with each IP on a separate line.
       required: true

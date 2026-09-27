@@ -55,7 +55,7 @@ tags:
 - Development
 apis:
 - aid: ipinfo:ipinfo-abuse-api
-  name: IPinfo abuse API
+  name: IPinfo Abuse API
   description: Abuse Contact API.
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
@@ -119,7 +119,7 @@ apis:
   - type: Plans
     url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
 - aid: ipinfo:ipinfo-asn-api
-  name: IPinfo asn API
+  name: IPinfo Asn API
   description: ASN API.
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
@@ -183,7 +183,7 @@ apis:
   - type: Plans
     url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
 - aid: ipinfo:ipinfo-carrier-api
-  name: IPinfo carrier API
+  name: IPinfo Carrier API
   description: IP to Phone Carrier Detection API.
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
@@ -247,7 +247,7 @@ apis:
   - type: Plans
     url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
 - aid: ipinfo:ipinfo-company-api
-  name: IPinfo company API
+  name: IPinfo Company API
   description: IP to Company API.
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
@@ -311,7 +311,7 @@ apis:
   - type: Plans
     url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
 - aid: ipinfo:ipinfo-domains-api
-  name: IPinfo domains API
+  name: IPinfo Domains API
   description: Hosted Domains API.
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
@@ -375,7 +375,7 @@ apis:
   - type: Plans
     url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
 - aid: ipinfo:ipinfo-general-api
-  name: IPinfo general API
+  name: IPinfo General API
   description: General API.
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
@@ -438,7 +438,7 @@ apis:
   - type: Plans
     url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
 - aid: ipinfo:ipinfo-ipinfo-core-api
-  name: IPinfo core API
+  name: IPinfo Core API
   description: IPinfo Core API - Core IP information service.
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
@@ -500,7 +500,7 @@ apis:
   - type: Plans
     url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
 - aid: ipinfo:ipinfo-ipinfo-lite-api
-  name: IPinfo lite API
+  name: IPinfo Lite API
   description: IPinfo Lite API - IPinfo's free API service for country and ASN information.
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
@@ -562,7 +562,7 @@ apis:
   - type: Plans
     url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
 - aid: ipinfo:ipinfo-ipinfo-max-api
-  name: IPinfo max API
+  name: IPinfo Max API
   description: IPinfo Max API - Most comprehensive IP intelligence with residential proxy detection.
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
@@ -624,7 +624,7 @@ apis:
   - type: Plans
     url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
 - aid: ipinfo:ipinfo-ipinfo-plus-api
-  name: IPinfo plus API
+  name: IPinfo Plus API
   description: IPinfo Plus API - Enhanced IP information service with mobile and anonymity detection.
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
@@ -686,7 +686,7 @@ apis:
   - type: Plans
     url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
 - aid: ipinfo:ipinfo-places-api
-  name: IPinfo places API
+  name: IPinfo Places API
   description: IPinfo Places API - Building-level IP intelligence for physical locations.
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
@@ -876,7 +876,7 @@ apis:
   - type: Plans
     url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
 - aid: ipinfo:ipinfo-ranges-api
-  name: IPinfo ranges API
+  name: IPinfo Ranges API
   description: IP Ranges API.
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
@@ -1002,7 +1002,7 @@ apis:
   - type: Plans
     url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
 - aid: ipinfo:ipinfo-single-api
-  name: IPinfo single API
+  name: IPinfo Single API
   description: Single info API.
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io
@@ -1066,7 +1066,7 @@ apis:
   - type: Plans
     url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
 - aid: ipinfo:ipinfo-whois-api
-  name: IPinfo whois API
+  name: IPinfo Whois API
   description: IP WHOIS API
   humanURL: https://ipinfo.io/developers
   baseURL: https://api.ipinfo.io

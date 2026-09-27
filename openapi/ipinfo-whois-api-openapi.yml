@@ -137,66 +137,44 @@ paths:
       operationId: getWhoisPocByWhoispoc
       x-operation-id-source: derived
 components:
+  responses:
+    WhoisPoc:
+      description: WHOIS Point of Contact (POC) response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WhoisPocResponse'
+    WhoisNetId:
+      description: WHOIS Network (NET) ID response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WhoisNetIdResponse'
+    WhoisOrg:
+      description: WHOIS organization (ORG) ID response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WhoisOrgResponse'
+    WhoisIp:
+      description: WHOIS IP  and IP range response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WhoisIpResponse'
+    WhoisDomain:
+      description: WHOIS Domain response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WhoisDomainResponse'
+    WhoisAsn:
+      description: WHOIS ASN response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WhoisAsnResponse'
   schemas:
-    WhoisIpResponse:
-      type: object
-      properties:
-        net:
-          type: string
-          example: 24.62.0.0/15
-        total:
-          type: integer
-          example: 100
-        page:
-          type: integer
-          example: 0
-        records:
-          type: array
-          items:
-            type: object
-            properties:
-              range:
-                type: string
-                example: 24.62.0.0/15
-              id:
-                type: string
-                example: NEW-ENGLAND-5
-              name:
-                type: string
-                example: Comcast Cable Communications Holdings, Inc
-              country:
-                type: string
-                example: US
-              org:
-                type: string
-                example: C02610695
-              updated:
-                type: string
-                format: date
-                example: '2010-10-18'
-              status:
-                type: string
-                example: REASSIGNMENT
-              source:
-                type: string
-                example: arin
-              raw:
-                type: string
-                example: <raw data>
-      example:
-        net: 24.62.0.0/15
-        total: 100
-        page: 0
-        records:
-        - range: 24.62.0.0/15
-          id: NEW-ENGLAND-5
-          name: Comcast Cable Communications Holdings, Inc
-          country: US
-          org: C02610695
-          updated: '2010-10-18'
-          status: REASSIGNMENT
-          source: arin
-          raw: <raw data>
     WhoisNetIdResponse:
       type: object
       properties:
@@ -345,6 +323,65 @@ components:
           updated: '2021-01-27'
           source: apnic
           raw: <raw data>
+    WhoisIpResponse:
+      type: object
+      properties:
+        net:
+          type: string
+          example: 24.62.0.0/15
+        total:
+          type: integer
+          example: 100
+        page:
+          type: integer
+          example: 0
+        records:
+          type: array
+          items:
+            type: object
+            properties:
+              range:
+                type: string
+                example: 24.62.0.0/15
+              id:
+                type: string
+                example: NEW-ENGLAND-5
+              name:
+                type: string
+                example: Comcast Cable Communications Holdings, Inc
+              country:
+                type: string
+                example: US
+              org:
+                type: string
+                example: C02610695
+              updated:
+                type: string
+                format: date
+                example: '2010-10-18'
+              status:
+                type: string
+                example: REASSIGNMENT
+              source:
+                type: string
+                example: arin
+              raw:
+                type: string
+                example: <raw data>
+      example:
+        net: 24.62.0.0/15
+        total: 100
+        page: 0
+        records:
+        - range: 24.62.0.0/15
+          id: NEW-ENGLAND-5
+          name: Comcast Cable Communications Holdings, Inc
+          country: US
+          org: C02610695
+          updated: '2010-10-18'
+          status: REASSIGNMENT
+          source: arin
+          raw: <raw data>
     WhoisOrgResponse:
       type: object
       properties:
@@ -415,78 +452,6 @@ components:
           maintainer: POC object or null
           created: '2000-03-25'
           updated: '2011-09-24'
-          source: arin
-          raw: <raw data>
-    WhoisPocResponse:
-      type: object
-      properties:
-        poc:
-          type: string
-          example: CP312-ARIN
-        total:
-          type: integer
-          example: 1
-        page:
-          type: integer
-          example: 0
-        records:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                example: CP312-ARIN
-              name:
-                type: string
-                example: Cynthia Pararo
-              email:
-                type: string
-                example: spararo@mindspring.com
-              address:
-                type: string
-                example: 'US, GA, Atlanta, Pineapple Houser
-
-                  2131 Plaster Bridge Rd Ne, 303244036'
-              country:
-                type: string
-                example: US
-              phone:
-                type: string
-                example: ''
-              fax:
-                type: string
-                example: ''
-              created:
-                type: string
-                format: date
-                example: '2000-03-25'
-              updated:
-                type: string
-                format: date
-                example: '2000-03-25'
-              source:
-                type: string
-                example: arin
-              raw:
-                type: string
-                example: <raw data>
-      example:
-        poc: CP312-ARIN
-        total: 1
-        page: 0
-        records:
-        - id: CP312-ARIN
-          name: Cynthia Pararo
-          email: spararo@mindspring.com
-          address: 'US, GA, Atlanta, Pineapple Houser
-
-            2131 Plaster Bridge Rd Ne, 303244036'
-          country: US
-          phone: ''
-          fax: ''
-          created: '2000-03-25'
-          updated: '2000-03-25'
           source: arin
           raw: <raw data>
     WhoisDomainResponse:
@@ -568,14 +533,79 @@ components:
           source: arin
           raw: <raw data>
           domain: comcast.net
+    WhoisPocResponse:
+      type: object
+      properties:
+        poc:
+          type: string
+          example: CP312-ARIN
+        total:
+          type: integer
+          example: 1
+        page:
+          type: integer
+          example: 0
+        records:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: CP312-ARIN
+              name:
+                type: string
+                example: Cynthia Pararo
+              email:
+                type: string
+                example: spararo@mindspring.com
+              address:
+                type: string
+                example: 'US, GA, Atlanta, Pineapple Houser
+
+                  2131 Plaster Bridge Rd Ne, 303244036'
+              country:
+                type: string
+                example: US
+              phone:
+                type: string
+                example: ''
+              fax:
+                type: string
+                example: ''
+              created:
+                type: string
+                format: date
+                example: '2000-03-25'
+              updated:
+                type: string
+                format: date
+                example: '2000-03-25'
+              source:
+                type: string
+                example: arin
+              raw:
+                type: string
+                example: <raw data>
+      example:
+        poc: CP312-ARIN
+        total: 1
+        page: 0
+        records:
+        - id: CP312-ARIN
+          name: Cynthia Pararo
+          email: spararo@mindspring.com
+          address: 'US, GA, Atlanta, Pineapple Houser
+
+            2131 Plaster Bridge Rd Ne, 303244036'
+          country: US
+          phone: ''
+          fax: ''
+          created: '2000-03-25'
+          updated: '2000-03-25'
+          source: arin
+          raw: <raw data>
   parameters:
-    Whoisorgid:
-      name: whoisorgid
-      in: path
-      description: The WHOIS organization (ORG) ID of an internet organization.
-      required: true
-      schema:
-        type: string
     Whoissource:
       name: whoissource
       in: query
@@ -588,13 +618,6 @@ components:
         - afrinic
         - apnic
         - lacnic
-    Whoispoc:
-      name: whoispoc
-      in: path
-      description: The WHOIS Point of Contact (POC) value of an internet organization.
-      required: true
-      schema:
-        type: string
     Whoisip:
       name: whoisip
       in: path
@@ -602,10 +625,17 @@ components:
       required: true
       schema:
         type: string
-    Domain:
-      name: domain
+    Whoispoc:
+      name: whoispoc
       in: path
-      description: a domain.
+      description: The WHOIS Point of Contact (POC) value of an internet organization.
+      required: true
+      schema:
+        type: string
+    Whoisorgid:
+      name: whoisorgid
+      in: path
+      description: The WHOIS organization (ORG) ID of an internet organization.
       required: true
       schema:
         type: string
@@ -623,6 +653,13 @@ components:
       required: true
       schema:
         type: integer
+    Domain:
+      name: domain
+      in: path
+      description: a domain.
+      required: true
+      schema:
+        type: string
     Whoisnetid:
       name: whoisnetid
       in: path
@@ -630,43 +667,6 @@ components:
       required: true
       schema:
         type: string
-  responses:
-    WhoisPoc:
-      description: WHOIS Point of Contact (POC) response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/WhoisPocResponse'
-    WhoisIp:
-      description: WHOIS IP  and IP range response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/WhoisIpResponse'
-    WhoisAsn:
-      description: WHOIS ASN response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/WhoisAsnResponse'
-    WhoisDomain:
-      description: WHOIS Domain response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/WhoisDomainResponse'
-    WhoisNetId:
-      description: WHOIS Network (NET) ID response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/WhoisNetIdResponse'
-    WhoisOrg:
-      description: WHOIS organization (ORG) ID response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/WhoisOrgResponse'
   securitySchemes:
     BasicAuth:
       type: http

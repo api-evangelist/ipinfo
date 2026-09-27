@@ -46,30 +46,30 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   responses:
-    TooManyRequests:
-      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error429'
-    InternalServerError:
-      description: Internal server error or server unavailable.
-      content:
-        text/plain:
-          schema:
-            $ref: '#/components/schemas/Error500'
-    Abuse:
-      description: Abuse response object.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/AbuseResponse'
     NotFound:
       description: Wrong ip. Please provide a valid IP address.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error404'
+    Abuse:
+      description: Abuse response object.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AbuseResponse'
+    InternalServerError:
+      description: Internal server error or server unavailable.
+      content:
+        text/plain:
+          schema:
+            $ref: '#/components/schemas/Error500'
+    TooManyRequests:
+      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error429'
     Forbidden:
       description: Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.
       content:
@@ -77,6 +77,9 @@ components:
           schema:
             $ref: '#/components/schemas/Error403'
   schemas:
+    Error500:
+      type: string
+      example: Internal server error
     AbuseResponse:
       type: object
       properties:
@@ -110,9 +113,6 @@ components:
         message:
           type: string
           example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
-    Error500:
-      type: string
-      example: Internal server error
     Error403:
       type: object
       required:

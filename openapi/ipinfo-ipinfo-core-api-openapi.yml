@@ -130,15 +130,121 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
+  parameters:
+    CoreField:
+      name: field
+      in: path
+      description: A specific field from the core response or nested geo/as fields.
+      required: true
+      schema:
+        type: string
+        enum:
+        - ip
+        - hostname
+        - geo
+        - geo/city
+        - geo/region
+        - geo/region_code
+        - geo/country
+        - geo/country_code
+        - geo/continent
+        - geo/continent_code
+        - geo/latitude
+        - geo/longitude
+        - geo/timezone
+        - geo/postal_code
+        - as
+        - as/asn
+        - as/name
+        - as/domain
+        - as/type
+        - is_anonymous
+        - is_anycast
+        - is_hosting
+        - is_mobile
+        - is_satellite
+    Ip:
+      name: ip
+      in: path
+      description: A single IPv4 or IPv6 IP address.
+      required: true
+      schema:
+        type: string
+  responses:
+    CoreResponse:
+      description: Core response object.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CoreResponse'
+    InternalServerError:
+      description: Internal server error or server unavailable.
+      content:
+        text/plain:
+          schema:
+            $ref: '#/components/schemas/Error500'
+    CoreForbidden:
+      description: Forbidden error (authentication issues).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CoreErrorForbidden'
+    CoreInvalidField:
+      description: Invalid field name error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CoreErrorInvalidField'
+    TooManyRequests:
+      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error429'
+    CoreField:
+      description: A specific field value from the core response.
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: Mountain View
+        application/json:
+          schema:
+            type: object
+            example:
+              city: Mountain View
+              region: California
+    CoreBadRequest:
+      description: Bad request error (invalid IP format).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CoreErrorBadRequest'
   schemas:
-    CoreErrorBadRequest:
+    CoreErrorForbidden:
       type: object
       required:
+      - status
       - error
       properties:
+        status:
+          type: integer
+          example: 403
         error:
-          type: string
-          example: Please provide a valid IP address
+          type: object
+          required:
+          - title
+          - message
+          properties:
+            title:
+              type: string
+              example: Unknown token
+            message:
+              type: string
+              example: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help
+    Error500:
+      type: string
+      example: Internal server error
     CoreResponse:
       type: object
       required:
@@ -224,9 +330,14 @@ components:
         error:
           type: string
           example: invalid_field is not a valid field.
-    Error500:
-      type: string
-      example: Internal server error
+    CoreErrorBadRequest:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: string
+          example: Please provide a valid IP address
     Error429:
       type: object
       required:
@@ -239,117 +350,6 @@ components:
         message:
           type: string
           example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
-    CoreErrorForbidden:
-      type: object
-      required:
-      - status
-      - error
-      properties:
-        status:
-          type: integer
-          example: 403
-        error:
-          type: object
-          required:
-          - title
-          - message
-          properties:
-            title:
-              type: string
-              example: Unknown token
-            message:
-              type: string
-              example: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help
-  responses:
-    TooManyRequests:
-      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error429'
-    InternalServerError:
-      description: Internal server error or server unavailable.
-      content:
-        text/plain:
-          schema:
-            $ref: '#/components/schemas/Error500'
-    CoreField:
-      description: A specific field value from the core response.
-      content:
-        text/plain:
-          schema:
-            type: string
-            example: Mountain View
-        application/json:
-          schema:
-            type: object
-            example:
-              city: Mountain View
-              region: California
-    CoreForbidden:
-      description: Forbidden error (authentication issues).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CoreErrorForbidden'
-    CoreInvalidField:
-      description: Invalid field name error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CoreErrorInvalidField'
-    CoreResponse:
-      description: Core response object.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CoreResponse'
-    CoreBadRequest:
-      description: Bad request error (invalid IP format).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CoreErrorBadRequest'
-  parameters:
-    CoreField:
-      name: field
-      in: path
-      description: A specific field from the core response or nested geo/as fields.
-      required: true
-      schema:
-        type: string
-        enum:
-        - ip
-        - hostname
-        - geo
-        - geo/city
-        - geo/region
-        - geo/region_code
-        - geo/country
-        - geo/country_code
-        - geo/continent
-        - geo/continent_code
-        - geo/latitude
-        - geo/longitude
-        - geo/timezone
-        - geo/postal_code
-        - as
-        - as/asn
-        - as/name
-        - as/domain
-        - as/type
-        - is_anonymous
-        - is_anycast
-        - is_hosting
-        - is_mobile
-        - is_satellite
-    Ip:
-      name: ip
-      in: path
-      description: A single IPv4 or IPv6 IP address.
-      required: true
-      schema:
-        type: string
   securitySchemes:
     BasicAuth:
       type: http

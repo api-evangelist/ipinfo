@@ -48,6 +48,18 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   responses:
+    NotFound:
+      description: Wrong ip. Please provide a valid IP address.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error404'
+    InternalServerError:
+      description: Internal server error or server unavailable.
+      content:
+        text/plain:
+          schema:
+            $ref: '#/components/schemas/Error500'
     PrivacyExtended:
       description: Privacy Detection Extended response with detailed methodologies.
       content:
@@ -60,18 +72,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error429'
-    InternalServerError:
-      description: Internal server error or server unavailable.
-      content:
-        text/plain:
-          schema:
-            $ref: '#/components/schemas/Error500'
-    NotFound:
-      description: Wrong ip. Please provide a valid IP address.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error404'
     Forbidden:
       description: Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.
       content:
@@ -79,6 +79,9 @@ components:
           schema:
             $ref: '#/components/schemas/Error403'
   schemas:
+    Error500:
+      type: string
+      example: Internal server error
     PrivacyExtendedResponse:
       type: object
       required:
@@ -173,9 +176,6 @@ components:
         message:
           type: string
           example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
-    Error500:
-      type: string
-      example: Internal server error
     Error403:
       type: object
       required:

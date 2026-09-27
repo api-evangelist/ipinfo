@@ -432,128 +432,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  responses:
-    Timezone:
-      description: Timezone of the located IP address in the format of IANA Time Zones.
-      content:
-        text/plain:
-          schema:
-            type: string
-            example: America/New_York
-    BadRequest:
-      description: If users try to access a field type that does not exist or do not have permissions to access it, they will encounter a wrong module or field type error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error400'
-    Organization:
-      description: ASN and AS organization name for the IP address.
-      content:
-        text/plain:
-          schema:
-            type: string
-            example: AS51501 Khabarovsk home networks Ltd
-    Country:
-      description: Name of the country in the 2 letter ISO 3166-1 alpha-2 for the IP address.
-      content:
-        text/plain:
-          schema:
-            type: string
-            example: US
-    Location:
-      description: Geographic coordinate of the IP address in the format of `<latitude>, <longitude>`.
-      content:
-        text/plain:
-          schema:
-            type: string
-            example: 42.0999,-72.5783
-    City:
-      description: The city name of the IP address.
-      content:
-        text/plain:
-          schema:
-            type: string
-            example: Springfield
-    Region:
-      description: The name of the region or state of the IP address.
-      content:
-        text/plain:
-          schema:
-            type: string
-            example: Massachusetts
-    TooManyRequests:
-      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error429'
-    NotFound:
-      description: Wrong ip. Please provide a valid IP address.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error404'
-    Postal:
-      description: Postal code or zip code for the IP address.
-      content:
-        text/plain:
-          schema:
-            type: string
-            example: '01105'
-    InternalServerError:
-      description: Internal server error or server unavailable.
-      content:
-        text/plain:
-          schema:
-            $ref: '#/components/schemas/Error500'
-    Ip:
-      description: Public IP address.
-      content:
-        text/plain:
-          schema:
-            type: string
-            example: 66.87.125.72
-    Hostname:
-      description: Hostname of the IP address.
-      content:
-        text/plain:
-          schema:
-            type: string
-            example: ip-66-87-125-72.spfdma.spcsdns.net
-    Forbidden:
-      description: Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error403'
   schemas:
-    Error403:
-      type: object
-      required:
-      - title
-      - message
-      properties:
-        title:
-          type: string
-          example: Unknown token
-        message:
-          type: string
-          example: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help
-    Error500:
-      type: string
-      example: Internal server error
-    Error400:
-      type: object
-      required:
-      - title
-      - message
-      properties:
-        title:
-          type: string
-          example: Wrong module or field type
-        message:
-          type: string
-          example: No module or field of type exists for the provided field. Please check our documentation https://ipinfo.io/developers.
     Error429:
       type: object
       required:
@@ -566,6 +445,33 @@ components:
         message:
           type: string
           example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
+    Error400:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Wrong module or field type
+        message:
+          type: string
+          example: No module or field of type exists for the provided field. Please check our documentation https://ipinfo.io/developers.
+    Error500:
+      type: string
+      example: Internal server error
+    Error403:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Unknown token
+        message:
+          type: string
+          example: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help
     Error404:
       type: object
       required:
@@ -587,6 +493,100 @@ components:
             message:
               type: string
               example: Please provide a valid IP address
+  responses:
+    Hostname:
+      description: Hostname of the IP address.
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: ip-66-87-125-72.spfdma.spcsdns.net
+    Location:
+      description: Geographic coordinate of the IP address in the format of `<latitude>, <longitude>`.
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: 42.0999,-72.5783
+    TooManyRequests:
+      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error429'
+    Timezone:
+      description: Timezone of the located IP address in the format of IANA Time Zones.
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: America/New_York
+    Ip:
+      description: Public IP address.
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: 66.87.125.72
+    Postal:
+      description: Postal code or zip code for the IP address.
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: '01105'
+    NotFound:
+      description: Wrong ip. Please provide a valid IP address.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error404'
+    Organization:
+      description: ASN and AS organization name for the IP address.
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: AS51501 Khabarovsk home networks Ltd
+    InternalServerError:
+      description: Internal server error or server unavailable.
+      content:
+        text/plain:
+          schema:
+            $ref: '#/components/schemas/Error500'
+    BadRequest:
+      description: If users try to access a field type that does not exist or do not have permissions to access it, they will encounter a wrong module or field type error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error400'
+    Country:
+      description: Name of the country in the 2 letter ISO 3166-1 alpha-2 for the IP address.
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: US
+    Forbidden:
+      description: Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error403'
+    Region:
+      description: The name of the region or state of the IP address.
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: Massachusetts
+    City:
+      description: The city name of the IP address.
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: Springfield
   parameters:
     Ip:
       name: ip
