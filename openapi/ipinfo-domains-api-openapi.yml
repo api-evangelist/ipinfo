@@ -37,6 +37,26 @@ paths:
         '200':
           $ref: '#/components/responses/Domains'
 components:
+  schemas:
+    DomainsResponse:
+      type: object
+      required:
+      - total
+      properties:
+        ip:
+          type: string
+          example: 1.1.1.1
+        page:
+          type: integer
+          example: 1
+        total:
+          type: integer
+          example: 17939
+        domains:
+          type: array
+          items:
+            type: string
+            example: udemy.com
   parameters:
     Limit:
       name: limit
@@ -61,26 +81,6 @@ components:
       required: true
       schema:
         type: string
-  schemas:
-    DomainsResponse:
-      type: object
-      required:
-      - total
-      properties:
-        ip:
-          type: string
-          example: 1.1.1.1
-        page:
-          type: integer
-          example: 1
-        total:
-          type: integer
-          example: 17939
-        domains:
-          type: array
-          items:
-            type: string
-            example: udemy.com
   responses:
     Domains:
       description: Domains response object.

@@ -45,41 +45,22 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  responses:
-    NotFound:
-      description: Wrong ip. Please provide a valid IP address.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error404'
-    Abuse:
-      description: Abuse response object.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/AbuseResponse'
-    InternalServerError:
-      description: Internal server error or server unavailable.
-      content:
-        text/plain:
-          schema:
-            $ref: '#/components/schemas/Error500'
-    TooManyRequests:
-      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error429'
-    Forbidden:
-      description: Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error403'
   schemas:
     Error500:
       type: string
       example: Internal server error
+    Error429:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Rate limit exceeded
+        message:
+          type: string
+          example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
     AbuseResponse:
       type: object
       properties:
@@ -101,18 +82,6 @@ components:
         phone:
           type: string
           example: +1-650-253-0000
-    Error429:
-      type: object
-      required:
-      - title
-      - message
-      properties:
-        title:
-          type: string
-          example: Rate limit exceeded
-        message:
-          type: string
-          example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
     Error403:
       type: object
       required:
@@ -146,6 +115,37 @@ components:
             message:
               type: string
               example: Please provide a valid IP address
+  responses:
+    TooManyRequests:
+      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error429'
+    Abuse:
+      description: Abuse response object.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AbuseResponse'
+    Forbidden:
+      description: Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error403'
+    NotFound:
+      description: Wrong ip. Please provide a valid IP address.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error404'
+    InternalServerError:
+      description: Internal server error or server unavailable.
+      content:
+        text/plain:
+          schema:
+            $ref: '#/components/schemas/Error500'
   parameters:
     Ip:
       name: ip
