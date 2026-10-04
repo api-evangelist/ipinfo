@@ -49,22 +49,32 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
+  responses:
+    Forbidden:
+      description: Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error403'
+    InternalServerError:
+      description: Internal server error or server unavailable.
+      content:
+        text/plain:
+          schema:
+            $ref: '#/components/schemas/Error500'
+    BadRequest:
+      description: If users try to access a field type that does not exist or do not have permissions to access it, they will encounter a wrong module or field type error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error400'
+    TooManyRequests:
+      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error429'
   schemas:
-    Error500:
-      type: string
-      example: Internal server error
-    Error429:
-      type: object
-      required:
-      - title
-      - message
-      properties:
-        title:
-          type: string
-          example: Rate limit exceeded
-        message:
-          type: string
-          example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
     Error400:
       type: object
       required:
@@ -77,6 +87,18 @@ components:
         message:
           type: string
           example: No module or field of type exists for the provided field. Please check our documentation https://ipinfo.io/developers.
+    Error429:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Rate limit exceeded
+        message:
+          type: string
+          example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
     PlacesResponse:
       type: object
       required:
@@ -105,6 +127,9 @@ components:
         longitude:
           type: number
           example: -122.3367
+    Error500:
+      type: string
+      example: Internal server error
     Error403:
       type: object
       required:
@@ -117,31 +142,6 @@ components:
         message:
           type: string
           example: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help
-  responses:
-    TooManyRequests:
-      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error429'
-    BadRequest:
-      description: If users try to access a field type that does not exist or do not have permissions to access it, they will encounter a wrong module or field type error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error400'
-    Forbidden:
-      description: Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error403'
-    InternalServerError:
-      description: Internal server error or server unavailable.
-      content:
-        text/plain:
-          schema:
-            $ref: '#/components/schemas/Error500'
   parameters:
     Ip:
       name: ip

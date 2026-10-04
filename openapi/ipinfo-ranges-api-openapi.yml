@@ -43,10 +43,59 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
+  responses:
+    Forbidden:
+      description: Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error403'
+    NotFound:
+      description: Wrong ip. Please provide a valid IP address.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error404'
+    InternalServerError:
+      description: Internal server error or server unavailable.
+      content:
+        text/plain:
+          schema:
+            $ref: '#/components/schemas/Error500'
+    Ranges:
+      description: Ranges response object.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RangesResponse'
+    TooManyRequests:
+      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error429'
   schemas:
-    Error500:
-      type: string
-      example: Internal server error
+    Error404:
+      type: object
+      required:
+      - status
+      - error
+      properties:
+        status:
+          type: integer
+          example: 404
+        error:
+          type: object
+          required:
+          - title
+          - message
+          properties:
+            title:
+              type: string
+              example: Wrong ip
+            message:
+              type: string
+              example: Please provide a valid IP address
     Error429:
       type: object
       required:
@@ -71,6 +120,9 @@ components:
         message:
           type: string
           example: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help
+    Error500:
+      type: string
+      example: Internal server error
     RangesResponse:
       type: object
       required:
@@ -93,58 +145,6 @@ components:
           items:
             type: string
             example: 23.24.240.0/29
-    Error404:
-      type: object
-      required:
-      - status
-      - error
-      properties:
-        status:
-          type: integer
-          example: 404
-        error:
-          type: object
-          required:
-          - title
-          - message
-          properties:
-            title:
-              type: string
-              example: Wrong ip
-            message:
-              type: string
-              example: Please provide a valid IP address
-  responses:
-    TooManyRequests:
-      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error429'
-    Ranges:
-      description: Ranges response object.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RangesResponse'
-    Forbidden:
-      description: Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error403'
-    NotFound:
-      description: Wrong ip. Please provide a valid IP address.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error404'
-    InternalServerError:
-      description: Internal server error or server unavailable.
-      content:
-        text/plain:
-          schema:
-            $ref: '#/components/schemas/Error500'
   parameters:
     Domain:
       name: domain

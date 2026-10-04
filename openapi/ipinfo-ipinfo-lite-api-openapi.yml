@@ -135,21 +135,17 @@ components:
         error:
           type: string
           example: invalid_field is not a valid field.
+    LiteErrorBadRequest:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: string
+          example: Please provide a valid IP address
     Error500:
       type: string
       example: Internal server error
-    LiteBogonResponse:
-      type: object
-      required:
-      - ip
-      - bogon
-      properties:
-        ip:
-          type: string
-          example: 192.168.1.1
-        bogon:
-          type: boolean
-          example: true
     LiteResponse:
       type: object
       required:
@@ -186,14 +182,6 @@ components:
         continent:
           type: string
           example: North America
-    LiteErrorBadRequest:
-      type: object
-      required:
-      - error
-      properties:
-        error:
-          type: string
-          example: Please provide a valid IP address
     LiteErrorForbidden:
       type: object
       required:
@@ -215,7 +203,25 @@ components:
             message:
               type: string
               example: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help
+    LiteBogonResponse:
+      type: object
+      required:
+      - ip
+      - bogon
+      properties:
+        ip:
+          type: string
+          example: 192.168.1.1
+        bogon:
+          type: boolean
+          example: true
   responses:
+    LiteForbidden:
+      description: Forbidden error (authentication issues).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LiteErrorForbidden'
     LiteField:
       description: A specific field value from the lite response.
       content:
@@ -223,36 +229,30 @@ components:
           schema:
             type: string
             example: United States
-    LiteForbidden:
-      description: Forbidden error (authentication issues).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/LiteErrorForbidden'
-    LiteInvalidField:
-      description: Invalid field name error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/LiteErrorInvalidField'
-    LiteBadRequest:
-      description: Bad request error (invalid IP format).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/LiteErrorBadRequest'
-    LiteResponse:
-      description: Lite response object.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/LiteResponse'
     InternalServerError:
       description: Internal server error or server unavailable.
       content:
         text/plain:
           schema:
             $ref: '#/components/schemas/Error500'
+    LiteBadRequest:
+      description: Bad request error (invalid IP format).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LiteErrorBadRequest'
+    LiteInvalidField:
+      description: Invalid field name error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LiteErrorInvalidField'
+    LiteResponse:
+      description: Lite response object.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LiteResponse'
   parameters:
     LiteField:
       name: field

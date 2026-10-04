@@ -131,58 +131,6 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    Error500:
-      type: string
-      example: Internal server error
-    Error429:
-      type: object
-      required:
-      - title
-      - message
-      properties:
-        title:
-          type: string
-          example: Rate limit exceeded
-        message:
-          type: string
-          example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
-    PlusErrorBadRequest:
-      type: object
-      required:
-      - error
-      properties:
-        error:
-          type: string
-          example: Please provide a valid IP address
-    PlusErrorInvalidField:
-      type: object
-      required:
-      - error
-      properties:
-        error:
-          type: string
-          example: invalid_field is not a valid field.
-    PlusErrorForbidden:
-      type: object
-      required:
-      - status
-      - error
-      properties:
-        status:
-          type: integer
-          example: 403
-        error:
-          type: object
-          required:
-          - title
-          - message
-          properties:
-            title:
-              type: string
-              example: Unknown token
-            message:
-              type: string
-              example: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help
     PlusResponse:
       type: object
       required:
@@ -304,19 +252,59 @@ components:
         is_satellite:
           type: boolean
           example: false
+    PlusErrorInvalidField:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: string
+          example: invalid_field is not a valid field.
+    PlusErrorForbidden:
+      type: object
+      required:
+      - status
+      - error
+      properties:
+        status:
+          type: integer
+          example: 403
+        error:
+          type: object
+          required:
+          - title
+          - message
+          properties:
+            title:
+              type: string
+              example: Unknown token
+            message:
+              type: string
+              example: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help
+    Error429:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Rate limit exceeded
+        message:
+          type: string
+          example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
+    PlusErrorBadRequest:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: string
+          example: Please provide a valid IP address
+    Error500:
+      type: string
+      example: Internal server error
   responses:
-    PlusBadRequest:
-      description: Bad request error (invalid IP format).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PlusErrorBadRequest'
-    TooManyRequests:
-      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error429'
     PlusField:
       description: A specific field value from the plus response.
       content:
@@ -330,6 +318,18 @@ components:
             example:
               city: Toronto
               region: Ontario
+    PlusInvalidField:
+      description: Invalid field name error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PlusErrorInvalidField'
+    InternalServerError:
+      description: Internal server error or server unavailable.
+      content:
+        text/plain:
+          schema:
+            $ref: '#/components/schemas/Error500'
     PlusResponse:
       description: Plus response object.
       content:
@@ -342,19 +342,26 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/PlusErrorForbidden'
-    InternalServerError:
-      description: Internal server error or server unavailable.
-      content:
-        text/plain:
-          schema:
-            $ref: '#/components/schemas/Error500'
-    PlusInvalidField:
-      description: Invalid field name error.
+    PlusBadRequest:
+      description: Bad request error (invalid IP format).
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/PlusErrorInvalidField'
+            $ref: '#/components/schemas/PlusErrorBadRequest'
+    TooManyRequests:
+      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error429'
   parameters:
+    Ip:
+      name: ip
+      in: path
+      description: A single IPv4 or IPv6 IP address.
+      required: true
+      schema:
+        type: string
     PlusField:
       name: field
       in: path
@@ -401,13 +408,6 @@ components:
         - is_hosting
         - is_mobile
         - is_satellite
-    Ip:
-      name: ip
-      in: path
-      description: A single IPv4 or IPv6 IP address.
-      required: true
-      schema:
-        type: string
   securitySchemes:
     BasicAuth:
       type: http

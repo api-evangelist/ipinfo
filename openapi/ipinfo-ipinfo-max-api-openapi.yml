@@ -52,9 +52,27 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    Error500:
-      type: string
-      example: Internal server error
+    PlusErrorForbidden:
+      type: object
+      required:
+      - status
+      - error
+      properties:
+        status:
+          type: integer
+          example: 403
+        error:
+          type: object
+          required:
+          - title
+          - message
+          properties:
+            title:
+              type: string
+              example: Unknown token
+            message:
+              type: string
+              example: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help
     Error429:
       type: object
       required:
@@ -75,6 +93,9 @@ components:
         error:
           type: string
           example: Please provide a valid IP address
+    Error500:
+      type: string
+      example: Internal server error
     MaxResponse:
       type: object
       required:
@@ -202,28 +223,27 @@ components:
         is_satellite:
           type: boolean
           example: false
-    PlusErrorForbidden:
-      type: object
-      required:
-      - status
-      - error
-      properties:
-        status:
-          type: integer
-          example: 403
-        error:
-          type: object
-          required:
-          - title
-          - message
-          properties:
-            title:
-              type: string
-              example: Unknown token
-            message:
-              type: string
-              example: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help
+  parameters:
+    Ip:
+      name: ip
+      in: path
+      description: A single IPv4 or IPv6 IP address.
+      required: true
+      schema:
+        type: string
   responses:
+    InternalServerError:
+      description: Internal server error or server unavailable.
+      content:
+        text/plain:
+          schema:
+            $ref: '#/components/schemas/Error500'
+    PlusForbidden:
+      description: Forbidden error (authentication issues).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PlusErrorForbidden'
     PlusBadRequest:
       description: Bad request error (invalid IP format).
       content:
@@ -236,26 +256,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error429'
-    PlusForbidden:
-      description: Forbidden error (authentication issues).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PlusErrorForbidden'
-    InternalServerError:
-      description: Internal server error or server unavailable.
-      content:
-        text/plain:
-          schema:
-            $ref: '#/components/schemas/Error500'
-  parameters:
-    Ip:
-      name: ip
-      in: path
-      description: A single IPv4 or IPv6 IP address.
-      required: true
-      schema:
-        type: string
   securitySchemes:
     BasicAuth:
       type: http

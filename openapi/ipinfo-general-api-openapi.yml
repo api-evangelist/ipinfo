@@ -173,24 +173,23 @@ paths:
                     example: Rate limit exceeded. You can use the IP Map tool up to 5 times per day. Please wait 24 hours or use our IPinfo Lite API service
 components:
   responses:
-    Me:
-      description: IPinfo access token rate and access information.
+    Forbidden:
+      description: Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/MeResponse'
-    NotFound:
-      description: Wrong ip. Please provide a valid IP address.
+            $ref: '#/components/schemas/Error403'
+    Map:
+      description: Map response object.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Error404'
-    UnprocessableEntity:
-      description: The input payload does not meet the specification.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error422'
+            type: object
+            example:
+              summary: Example of mapping IP addresses
+              value:
+                status: Report Generated
+                reportUrl: https://ipinfo.io/tools/map/40c04638-a340-44b8-90de-f95afdff99d8
     Batch:
       description: Batch response object.
       content:
@@ -217,47 +216,42 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error429'
-    BadRequest:
-      description: If users try to access a field type that does not exist or do not have permissions to access it, they will encounter a wrong module or field type error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error400'
-    Forbidden:
-      description: Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error403'
     InternalServerError:
       description: Internal server error or server unavailable.
       content:
         text/plain:
           schema:
             $ref: '#/components/schemas/Error500'
-    BadRequestMe:
-      description: If the passed IPinfo access token is not present or is invalid.
+    UnprocessableEntity:
+      description: The input payload does not meet the specification.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Error400Me'
+            $ref: '#/components/schemas/Error422'
+    BadRequest:
+      description: If users try to access a field type that does not exist or do not have permissions to access it, they will encounter a wrong module or field type error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error400'
     FullResponse:
       description: Full response object.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/FullResponse'
-    Map:
-      description: Map response object.
+    NotFound:
+      description: Wrong ip. Please provide a valid IP address.
       content:
         application/json:
           schema:
-            type: object
-            example:
-              summary: Example of mapping IP addresses
-              value:
-                status: Report Generated
-                reportUrl: https://ipinfo.io/tools/map/40c04638-a340-44b8-90de-f95afdff99d8
+            $ref: '#/components/schemas/Error404'
+    BadRequestMe:
+      description: If the passed IPinfo access token is not present or is invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error400Me'
     Summarize:
       description: Summarize response object.
       content:
@@ -269,83 +263,13 @@ components:
               value:
                 status: Report Generated
                 reportUrl: https://ipinfo.io/tools/summarize-ips/3ea606f3-b3ad-4a37-a875-b897a0c2e718
+    Me:
+      description: IPinfo access token rate and access information.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MeResponse'
   schemas:
-    AsnResponse:
-      type: object
-      required:
-      - asn
-      - name
-      - domain
-      - type
-      properties:
-        asn:
-          type: string
-          example: AS10507
-        name:
-          type: string
-          example: Sprint Personal Communications Systems
-        country:
-          type: string
-          example: US
-        allocated:
-          type: string
-          example: '1997-02-14'
-        registry:
-          type: string
-          example: arin
-        domain:
-          type: string
-          example: sprint.net
-        num_ips:
-          type: integer
-          example: 71224576
-        route:
-          type: string
-          example: 66.87.125.0/24
-        type:
-          type: string
-          example: isp
-          enum:
-          - isp
-          - business
-          - education
-          - hosting
-          - inactive
-        prefixes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Prefix'
-        prefixes6:
-          type: array
-          items:
-            $ref: '#/components/schemas/Prefix6'
-        peers:
-          type: array
-          items:
-            type: string
-            example: '1299'
-        upstreams:
-          type: array
-          items:
-            type: string
-            example: '1299'
-        downstreams:
-          type: array
-          items:
-            type: string
-            example: '109'
-    Error429:
-      type: object
-      required:
-      - title
-      - message
-      properties:
-        title:
-          type: string
-          example: Rate limit exceeded
-        message:
-          type: string
-          example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
     MeResponse:
       type: object
       required:
@@ -479,45 +403,6 @@ components:
                     result_limit:
                       type: integer
                       example: 5
-    PrivacyResponse:
-      type: object
-      required:
-      - vpn
-      - proxy
-      - tor
-      - hosting
-      - relay
-      - service
-      properties:
-        vpn:
-          type: boolean
-          example: true
-        proxy:
-          type: boolean
-          example: false
-        tor:
-          type: boolean
-          example: false
-        hosting:
-          type: boolean
-          example: false
-        relay:
-          type: boolean
-          example: false
-        service:
-          type: string
-          example: ''
-    Error400Me:
-      type: object
-      required:
-      - error
-      properties:
-        error:
-          type: string
-          example: Invalid API token
-        token:
-          type: string
-          example: TOKEN
     Error422:
       type: object
       required:
@@ -530,34 +415,56 @@ components:
         message:
           type: string
           example: There were no valid IPs in the text.
-    CarrierResponse:
+    Prefix6:
       type: object
       required:
+      - netblock
+      - id
       - name
-      - mcc
-      - mnc
+      - country
       properties:
+        netblock:
+          type: string
+          example: 2601::/20
+        id:
+          type: string
+          example: COMCAST6NET
         name:
           type: string
-          example: Sprint Corporation
-        mcc:
+          example: Comcast Cable Communications, LLC
+        country:
           type: string
-          example: '310'
-        mnc:
+          example: US
+        size:
           type: string
-          example: '120'
-    Error403:
+          example: '20282409603651670423947251286016'
+        status:
+          type: string
+          example: ASSIGNMENT
+        domain:
+          type: string
+          example: comcast.com
+    Error404:
       type: object
       required:
-      - title
-      - message
+      - status
+      - error
       properties:
-        title:
-          type: string
-          example: Unknown token
-        message:
-          type: string
-          example: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help
+        status:
+          type: integer
+          example: 404
+        error:
+          type: object
+          required:
+          - title
+          - message
+          properties:
+            title:
+              type: string
+              example: Wrong ip
+            message:
+              type: string
+              example: Please provide a valid IP address
     DomainsResponse:
       type: object
       required:
@@ -577,27 +484,6 @@ components:
           items:
             type: string
             example: udemy.com
-    CompanyResponse:
-      type: object
-      required:
-      - name
-      - domain
-      - type
-      properties:
-        name:
-          type: string
-          example: Sprint Springfield POP
-        domain:
-          type: string
-          example: sprint.com
-        type:
-          type: string
-          example: isp
-          enum:
-          - isp
-          - business
-          - education
-          - hosting
     FullResponse:
       type: object
       required:
@@ -643,9 +529,101 @@ components:
           $ref: '#/components/schemas/PrivacyResponse'
         domains:
           $ref: '#/components/schemas/DomainsResponse'
+    PrivacyResponse:
+      type: object
+      required:
+      - vpn
+      - proxy
+      - tor
+      - hosting
+      - relay
+      - service
+      properties:
+        vpn:
+          type: boolean
+          example: true
+        proxy:
+          type: boolean
+          example: false
+        tor:
+          type: boolean
+          example: false
+        hosting:
+          type: boolean
+          example: false
+        relay:
+          type: boolean
+          example: false
+        service:
+          type: string
+          example: ''
     Error500:
       type: string
       example: Internal server error
+    AsnResponse:
+      type: object
+      required:
+      - asn
+      - name
+      - domain
+      - type
+      properties:
+        asn:
+          type: string
+          example: AS10507
+        name:
+          type: string
+          example: Sprint Personal Communications Systems
+        country:
+          type: string
+          example: US
+        allocated:
+          type: string
+          example: '1997-02-14'
+        registry:
+          type: string
+          example: arin
+        domain:
+          type: string
+          example: sprint.net
+        num_ips:
+          type: integer
+          example: 71224576
+        route:
+          type: string
+          example: 66.87.125.0/24
+        type:
+          type: string
+          example: isp
+          enum:
+          - isp
+          - business
+          - education
+          - hosting
+          - inactive
+        prefixes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Prefix'
+        prefixes6:
+          type: array
+          items:
+            $ref: '#/components/schemas/Prefix6'
+        peers:
+          type: array
+          items:
+            type: string
+            example: '1299'
+        upstreams:
+          type: array
+          items:
+            type: string
+            example: '1299'
+        downstreams:
+          type: array
+          items:
+            type: string
+            example: '109'
     Prefix:
       type: object
       required:
@@ -677,35 +655,38 @@ components:
           - string
           - 'null'
           example: quadranet.com
-    Prefix6:
+    CompanyResponse:
       type: object
       required:
-      - netblock
-      - id
       - name
-      - country
+      - domain
+      - type
       properties:
-        netblock:
-          type: string
-          example: 2601::/20
-        id:
-          type: string
-          example: COMCAST6NET
         name:
           type: string
-          example: Comcast Cable Communications, LLC
-        country:
-          type: string
-          example: US
-        size:
-          type: string
-          example: '20282409603651670423947251286016'
-        status:
-          type: string
-          example: ASSIGNMENT
+          example: Sprint Springfield POP
         domain:
           type: string
-          example: comcast.com
+          example: sprint.com
+        type:
+          type: string
+          example: isp
+          enum:
+          - isp
+          - business
+          - education
+          - hosting
+    Error400Me:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: string
+          example: Invalid API token
+        token:
+          type: string
+          example: TOKEN
     Error400:
       type: object
       required:
@@ -718,38 +699,47 @@ components:
         message:
           type: string
           example: No module or field of type exists for the provided field. Please check our documentation https://ipinfo.io/developers.
-    Error404:
+    Error429:
       type: object
       required:
-      - status
-      - error
+      - title
+      - message
       properties:
-        status:
-          type: integer
-          example: 404
-        error:
-          type: object
-          required:
-          - title
-          - message
-          properties:
-            title:
-              type: string
-              example: Wrong ip
-            message:
-              type: string
-              example: Please provide a valid IP address
+        title:
+          type: string
+          example: Rate limit exceeded
+        message:
+          type: string
+          example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
+    CarrierResponse:
+      type: object
+      required:
+      - name
+      - mcc
+      - mnc
+      properties:
+        name:
+          type: string
+          example: Sprint Corporation
+        mcc:
+          type: string
+          example: '310'
+        mnc:
+          type: string
+          example: '120'
+    Error403:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Unknown token
+        message:
+          type: string
+          example: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help
   requestBodies:
-    Batch:
-      description: A JSON array containing IP addresses.
-      required: true
-      content:
-        application/json:
-          schema:
-            type: array
-            example:
-            - 8.8.8.8/city
-            - 8.8.8.8
     Summarize:
       description: A file containing IP addresses with each IP on a separate line.
       required: true
@@ -806,6 +796,16 @@ components:
               77.222.8.184
 
               '
+    Batch:
+      description: A JSON array containing IP addresses.
+      required: true
+      content:
+        application/json:
+          schema:
+            type: array
+            example:
+            - 8.8.8.8/city
+            - 8.8.8.8
   parameters:
     Ip:
       name: ip
