@@ -1130,6 +1130,12 @@ apis:
   - type: Plans
     url: https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml
 common:
+- type: Plans
+  url: plans/ipinfo-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/ipinfo-rate-limits.yml
+- type: FinOps
+  url: finops/ipinfo-finops.yml
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/ipinfo/overview
 - type: AgenticAccess
