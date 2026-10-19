@@ -86,3 +86,127 @@
     builder: Pipedream repo (component)
   status: not-a-workflow
   arazzo: null
+- slug: ipinfo-maven-central
+  label: Maven Central
+  partner: maven-central
+  partner_name: Maven Central
+  category: official SDK (Java/JVM)
+  type: register
+  channel: package-registry
+  evidence: https://central.sonatype.com/artifact/io.ipinfo/ipinfo-api
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Maven Central (public registry JSON)
+    spec_file: null
+    language: Java/JVM
+    packages:
+    - name: io.ipinfo:ipinfo-api
+      version: 3.4.0
+      released: '2026-03-30'
+      released_field: lastUpdated
+      lapsed: false
+      page: https://central.sonatype.com/artifact/io.ipinfo/ipinfo-api
+      repo_leg: github-org:ipinfo
+      publisher_leg: groupId:ipinfo.io
+      matched_by: domain+name-among-holders
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: ipinfo-npm-registry
+  label: npm registry
+  partner: npm
+  partner_name: npm registry
+  category: official SDK (JavaScript/TypeScript)
+  type: register
+  channel: package-registry
+  evidence: https://www.npmjs.com/package/node-ipinfo
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: node-ipinfo
+      version: 4.4.0
+      released: '2026-03-30'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/node-ipinfo
+      repo_leg: domain:ipinfo.io
+      publisher_leg: email:ipinfo.io
+      matched_by: domain+name-among-holders
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: ipinfo-pypi
+  label: PyPI
+  partner: pypi
+  partner_name: PyPI
+  category: official SDK (Python)
+  type: register
+  channel: package-registry
+  evidence: https://pypi.org/project/ipinfo/
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: PyPI (public registry JSON)
+    spec_file: null
+    language: Python
+    packages:
+    - name: ipinfo
+      version: 5.6.0
+      released: '2026-04-22'
+      released_field: upload_time
+      lapsed: false
+      page: https://pypi.org/project/ipinfo/
+      repo_leg: domain:ipinfo.io
+      publisher_leg: email:ipinfo.io
+      matched_by: domain+name-among-holders
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: ipinfo-rubygems
+  label: RubyGems
+  partner: rubygems
+  partner_name: RubyGems
+  category: official SDK (Ruby)
+  type: register
+  channel: package-registry
+  evidence: https://rubygems.org/gems/IPinfo
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: RubyGems (public registry JSON)
+    spec_file: null
+    language: Ruby
+    packages:
+    - name: IPinfo
+      version: 2.6.0
+      released: '2026-03-30'
+      released_field: version_created_at
+      lapsed: false
+      page: https://rubygems.org/gems/IPinfo
+      repo_leg: domain:ipinfo.io
+      publisher_leg: email:ipinfo.io
+      matched_by: domain+name-among-holders
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
