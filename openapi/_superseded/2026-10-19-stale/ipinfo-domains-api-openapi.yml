@@ -1,0 +1,104 @@
+openapi: 3.2.0
+info:
+  description: Official OpenAPI Specification for IPinfo's comprehensive IP intelligence API.
+  version: 1.0.0
+  title: IPinfo.io OpenAPI Specification Domains API
+  contact:
+    name: IPinfo
+    email: support@ipinfo.io
+    url: https://ipinfo.io/
+servers:
+- url: https://ipinfo.io/
+- url: https://v6.ipinfo.io/
+- url: https://api.ipinfo.io/
+tags:
+- name: Domains
+  description: Hosted Domains API.
+  externalDocs:
+    description: Find more info here
+    url: https://ipinfo.io/developers/hosted-domains
+paths:
+  /domains/{ip}:
+    get:
+      tags:
+      - Domains
+      summary: IPinfo Returns a List of All of the Domains Hosted on the Provided IP Address
+      description: The Hosted Domains or Reverse IP API endpoint returns a list of domains hosted on a specified IP address, including the total number of domains and the specific names associated with that address.
+      operationId: getDomains
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/Ip'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          $ref: '#/components/responses/Domains'
+components:
+  parameters:
+    Page:
+      name: page
+      in: query
+      description: The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.
+      schema:
+        type: integer
+        minimum: 0
+    Ip:
+      name: ip
+      in: path
+      description: A single IPv4 or IPv6 IP address.
+      required: true
+      schema:
+        type: string
+    Limit:
+      name: limit
+      in: query
+      description: The API returns 100 domains per page and has a limit of 1000 domains per page. We return up to 10 million results. The limit parameter can be used to control the number of domains per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 100
+  schemas:
+    DomainsResponse:
+      type: object
+      required:
+      - total
+      properties:
+        ip:
+          type: string
+          example: 1.1.1.1
+        page:
+          type: integer
+          example: 1
+        total:
+          type: integer
+          example: 17939
+        domains:
+          type: array
+          items:
+            type: string
+            example: udemy.com
+  responses:
+    Domains:
+      description: Domains response object.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DomainsResponse'
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: token
+externalDocs:
+  description: IPinfo Developers Portal / Documentation
+  url: https://ipinfo.io/developers

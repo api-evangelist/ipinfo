@@ -30,23 +30,5 @@
     "ipinfo-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": [
-    "ipinfo-abuse-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "ipinfo-asn-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "ipinfo-carrier-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "ipinfo-company-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "ipinfo-domains-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "ipinfo-general-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "ipinfo-ipinfo-core-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "ipinfo-ipinfo-lite-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "ipinfo-ipinfo-max-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "ipinfo-ipinfo-plus-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "ipinfo-places-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "ipinfo-privacy-detection-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "ipinfo-privacy-detection-extended-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "ipinfo-ranges-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "ipinfo-residential-proxy-detection-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "ipinfo-single-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "ipinfo-whois-api-openapi.yml: previously refined output, superseded by openapi/_original/"
-  ]
+  "skipped": []
 }

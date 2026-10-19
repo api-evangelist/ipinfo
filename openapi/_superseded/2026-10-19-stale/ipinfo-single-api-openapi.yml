@@ -1,0 +1,611 @@
+openapi: 3.2.0
+info:
+  description: Official OpenAPI Specification for IPinfo's comprehensive IP intelligence API.
+  version: 1.0.0
+  title: IPinfo.io OpenAPI Specification Single API
+  contact:
+    name: IPinfo
+    email: support@ipinfo.io
+    url: https://ipinfo.io/
+servers:
+- url: https://ipinfo.io/
+- url: https://v6.ipinfo.io/
+- url: https://api.ipinfo.io/
+tags:
+- name: Single
+  description: Single info API.
+paths:
+  /ip:
+    get:
+      tags:
+      - Single
+      summary: IPinfo Returns the Current IP
+      description: Returns the current public/external IP address.
+      operationId: getCurrentIp
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      responses:
+        '200':
+          $ref: '#/components/responses/Ip'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /{ip}/ip:
+    get:
+      tags:
+      - Single
+      summary: IPinfo Returns a IP for the Selected IP
+      description: Returns a ip for the selected IP.
+      operationId: getIpByIp
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/Ip'
+      responses:
+        '200':
+          $ref: '#/components/responses/Ip'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /hostname:
+    get:
+      tags:
+      - Single
+      summary: IPinfo Returns the Current Hostname
+      description: Returns the current hostname.
+      operationId: getCurrentHostname
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      responses:
+        '200':
+          $ref: '#/components/responses/Hostname'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /{ip}/hostname:
+    get:
+      tags:
+      - Single
+      summary: IPinfo Returns a Hostname for the Selected IP
+      description: Returns a hostname for the selected IP.
+      operationId: getHostnameByIp
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/Ip'
+      responses:
+        '200':
+          $ref: '#/components/responses/Hostname'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /city:
+    get:
+      tags:
+      - Single
+      summary: IPinfo Returns the Current City
+      description: Returns the current city.
+      operationId: getCurrentCity
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      responses:
+        '200':
+          $ref: '#/components/responses/City'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /{ip}/city:
+    get:
+      tags:
+      - Single
+      summary: IPinfo Returns a City for the Selected IP
+      description: Returns a city for the selected IP.
+      operationId: getCityByIp
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/Ip'
+      responses:
+        '200':
+          $ref: '#/components/responses/City'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /region:
+    get:
+      tags:
+      - Single
+      summary: IPinfo Returns the Current Region
+      description: Returns the current region. If the region is not available, it will return an empty string.
+      operationId: getCurrentRegion
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      responses:
+        '200':
+          $ref: '#/components/responses/Region'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /{ip}/region:
+    get:
+      tags:
+      - Single
+      summary: IPinfo Returns a Region for the Selected IP
+      description: Returns a region for the selected IP. If the region is not available, it will return an empty string.
+      operationId: getRegionByIp
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/Ip'
+      responses:
+        '200':
+          $ref: '#/components/responses/Region'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /country:
+    get:
+      tags:
+      - Single
+      summary: IPinfo Returns the Current Country
+      description: Returns a concise response consisting of a two-letter country code. If the country is not available, it will return an empty string.
+      operationId: getCurrentCountry
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      responses:
+        '200':
+          $ref: '#/components/responses/Country'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /{ip}/country:
+    get:
+      tags:
+      - Single
+      summary: IPinfo Returns a Country for the Selected IP
+      description: Returns a country for the selected IP in two letter ISO-3166 format. If the country is not available, it will return an empty string.
+      operationId: getCountryByIp
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/Ip'
+      responses:
+        '200':
+          $ref: '#/components/responses/Country'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /loc:
+    get:
+      tags:
+      - Single
+      summary: IPinfo Returns the Current Location
+      description: The '/loc' API endpoint provides the geographical location of a user's IP address in a response with latitude and longitude in comma-separated text format.
+      operationId: getCurrentLocation
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      responses:
+        '200':
+          $ref: '#/components/responses/Location'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /{ip}/loc:
+    get:
+      tags:
+      - Single
+      summary: IPinfo GET a Location for the Selected IP
+      description: The '/loc' API endpoint provides the geographic location of an IP address as latitude and longitude separated by a comma in text form.
+      operationId: getLocationByIp
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/Ip'
+      responses:
+        '200':
+          $ref: '#/components/responses/Location'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /postal:
+    get:
+      tags:
+      - Single
+      summary: IPinfo Returns the Current Postal Code or Zip Code
+      description: The `/postal` API endpoint provides a straightforward method for retrieving the current postal code or zip code. When this endpoint is queried, the API responds with a simple string indicating the postal code for the current IP address.
+      operationId: getCurrentPostal
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      responses:
+        '200':
+          $ref: '#/components/responses/Postal'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /{ip}/postal:
+    get:
+      tags:
+      - Single
+      summary: IPinfo Returns a Postal for the Selected IP
+      description: The `/postal` API lets users input an IP address to get back the corresponding postal or zip code in a simple string format.
+      operationId: getPostalByIp
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/Ip'
+      responses:
+        '200':
+          $ref: '#/components/responses/Postal'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /timezone:
+    get:
+      tags:
+      - Single
+      summary: IPinfo Returns the Current Timezone
+      description: The '/timezone' API endpoint returns the user's timezone based on their IP address in IANA format.
+      operationId: getCurrentTimezone
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      responses:
+        '200':
+          $ref: '#/components/responses/Timezone'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /{ip}/timezone:
+    get:
+      tags:
+      - Single
+      summary: IPinfo Returns a Timezone for the Selected IP
+      description: The `/timezone` API endpoint returns the IANA timezone based on the user's input IP address.
+      operationId: getTimezoneByIp
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/Ip'
+      responses:
+        '200':
+          $ref: '#/components/responses/Timezone'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /org:
+    get:
+      tags:
+      - Single
+      summary: IPinfo Returns the Current ASN and as Organization
+      description: The '/org' API endpoint identifies the Autonomous System Number (ASN) and ASN organization associated with the user's IP address. When called, the API returns a string with the ASN (prefixed by 'AS') and organization name.
+      operationId: getCurrentOrganization
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      responses:
+        '200':
+          $ref: '#/components/responses/Organization'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /{ip}/org:
+    get:
+      tags:
+      - Single
+      summary: IPinfo Returns a Organization for the Selected IP
+      description: The '/org' API endpoint provides the ASN and organization related to the user's input IP address. It returns a string including the ASN (prefixed by 'AS') and AS organization name.
+      operationId: getOrganizationByIp
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/Ip'
+      responses:
+        '200':
+          $ref: '#/components/responses/Organization'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    Error403:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Unknown token
+        message:
+          type: string
+          example: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help
+    Error404:
+      type: object
+      required:
+      - status
+      - error
+      properties:
+        status:
+          type: integer
+          example: 404
+        error:
+          type: object
+          required:
+          - title
+          - message
+          properties:
+            title:
+              type: string
+              example: Wrong ip
+            message:
+              type: string
+              example: Please provide a valid IP address
+    Error500:
+      type: string
+      example: Internal server error
+    Error429:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Rate limit exceeded
+        message:
+          type: string
+          example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
+    Error400:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Wrong module or field type
+        message:
+          type: string
+          example: No module or field of type exists for the provided field. Please check our documentation https://ipinfo.io/developers.
+  responses:
+    Timezone:
+      description: Timezone of the located IP address in the format of IANA Time Zones.
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: America/New_York
+    Ip:
+      description: Public IP address.
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: 66.87.125.72
+    TooManyRequests:
+      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error429'
+    Hostname:
+      description: Hostname of the IP address.
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: ip-66-87-125-72.spfdma.spcsdns.net
+    NotFound:
+      description: Wrong ip. Please provide a valid IP address.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error404'
+    Postal:
+      description: Postal code or zip code for the IP address.
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: '01105'
+    City:
+      description: The city name of the IP address.
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: Springfield
+    Country:
+      description: Name of the country in the 2 letter ISO 3166-1 alpha-2 for the IP address.
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: US
+    Region:
+      description: The name of the region or state of the IP address.
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: Massachusetts
+    Forbidden:
+      description: Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error403'
+    Organization:
+      description: ASN and AS organization name for the IP address.
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: AS51501 Khabarovsk home networks Ltd
+    Location:
+      description: Geographic coordinate of the IP address in the format of `<latitude>, <longitude>`.
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: 42.0999,-72.5783
+    BadRequest:
+      description: If users try to access a field type that does not exist or do not have permissions to access it, they will encounter a wrong module or field type error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error400'
+    InternalServerError:
+      description: Internal server error or server unavailable.
+      content:
+        text/plain:
+          schema:
+            $ref: '#/components/schemas/Error500'
+  parameters:
+    Ip:
+      name: ip
+      in: path
+      description: A single IPv4 or IPv6 IP address.
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: token
+externalDocs:
+  description: IPinfo Developers Portal / Documentation
+  url: https://ipinfo.io/developers

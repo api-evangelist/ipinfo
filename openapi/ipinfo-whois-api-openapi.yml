@@ -1,6 +1,82 @@
 openapi: 3.2.0
 info:
-  description: Official OpenAPI Specification for IPinfo's comprehensive IP intelligence API.
+  description: 'Official OpenAPI Specification for IPinfo''s comprehensive IP intelligence API. This specification defines all endpoints for IP geolocation, ASN data, company information, privacy detection, and specialized data services. ## Authentication
+
+
+    All endpoints support three authentication methods:
+
+    - **HTTP Basic Auth**: Use your token as the username with empty password
+
+    - **Bearer Token**: Include token in Authorization header
+
+    - **Query Parameter**: Pass token as `?token=YOUR_TOKEN`
+
+
+    Learn more about authentication
+
+
+    ## IPinfo API Tiers
+
+
+    IPinfo offers four main API tiers with different feature sets:
+
+
+    ### IPinfo Lite
+
+    Lightweight IP geolocation with essential information including ASN details, country, and continent data. Perfect for basic geolocation needs with fast response times. Unlimited requests on paid plans. - Endpoints: `/lite/me`, `/lite/{ip}`, `/lite/{ip}/{field}`
+
+    - Base URL: `https://api.ipinfo.io/`
+
+    - Documentation
+
+
+    ### IPinfo Core
+
+    Comprehensive IP information with detailed geolocation data (city, region, coordinates, postal code, timezone), ASN information, and classification boolean flags (anycast, hosting, mobile, satellite). - Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}`
+
+    - Base URL: `https://api.ipinfo.io/`
+
+    - Documentation
+
+
+    ### IPinfo Plus
+
+    All Core features plus mobile/carrier detection, anonymity analysis (VPN, proxy, Tor, relay detection), service identification, and extended geographic metadata. Ideal for security, fraud prevention, and advanced analytics. - Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}` (shared with Core — response shape depends on your token''s plan)
+
+    - Base URL: `https://api.ipinfo.io/`
+
+    - Documentation
+
+
+    ### IPinfo Max
+
+    Our most comprehensive IP intelligence tier, building on all Plus features with full anonymization coverage including residential proxy behavioral signals, in addition to geolocation, ASN, and carrier data. Ideal for advanced threat analysis and bot detection. - Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}` (shared with Core and Plus — response shape depends on your token''s plan)
+
+    - Base URL: `https://api.ipinfo.io/`
+
+    - Documentation
+
+
+    ## Specialized Detection APIs
+
+
+    ### Residential Proxy Detection
+
+    Detect residential, mobile, and datacenter proxy IPs with activity insights, last seen dates, and proxy service identification. - Endpoints: `/resproxy/{ip}`
+
+    - Documentation
+
+
+    ### Privacy Detection Standard
+
+    Detect VPNs, proxies, Tor exit nodes, relays, and hosting providers associated with an IP address. Returns core privacy signals including service provider identification. - Endpoints: `/{ip}/privacy`
+
+    - Documentation
+
+
+    ### Privacy Detection Extended
+
+    Advanced anonymous IP detection with detailed methodologies, confidence metrics, and metadata for VPNs, proxies, Tor, hosting providers, and relays.'
   version: 1.0.0
   title: IPinfo.io OpenAPI Specification Whois API
   contact:
@@ -22,7 +98,7 @@ paths:
     get:
       tags:
       - WHOIS
-      summary: IPinfo Returns the WHOIS Information by Net ID Lookup
+      summary: Returns the WHOIS information by Net ID lookup
       description: 'This API endpoint allows users to retrieve WHOIS information based on a specified Net ID.
 
         The response includes details such as the IP address range, organization name, country, and various administrative information related to the network.'
@@ -43,7 +119,7 @@ paths:
     get:
       tags:
       - WHOIS
-      summary: IPinfo Returns the WHOIS Information by WHOIS IP Address or IP Address Range
+      summary: Returns the WHOIS information by WHOIS IP address or IP address range
       description: 'The WHOIS API lookup via IP address provides WHOIS information based on a specific IP address or IP address range.
 
         The response contains detailed information about the organization associated with the IP, including the range of addresses, organization name, administrative contacts, abuse contacts, and additional metadata such as the country and contact details for both technical and administrative support.'
@@ -64,7 +140,7 @@ paths:
     get:
       tags:
       - WHOIS
-      summary: IPinfo Returns the WHOIS Information by WHOIS Domain of an Internet Organization
+      summary: Returns the WHOIS information by WHOIS domain of an internet organization
       description: The IPinfo WHOIS API lookup via organization organization domain name provides comprehensive WHOIS information for specified organization, enabling users to gain insights into the registration and organizational details of internet entities. The response includes a total count of records, and detailed records for each associated IP range. Querying the organization domain reveals critical information such as the organization's name, country, and contact details for technical and administrative personnel, including names, emails, and physical addresses. Additionally, the response features abuse contact information and registration dates, which are essential for addressing network issues and potential abuse.
       security:
       - BasicAuth: []
@@ -83,7 +159,7 @@ paths:
     get:
       tags:
       - WHOIS
-      summary: IPinfo Returns the WHOIS Information by WHOIS ASN
+      summary: Returns the WHOIS information by WHOIS ASN
       description: The IPinfo WHOIS API lookup via ASN provides in-depth WHOIS information associated with a specific Autonomous System Number (ASN). Querying ASN reveals critical data, including the organization's name, the allocated IP range, and the country of operation. The response includes administrative and technical contact information, highlighting the contact person along with their address and phone number. Additionally, the API provides details for abuse reporting, including a dedicated email for abuse contacts. This comprehensive dataset is essential for network administrators, security professionals, and organizations needing to investigate ASN ownership and maintain network integrity.
       security:
       - BasicAuth: []
@@ -102,7 +178,7 @@ paths:
     get:
       tags:
       - WHOIS
-      summary: IPinfo Returns the WHOIS Information by WHOIS Organization (ORG) ID of an…
+      summary: Returns the WHOIS information by WHOIS organization (ORG) ID of an internet…
       description: The IPinfo WHOIS API lookup via organization IDs (Org) provides comprehensive information about a specific internet organization identified by its WHOIS organization ID. Querying a WHOIS org key returns data about the internet organization. The response includes critical details such as the organization's address, along with the contact information for various roles within the organization. This includes administrative, technical, and abuse contacts. The API also offers timestamps for when the organization was created and last updated, which is essential for maintaining accurate records.
       security:
       - BasicAuth: []
@@ -121,7 +197,7 @@ paths:
     get:
       tags:
       - WHOIS
-      summary: IPinfo Returns the WHOIS Information by WHOIS Point of Contact (POC) Value of…
+      summary: Returns the WHOIS information by WHOIS Point of Contact (POC) value of an…
       description: The IPinfo WHOIS API lookup via Points of Contact (POC) provides essential details about an individual associated with an internet organization identified by their WHOIS POC ID. For instance, querying the POC ID yields information about the name of the point of contact and their organization location. The response includes the organization's physical address, email address, and contact numbers. Additional metadata indicates when the record was created and last updated, alongside the source of the information.
       security:
       - BasicAuth: []
@@ -138,13 +214,6 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
-    Whoisorgid:
-      name: whoisorgid
-      in: path
-      description: The WHOIS organization (ORG) ID of an internet organization.
-      required: true
-      schema:
-        type: string
     Whoispoc:
       name: whoispoc
       in: path
@@ -171,13 +240,6 @@ components:
         - afrinic
         - apnic
         - lacnic
-    Page:
-      name: page
-      in: query
-      description: The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.
-      schema:
-        type: integer
-        minimum: 0
     Whoisnetid:
       name: whoisnetid
       in: path
@@ -185,6 +247,13 @@ components:
       required: true
       schema:
         type: string
+    Page:
+      name: page
+      in: query
+      description: The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.
+      schema:
+        type: integer
+        minimum: 0
     Asn:
       name: asn
       in: path
@@ -192,6 +261,13 @@ components:
       required: true
       schema:
         type: integer
+    Whoisorgid:
+      name: whoisorgid
+      in: path
+      description: The WHOIS organization (ORG) ID of an internet organization.
+      required: true
+      schema:
+        type: string
     Domain:
       name: domain
       in: path
@@ -200,12 +276,30 @@ components:
       schema:
         type: string
   responses:
+    WhoisOrg:
+      description: WHOIS organization (ORG) ID response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WhoisOrgResponse'
     WhoisPoc:
       description: WHOIS Point of Contact (POC) response.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/WhoisPocResponse'
+    WhoisNetId:
+      description: WHOIS Network (NET) ID response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WhoisNetIdResponse'
+    WhoisDomain:
+      description: WHOIS Domain response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WhoisDomainResponse'
     WhoisAsn:
       description: WHOIS ASN response.
       content:
@@ -218,34 +312,16 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/WhoisIpResponse'
-    WhoisDomain:
-      description: WHOIS Domain response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/WhoisDomainResponse'
-    WhoisOrg:
-      description: WHOIS organization (ORG) ID response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/WhoisOrgResponse'
-    WhoisNetId:
-      description: WHOIS Network (NET) ID response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/WhoisNetIdResponse'
   schemas:
-    WhoisOrgResponse:
+    WhoisDomainResponse:
       type: object
       properties:
-        org:
+        net:
           type: string
-          example: PINEAP
+          example: comcast.net
         total:
           type: integer
-          example: 100
+          example: 80
         page:
           type: integer
           example: 0
@@ -254,61 +330,68 @@ components:
           items:
             type: object
             properties:
+              range:
+                type: string
+                example: 24.147.0.0/17
               id:
                 type: string
-                example: PINEAP
+                example: NEW-ENGLAND-10
               name:
                 type: string
-                example: Pineapple Houser
-              address:
-                type: string
-                example: null
+                example: Comcast Cable Communications Holdings, Inc
               country:
                 type: string
                 example: US
-              admin:
+              org:
                 type: string
-                example: POC object or null
-              abuse:
+                example: C02610737
+              status:
                 type: string
-                example: POC object or null
+                example: REASSIGNMENT
               tech:
                 type: string
-                example: POC object or null
+                example: null
               maintainer:
                 type: string
-                example: POC object or null
-              created:
+                example: null
+              admin:
                 type: string
-                format: date
-                example: '2000-03-25'
+                example: null
+              abuse:
+                type: string
+                example: null
               updated:
                 type: string
                 format: date
-                example: '2011-09-24'
+                example: '2010-10-18'
               source:
                 type: string
                 example: arin
               raw:
                 type: string
                 example: <raw data>
+              domain:
+                type: string
+                example: comcast.net
       example:
-        org: PINEAP
-        total: 100
+        net: comcast.net
+        total: 80
         page: 0
         records:
-        - id: PINEAP
-          name: Pineapple Houser
-          address: null
+        - range: 24.147.0.0/17
+          id: NEW-ENGLAND-10
+          name: Comcast Cable Communications Holdings, Inc
           country: US
-          admin: POC object or null
-          abuse: POC object or null
-          tech: POC object or null
-          maintainer: POC object or null
-          created: '2000-03-25'
-          updated: '2011-09-24'
+          org: C02610737
+          status: REASSIGNMENT
+          tech: null
+          maintainer: null
+          admin: null
+          abuse: null
+          updated: '2010-10-18'
           source: arin
           raw: <raw data>
+          domain: comcast.net
     WhoisAsnResponse:
       type: object
       properties:
@@ -383,6 +466,78 @@ components:
           maintainer: POC object or null
           updated: '2021-01-27'
           source: apnic
+          raw: <raw data>
+    WhoisOrgResponse:
+      type: object
+      properties:
+        org:
+          type: string
+          example: PINEAP
+        total:
+          type: integer
+          example: 100
+        page:
+          type: integer
+          example: 0
+        records:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: PINEAP
+              name:
+                type: string
+                example: Pineapple Houser
+              address:
+                type: string
+                example: null
+              country:
+                type: string
+                example: US
+              admin:
+                type: string
+                example: POC object or null
+              abuse:
+                type: string
+                example: POC object or null
+              tech:
+                type: string
+                example: POC object or null
+              maintainer:
+                type: string
+                example: POC object or null
+              created:
+                type: string
+                format: date
+                example: '2000-03-25'
+              updated:
+                type: string
+                format: date
+                example: '2011-09-24'
+              source:
+                type: string
+                example: arin
+              raw:
+                type: string
+                example: <raw data>
+      example:
+        org: PINEAP
+        total: 100
+        page: 0
+        records:
+        - id: PINEAP
+          name: Pineapple Houser
+          address: null
+          country: US
+          admin: POC object or null
+          abuse: POC object or null
+          tech: POC object or null
+          maintainer: POC object or null
+          created: '2000-03-25'
+          updated: '2011-09-24'
+          source: arin
           raw: <raw data>
     WhoisNetIdResponse:
       type: object
@@ -588,85 +743,6 @@ components:
           status: REASSIGNMENT
           source: arin
           raw: <raw data>
-    WhoisDomainResponse:
-      type: object
-      properties:
-        net:
-          type: string
-          example: comcast.net
-        total:
-          type: integer
-          example: 80
-        page:
-          type: integer
-          example: 0
-        records:
-          type: array
-          items:
-            type: object
-            properties:
-              range:
-                type: string
-                example: 24.147.0.0/17
-              id:
-                type: string
-                example: NEW-ENGLAND-10
-              name:
-                type: string
-                example: Comcast Cable Communications Holdings, Inc
-              country:
-                type: string
-                example: US
-              org:
-                type: string
-                example: C02610737
-              status:
-                type: string
-                example: REASSIGNMENT
-              tech:
-                type: string
-                example: null
-              maintainer:
-                type: string
-                example: null
-              admin:
-                type: string
-                example: null
-              abuse:
-                type: string
-                example: null
-              updated:
-                type: string
-                format: date
-                example: '2010-10-18'
-              source:
-                type: string
-                example: arin
-              raw:
-                type: string
-                example: <raw data>
-              domain:
-                type: string
-                example: comcast.net
-      example:
-        net: comcast.net
-        total: 80
-        page: 0
-        records:
-        - range: 24.147.0.0/17
-          id: NEW-ENGLAND-10
-          name: Comcast Cable Communications Holdings, Inc
-          country: US
-          org: C02610737
-          status: REASSIGNMENT
-          tech: null
-          maintainer: null
-          admin: null
-          abuse: null
-          updated: '2010-10-18'
-          source: arin
-          raw: <raw data>
-          domain: comcast.net
   securitySchemes:
     BasicAuth:
       type: http

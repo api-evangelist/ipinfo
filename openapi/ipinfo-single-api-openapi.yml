@@ -1,6 +1,82 @@
 openapi: 3.2.0
 info:
-  description: Official OpenAPI Specification for IPinfo's comprehensive IP intelligence API.
+  description: 'Official OpenAPI Specification for IPinfo''s comprehensive IP intelligence API. This specification defines all endpoints for IP geolocation, ASN data, company information, privacy detection, and specialized data services. ## Authentication
+
+
+    All endpoints support three authentication methods:
+
+    - **HTTP Basic Auth**: Use your token as the username with empty password
+
+    - **Bearer Token**: Include token in Authorization header
+
+    - **Query Parameter**: Pass token as `?token=YOUR_TOKEN`
+
+
+    Learn more about authentication
+
+
+    ## IPinfo API Tiers
+
+
+    IPinfo offers four main API tiers with different feature sets:
+
+
+    ### IPinfo Lite
+
+    Lightweight IP geolocation with essential information including ASN details, country, and continent data. Perfect for basic geolocation needs with fast response times. Unlimited requests on paid plans. - Endpoints: `/lite/me`, `/lite/{ip}`, `/lite/{ip}/{field}`
+
+    - Base URL: `https://api.ipinfo.io/`
+
+    - Documentation
+
+
+    ### IPinfo Core
+
+    Comprehensive IP information with detailed geolocation data (city, region, coordinates, postal code, timezone), ASN information, and classification boolean flags (anycast, hosting, mobile, satellite). - Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}`
+
+    - Base URL: `https://api.ipinfo.io/`
+
+    - Documentation
+
+
+    ### IPinfo Plus
+
+    All Core features plus mobile/carrier detection, anonymity analysis (VPN, proxy, Tor, relay detection), service identification, and extended geographic metadata. Ideal for security, fraud prevention, and advanced analytics. - Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}` (shared with Core — response shape depends on your token''s plan)
+
+    - Base URL: `https://api.ipinfo.io/`
+
+    - Documentation
+
+
+    ### IPinfo Max
+
+    Our most comprehensive IP intelligence tier, building on all Plus features with full anonymization coverage including residential proxy behavioral signals, in addition to geolocation, ASN, and carrier data. Ideal for advanced threat analysis and bot detection. - Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}` (shared with Core and Plus — response shape depends on your token''s plan)
+
+    - Base URL: `https://api.ipinfo.io/`
+
+    - Documentation
+
+
+    ## Specialized Detection APIs
+
+
+    ### Residential Proxy Detection
+
+    Detect residential, mobile, and datacenter proxy IPs with activity insights, last seen dates, and proxy service identification. - Endpoints: `/resproxy/{ip}`
+
+    - Documentation
+
+
+    ### Privacy Detection Standard
+
+    Detect VPNs, proxies, Tor exit nodes, relays, and hosting providers associated with an IP address. Returns core privacy signals including service provider identification. - Endpoints: `/{ip}/privacy`
+
+    - Documentation
+
+
+    ### Privacy Detection Extended
+
+    Advanced anonymous IP detection with detailed methodologies, confidence metrics, and metadata for VPNs, proxies, Tor, hosting providers, and relays.'
   version: 1.0.0
   title: IPinfo.io OpenAPI Specification Single API
   contact:
@@ -19,7 +95,7 @@ paths:
     get:
       tags:
       - Single
-      summary: IPinfo Returns the Current IP
+      summary: Returns the current IP
       description: Returns the current public/external IP address.
       operationId: getCurrentIp
       security:
@@ -39,7 +115,7 @@ paths:
     get:
       tags:
       - Single
-      summary: IPinfo Returns a IP for the Selected IP
+      summary: Returns a ip for the selected IP
       description: Returns a ip for the selected IP.
       operationId: getIpByIp
       security:
@@ -65,7 +141,7 @@ paths:
     get:
       tags:
       - Single
-      summary: IPinfo Returns the Current Hostname
+      summary: Returns the current hostname
       description: Returns the current hostname.
       operationId: getCurrentHostname
       security:
@@ -85,7 +161,7 @@ paths:
     get:
       tags:
       - Single
-      summary: IPinfo Returns a Hostname for the Selected IP
+      summary: Returns a hostname for the selected IP
       description: Returns a hostname for the selected IP.
       operationId: getHostnameByIp
       security:
@@ -111,7 +187,7 @@ paths:
     get:
       tags:
       - Single
-      summary: IPinfo Returns the Current City
+      summary: Returns the current city
       description: Returns the current city.
       operationId: getCurrentCity
       security:
@@ -131,7 +207,7 @@ paths:
     get:
       tags:
       - Single
-      summary: IPinfo Returns a City for the Selected IP
+      summary: Returns a city for the selected IP
       description: Returns a city for the selected IP.
       operationId: getCityByIp
       security:
@@ -157,7 +233,7 @@ paths:
     get:
       tags:
       - Single
-      summary: IPinfo Returns the Current Region
+      summary: Returns the current region
       description: Returns the current region. If the region is not available, it will return an empty string.
       operationId: getCurrentRegion
       security:
@@ -177,7 +253,7 @@ paths:
     get:
       tags:
       - Single
-      summary: IPinfo Returns a Region for the Selected IP
+      summary: Returns a region for the selected IP
       description: Returns a region for the selected IP. If the region is not available, it will return an empty string.
       operationId: getRegionByIp
       security:
@@ -203,7 +279,7 @@ paths:
     get:
       tags:
       - Single
-      summary: IPinfo Returns the Current Country
+      summary: Returns the current country
       description: Returns a concise response consisting of a two-letter country code. If the country is not available, it will return an empty string.
       operationId: getCurrentCountry
       security:
@@ -223,7 +299,7 @@ paths:
     get:
       tags:
       - Single
-      summary: IPinfo Returns a Country for the Selected IP
+      summary: Returns a country for the selected IP
       description: Returns a country for the selected IP in two letter ISO-3166 format. If the country is not available, it will return an empty string.
       operationId: getCountryByIp
       security:
@@ -249,7 +325,7 @@ paths:
     get:
       tags:
       - Single
-      summary: IPinfo Returns the Current Location
+      summary: Returns the current location
       description: The '/loc' API endpoint provides the geographical location of a user's IP address in a response with latitude and longitude in comma-separated text format.
       operationId: getCurrentLocation
       security:
@@ -269,7 +345,7 @@ paths:
     get:
       tags:
       - Single
-      summary: IPinfo GET a Location for the Selected IP
+      summary: Get a location for the selected IP
       description: The '/loc' API endpoint provides the geographic location of an IP address as latitude and longitude separated by a comma in text form.
       operationId: getLocationByIp
       security:
@@ -295,7 +371,7 @@ paths:
     get:
       tags:
       - Single
-      summary: IPinfo Returns the Current Postal Code or Zip Code
+      summary: Returns the current postal code or zip code
       description: The `/postal` API endpoint provides a straightforward method for retrieving the current postal code or zip code. When this endpoint is queried, the API responds with a simple string indicating the postal code for the current IP address.
       operationId: getCurrentPostal
       security:
@@ -315,7 +391,7 @@ paths:
     get:
       tags:
       - Single
-      summary: IPinfo Returns a Postal for the Selected IP
+      summary: Returns a postal for the selected IP
       description: The `/postal` API lets users input an IP address to get back the corresponding postal or zip code in a simple string format.
       operationId: getPostalByIp
       security:
@@ -341,7 +417,7 @@ paths:
     get:
       tags:
       - Single
-      summary: IPinfo Returns the Current Timezone
+      summary: Returns the current timezone
       description: The '/timezone' API endpoint returns the user's timezone based on their IP address in IANA format.
       operationId: getCurrentTimezone
       security:
@@ -361,7 +437,7 @@ paths:
     get:
       tags:
       - Single
-      summary: IPinfo Returns a Timezone for the Selected IP
+      summary: Returns a timezone for the selected IP
       description: The `/timezone` API endpoint returns the IANA timezone based on the user's input IP address.
       operationId: getTimezoneByIp
       security:
@@ -387,7 +463,7 @@ paths:
     get:
       tags:
       - Single
-      summary: IPinfo Returns the Current ASN and as Organization
+      summary: Returns the current ASN and AS organization
       description: The '/org' API endpoint identifies the Autonomous System Number (ASN) and ASN organization associated with the user's IP address. When called, the API returns a string with the ASN (prefixed by 'AS') and organization name.
       operationId: getCurrentOrganization
       security:
@@ -409,7 +485,7 @@ paths:
     get:
       tags:
       - Single
-      summary: IPinfo Returns a Organization for the Selected IP
+      summary: Returns a organization for the selected IP
       description: The '/org' API endpoint provides the ASN and organization related to the user's input IP address. It returns a string including the ASN (prefixed by 'AS') and AS organization name.
       operationId: getOrganizationByIp
       security:
@@ -433,6 +509,18 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
+    Error429:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Rate limit exceeded
+        message:
+          type: string
+          example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
     Error403:
       type: object
       required:
@@ -445,6 +533,18 @@ components:
         message:
           type: string
           example: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help
+    Error400:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Wrong module or field type
+        message:
+          type: string
+          example: No module or field of type exists for the provided field. Please check our documentation https://ipinfo.io/developers.
     Error404:
       type: object
       required:
@@ -469,78 +569,13 @@ components:
     Error500:
       type: string
       example: Internal server error
-    Error429:
-      type: object
-      required:
-      - title
-      - message
-      properties:
-        title:
-          type: string
-          example: Rate limit exceeded
-        message:
-          type: string
-          example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
-    Error400:
-      type: object
-      required:
-      - title
-      - message
-      properties:
-        title:
-          type: string
-          example: Wrong module or field type
-        message:
-          type: string
-          example: No module or field of type exists for the provided field. Please check our documentation https://ipinfo.io/developers.
   responses:
-    Timezone:
-      description: Timezone of the located IP address in the format of IANA Time Zones.
-      content:
-        text/plain:
-          schema:
-            type: string
-            example: America/New_York
-    Ip:
-      description: Public IP address.
-      content:
-        text/plain:
-          schema:
-            type: string
-            example: 66.87.125.72
-    TooManyRequests:
-      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
+    BadRequest:
+      description: If users try to access a field type that does not exist or do not have permissions to access it, they will encounter a wrong module or field type error.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Error429'
-    Hostname:
-      description: Hostname of the IP address.
-      content:
-        text/plain:
-          schema:
-            type: string
-            example: ip-66-87-125-72.spfdma.spcsdns.net
-    NotFound:
-      description: Wrong ip. Please provide a valid IP address.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error404'
-    Postal:
-      description: Postal code or zip code for the IP address.
-      content:
-        text/plain:
-          schema:
-            type: string
-            example: '01105'
-    City:
-      description: The city name of the IP address.
-      content:
-        text/plain:
-          schema:
-            type: string
-            example: Springfield
+            $ref: '#/components/schemas/Error400'
     Country:
       description: Name of the country in the 2 letter ISO 3166-1 alpha-2 for the IP address.
       content:
@@ -555,12 +590,27 @@ components:
           schema:
             type: string
             example: Massachusetts
-    Forbidden:
-      description: Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.
+    Timezone:
+      description: Timezone of the located IP address in the format of IANA Time Zones.
       content:
-        application/json:
+        text/plain:
           schema:
-            $ref: '#/components/schemas/Error403'
+            type: string
+            example: America/New_York
+    Postal:
+      description: Postal code or zip code for the IP address.
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: '01105'
+    Ip:
+      description: Public IP address.
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: 66.87.125.72
     Organization:
       description: ASN and AS organization name for the IP address.
       content:
@@ -568,6 +618,38 @@ components:
           schema:
             type: string
             example: AS51501 Khabarovsk home networks Ltd
+    TooManyRequests:
+      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error429'
+    City:
+      description: The city name of the IP address.
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: Springfield
+    NotFound:
+      description: Wrong ip. Please provide a valid IP address.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error404'
+    Hostname:
+      description: Hostname of the IP address.
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: ip-66-87-125-72.spfdma.spcsdns.net
+    InternalServerError:
+      description: Internal server error or server unavailable.
+      content:
+        text/plain:
+          schema:
+            $ref: '#/components/schemas/Error500'
     Location:
       description: Geographic coordinate of the IP address in the format of `<latitude>, <longitude>`.
       content:
@@ -575,18 +657,12 @@ components:
           schema:
             type: string
             example: 42.0999,-72.5783
-    BadRequest:
-      description: If users try to access a field type that does not exist or do not have permissions to access it, they will encounter a wrong module or field type error.
+    Forbidden:
+      description: Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Error400'
-    InternalServerError:
-      description: Internal server error or server unavailable.
-      content:
-        text/plain:
-          schema:
-            $ref: '#/components/schemas/Error500'
+            $ref: '#/components/schemas/Error403'
   parameters:
     Ip:
       name: ip

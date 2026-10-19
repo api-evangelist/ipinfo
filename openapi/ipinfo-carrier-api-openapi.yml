@@ -1,6 +1,82 @@
 openapi: 3.2.0
 info:
-  description: Official OpenAPI Specification for IPinfo's comprehensive IP intelligence API.
+  description: 'Official OpenAPI Specification for IPinfo''s comprehensive IP intelligence API. This specification defines all endpoints for IP geolocation, ASN data, company information, privacy detection, and specialized data services. ## Authentication
+
+
+    All endpoints support three authentication methods:
+
+    - **HTTP Basic Auth**: Use your token as the username with empty password
+
+    - **Bearer Token**: Include token in Authorization header
+
+    - **Query Parameter**: Pass token as `?token=YOUR_TOKEN`
+
+
+    Learn more about authentication
+
+
+    ## IPinfo API Tiers
+
+
+    IPinfo offers four main API tiers with different feature sets:
+
+
+    ### IPinfo Lite
+
+    Lightweight IP geolocation with essential information including ASN details, country, and continent data. Perfect for basic geolocation needs with fast response times. Unlimited requests on paid plans. - Endpoints: `/lite/me`, `/lite/{ip}`, `/lite/{ip}/{field}`
+
+    - Base URL: `https://api.ipinfo.io/`
+
+    - Documentation
+
+
+    ### IPinfo Core
+
+    Comprehensive IP information with detailed geolocation data (city, region, coordinates, postal code, timezone), ASN information, and classification boolean flags (anycast, hosting, mobile, satellite). - Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}`
+
+    - Base URL: `https://api.ipinfo.io/`
+
+    - Documentation
+
+
+    ### IPinfo Plus
+
+    All Core features plus mobile/carrier detection, anonymity analysis (VPN, proxy, Tor, relay detection), service identification, and extended geographic metadata. Ideal for security, fraud prevention, and advanced analytics. - Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}` (shared with Core — response shape depends on your token''s plan)
+
+    - Base URL: `https://api.ipinfo.io/`
+
+    - Documentation
+
+
+    ### IPinfo Max
+
+    Our most comprehensive IP intelligence tier, building on all Plus features with full anonymization coverage including residential proxy behavioral signals, in addition to geolocation, ASN, and carrier data. Ideal for advanced threat analysis and bot detection. - Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}` (shared with Core and Plus — response shape depends on your token''s plan)
+
+    - Base URL: `https://api.ipinfo.io/`
+
+    - Documentation
+
+
+    ## Specialized Detection APIs
+
+
+    ### Residential Proxy Detection
+
+    Detect residential, mobile, and datacenter proxy IPs with activity insights, last seen dates, and proxy service identification. - Endpoints: `/resproxy/{ip}`
+
+    - Documentation
+
+
+    ### Privacy Detection Standard
+
+    Detect VPNs, proxies, Tor exit nodes, relays, and hosting providers associated with an IP address. Returns core privacy signals including service provider identification. - Endpoints: `/{ip}/privacy`
+
+    - Documentation
+
+
+    ### Privacy Detection Extended
+
+    Advanced anonymous IP detection with detailed methodologies, confidence metrics, and metadata for VPNs, proxies, Tor, hosting providers, and relays.'
   version: 1.0.0
   title: IPinfo.io OpenAPI Specification Carrier API
   contact:
@@ -22,7 +98,7 @@ paths:
     get:
       tags:
       - Carrier
-      summary: IPinfo Detects if the IP Address is Being Used in a Mobile Carrier Network.
+      summary: Detects if the IP address is being used in a mobile carrier network.
       description: Detects if the IP address is being used in a mobile carrier network. This API endpoint can be used to detect the usage of a phone device through an IP address. It returns the Mobile Country Code (MCC), Mobile Network Code (MNC), and the originating country of the carrier.
       operationId: getCarrier
       security:
@@ -44,6 +120,42 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
+    Error429:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Rate limit exceeded
+        message:
+          type: string
+          example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
+    Error404:
+      type: object
+      required:
+      - status
+      - error
+      properties:
+        status:
+          type: integer
+          example: 404
+        error:
+          type: object
+          required:
+          - title
+          - message
+          properties:
+            title:
+              type: string
+              example: Wrong ip
+            message:
+              type: string
+              example: Please provide a valid IP address
+    Error500:
+      type: string
+      example: Internal server error
     Error403:
       type: object
       required:
@@ -72,49 +184,7 @@ components:
         mnc:
           type: string
           example: '120'
-    Error404:
-      type: object
-      required:
-      - status
-      - error
-      properties:
-        status:
-          type: integer
-          example: 404
-        error:
-          type: object
-          required:
-          - title
-          - message
-          properties:
-            title:
-              type: string
-              example: Wrong ip
-            message:
-              type: string
-              example: Please provide a valid IP address
-    Error500:
-      type: string
-      example: Internal server error
-    Error429:
-      type: object
-      required:
-      - title
-      - message
-      properties:
-        title:
-          type: string
-          example: Rate limit exceeded
-        message:
-          type: string
-          example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
   responses:
-    Carrier:
-      description: Carrier detection response object.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CarrierResponse'
     TooManyRequests:
       description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
       content:
@@ -127,6 +197,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error404'
+    Carrier:
+      description: Carrier detection response object.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CarrierResponse'
     InternalServerError:
       description: Internal server error or server unavailable.
       content:

@@ -1,6 +1,82 @@
 openapi: 3.2.0
 info:
-  description: Official OpenAPI Specification for IPinfo's comprehensive IP intelligence API.
+  description: 'Official OpenAPI Specification for IPinfo''s comprehensive IP intelligence API. This specification defines all endpoints for IP geolocation, ASN data, company information, privacy detection, and specialized data services. ## Authentication
+
+
+    All endpoints support three authentication methods:
+
+    - **HTTP Basic Auth**: Use your token as the username with empty password
+
+    - **Bearer Token**: Include token in Authorization header
+
+    - **Query Parameter**: Pass token as `?token=YOUR_TOKEN`
+
+
+    Learn more about authentication
+
+
+    ## IPinfo API Tiers
+
+
+    IPinfo offers four main API tiers with different feature sets:
+
+
+    ### IPinfo Lite
+
+    Lightweight IP geolocation with essential information including ASN details, country, and continent data. Perfect for basic geolocation needs with fast response times. Unlimited requests on paid plans. - Endpoints: `/lite/me`, `/lite/{ip}`, `/lite/{ip}/{field}`
+
+    - Base URL: `https://api.ipinfo.io/`
+
+    - Documentation
+
+
+    ### IPinfo Core
+
+    Comprehensive IP information with detailed geolocation data (city, region, coordinates, postal code, timezone), ASN information, and classification boolean flags (anycast, hosting, mobile, satellite). - Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}`
+
+    - Base URL: `https://api.ipinfo.io/`
+
+    - Documentation
+
+
+    ### IPinfo Plus
+
+    All Core features plus mobile/carrier detection, anonymity analysis (VPN, proxy, Tor, relay detection), service identification, and extended geographic metadata. Ideal for security, fraud prevention, and advanced analytics. - Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}` (shared with Core — response shape depends on your token''s plan)
+
+    - Base URL: `https://api.ipinfo.io/`
+
+    - Documentation
+
+
+    ### IPinfo Max
+
+    Our most comprehensive IP intelligence tier, building on all Plus features with full anonymization coverage including residential proxy behavioral signals, in addition to geolocation, ASN, and carrier data. Ideal for advanced threat analysis and bot detection. - Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}` (shared with Core and Plus — response shape depends on your token''s plan)
+
+    - Base URL: `https://api.ipinfo.io/`
+
+    - Documentation
+
+
+    ## Specialized Detection APIs
+
+
+    ### Residential Proxy Detection
+
+    Detect residential, mobile, and datacenter proxy IPs with activity insights, last seen dates, and proxy service identification. - Endpoints: `/resproxy/{ip}`
+
+    - Documentation
+
+
+    ### Privacy Detection Standard
+
+    Detect VPNs, proxies, Tor exit nodes, relays, and hosting providers associated with an IP address. Returns core privacy signals including service provider identification. - Endpoints: `/{ip}/privacy`
+
+    - Documentation
+
+
+    ### Privacy Detection Extended
+
+    Advanced anonymous IP detection with detailed methodologies, confidence metrics, and metadata for VPNs, proxies, Tor, hosting providers, and relays.'
   version: 1.0.0
   title: IPinfo.io OpenAPI Specification Domains API
   contact:
@@ -22,7 +98,7 @@ paths:
     get:
       tags:
       - Domains
-      summary: IPinfo Returns a List of All of the Domains Hosted on the Provided IP Address
+      summary: Returns a list of all of the domains hosted on the provided IP address
       description: The Hosted Domains or Reverse IP API endpoint returns a list of domains hosted on a specified IP address, including the total number of domains and the specific names associated with that address.
       operationId: getDomains
       security:
@@ -45,13 +121,6 @@ components:
       schema:
         type: integer
         minimum: 0
-    Ip:
-      name: ip
-      in: path
-      description: A single IPv4 or IPv6 IP address.
-      required: true
-      schema:
-        type: string
     Limit:
       name: limit
       in: query
@@ -61,6 +130,13 @@ components:
         minimum: 1
         maximum: 1000
         default: 100
+    Ip:
+      name: ip
+      in: path
+      description: A single IPv4 or IPv6 IP address.
+      required: true
+      schema:
+        type: string
   schemas:
     DomainsResponse:
       type: object

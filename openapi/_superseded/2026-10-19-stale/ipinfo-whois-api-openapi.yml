@@ -1,0 +1,683 @@
+openapi: 3.2.0
+info:
+  description: Official OpenAPI Specification for IPinfo's comprehensive IP intelligence API.
+  version: 1.0.0
+  title: IPinfo.io OpenAPI Specification Whois API
+  contact:
+    name: IPinfo
+    email: support@ipinfo.io
+    url: https://ipinfo.io/
+servers:
+- url: https://ipinfo.io/
+- url: https://v6.ipinfo.io/
+- url: https://api.ipinfo.io/
+tags:
+- name: WHOIS
+  description: IP WHOIS API
+  externalDocs:
+    description: Find more info here
+    url: https://ipinfo.io/developers/whois
+paths:
+  /whois/net/{whoisnetid}:
+    get:
+      tags:
+      - WHOIS
+      summary: IPinfo Returns the WHOIS Information by Net ID Lookup
+      description: 'This API endpoint allows users to retrieve WHOIS information based on a specified Net ID.
+
+        The response includes details such as the IP address range, organization name, country, and various administrative information related to the network.'
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/Whoisnetid'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Whoissource'
+      responses:
+        '200':
+          $ref: '#/components/responses/WhoisNetId'
+      operationId: getWhoisNetByWhoisnetid
+      x-operation-id-source: derived
+  /whois/net/{whoisip}:
+    get:
+      tags:
+      - WHOIS
+      summary: IPinfo Returns the WHOIS Information by WHOIS IP Address or IP Address Range
+      description: 'The WHOIS API lookup via IP address provides WHOIS information based on a specific IP address or IP address range.
+
+        The response contains detailed information about the organization associated with the IP, including the range of addresses, organization name, administrative contacts, abuse contacts, and additional metadata such as the country and contact details for both technical and administrative support.'
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/Whoisip'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Whoissource'
+      responses:
+        '200':
+          $ref: '#/components/responses/WhoisIp'
+      operationId: getWhoisNetByWhoisip
+      x-operation-id-source: derived
+  /whois/net/{domain}:
+    get:
+      tags:
+      - WHOIS
+      summary: IPinfo Returns the WHOIS Information by WHOIS Domain of an Internet Organization
+      description: The IPinfo WHOIS API lookup via organization organization domain name provides comprehensive WHOIS information for specified organization, enabling users to gain insights into the registration and organizational details of internet entities. The response includes a total count of records, and detailed records for each associated IP range. Querying the organization domain reveals critical information such as the organization's name, country, and contact details for technical and administrative personnel, including names, emails, and physical addresses. Additionally, the response features abuse contact information and registration dates, which are essential for addressing network issues and potential abuse.
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/Domain'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Whoissource'
+      responses:
+        '200':
+          $ref: '#/components/responses/WhoisDomain'
+      operationId: getWhoisNetByDomain
+      x-operation-id-source: derived
+  /whois/net/AS{asn}:
+    get:
+      tags:
+      - WHOIS
+      summary: IPinfo Returns the WHOIS Information by WHOIS ASN
+      description: The IPinfo WHOIS API lookup via ASN provides in-depth WHOIS information associated with a specific Autonomous System Number (ASN). Querying ASN reveals critical data, including the organization's name, the allocated IP range, and the country of operation. The response includes administrative and technical contact information, highlighting the contact person along with their address and phone number. Additionally, the API provides details for abuse reporting, including a dedicated email for abuse contacts. This comprehensive dataset is essential for network administrators, security professionals, and organizations needing to investigate ASN ownership and maintain network integrity.
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/Asn'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Whoissource'
+      responses:
+        '200':
+          $ref: '#/components/responses/WhoisAsn'
+      operationId: getWhoisNetAS{asn}
+      x-operation-id-source: derived
+  /whois/org/{whoisorgid}:
+    get:
+      tags:
+      - WHOIS
+      summary: IPinfo Returns the WHOIS Information by WHOIS Organization (ORG) ID of an…
+      description: The IPinfo WHOIS API lookup via organization IDs (Org) provides comprehensive information about a specific internet organization identified by its WHOIS organization ID. Querying a WHOIS org key returns data about the internet organization. The response includes critical details such as the organization's address, along with the contact information for various roles within the organization. This includes administrative, technical, and abuse contacts. The API also offers timestamps for when the organization was created and last updated, which is essential for maintaining accurate records.
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/Whoisorgid'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Whoissource'
+      responses:
+        '200':
+          $ref: '#/components/responses/WhoisOrg'
+      operationId: getWhoisOrgByWhoisorgid
+      x-operation-id-source: derived
+  /whois/poc/{whoispoc}:
+    get:
+      tags:
+      - WHOIS
+      summary: IPinfo Returns the WHOIS Information by WHOIS Point of Contact (POC) Value of…
+      description: The IPinfo WHOIS API lookup via Points of Contact (POC) provides essential details about an individual associated with an internet organization identified by their WHOIS POC ID. For instance, querying the POC ID yields information about the name of the point of contact and their organization location. The response includes the organization's physical address, email address, and contact numbers. Additional metadata indicates when the record was created and last updated, alongside the source of the information.
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/Whoispoc'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Whoissource'
+      responses:
+        '200':
+          $ref: '#/components/responses/WhoisPoc'
+      operationId: getWhoisPocByWhoispoc
+      x-operation-id-source: derived
+components:
+  parameters:
+    Whoisorgid:
+      name: whoisorgid
+      in: path
+      description: The WHOIS organization (ORG) ID of an internet organization.
+      required: true
+      schema:
+        type: string
+    Whoispoc:
+      name: whoispoc
+      in: path
+      description: The WHOIS Point of Contact (POC) value of an internet organization.
+      required: true
+      schema:
+        type: string
+    Whoisip:
+      name: whoisip
+      in: path
+      description: The IP address or an IP address range of an internet organization.
+      required: true
+      schema:
+        type: string
+    Whoissource:
+      name: whoissource
+      in: query
+      description: Source query parameter to filter records by provided Whois source.
+      schema:
+        type: string
+        enum:
+        - arin
+        - ripe
+        - afrinic
+        - apnic
+        - lacnic
+    Page:
+      name: page
+      in: query
+      description: The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.
+      schema:
+        type: integer
+        minimum: 0
+    Whoisnetid:
+      name: whoisnetid
+      in: path
+      description: The Network (NET) ID of an internet organization.
+      required: true
+      schema:
+        type: string
+    Asn:
+      name: asn
+      in: path
+      description: an ASN number.
+      required: true
+      schema:
+        type: integer
+    Domain:
+      name: domain
+      in: path
+      description: a domain.
+      required: true
+      schema:
+        type: string
+  responses:
+    WhoisPoc:
+      description: WHOIS Point of Contact (POC) response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WhoisPocResponse'
+    WhoisAsn:
+      description: WHOIS ASN response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WhoisAsnResponse'
+    WhoisIp:
+      description: WHOIS IP  and IP range response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WhoisIpResponse'
+    WhoisDomain:
+      description: WHOIS Domain response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WhoisDomainResponse'
+    WhoisOrg:
+      description: WHOIS organization (ORG) ID response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WhoisOrgResponse'
+    WhoisNetId:
+      description: WHOIS Network (NET) ID response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WhoisNetIdResponse'
+  schemas:
+    WhoisOrgResponse:
+      type: object
+      properties:
+        org:
+          type: string
+          example: PINEAP
+        total:
+          type: integer
+          example: 100
+        page:
+          type: integer
+          example: 0
+        records:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: PINEAP
+              name:
+                type: string
+                example: Pineapple Houser
+              address:
+                type: string
+                example: null
+              country:
+                type: string
+                example: US
+              admin:
+                type: string
+                example: POC object or null
+              abuse:
+                type: string
+                example: POC object or null
+              tech:
+                type: string
+                example: POC object or null
+              maintainer:
+                type: string
+                example: POC object or null
+              created:
+                type: string
+                format: date
+                example: '2000-03-25'
+              updated:
+                type: string
+                format: date
+                example: '2011-09-24'
+              source:
+                type: string
+                example: arin
+              raw:
+                type: string
+                example: <raw data>
+      example:
+        org: PINEAP
+        total: 100
+        page: 0
+        records:
+        - id: PINEAP
+          name: Pineapple Houser
+          address: null
+          country: US
+          admin: POC object or null
+          abuse: POC object or null
+          tech: POC object or null
+          maintainer: POC object or null
+          created: '2000-03-25'
+          updated: '2011-09-24'
+          source: arin
+          raw: <raw data>
+    WhoisAsnResponse:
+      type: object
+      properties:
+        net:
+          type: string
+          example: AS9541
+        total:
+          type: integer
+          example: 47
+        page:
+          type: integer
+          example: 0
+        records:
+          type: array
+          items:
+            type: object
+            properties:
+              range:
+                type: string
+                example: 58.65.203.0/24
+              id:
+                type: string
+                example: CYBERNET
+              name:
+                type: string
+                example: Broadband Services
+              country:
+                type: string
+                example: PK
+              org:
+                type: string
+                example: null
+              status:
+                type: string
+                example: ALLOCATED NON-PORTABLE
+              admin:
+                type: string
+                example: POC object or null
+              abuse:
+                type: string
+                example: POC object or null
+              tech:
+                type: string
+                example: POC object or null
+              maintainer:
+                type: string
+                example: POC object or null
+              updated:
+                type: string
+                format: date
+                example: '2021-01-27'
+              source:
+                type: string
+                example: apnic
+              raw:
+                type: string
+                example: <raw data>
+      example:
+        net: AS9541
+        total: 47
+        page: 0
+        records:
+        - range: 58.65.203.0/24
+          id: CYBERNET
+          name: Broadband Services
+          country: PK
+          org: null
+          status: ALLOCATED NON-PORTABLE
+          admin: POC object or null
+          abuse: POC object or null
+          tech: POC object or null
+          maintainer: POC object or null
+          updated: '2021-01-27'
+          source: apnic
+          raw: <raw data>
+    WhoisNetIdResponse:
+      type: object
+      properties:
+        net:
+          type: string
+        total:
+          type: integer
+        page:
+          type: integer
+        records:
+          type: array
+          items:
+            type: object
+            properties:
+              range:
+                type: string
+              id:
+                type: string
+              name:
+                type: string
+              country:
+                type: string
+              org:
+                type: string
+              admin:
+                type: string
+              abuse:
+                type: string
+              tech:
+                type: string
+              maintainer:
+                type: string
+              updated:
+                type: string
+                format: date
+              status:
+                type: string
+              source:
+                type: string
+              raw:
+                type: string
+            example:
+              range: 24.62.0.0/15
+              id: ''
+              name: Comcast Cable Communications Holdings, Inc
+              country: US
+              org: POC object or null
+              admin: POC object or null
+              abuse: POC object or null
+              tech: POC object or null
+              maintainer: POC object or null
+              updated: '2010-10-18'
+              status: REASSIGNMENT
+              source: arin
+              raw: <raw data>
+      example:
+        net: NEW-ENGLAND-5
+        total: 100
+        page: 0
+        records:
+        - range: 24.62.0.0/15
+          id: ''
+          name: Comcast Cable Communications Holdings, Inc
+          country: US
+          org: POC object or null
+          admin: POC object or null
+          abuse: POC object or null
+          tech: POC object or null
+          maintainer: POC object or null
+          updated: '2010-10-18'
+          status: REASSIGNMENT
+          source: arin
+          raw: <raw data>
+    WhoisPocResponse:
+      type: object
+      properties:
+        poc:
+          type: string
+          example: CP312-ARIN
+        total:
+          type: integer
+          example: 1
+        page:
+          type: integer
+          example: 0
+        records:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: CP312-ARIN
+              name:
+                type: string
+                example: Cynthia Pararo
+              email:
+                type: string
+                example: spararo@mindspring.com
+              address:
+                type: string
+                example: 'US, GA, Atlanta, Pineapple Houser
+
+                  2131 Plaster Bridge Rd Ne, 303244036'
+              country:
+                type: string
+                example: US
+              phone:
+                type: string
+                example: ''
+              fax:
+                type: string
+                example: ''
+              created:
+                type: string
+                format: date
+                example: '2000-03-25'
+              updated:
+                type: string
+                format: date
+                example: '2000-03-25'
+              source:
+                type: string
+                example: arin
+              raw:
+                type: string
+                example: <raw data>
+      example:
+        poc: CP312-ARIN
+        total: 1
+        page: 0
+        records:
+        - id: CP312-ARIN
+          name: Cynthia Pararo
+          email: spararo@mindspring.com
+          address: 'US, GA, Atlanta, Pineapple Houser
+
+            2131 Plaster Bridge Rd Ne, 303244036'
+          country: US
+          phone: ''
+          fax: ''
+          created: '2000-03-25'
+          updated: '2000-03-25'
+          source: arin
+          raw: <raw data>
+    WhoisIpResponse:
+      type: object
+      properties:
+        net:
+          type: string
+          example: 24.62.0.0/15
+        total:
+          type: integer
+          example: 100
+        page:
+          type: integer
+          example: 0
+        records:
+          type: array
+          items:
+            type: object
+            properties:
+              range:
+                type: string
+                example: 24.62.0.0/15
+              id:
+                type: string
+                example: NEW-ENGLAND-5
+              name:
+                type: string
+                example: Comcast Cable Communications Holdings, Inc
+              country:
+                type: string
+                example: US
+              org:
+                type: string
+                example: C02610695
+              updated:
+                type: string
+                format: date
+                example: '2010-10-18'
+              status:
+                type: string
+                example: REASSIGNMENT
+              source:
+                type: string
+                example: arin
+              raw:
+                type: string
+                example: <raw data>
+      example:
+        net: 24.62.0.0/15
+        total: 100
+        page: 0
+        records:
+        - range: 24.62.0.0/15
+          id: NEW-ENGLAND-5
+          name: Comcast Cable Communications Holdings, Inc
+          country: US
+          org: C02610695
+          updated: '2010-10-18'
+          status: REASSIGNMENT
+          source: arin
+          raw: <raw data>
+    WhoisDomainResponse:
+      type: object
+      properties:
+        net:
+          type: string
+          example: comcast.net
+        total:
+          type: integer
+          example: 80
+        page:
+          type: integer
+          example: 0
+        records:
+          type: array
+          items:
+            type: object
+            properties:
+              range:
+                type: string
+                example: 24.147.0.0/17
+              id:
+                type: string
+                example: NEW-ENGLAND-10
+              name:
+                type: string
+                example: Comcast Cable Communications Holdings, Inc
+              country:
+                type: string
+                example: US
+              org:
+                type: string
+                example: C02610737
+              status:
+                type: string
+                example: REASSIGNMENT
+              tech:
+                type: string
+                example: null
+              maintainer:
+                type: string
+                example: null
+              admin:
+                type: string
+                example: null
+              abuse:
+                type: string
+                example: null
+              updated:
+                type: string
+                format: date
+                example: '2010-10-18'
+              source:
+                type: string
+                example: arin
+              raw:
+                type: string
+                example: <raw data>
+              domain:
+                type: string
+                example: comcast.net
+      example:
+        net: comcast.net
+        total: 80
+        page: 0
+        records:
+        - range: 24.147.0.0/17
+          id: NEW-ENGLAND-10
+          name: Comcast Cable Communications Holdings, Inc
+          country: US
+          org: C02610737
+          status: REASSIGNMENT
+          tech: null
+          maintainer: null
+          admin: null
+          abuse: null
+          updated: '2010-10-18'
+          source: arin
+          raw: <raw data>
+          domain: comcast.net
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: token
+externalDocs:
+  description: IPinfo Developers Portal / Documentation
+  url: https://ipinfo.io/developers

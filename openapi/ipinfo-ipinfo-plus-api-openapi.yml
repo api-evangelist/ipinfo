@@ -1,6 +1,82 @@
 openapi: 3.2.0
 info:
-  description: Official OpenAPI Specification for IPinfo's comprehensive IP intelligence API.
+  description: 'Official OpenAPI Specification for IPinfo''s comprehensive IP intelligence API. This specification defines all endpoints for IP geolocation, ASN data, company information, privacy detection, and specialized data services. ## Authentication
+
+
+    All endpoints support three authentication methods:
+
+    - **HTTP Basic Auth**: Use your token as the username with empty password
+
+    - **Bearer Token**: Include token in Authorization header
+
+    - **Query Parameter**: Pass token as `?token=YOUR_TOKEN`
+
+
+    Learn more about authentication
+
+
+    ## IPinfo API Tiers
+
+
+    IPinfo offers four main API tiers with different feature sets:
+
+
+    ### IPinfo Lite
+
+    Lightweight IP geolocation with essential information including ASN details, country, and continent data. Perfect for basic geolocation needs with fast response times. Unlimited requests on paid plans. - Endpoints: `/lite/me`, `/lite/{ip}`, `/lite/{ip}/{field}`
+
+    - Base URL: `https://api.ipinfo.io/`
+
+    - Documentation
+
+
+    ### IPinfo Core
+
+    Comprehensive IP information with detailed geolocation data (city, region, coordinates, postal code, timezone), ASN information, and classification boolean flags (anycast, hosting, mobile, satellite). - Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}`
+
+    - Base URL: `https://api.ipinfo.io/`
+
+    - Documentation
+
+
+    ### IPinfo Plus
+
+    All Core features plus mobile/carrier detection, anonymity analysis (VPN, proxy, Tor, relay detection), service identification, and extended geographic metadata. Ideal for security, fraud prevention, and advanced analytics. - Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}` (shared with Core — response shape depends on your token''s plan)
+
+    - Base URL: `https://api.ipinfo.io/`
+
+    - Documentation
+
+
+    ### IPinfo Max
+
+    Our most comprehensive IP intelligence tier, building on all Plus features with full anonymization coverage including residential proxy behavioral signals, in addition to geolocation, ASN, and carrier data. Ideal for advanced threat analysis and bot detection. - Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}` (shared with Core and Plus — response shape depends on your token''s plan)
+
+    - Base URL: `https://api.ipinfo.io/`
+
+    - Documentation
+
+
+    ## Specialized Detection APIs
+
+
+    ### Residential Proxy Detection
+
+    Detect residential, mobile, and datacenter proxy IPs with activity insights, last seen dates, and proxy service identification. - Endpoints: `/resproxy/{ip}`
+
+    - Documentation
+
+
+    ### Privacy Detection Standard
+
+    Detect VPNs, proxies, Tor exit nodes, relays, and hosting providers associated with an IP address. Returns core privacy signals including service provider identification. - Endpoints: `/{ip}/privacy`
+
+    - Documentation
+
+
+    ### Privacy Detection Extended
+
+    Advanced anonymous IP detection with detailed methodologies, confidence metrics, and metadata for VPNs, proxies, Tor, hosting providers, and relays.'
   version: 1.0.0
   title: IPinfo.io OpenAPI Specification ipinfo plus API
   contact:
@@ -18,13 +94,13 @@ tags:
     description: Find more info here
     url: https://ipinfo.io/products/plus
 paths:
-  /plus/me:
+  /lookup/me:
     get:
       tags:
       - ipinfo plus
-      summary: IPinfo Returns Plus IP Information About the Current IP
-      description: Returns comprehensive plus IP information about the current IP including enhanced geolocation, ASN details, mobile/carrier information, anonymity detection, and various IP characteristics.
-      operationId: getCurrentPlusInformation
+      summary: Returns IP information about the current IP
+      description: Returns IP information about the current IP. This single endpoint is shared across the Core, Plus, and Max tiers — the response shape (`CoreResponse`, `PlusResponse`, or `MaxResponse`) depends on the plan associated with your API token. There are no separate `/plus/*` or `/max/*` endpoints.
+      operationId: getCurrentCoreInformation
       servers:
       - url: https://api.ipinfo.io/
       - url: https://v4.api.ipinfo.io/
@@ -35,20 +111,27 @@ paths:
       - ApiKeyAuth: []
       responses:
         '200':
-          $ref: '#/components/responses/PlusResponse'
+          description: Core, Plus, or Max response object, depending on your token's plan.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/CoreResponse'
+                - $ref: '#/components/schemas/PlusResponse'
+                - $ref: '#/components/schemas/MaxResponse'
         '403':
-          $ref: '#/components/responses/PlusForbidden'
+          $ref: '#/components/responses/CoreForbidden'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /plus/{ip}:
+  /lookup/{ip}:
     get:
       tags:
       - ipinfo plus
-      summary: IPinfo Returns Plus IP Information About the Provided IP
-      description: Returns comprehensive plus IP information about the provided IP including enhanced geolocation, ASN details, mobile/carrier information, anonymity detection, and various IP characteristics.
-      operationId: getPlusInformationByIp
+      summary: Returns IP information about the provided IP
+      description: Returns IP information about the provided IP. This single endpoint is shared across the Core, Plus, and Max tiers — the response shape (`CoreResponse`, `PlusResponse`, or `MaxResponse`) depends on the plan associated with your API token. There are no separate `/plus/*` or `/max/*` endpoints.
+      operationId: getCoreInformationByIp
       servers:
       - url: https://api.ipinfo.io/
       - url: https://v4.api.ipinfo.io/
@@ -61,22 +144,29 @@ paths:
       - $ref: '#/components/parameters/Ip'
       responses:
         '200':
-          $ref: '#/components/responses/PlusResponse'
+          description: Core, Plus, or Max response object, depending on your token's plan.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/CoreResponse'
+                - $ref: '#/components/schemas/PlusResponse'
+                - $ref: '#/components/schemas/MaxResponse'
         '400':
-          $ref: '#/components/responses/PlusBadRequest'
+          $ref: '#/components/responses/CoreBadRequest'
         '403':
-          $ref: '#/components/responses/PlusForbidden'
+          $ref: '#/components/responses/CoreForbidden'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /plus/me/{field}:
+  /lookup/me/{field}:
     get:
       tags:
       - ipinfo plus
-      summary: IPinfo Returns a Specific Field from Plus IP Information About the Current IP
-      description: Returns a specific field from plus IP information about the current IP.
-      operationId: getCurrentPlusField
+      summary: Returns a specific field from IP information about the current IP
+      description: Returns a specific field from IP information about the current IP. Available fields depend on the plan associated with your API token — see the `field` parameter for the full set across Core, Plus, and Max.
+      operationId: getCurrentCoreField
       servers:
       - url: https://api.ipinfo.io/
       - url: https://v4.api.ipinfo.io/
@@ -86,25 +176,25 @@ paths:
       - BearerAuth: []
       - ApiKeyAuth: []
       parameters:
-      - $ref: '#/components/parameters/PlusField'
+      - $ref: '#/components/parameters/LookupField'
       responses:
         '200':
-          $ref: '#/components/responses/PlusField'
+          $ref: '#/components/responses/LookupField'
         '403':
-          $ref: '#/components/responses/PlusForbidden'
+          $ref: '#/components/responses/CoreForbidden'
         '404':
-          $ref: '#/components/responses/PlusInvalidField'
+          $ref: '#/components/responses/CoreInvalidField'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /plus/{ip}/{field}:
+  /lookup/{ip}/{field}:
     get:
       tags:
       - ipinfo plus
-      summary: IPinfo Returns a Specific Field from Plus IP Information About the Provided IP
-      description: Returns a specific field from plus IP information about the provided IP.
-      operationId: getPlusFieldByIp
+      summary: Returns a specific field from IP information about the provided IP
+      description: Returns a specific field from IP information about the provided IP. Available fields depend on the plan associated with your API token — see the `field` parameter for the full set across Core, Plus, and Max.
+      operationId: getCoreFieldByIp
       servers:
       - url: https://api.ipinfo.io/
       - url: https://v4.api.ipinfo.io/
@@ -115,23 +205,130 @@ paths:
       - ApiKeyAuth: []
       parameters:
       - $ref: '#/components/parameters/Ip'
-      - $ref: '#/components/parameters/PlusField'
+      - $ref: '#/components/parameters/LookupField'
       responses:
         '200':
-          $ref: '#/components/responses/PlusField'
+          $ref: '#/components/responses/LookupField'
         '400':
-          $ref: '#/components/responses/PlusBadRequest'
+          $ref: '#/components/responses/CoreBadRequest'
         '403':
-          $ref: '#/components/responses/PlusForbidden'
+          $ref: '#/components/responses/CoreForbidden'
         '404':
-          $ref: '#/components/responses/PlusInvalidField'
+          $ref: '#/components/responses/CoreInvalidField'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    PlusErrorForbidden:
+    Error429:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Rate limit exceeded
+        message:
+          type: string
+          example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
+    CoreErrorBadRequest:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: string
+          example: Please provide a valid IP address
+    CoreResponse:
+      type: object
+      required:
+      - ip
+      properties:
+        ip:
+          type: string
+          example: 8.8.8.8
+        hostname:
+          type: string
+          example: dns.google
+        geo:
+          type: object
+          properties:
+            city:
+              type: string
+              example: Mountain View
+            region:
+              type: string
+              example: California
+            region_code:
+              type: string
+              example: CA
+            country:
+              type: string
+              example: United States
+            country_code:
+              type: string
+              example: US
+            continent:
+              type: string
+              example: North America
+            continent_code:
+              type: string
+              example: NA
+            latitude:
+              type: number
+              example: 37.4056
+            longitude:
+              type: number
+              example: -122.0775
+            timezone:
+              type: string
+              example: America/Los_Angeles
+            postal_code:
+              type: string
+              example: '94043'
+        as:
+          type: object
+          properties:
+            asn:
+              type: string
+              example: AS15169
+            name:
+              type: string
+              example: Google LLC
+            domain:
+              type: string
+              example: google.com
+            type:
+              type: string
+              example: hosting
+              enum:
+              - hosting
+              - isp
+              - education
+              - government
+              - business
+        is_place:
+          type: boolean
+          description: Indicates whether the IP address is associated with a known public place. Core only ever returns this flag — Plus adds a place object with name and category, and Max adds the full set including ssid, latitude, and longitude.
+          example: true
+        is_anonymous:
+          type: boolean
+          example: false
+        is_anycast:
+          type: boolean
+          example: true
+        is_hosting:
+          type: boolean
+          example: true
+        is_mobile:
+          type: boolean
+          example: false
+        is_satellite:
+          type: boolean
+          example: false
+    CoreErrorForbidden:
       type: object
       required:
       - status
@@ -152,15 +349,7 @@ components:
             message:
               type: string
               example: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help
-    PlusErrorBadRequest:
-      type: object
-      required:
-      - error
-      properties:
-        error:
-          type: string
-          example: Please provide a valid IP address
-    PlusErrorInvalidField:
+    CoreErrorInvalidField:
       type: object
       required:
       - error
@@ -168,21 +357,6 @@ components:
         error:
           type: string
           example: invalid_field is not a valid field.
-    Error500:
-      type: string
-      example: Internal server error
-    Error429:
-      type: object
-      required:
-      - title
-      - message
-      properties:
-        title:
-          type: string
-          example: Rate limit exceeded
-        message:
-          type: string
-          example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
     PlusResponse:
       type: object
       required:
@@ -240,6 +414,16 @@ components:
               type: string
               format: date
               example: '2025-09-21'
+        place:
+          type: object
+          description: Information about the physical public place matched to the IP address. Omitted when there's no matching public place. Plus returns only name and category — ssid, latitude, and longitude are Max-only.
+          properties:
+            name:
+              type: string
+              example: Museum of History and Industry (MOHAI)
+            category:
+              type: string
+              example: museum
         as:
           type: object
           properties:
@@ -255,6 +439,12 @@ components:
             type:
               type: string
               example: isp
+              enum:
+              - hosting
+              - isp
+              - education
+              - government
+              - business
             last_changed:
               type: string
               format: date
@@ -289,6 +479,10 @@ components:
             is_vpn:
               type: boolean
               example: false
+        is_place:
+          type: boolean
+          description: Indicates whether the IP address is associated with a known public place.
+          example: true
         is_anonymous:
           type: boolean
           example: false
@@ -304,16 +498,239 @@ components:
         is_satellite:
           type: boolean
           example: false
+    Error500:
+      type: string
+      example: Internal server error
+    MaxResponse:
+      type: object
+      required:
+      - ip
+      - geo
+      - as
+      - anonymous
+      properties:
+        ip:
+          type: string
+          example: 1.0.126.158
+        hostname:
+          type: string
+          example: 158.126.0.1.megaegg.ne.jp
+        geo:
+          type: object
+          properties:
+            city:
+              type: string
+              example: Izumo
+            region:
+              type: string
+              example: Shimane
+            region_code:
+              type: string
+              example: '32'
+            country:
+              type: string
+              example: Japan
+            country_code:
+              type: string
+              example: JP
+            continent:
+              type: string
+              example: Asia
+            continent_code:
+              type: string
+              example: AS
+            latitude:
+              type: number
+              example: 35.36667
+            longitude:
+              type: number
+              example: 132.76667
+            timezone:
+              type: string
+              example: Asia/Tokyo
+            postal_code:
+              type: string
+              example: 693-0001
+            dma_code:
+              type: string
+              example: '501'
+            geoname_id:
+              type: string
+              example: '1861084'
+            radius:
+              type: integer
+              example: 50
+            last_changed:
+              type: string
+              format: date
+              example: '2026-03-22'
+        place:
+          type: object
+          description: Information about the physical public place matched to the IP address. Omitted when there's no matching public place, and may omit individual sub-fields (name, latitude, longitude) for categories with no fixed address, such as in_transit or in_flight.
+          properties:
+            name:
+              type: string
+              example: Museum of History and Industry (MOHAI)
+            category:
+              type: string
+              example: museum
+            ssid:
+              type: string
+              example: MOHAI-Guest
+            latitude:
+              type: number
+              example: 47.6275
+            longitude:
+              type: number
+              example: -122.3367
+        as:
+          type: object
+          properties:
+            asn:
+              type: string
+              example: AS18144
+            name:
+              type: string
+              example: Enecom,Inc.
+            domain:
+              type: string
+              example: enecom.co.jp
+            type:
+              type: string
+              example: business
+              enum:
+              - hosting
+              - isp
+              - education
+              - government
+              - business
+            last_changed:
+              type: string
+              format: date
+              example: '2021-05-01'
+        mobile:
+          type: object
+          description: Mobile carrier information for the IP address. Empty object if the IP is not a mobile carrier IP.
+          properties:
+            name:
+              type: string
+              example: dtac
+            mcc:
+              type: string
+              example: '520'
+            mnc:
+              type: string
+              example: '05'
+        anonymous:
+          type: object
+          properties:
+            name:
+              type: string
+              example: Ping Proxies
+            last_seen:
+              type: string
+              format: date
+              example: '2026-03-29'
+            percent_days_seen:
+              type: integer
+              example: 63
+            is_proxy:
+              type: boolean
+              example: false
+            is_relay:
+              type: boolean
+              example: false
+            is_tor:
+              type: boolean
+              example: false
+            is_vpn:
+              type: boolean
+              example: false
+            is_res_proxy:
+              type: boolean
+              example: true
+        is_place:
+          type: boolean
+          description: Indicates whether the IP address is associated with a known public place.
+          example: true
+        is_anonymous:
+          type: boolean
+          example: true
+        is_anycast:
+          type: boolean
+          example: false
+        is_hosting:
+          type: boolean
+          example: false
+        is_mobile:
+          type: boolean
+          example: false
+        is_satellite:
+          type: boolean
+          example: false
+  responses:
+    TooManyRequests:
+      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error429'
+    LookupField:
+      description: A specific field value from the /lookup response.
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: Mountain View
+        application/json:
+          schema:
+            type: object
+            example:
+              city: Mountain View
+              region: California
+    CoreInvalidField:
+      description: Invalid field name error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CoreErrorInvalidField'
+    InternalServerError:
+      description: Internal server error or server unavailable.
+      content:
+        text/plain:
+          schema:
+            $ref: '#/components/schemas/Error500'
+    CoreBadRequest:
+      description: Bad request error (invalid IP format).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CoreErrorBadRequest'
+    CoreForbidden:
+      description: Forbidden error (authentication issues).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CoreErrorForbidden'
   parameters:
-    PlusField:
+    LookupField:
       name: field
       in: path
-      description: A specific field from the plus response or nested geo/as/mobile/anonymous fields.
+      description: 'A specific field from the `/lookup` response, or a nested geo/as/mobile/anonymous field. The available fields depend on your token''s plan:
+
+        - Core: `ip`, `hostname`, `geo`, `geo/city`, `geo/region`, `geo/region_code`, `geo/country`, `geo/country_code`, `geo/continent`, `geo/continent_code`, `geo/latitude`, `geo/longitude`, `geo/timezone`, `geo/postal_code`, `as`, `as/asn`, `as/name`, `as/domain`, `as/type`, `is_anonymous`, `is_anycast`, `is_hosting`, `is_mobile`, `is_satellite`
+
+        - Plus/Max additionally: `geo/dma_code`, `geo/geoname_id`, `geo/radius`, `geo/last_changed`, `as/last_changed`, `mobile`, `mobile/name`, `mobile/mcc`, `mobile/mnc`, `anonymous`, `anonymous/name`, `anonymous/is_proxy`, `anonymous/is_relay`, `anonymous/is_tor`, `anonymous/is_vpn`
+
+        - Max only: `anonymous/last_seen`, `anonymous/percent_days_seen`, `anonymous/is_res_proxy`
+
+        '
       required: true
       schema:
         type: string
         enum:
         - ip
+        - hostname
         - geo
         - geo/city
         - geo/region
@@ -342,10 +759,13 @@ components:
         - mobile/mnc
         - anonymous
         - anonymous/name
+        - anonymous/last_seen
+        - anonymous/percent_days_seen
         - anonymous/is_proxy
         - anonymous/is_relay
         - anonymous/is_tor
         - anonymous/is_vpn
+        - anonymous/is_res_proxy
         - is_anonymous
         - is_anycast
         - is_hosting
@@ -358,56 +778,6 @@ components:
       required: true
       schema:
         type: string
-  responses:
-    PlusForbidden:
-      description: Forbidden error (authentication issues).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PlusErrorForbidden'
-    PlusResponse:
-      description: Plus response object.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PlusResponse'
-    PlusInvalidField:
-      description: Invalid field name error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PlusErrorInvalidField'
-    TooManyRequests:
-      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error429'
-    PlusBadRequest:
-      description: Bad request error (invalid IP format).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PlusErrorBadRequest'
-    InternalServerError:
-      description: Internal server error or server unavailable.
-      content:
-        text/plain:
-          schema:
-            $ref: '#/components/schemas/Error500'
-    PlusField:
-      description: A specific field value from the plus response.
-      content:
-        text/plain:
-          schema:
-            type: string
-            example: Toronto
-        application/json:
-          schema:
-            type: object
-            example:
-              city: Toronto
-              region: Ontario
   securitySchemes:
     BasicAuth:
       type: http

@@ -1,0 +1,166 @@
+openapi: 3.2.0
+info:
+  description: Official OpenAPI Specification for IPinfo's comprehensive IP intelligence API.
+  version: 1.0.0
+  title: IPinfo.io OpenAPI Specification Places API
+  contact:
+    name: IPinfo
+    email: support@ipinfo.io
+    url: https://ipinfo.io/
+servers:
+- url: https://ipinfo.io/
+- url: https://v6.ipinfo.io/
+- url: https://api.ipinfo.io/
+tags:
+- name: Places
+  description: IPinfo Places API - Building-level IP intelligence for physical locations.
+  externalDocs:
+    description: Find more info here
+    url: https://ipinfo.io/developers/places-api
+paths:
+  /places/{ip}:
+    get:
+      tags:
+      - Places
+      summary: IPinfo Returns Building-level Place Information for the Provided IP
+      description: Returns the real-world location associated with an IP address at the building level, including hotels, airports, museums, stadiums, and 30+ other categories. Includes venue name, category, SSID, and coordinates.
+      operationId: getPlaceByIp
+      servers:
+      - url: https://api.ipinfo.io/
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/Ip'
+      responses:
+        '200':
+          description: Places API response object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlacesResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    Error403:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Unknown token
+        message:
+          type: string
+          example: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help
+    PlacesResponse:
+      type: object
+      required:
+      - ip
+      - name
+      - category
+      - ssid
+      - latitude
+      - longitude
+      properties:
+        ip:
+          type: string
+          example: 65.144.40.106
+        name:
+          type: string
+          example: Museum of History and Industry (MOHAI)
+        category:
+          type: string
+          example: museum
+        ssid:
+          type: string
+          example: MOHAI-Guest
+        latitude:
+          type: number
+          example: 47.6275
+        longitude:
+          type: number
+          example: -122.3367
+    Error400:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Wrong module or field type
+        message:
+          type: string
+          example: No module or field of type exists for the provided field. Please check our documentation https://ipinfo.io/developers.
+    Error500:
+      type: string
+      example: Internal server error
+    Error429:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Rate limit exceeded
+        message:
+          type: string
+          example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
+  parameters:
+    Ip:
+      name: ip
+      in: path
+      description: A single IPv4 or IPv6 IP address.
+      required: true
+      schema:
+        type: string
+  responses:
+    TooManyRequests:
+      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error429'
+    BadRequest:
+      description: If users try to access a field type that does not exist or do not have permissions to access it, they will encounter a wrong module or field type error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error400'
+    Forbidden:
+      description: Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error403'
+    InternalServerError:
+      description: Internal server error or server unavailable.
+      content:
+        text/plain:
+          schema:
+            $ref: '#/components/schemas/Error500'
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: token
+externalDocs:
+  description: IPinfo Developers Portal / Documentation
+  url: https://ipinfo.io/developers

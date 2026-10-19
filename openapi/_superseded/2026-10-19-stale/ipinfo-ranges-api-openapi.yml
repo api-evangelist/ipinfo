@@ -1,0 +1,169 @@
+openapi: 3.2.0
+info:
+  description: Official OpenAPI Specification for IPinfo's comprehensive IP intelligence API.
+  version: 1.0.0
+  title: IPinfo.io OpenAPI Specification Ranges API
+  contact:
+    name: IPinfo
+    email: support@ipinfo.io
+    url: https://ipinfo.io/
+servers:
+- url: https://ipinfo.io/
+- url: https://v6.ipinfo.io/
+- url: https://api.ipinfo.io/
+tags:
+- name: Ranges
+  description: IP Ranges API.
+  externalDocs:
+    description: Find more info here
+    url: https://ipinfo.io/developers/ranges
+paths:
+  /ranges/{domain}:
+    get:
+      tags:
+      - Ranges
+      summary: IPinfo Returns Information About a Domain Ranges
+      description: The IP address ranges API endpoint provides information about IP address ranges assigned to or operated by a specific organization, identified by its domain name. This includes the number of IP ranges, specific IP range blocks (both IPv4 and IPv6), and any domain redirection information.
+      operationId: getRanges
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/Domain'
+      responses:
+        '200':
+          $ref: '#/components/responses/Ranges'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    Error403:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Unknown token
+        message:
+          type: string
+          example: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help
+    Error404:
+      type: object
+      required:
+      - status
+      - error
+      properties:
+        status:
+          type: integer
+          example: 404
+        error:
+          type: object
+          required:
+          - title
+          - message
+          properties:
+            title:
+              type: string
+              example: Wrong ip
+            message:
+              type: string
+              example: Please provide a valid IP address
+    Error429:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Rate limit exceeded
+        message:
+          type: string
+          example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
+    Error500:
+      type: string
+      example: Internal server error
+    RangesResponse:
+      type: object
+      required:
+      - domain
+      - redirects_to
+      - num_ranges
+      - ranges
+      properties:
+        domain:
+          type: string
+          example: comcast.net
+        num_ranges:
+          type: string
+          example: '37330'
+        redirects_to:
+          type: string
+          example: xfinity.com
+        ranges:
+          type: array
+          items:
+            type: string
+            example: 23.24.240.0/29
+  responses:
+    Forbidden:
+      description: Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error403'
+    InternalServerError:
+      description: Internal server error or server unavailable.
+      content:
+        text/plain:
+          schema:
+            $ref: '#/components/schemas/Error500'
+    TooManyRequests:
+      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error429'
+    NotFound:
+      description: Wrong ip. Please provide a valid IP address.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error404'
+    Ranges:
+      description: Ranges response object.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RangesResponse'
+  parameters:
+    Domain:
+      name: domain
+      in: path
+      description: a domain.
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: token
+externalDocs:
+  description: IPinfo Developers Portal / Documentation
+  url: https://ipinfo.io/developers

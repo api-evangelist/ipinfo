@@ -14,7 +14,7 @@ info:
 
     ## IPinfo API Tiers
 
-    IPinfo offers three main API tiers with different feature sets:
+    IPinfo offers four main API tiers with different feature sets:
 
     ### IPinfo Lite
     Lightweight IP geolocation with essential information including ASN details, country, and continent data. Perfect for basic geolocation needs with fast response times. Unlimited requests on paid plans.
@@ -30,15 +30,21 @@ info:
 
     ### IPinfo Plus
     All Core features plus mobile/carrier detection, anonymity analysis (VPN, proxy, Tor, relay detection), service identification, and extended geographic metadata. Ideal for security, fraud prevention, and advanced analytics.
-    - Endpoints: `/plus/me`, `/plus/{ip}`, `/plus/{ip}/{field}`
+    - Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}` (shared with Core — response shape depends on your token's plan)
     - Base URL: `https://api.ipinfo.io/`
     - [Documentation](https://ipinfo.io/developers/plus-api)
+
+    ### IPinfo Max
+    Our most comprehensive IP intelligence tier, building on all Plus features with full anonymization coverage including residential proxy behavioral signals, in addition to geolocation, ASN, and carrier data. Ideal for advanced threat analysis and bot detection.
+    - Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}` (shared with Core and Plus — response shape depends on your token's plan)
+    - Base URL: `https://api.ipinfo.io/`
+    - [Documentation](https://ipinfo.io/developers/max-api)
 
     ## Specialized Detection APIs
 
     ### Residential Proxy Detection
     Detect residential, mobile, and datacenter proxy IPs with activity insights, last seen dates, and proxy service identification.
-    - Endpoints: `/{ip}/resproxy`
+    - Endpoints: `/resproxy/{ip}`
     - [Documentation](https://ipinfo.io/developers/residential-proxy-api)
 
     ### Privacy Detection Standard
@@ -101,158 +107,124 @@ externalDocs:
   url: "https://ipinfo.io/developers"
 
 servers:
-- url: "https://ipinfo.io/"
-- url: "https://v6.ipinfo.io/"
-- url: "https://api.ipinfo.io/"
+  - url: "https://ipinfo.io/"
+  - url: "https://v6.ipinfo.io/"
+  - url: "https://api.ipinfo.io/"
 
 tags:
-- name: general
-  description: General API.
+  - name: general
+    description: General API.
 
-- name: ipinfo lite
-  description: IPinfo Lite API - IPinfo's free API service for country and ASN information.
-  externalDocs:
-    description: Find more info here
-    url: https://ipinfo.io/lite
+  - name: ipinfo lite
+    description: IPinfo Lite API - IPinfo's free API service for country and ASN information.
+    externalDocs:
+      description: Find more info here
+      url: https://ipinfo.io/lite
 
-- name: ipinfo core
-  description: IPinfo Core API - Core IP information service.
-  externalDocs:
-    description: Find more info here
-    url: https://ipinfo.io/products/core
+  - name: ipinfo core
+    description: IPinfo Core API - Core IP information service.
+    externalDocs:
+      description: Find more info here
+      url: https://ipinfo.io/products/core
 
-- name: ipinfo plus
-  description: IPinfo Plus API - Enhanced IP information service with mobile and anonymity detection.
-  externalDocs:
-    description: Find more info here
-    url: https://ipinfo.io/products/plus
+  - name: ipinfo plus
+    description: IPinfo Plus API - Enhanced IP information service with mobile and anonymity detection.
+    externalDocs:
+      description: Find more info here
+      url: https://ipinfo.io/products/plus
 
-- name: ipinfo max
-  description: IPinfo Max API - Most comprehensive IP intelligence with residential proxy detection.
-  externalDocs:
-    description: Find more info here
-    url: https://ipinfo.io/developers/max-api
+  - name: ipinfo max
+    description: IPinfo Max API - Most comprehensive IP intelligence with residential proxy detection.
+    externalDocs:
+      description: Find more info here
+      url: https://ipinfo.io/developers/max-api
 
-- name: places
-  description: IPinfo Places API - Building-level IP intelligence for physical locations.
-  externalDocs:
-    description: Find more info here
-    url: https://ipinfo.io/developers/places-api
+  - name: places
+    description: IPinfo Places API - Building-level IP intelligence for physical locations.
+    externalDocs:
+      description: Find more info here
+      url: https://ipinfo.io/developers/places-api
 
-- name: single
-  description: Single info API.
+  - name: single
+    description: Single info API.
 
-- name: privacy detection
-  description: Privacy Detection Standard API.
-  externalDocs:
-    description: Find more info here
-    url: https://ipinfo.io/developers/privacy-standard-api
+  - name: privacy detection
+    description: Privacy Detection Standard API.
+    externalDocs:
+      description: Find more info here
+      url: https://ipinfo.io/developers/privacy-standard-api
 
-- name: residential proxy detection
-  description: Residential Proxy Detection API.
-  externalDocs:
-    description: Find more info here
-    url: https://ipinfo.io/developers/residential-proxy-api
+  - name: residential proxy detection
+    description: Residential Proxy Detection API.
+    externalDocs:
+      description: Find more info here
+      url: https://ipinfo.io/developers/residential-proxy-api
 
-- name: privacy detection extended
-  description: Privacy Detection Extended API with detailed methodologies.
-  externalDocs:
-    description: Find more info here
-    url: https://ipinfo.io/developers/privacy-extended-api
+  - name: privacy detection extended
+    description: Privacy Detection Extended API with detailed methodologies.
+    externalDocs:
+      description: Find more info here
+      url: https://ipinfo.io/developers/privacy-extended-api
 
-- name: asn
-  description: ASN API.
-  externalDocs:
-    description: Find more info here
-    url: https://ipinfo.io/data/ip-asn
+  - name: asn
+    description: ASN API.
+    externalDocs:
+      description: Find more info here
+      url: https://ipinfo.io/data/ip-asn
 
-- name: company
-  description: IP to Company API.
-  externalDocs:
-    description: Find more info here
-    url: https://ipinfo.io/data/ip-company
+  - name: company
+    description: IP to Company API.
+    externalDocs:
+      description: Find more info here
+      url: https://ipinfo.io/data/ip-company
 
-- name: carrier
-  description: IP to Phone Carrier Detection API.
-  externalDocs:
-    description: Find more info here
-    url: https://ipinfo.io/data/ip-carrier
+  - name: carrier
+    description: IP to Phone Carrier Detection API.
+    externalDocs:
+      description: Find more info here
+      url: https://ipinfo.io/data/ip-carrier
 
-- name: ranges
-  description: IP Ranges API.
-  externalDocs:
-    description: Find more info here
-    url: https://ipinfo.io/developers/ranges
+  - name: ranges
+    description: IP Ranges API.
+    externalDocs:
+      description: Find more info here
+      url: https://ipinfo.io/developers/ranges
 
-- name: domains
-  description: Hosted Domains API.
-  externalDocs:
-    description: Find more info here
-    url: https://ipinfo.io/developers/hosted-domains
+  - name: domains
+    description: Hosted Domains API.
+    externalDocs:
+      description: Find more info here
+      url: https://ipinfo.io/developers/hosted-domains
 
-- name: abuse
-  description: Abuse Contact API.
-  externalDocs:
-    description: Find more info here
-    url: https://ipinfo.io/ip-abuse-contact-api
+  - name: abuse
+    description: Abuse Contact API.
+    externalDocs:
+      description: Find more info here
+      url: https://ipinfo.io/ip-abuse-contact-api
 
-- name: whois
-  description: IP WHOIS API
-  externalDocs:
-    description: Find more info here
-    url: https://ipinfo.io/developers/whois
+  - name: whois
+    description: IP WHOIS API
+    externalDocs:
+      description: Find more info here
+      url: https://ipinfo.io/developers/whois
 
 paths:
-  /max/{ip}:
-    get:
-      tags:
-      - ipinfo max
-      summary: IPinfo Returns Max API Information About the Provided IP
-      description: |
-        Returns the most comprehensive IP intelligence, including geolocation, ASN, privacy detection (VPN, proxy, Tor, relay, residential proxy), carrier data, and network flags for advanced threat analysis and bot detection.
-      operationId: getMaxInformationByIp
-      servers:
-      - url: "https://api.ipinfo.io/"
-      - url: "https://v4.api.ipinfo.io/"
-      - url: "https://v6.api.ipinfo.io/"
-      security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
-      parameters:
-      - $ref: "#/components/parameters/Ip"
-      responses:
-        "200":
-          description: Max API response object.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/MaxResponse"
-        "400":
-          $ref: "#/components/responses/PlusBadRequest"
-        "403":
-          $ref: "#/components/responses/PlusForbidden"
-        "429":
-          $ref: "#/components/responses/TooManyRequests"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
-
   /places/{ip}:
     get:
       tags:
-      - places
-      summary: IPinfo Returns Building-level Place Information for the Provided IP
+        - places
+      summary: Returns building-level place information for the provided IP.
       description: |
         Returns the real-world location associated with an IP address at the building level, including hotels, airports, museums, stadiums, and 30+ other categories. Includes venue name, category, SSID, and coordinates.
       operationId: getPlaceByIp
       servers:
-      - url: "https://api.ipinfo.io/"
+        - url: "https://api.ipinfo.io/"
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
       parameters:
-      - $ref: "#/components/parameters/Ip"
+        - $ref: "#/components/parameters/Ip"
       responses:
         "200":
           description: Places API response object.
@@ -271,15 +243,15 @@ paths:
   /:
     get:
       tags:
-      - general
-      summary: IPinfo Returns IP Information About the Current IP
+        - general
+      summary: Returns IP information about the current IP.
       description: |
         Returns IP information about the current IP.
       operationId: getCurrentInformation
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
       responses:
         "200":
           $ref: "#/components/responses/FullResponse"
@@ -296,20 +268,20 @@ paths:
   "/{ip}":
     get:
       tags:
-      - general
-      summary: IPinfo Returns Information About the Provided IP
+        - general
+      summary: Returns information about the provided IP.
       description: |
         The ipinfo.io/{ip} endpoint provides comprehensive information about a specified IP address, including geographic location (city, region, country), coordinates, postal code, and timezone.
         Based on the pricing tier, it also provides ASN (Autonomous System Number) details, associated company information, privacy settings (e.g., VPN, proxy usage), abuse contact information, and hosted domains associated with the IP.
         This endpoint is useful for applications needing detailed IP intelligence, such as identifying geographic origin, privacy status, and potential abuse reporting information.
       operationId: getInformationByIp
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Ip"
+        - $ref: "#/components/parameters/Ip"
 
       responses:
         "200":
@@ -333,16 +305,16 @@ paths:
   "/me":
     get:
       tags:
-      - general
-      summary: IPinfo Returns API Service Request Limit by Access Token
+        - general
+      summary: Returns API service request limit by access token.
       description: |
         The `/me` API endpoint can be used to provide summary information on the access token limits, access to API products, and other related information.
         The `/me` endpoint can be used in verifying access tokens as well.
       operationId: getMe
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
       responses:
         "200":
           $ref: "#/components/responses/Me"
@@ -353,14 +325,14 @@ paths:
   /batch:
     post:
       tags:
-      - general
-      summary: IPinfo Bulk IPinfo API Enrichment
+        - general
+      summary: Bulk IPinfo API enrichment .
       description: Bulk or batch enrich IP addresses with IP information. See [documentation](https://ipinfo.io/developers/batch-enrichment-api).
       operationId: batch
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
       requestBody:
         $ref: "#/components/requestBodies/Batch"
       responses:
@@ -369,22 +341,22 @@ paths:
   /tools/summarize-ips:
     post:
       tags:
-      - general
-      summary: IPinfo Summarize IP Addresses
+        - general
+      summary: Summarize IP addresses.
       description: Get summary-level information of upto 500,000 IP addresses, including IP location on a map, IP types, privacy detection flags, top ASNs, top cities, and more. [Explore the IPinfo Summarize tool](https://ipinfo.io/tools/summarize-ips).
       operationId: summarize
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
       parameters:
-      - name: cli
-        in: query
-        description: CLI flag parameter
-        required: false
-        schema:
-          type: integer
-          example: 1
+        - name: cli
+          in: query
+          description: CLI flag parameter
+          required: false
+          schema:
+            type: integer
+            example: 1
       requestBody:
         $ref: "#/components/requestBodies/Summarize"
       responses:
@@ -405,22 +377,22 @@ paths:
   /tools/map:
     post:
       tags:
-      - general
-      summary: IPinfo Highlight IP Addresses on a Map
+        - general
+      summary: Highlight IP addresses on a map.
       description: Visualize upto 500,000 IP addresses on an interactive map. [Explore the IPinfo Map IPs tool](https://ipinfo.io/tools/map).
       operationId: map
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
       parameters:
-      - name: cli
-        in: query
-        description: CLI flag parameter
-        required: false
-        schema:
-          type: integer
-          example: 1
+        - name: cli
+          in: query
+          description: CLI flag parameter
+          required: false
+          schema:
+            type: integer
+            example: 1
       requestBody:
         $ref: "#/components/requestBodies/Map"
       responses:
@@ -436,11 +408,12 @@ paths:
                   error:
                     type: string
                     example: "Rate limit exceeded. You can use the IP Map tool up to 5 times per day. Please wait 24 hours or use our IPinfo Lite API service"
+  
   "/AS{asn}":
     get:
       tags:
-      - asn
-      summary: IPinfo Returns Information About an ASN
+        - asn
+      summary: Returns information about an ASN.
       description: |
         Returns information about an ASN, such as the assigned prefixes, related domain, and more.
         The ASN API provides comprehensive information about an Autonomous System (AS) entity.
@@ -448,12 +421,12 @@ paths:
 
       operationId: getAsn
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Asn"
+        - $ref: "#/components/parameters/Asn"
 
       responses:
         "200":
@@ -474,17 +447,17 @@ paths:
   "/{ip}/company":
     get:
       tags:
-      - company
-      summary: IPinfo Returns Information About the Company That Operates or is Assigned the IP Address
+        - company
+      summary: Returns information about the company that operates or is assigned the IP address.
       description: |
         Returns information of the organization that is operating an IP address such as name, organization type and their official domain.
       operationId: getCompany
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
       parameters:
-      - $ref: "#/components/parameters/Ip"
+        - $ref: "#/components/parameters/Ip"
 
       responses:
         "200":
@@ -505,18 +478,18 @@ paths:
   "/{ip}/carrier":
     get:
       tags:
-      - carrier
-      summary: IPinfo Detects if the IP Address is Being Used in a Mobile Carrier Network. it Returns the Mobile Country Code (MCC), Mobile Network Code (MNC), and the Originating Country of the Carrier
+        - carrier
+      summary: Detects if the IP address is being used in a mobile carrier network. It returns the Mobile Country Code (MCC), Mobile Network Code (MNC), and the originating country of the carrier.
       description: |
         Detects if the IP address is being used in a mobile carrier network. This API endpoint can be used to detect the usage of a phone device through an IP address. It returns the Mobile Country Code (MCC), Mobile Network Code (MNC), and the originating country of the carrier.
       operationId: getCarrier
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Ip"
+        - $ref: "#/components/parameters/Ip"
 
       responses:
         "200":
@@ -537,18 +510,18 @@ paths:
   "/ranges/{domain}":
     get:
       tags:
-      - ranges
-      summary: IPinfo Returns Information About a Domain Ranges
+        - ranges
+      summary: Returns information about a domain ranges.
       description: |
         The IP address ranges API endpoint provides information about IP address ranges assigned to or operated by a specific organization, identified by its domain name. This includes the number of IP ranges, specific IP range blocks (both IPv4 and IPv6), and any domain redirection information.
       operationId: getRanges
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Domain"
+        - $ref: "#/components/parameters/Domain"
 
       responses:
         "200":
@@ -569,20 +542,20 @@ paths:
   "/domains/{ip}":
     get:
       tags:
-      - domains
-      summary: IPinfo Returns a List of All of the Domains Hosted on the Provided IP Address
+        - domains
+      summary: Returns a list of all of the domains hosted on the provided IP address.
       description: |
         The Hosted Domains or Reverse IP API endpoint returns a list of domains hosted on a specified IP address, including the total number of domains and the specific names associated with that address.
       operationId: getDomains
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Ip"
-      - $ref: "#/components/parameters/Page"
-      - $ref: "#/components/parameters/Limit"
+        - $ref: "#/components/parameters/Ip"
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/Limit"
 
       responses:
         "200":
@@ -591,19 +564,19 @@ paths:
   "/{ip}/abuse":
     get:
       tags:
-      - abuse
-      summary: IPinfo Returns Data Containing Information Belonging to the Abuse Contact of the IP Address
+        - abuse
+      summary: Returns data containing information belonging to the abuse contact of the IP address.
       description: |
         The IP to abuse contact information API endpoint provides detailed information about the abuse contact associated with a specific IP address.
         The response includes the abuse contact's name, email address, postal address, city, state, country, phone number, and the network associated with the IP. 
       operationId: getAbuse
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Ip"
+        - $ref: "#/components/parameters/Ip"
 
       responses:
         "200":
@@ -624,20 +597,20 @@ paths:
   "/{ip}/privacy":
     get:
       tags:
-      - privacy detection
-      summary: IPinfo Returns Privacy Information About the Selected IP
+        - privacy detection
+      summary: Returns privacy information about the selected IP.
       description: |
         The IP to Privacy Detection or Anonymous IP API provides privacy-related information about a specified IP address.
         This includes whether the IP is associated with a VPN, proxy, Tor network, relay service, or a hosting service/data center (indicative of bots).
         The response details the privacy status of the IP, indicating any anonymizing services in use and specifies the type of service (e.g., NordVPN, TunnelBear, Mullvad, ProtonVPN, CyberGhost, ExpressVPN, Surfshark etc.).
       operationId: getPrivacyInformationByIp
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Ip"
+        - $ref: "#/components/parameters/Ip"
 
       responses:
         "200":
@@ -655,23 +628,23 @@ paths:
         "500":
           $ref: "#/components/responses/InternalServerError"
 
-  "/{ip}/resproxy":
+  "/resproxy/{ip}":
     get:
       tags:
-      - residential proxy detection
-      summary: IPinfo Returns Residential Proxy Detection Information for the Selected IP
+        - residential proxy detection
+      summary: Returns residential proxy detection information for the selected IP.
       description: |
         The Residential Proxy Detection API provides detailed insights into IP addresses associated with residential, mobile, or datacenter proxy networks.
         This includes activity patterns (last seen date, percentage of days active), and proxy service identification.
         Services are suffixed with `_mobile` for carrier/mobile proxies or `_datacenter` for datacenter proxies.
       operationId: getResidentialProxyByIp
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Ip"
+        - $ref: "#/components/parameters/Ip"
 
       responses:
         "200":
@@ -692,20 +665,20 @@ paths:
   "/{ip}/privacy_extended":
     get:
       tags:
-      - privacy detection extended
-      summary: IPinfo Returns Extended Privacy Detection Information with Detailed Methodologies
+        - privacy detection extended
+      summary: Returns extended privacy detection information with detailed methodologies.
       description: |
         The Privacy Detection Extended API provides detection methodology metadata to support risk scoring, confidence metrics, and IP reputation aspects.
         Uses multi-modal detection methods including internet measurement, IP behavior analysis, and internet records metadata.
         Includes detailed flags for VPN, proxy, Tor, relay, hosting, and service identification with confidence metrics.
       operationId: getPrivacyExtendedByIp
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Ip"
+        - $ref: "#/components/parameters/Ip"
 
       responses:
         "200":
@@ -726,20 +699,20 @@ paths:
   "/whois/net/{whoisnetid}":
     get:
       tags:
-      - whois
-      summary: IPinfo Returns the WHOIS Information by Net ID Lookup
+        - whois
+      summary: Returns the WHOIS information by Net ID lookup.
       description: |
         This API endpoint allows users to retrieve WHOIS information based on a specified Net ID.
         The response includes details such as the IP address range, organization name, country, and various administrative information related to the network.
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Whoisnetid"
-      - $ref: "#/components/parameters/Page"
-      - $ref: "#/components/parameters/Whoissource"
+        - $ref: "#/components/parameters/Whoisnetid"
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/Whoissource"
 
       responses:
         "200":
@@ -748,21 +721,21 @@ paths:
   "/whois/net/{whoisip}":
     get:
       tags:
-      - whois
-      summary: IPinfo Returns the WHOIS Information by WHOIS IP Address or IP Address Range
+        - whois
+      summary: Returns the WHOIS information by WHOIS IP address or IP address range.
       description: |
         The WHOIS API lookup via IP address provides WHOIS information based on a specific IP address or IP address range.
         The response contains detailed information about the organization associated with the IP, including the range of addresses, organization name, administrative contacts, abuse contacts, and additional metadata such as the country and contact details for both technical and administrative support.
 
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Whoisip"
-      - $ref: "#/components/parameters/Page"
-      - $ref: "#/components/parameters/Whoissource"
+        - $ref: "#/components/parameters/Whoisip"
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/Whoissource"
 
       responses:
         "200":
@@ -771,19 +744,19 @@ paths:
   "/whois/net/{domain}":
     get:
       tags:
-      - whois
-      summary: IPinfo Returns the WHOIS Information by WHOIS Domain of an Internet Organization
+        - whois
+      summary: Returns the WHOIS information by WHOIS domain of an internet organization.
       description: |
         The IPinfo WHOIS API lookup via organization organization domain name provides comprehensive WHOIS information for specified organization, enabling users to gain insights into the registration and organizational details of internet entities. The response includes a total count of records, and detailed records for each associated IP range.  Querying the organization domain reveals critical information such as the organization's name, country, and contact details for technical and administrative personnel, including names, emails, and physical addresses. Additionally, the response features abuse contact information and registration dates, which are essential for addressing network issues and potential abuse.
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Domain"
-      - $ref: "#/components/parameters/Page"
-      - $ref: "#/components/parameters/Whoissource"
+        - $ref: "#/components/parameters/Domain"
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/Whoissource"
 
       responses:
         "200":
@@ -792,19 +765,19 @@ paths:
   "/whois/net/AS{asn}":
     get:
       tags:
-      - whois
-      summary: IPinfo Returns the WHOIS Information by WHOIS ASN
+        - whois
+      summary: Returns the WHOIS information by WHOIS ASN.
       description: |
         The IPinfo WHOIS API lookup via ASN provides in-depth WHOIS information associated with a specific Autonomous System Number (ASN). Querying ASN reveals critical data, including the organization's name, the allocated IP range, and the country of operation. The response includes administrative and technical contact information, highlighting the contact person along with their address and phone number. Additionally, the API provides details for abuse reporting, including a dedicated email for abuse contacts. This comprehensive dataset is essential for network administrators, security professionals, and organizations needing to investigate ASN ownership and maintain network integrity.
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Asn"
-      - $ref: "#/components/parameters/Page"
-      - $ref: "#/components/parameters/Whoissource"
+        - $ref: "#/components/parameters/Asn"
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/Whoissource"
 
       responses:
         "200":
@@ -813,19 +786,19 @@ paths:
   "/whois/org/{whoisorgid}":
     get:
       tags:
-      - whois
-      summary: IPinfo Returns the WHOIS Information by WHOIS Organization (ORG) ID of an Internet Organization
+        - whois
+      summary: Returns the WHOIS information by WHOIS organization (ORG) ID of an internet organization.
       description: |
         The IPinfo WHOIS API lookup via organization IDs (Org) provides comprehensive information about a specific internet organization identified by its WHOIS organization ID. Querying a WHOIS org key returns data about the internet organization. The response includes critical details such as the organization's address, along with the contact information for various roles within the organization. This includes administrative, technical, and abuse contacts. The API also offers timestamps for when the organization was created and last updated, which is essential for maintaining accurate records.
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Whoisorgid"
-      - $ref: "#/components/parameters/Page"
-      - $ref: "#/components/parameters/Whoissource"
+        - $ref: "#/components/parameters/Whoisorgid"
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/Whoissource"
 
       responses:
         "200":
@@ -834,20 +807,20 @@ paths:
   "/whois/poc/{whoispoc}":
     get:
       tags:
-      - whois
-      summary: IPinfo Returns the WHOIS Information by WHOIS Point of Contact (POC) Value of an Internet Organization
+        - whois
+      summary: Returns the WHOIS information by WHOIS Point of Contact (POC) value of an internet organization.
       description: |
         The IPinfo WHOIS API lookup via Points of Contact (POC) provides essential details about an individual associated with an internet organization identified by their WHOIS POC ID. For instance, querying the POC ID yields information about the name of the point of contact and their organization location. The response includes the organization's physical address, email address, and contact numbers. Additional metadata indicates when the record was created and last updated, alongside the source of the information.
 
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Whoispoc"
-      - $ref: "#/components/parameters/Page"
-      - $ref: "#/components/parameters/Whoissource"
+        - $ref: "#/components/parameters/Whoispoc"
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/Whoissource"
 
       responses:
         "200":
@@ -856,15 +829,15 @@ paths:
   "/ip":
     get:
       tags:
-      - single
-      summary: IPinfo Returns the Current IP
+        - single
+      summary: Returns the current IP.
       description: |
         Returns the current public/external IP address.
       operationId: getCurrentIp
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       responses:
         "200":
@@ -882,18 +855,18 @@ paths:
   "/{ip}/ip":
     get:
       tags:
-      - single
-      summary: IPinfo Returns a IP for the Selected IP
+        - single
+      summary: Returns a ip for the selected IP.
       description: |
         Returns a ip for the selected IP.
       operationId: getIpByIp
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Ip"
+        - $ref: "#/components/parameters/Ip"
 
       responses:
         "200":
@@ -917,15 +890,15 @@ paths:
   "/hostname":
     get:
       tags:
-      - single
-      summary: IPinfo Returns the Current Hostname
+        - single
+      summary: Returns the current hostname.
       description: |
         Returns the current hostname.
       operationId: getCurrentHostname
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       responses:
         "200":
@@ -943,18 +916,18 @@ paths:
   "/{ip}/hostname":
     get:
       tags:
-      - single
-      summary: IPinfo Returns a Hostname for the Selected IP
+        - single
+      summary: Returns a hostname for the selected IP.
       description: |
         Returns a hostname for the selected IP.
       operationId: getHostnameByIp
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Ip"
+        - $ref: "#/components/parameters/Ip"
 
       responses:
         "200":
@@ -978,15 +951,15 @@ paths:
   "/city":
     get:
       tags:
-      - single
-      summary: IPinfo Returns the Current City
+        - single
+      summary: Returns the current city.
       description: |
         Returns the current city.
       operationId: getCurrentCity
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       responses:
         "200":
@@ -1004,18 +977,18 @@ paths:
   "/{ip}/city":
     get:
       tags:
-      - single
-      summary: IPinfo Returns a City for the Selected IP
+        - single
+      summary: Returns a city for the selected IP.
       description: |
         Returns a city for the selected IP.
       operationId: getCityByIp
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Ip"
+        - $ref: "#/components/parameters/Ip"
 
       responses:
         "200":
@@ -1039,15 +1012,15 @@ paths:
   "/region":
     get:
       tags:
-      - single
-      summary: IPinfo Returns the Current Region
+        - single
+      summary: Returns the current region.
       description: |
         Returns the current region. If the region is not available, it will return an empty string.
       operationId: getCurrentRegion
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       responses:
         "200":
@@ -1065,18 +1038,18 @@ paths:
   "/{ip}/region":
     get:
       tags:
-      - single
-      summary: IPinfo Returns a Region for the Selected IP
+        - single
+      summary: Returns a region for the selected IP.
       description: |
         Returns a region for the selected IP. If the region is not available, it will return an empty string.
       operationId: getRegionByIp
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Ip"
+        - $ref: "#/components/parameters/Ip"
 
       responses:
         "200":
@@ -1100,15 +1073,15 @@ paths:
   "/country":
     get:
       tags:
-      - single
-      summary: IPinfo Returns the Current Country
+        - single
+      summary: Returns the current country.
       description: |
         Returns a concise response consisting of a two-letter country code. If the country is not available, it will return an empty string.
       operationId: getCurrentCountry
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       responses:
         "200":
@@ -1126,18 +1099,18 @@ paths:
   "/{ip}/country":
     get:
       tags:
-      - single
-      summary: IPinfo Returns a Country for the Selected IP
+        - single
+      summary: Returns a country for the selected IP.
       description: |
         Returns a country for the selected IP in two letter ISO-3166 format. If the country is not available, it will return an empty string.
       operationId: getCountryByIp
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Ip"
+        - $ref: "#/components/parameters/Ip"
 
       responses:
         "200":
@@ -1161,15 +1134,15 @@ paths:
   "/loc":
     get:
       tags:
-      - single
-      summary: IPinfo Returns the Current Location
+        - single
+      summary: Returns the current location.
       description: |
         The '/loc' API endpoint provides the geographical location of a user's IP address in a response with latitude and longitude in comma-separated text format.
       operationId: getCurrentLocation
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       responses:
         "200":
@@ -1187,18 +1160,18 @@ paths:
   "/{ip}/loc":
     get:
       tags:
-      - single
-      summary: IPinfo GET a Location for the Selected IP
+        - single
+      summary: Get a location for the selected IP.
       description: |
         The '/loc' API endpoint provides the geographic location of an IP address as latitude and longitude separated by a comma in text form.
       operationId: getLocationByIp
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Ip"
+        - $ref: "#/components/parameters/Ip"
 
       responses:
         "200":
@@ -1222,15 +1195,15 @@ paths:
   "/postal":
     get:
       tags:
-      - single
-      summary: IPinfo Returns the Current Postal Code or Zip Code
+        - single
+      summary: Returns the current postal code or zip code.
       description: |
         The `/postal` API endpoint provides a straightforward method for retrieving the current postal code or zip code. When this endpoint is queried, the API responds with a simple string indicating the postal code for the current IP address.
       operationId: getCurrentPostal
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       responses:
         "200":
@@ -1248,18 +1221,18 @@ paths:
   "/{ip}/postal":
     get:
       tags:
-      - single
-      summary: IPinfo Returns a Postal for the Selected IP
+        - single
+      summary: Returns a postal for the selected IP.
       description: |
         The `/postal` API lets users input an IP address to get back the corresponding postal or zip code in a simple string format.
       operationId: getPostalByIp
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Ip"
+        - $ref: "#/components/parameters/Ip"
 
       responses:
         "200":
@@ -1283,15 +1256,15 @@ paths:
   "/timezone":
     get:
       tags:
-      - single
-      summary: IPinfo Returns the Current Timezone
+        - single
+      summary: Returns the current timezone.
       description: |
         The '/timezone' API endpoint returns the user's timezone based on their IP address in IANA format.
       operationId: getCurrentTimezone
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       responses:
         "200":
@@ -1309,18 +1282,18 @@ paths:
   "/{ip}/timezone":
     get:
       tags:
-      - single
-      summary: IPinfo Returns a Timezone for the Selected IP
+        - single
+      summary: Returns a timezone for the selected IP.
       description: |
         The `/timezone` API endpoint returns the IANA timezone based on the user's input IP address.
       operationId: getTimezoneByIp
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Ip"
+        - $ref: "#/components/parameters/Ip"
 
       responses:
         "200":
@@ -1344,15 +1317,15 @@ paths:
   "/org":
     get:
       tags:
-      - single
-      summary: IPinfo Returns the Current ASN and as Organization
+        - single
+      summary: Returns the current ASN and AS organization.
       description: |
         The '/org' API endpoint identifies the Autonomous System Number (ASN) and ASN organization associated with the user's IP address. When called, the API returns a string with the ASN (prefixed by 'AS') and organization name.
       operationId: getCurrentOrganization
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       responses:
         "200":
@@ -1373,18 +1346,18 @@ paths:
   "/{ip}/org":
     get:
       tags:
-      - single
-      summary: IPinfo Returns a Organization for the Selected IP
+        - single
+      summary: Returns a organization for the selected IP.
       description: |
         The '/org' API endpoint provides the ASN and organization related to the user's input IP address. It returns a string including the ASN (prefixed by 'AS') and AS organization name.
       operationId: getOrganizationByIp
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Ip"
+        - $ref: "#/components/parameters/Ip"
 
       responses:
         "200":
@@ -1408,17 +1381,17 @@ paths:
   "/lite/me":
     get:
       tags:
-      - ipinfo lite
-      summary: IPinfo Returns Lightweight IP Information About the Current IP
+        - ipinfo lite
+      summary: Returns lightweight IP information about the current IP.
       description: |
         Returns lightweight IP information about the current IP including ASN details, country, and continent information.
       operationId: getCurrentLiteInformation
       servers:
-      - url: "https://api.ipinfo.io/"
+        - url: "https://api.ipinfo.io/"
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
       responses:
         "200":
           $ref: "#/components/responses/LiteResponse"
@@ -1432,22 +1405,22 @@ paths:
   "/lite/{ip}":
     get:
       tags:
-      - ipinfo lite
-      summary: IPinfo Returns Lightweight IP Information About the Provided IP
+        - ipinfo lite
+      summary: Returns lightweight IP information about the provided IP.
       description: |
         Returns lightweight IP information about the provided IP including ASN details, country, and continent information. For bogon/private IPs, returns a response with bogon: true.
       operationId: getLiteInformationByIp
       servers:
-      - url: "https://api.ipinfo.io/"
-      - url: "https://v4.api.ipinfo.io/"
-      - url: "https://v6.api.ipinfo.io/"
+        - url: "https://api.ipinfo.io/"
+        - url: "https://v4.api.ipinfo.io/"
+        - url: "https://v6.api.ipinfo.io/"
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Ip"
+        - $ref: "#/components/parameters/Ip"
 
       responses:
         "200":
@@ -1456,8 +1429,8 @@ paths:
             application/json:
               schema:
                 oneOf:
-                - $ref: "#/components/schemas/LiteResponse"
-                - $ref: "#/components/schemas/LiteBogonResponse"
+                  - $ref: "#/components/schemas/LiteResponse"
+                  - $ref: "#/components/schemas/LiteBogonResponse"
 
         "400":
           $ref: "#/components/responses/LiteBadRequest"
@@ -1471,22 +1444,22 @@ paths:
   "/lite/me/{field}":
     get:
       tags:
-      - ipinfo lite
-      summary: IPinfo Returns a Specific Field from Lightweight IP Information About the Current IP
+        - ipinfo lite
+      summary: Returns a specific field from lightweight IP information about the current IP.
       description: |
         Returns a specific field from lightweight IP information about the current IP.
       operationId: getCurrentLiteField
       servers:
-      - url: "https://api.ipinfo.io/"
-      - url: "https://v4.api.ipinfo.io/"
-      - url: "https://v6.api.ipinfo.io/"
+        - url: "https://api.ipinfo.io/"
+        - url: "https://v4.api.ipinfo.io/"
+        - url: "https://v6.api.ipinfo.io/"
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/LiteField"
+        - $ref: "#/components/parameters/LiteField"
 
       responses:
         "200":
@@ -1504,23 +1477,23 @@ paths:
   "/lite/{ip}/{field}":
     get:
       tags:
-      - ipinfo lite
-      summary: IPinfo Returns a Specific Field from Lightweight IP Information About the Provided IP
+        - ipinfo lite
+      summary: Returns a specific field from lightweight IP information about the provided IP.
       description: |
         Returns a specific field from lightweight IP information about the provided IP.
       operationId: getLiteFieldByIp
       servers:
-      - url: "https://api.ipinfo.io/"
-      - url: "https://v4.api.ipinfo.io/"
-      - url: "https://v6.api.ipinfo.io/"
+        - url: "https://api.ipinfo.io/"
+        - url: "https://v4.api.ipinfo.io/"
+        - url: "https://v6.api.ipinfo.io/"
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Ip"
-      - $ref: "#/components/parameters/LiteField"
+        - $ref: "#/components/parameters/Ip"
+        - $ref: "#/components/parameters/LiteField"
 
       responses:
         "200":
@@ -1541,22 +1514,31 @@ paths:
   "/lookup/me":
     get:
       tags:
-      - ipinfo core
-      summary: IPinfo Returns Core IP Information About the Current IP
+        - ipinfo core
+        - ipinfo plus
+        - ipinfo max
+      summary: Returns IP information about the current IP.
       description: |
-        Returns comprehensive core IP information about the current IP including geolocation, ASN details, and various IP characteristics.
+        Returns IP information about the current IP. This single endpoint is shared across the Core, Plus, and Max tiers — the response shape (`CoreResponse`, `PlusResponse`, or `MaxResponse`) depends on the plan associated with your API token. There are no separate `/plus/*` or `/max/*` endpoints.
       operationId: getCurrentCoreInformation
       servers:
-      - url: "https://api.ipinfo.io/"
-      - url: "https://v4.api.ipinfo.io/"
-      - url: "https://v6.api.ipinfo.io/"
+        - url: "https://api.ipinfo.io/"
+        - url: "https://v4.api.ipinfo.io/"
+        - url: "https://v6.api.ipinfo.io/"
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
       responses:
         "200":
-          $ref: "#/components/responses/CoreResponse"
+          description: Core, Plus, or Max response object, depending on your token's plan.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/CoreResponse"
+                  - $ref: "#/components/schemas/PlusResponse"
+                  - $ref: "#/components/schemas/MaxResponse"
 
         "403":
           $ref: "#/components/responses/CoreForbidden"
@@ -1570,26 +1552,35 @@ paths:
   "/lookup/{ip}":
     get:
       tags:
-      - ipinfo core
-      summary: IPinfo Returns Core IP Information About the Provided IP
+        - ipinfo core
+        - ipinfo plus
+        - ipinfo max
+      summary: Returns IP information about the provided IP.
       description: |
-        Returns comprehensive core IP information about the provided IP including geolocation, ASN details, and various IP characteristics.
+        Returns IP information about the provided IP. This single endpoint is shared across the Core, Plus, and Max tiers — the response shape (`CoreResponse`, `PlusResponse`, or `MaxResponse`) depends on the plan associated with your API token. There are no separate `/plus/*` or `/max/*` endpoints.
       operationId: getCoreInformationByIp
       servers:
-      - url: "https://api.ipinfo.io/"
-      - url: "https://v4.api.ipinfo.io/"
-      - url: "https://v6.api.ipinfo.io/"
+        - url: "https://api.ipinfo.io/"
+        - url: "https://v4.api.ipinfo.io/"
+        - url: "https://v6.api.ipinfo.io/"
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Ip"
+        - $ref: "#/components/parameters/Ip"
 
       responses:
         "200":
-          $ref: "#/components/responses/CoreResponse"
+          description: Core, Plus, or Max response object, depending on your token's plan.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/CoreResponse"
+                  - $ref: "#/components/schemas/PlusResponse"
+                  - $ref: "#/components/schemas/MaxResponse"
 
         "400":
           $ref: "#/components/responses/CoreBadRequest"
@@ -1606,26 +1597,28 @@ paths:
   "/lookup/me/{field}":
     get:
       tags:
-      - ipinfo core
-      summary: IPinfo Returns a Specific Field from Core IP Information About the Current IP
+        - ipinfo core
+        - ipinfo plus
+        - ipinfo max
+      summary: Returns a specific field from IP information about the current IP.
       description: |
-        Returns a specific field from core IP information about the current IP.
+        Returns a specific field from IP information about the current IP. Available fields depend on the plan associated with your API token — see the `field` parameter for the full set across Core, Plus, and Max.
       operationId: getCurrentCoreField
       servers:
-      - url: "https://api.ipinfo.io/"
-      - url: "https://v4.api.ipinfo.io/"
-      - url: "https://v6.api.ipinfo.io/"
+        - url: "https://api.ipinfo.io/"
+        - url: "https://v4.api.ipinfo.io/"
+        - url: "https://v6.api.ipinfo.io/"
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/CoreField"
+        - $ref: "#/components/parameters/LookupField"
 
       responses:
         "200":
-          $ref: "#/components/responses/CoreField"
+          $ref: "#/components/responses/LookupField"
 
         "403":
           $ref: "#/components/responses/CoreForbidden"
@@ -1642,27 +1635,29 @@ paths:
   "/lookup/{ip}/{field}":
     get:
       tags:
-      - ipinfo core
-      summary: IPinfo Returns a Specific Field from Core IP Information About the Provided IP
+        - ipinfo core
+        - ipinfo plus
+        - ipinfo max
+      summary: Returns a specific field from IP information about the provided IP.
       description: |
-        Returns a specific field from core IP information about the provided IP.
+        Returns a specific field from IP information about the provided IP. Available fields depend on the plan associated with your API token — see the `field` parameter for the full set across Core, Plus, and Max.
       operationId: getCoreFieldByIp
       servers:
-      - url: "https://api.ipinfo.io/"
-      - url: "https://v4.api.ipinfo.io/"
-      - url: "https://v6.api.ipinfo.io/"
+        - url: "https://api.ipinfo.io/"
+        - url: "https://v4.api.ipinfo.io/"
+        - url: "https://v6.api.ipinfo.io/"
       security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - BearerAuth: []
+        - ApiKeyAuth: []
 
       parameters:
-      - $ref: "#/components/parameters/Ip"
-      - $ref: "#/components/parameters/CoreField"
+        - $ref: "#/components/parameters/Ip"
+        - $ref: "#/components/parameters/LookupField"
 
       responses:
         "200":
-          $ref: "#/components/responses/CoreField"
+          $ref: "#/components/responses/LookupField"
 
         "400":
           $ref: "#/components/responses/CoreBadRequest"
@@ -1679,156 +1674,15 @@ paths:
         "500":
           $ref: "#/components/responses/InternalServerError"
 
-  "/plus/me":
-    get:
-      tags:
-      - ipinfo plus
-      summary: IPinfo Returns Plus IP Information About the Current IP
-      description: |
-        Returns comprehensive plus IP information about the current IP including enhanced geolocation, ASN details, mobile/carrier information, anonymity detection, and various IP characteristics.
-      operationId: getCurrentPlusInformation
-      servers:
-      - url: "https://api.ipinfo.io/"
-      - url: "https://v4.api.ipinfo.io/"
-      - url: "https://v6.api.ipinfo.io/"
-      security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
-      responses:
-        "200":
-          $ref: "#/components/responses/PlusResponse"
-
-        "403":
-          $ref: "#/components/responses/PlusForbidden"
-
-        "429":
-          $ref: "#/components/responses/TooManyRequests"
-
-        "500":
-          $ref: "#/components/responses/InternalServerError"
-
-  "/plus/{ip}":
-    get:
-      tags:
-      - ipinfo plus
-      summary: IPinfo Returns Plus IP Information About the Provided IP
-      description: |
-        Returns comprehensive plus IP information about the provided IP including enhanced geolocation, ASN details, mobile/carrier information, anonymity detection, and various IP characteristics.
-      operationId: getPlusInformationByIp
-      servers:
-      - url: "https://api.ipinfo.io/"
-      - url: "https://v4.api.ipinfo.io/"
-      - url: "https://v6.api.ipinfo.io/"
-      security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
-
-      parameters:
-      - $ref: "#/components/parameters/Ip"
-
-      responses:
-        "200":
-          $ref: "#/components/responses/PlusResponse"
-
-        "400":
-          $ref: "#/components/responses/PlusBadRequest"
-
-        "403":
-          $ref: "#/components/responses/PlusForbidden"
-
-        "429":
-          $ref: "#/components/responses/TooManyRequests"
-
-        "500":
-          $ref: "#/components/responses/InternalServerError"
-
-  "/plus/me/{field}":
-    get:
-      tags:
-      - ipinfo plus
-      summary: IPinfo Returns a Specific Field from Plus IP Information About the Current IP
-      description: |
-        Returns a specific field from plus IP information about the current IP.
-      operationId: getCurrentPlusField
-      servers:
-      - url: "https://api.ipinfo.io/"
-      - url: "https://v4.api.ipinfo.io/"
-      - url: "https://v6.api.ipinfo.io/"
-      security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
-
-      parameters:
-      - $ref: "#/components/parameters/PlusField"
-
-      responses:
-        "200":
-          $ref: "#/components/responses/PlusField"
-
-        "403":
-          $ref: "#/components/responses/PlusForbidden"
-
-        "404":
-          $ref: "#/components/responses/PlusInvalidField"
-
-        "429":
-          $ref: "#/components/responses/TooManyRequests"
-
-        "500":
-          $ref: "#/components/responses/InternalServerError"
-
-  "/plus/{ip}/{field}":
-    get:
-      tags:
-      - ipinfo plus
-      summary: IPinfo Returns a Specific Field from Plus IP Information About the Provided IP
-      description: |
-        Returns a specific field from plus IP information about the provided IP.
-      operationId: getPlusFieldByIp
-      servers:
-      - url: "https://api.ipinfo.io/"
-      - url: "https://v4.api.ipinfo.io/"
-      - url: "https://v6.api.ipinfo.io/"
-      security:
-      - BasicAuth: []
-      - BearerAuth: []
-      - ApiKeyAuth: []
-
-      parameters:
-      - $ref: "#/components/parameters/Ip"
-      - $ref: "#/components/parameters/PlusField"
-
-      responses:
-        "200":
-          $ref: "#/components/responses/PlusField"
-
-        "400":
-          $ref: "#/components/responses/PlusBadRequest"
-
-        "403":
-          $ref: "#/components/responses/PlusForbidden"
-
-        "404":
-          $ref: "#/components/responses/PlusInvalidField"
-
-        "429":
-          $ref: "#/components/responses/TooManyRequests"
-
-        "500":
-          $ref: "#/components/responses/InternalServerError"
-
 components:
   schemas:
     MaxResponse:
       type: object
       required:
-      - ip
-      - geo
-      - as
-      - anonymous
+        - ip
+        - geo
+        - as
+        - anonymous
       properties:
         ip:
           type: string
@@ -1885,6 +1739,25 @@ components:
               type: string
               format: date
               example: "2026-03-22"
+        place:
+          type: object
+          description: Information about the physical public place matched to the IP address. Omitted when there's no matching public place, and may omit individual sub-fields (name, latitude, longitude) for categories with no fixed address, such as in_transit or in_flight.
+          properties:
+            name:
+              type: string
+              example: "Museum of History and Industry (MOHAI)"
+            category:
+              type: string
+              example: "museum"
+            ssid:
+              type: string
+              example: "MOHAI-Guest"
+            latitude:
+              type: number
+              example: 47.6275
+            longitude:
+              type: number
+              example: -122.3367
         as:
           type: object
           properties:
@@ -1900,12 +1773,29 @@ components:
             type:
               type: string
               example: "business"
+              enum:
+                - hosting
+                - isp
+                - education
+                - government
+                - business
             last_changed:
               type: string
               format: date
               example: "2021-05-01"
         mobile:
           type: object
+          description: Mobile carrier information for the IP address. Empty object if the IP is not a mobile carrier IP.
+          properties:
+            name:
+              type: string
+              example: "dtac"
+            mcc:
+              type: string
+              example: "520"
+            mnc:
+              type: string
+              example: "05"
         anonymous:
           type: object
           properties:
@@ -1934,6 +1824,10 @@ components:
             is_res_proxy:
               type: boolean
               example: true
+        is_place:
+          type: boolean
+          description: Indicates whether the IP address is associated with a known public place.
+          example: true
         is_anonymous:
           type: boolean
           example: true
@@ -1953,18 +1847,16 @@ components:
     PlacesResponse:
       type: object
       required:
-      - ip
-      - name
-      - category
-      - ssid
-      - latitude
-      - longitude
+        - ip
+        - category
+        - ssid
       properties:
         ip:
           type: string
           example: "65.144.40.106"
         name:
           type: string
+          description: The name of the venue or building associated with the IP address. Absent for categories not tied to a specific venue, such as in_transit, in_flight, and public_space.
           example: "Museum of History and Industry (MOHAI)"
         category:
           type: string
@@ -1974,15 +1866,19 @@ components:
           example: "MOHAI-Guest"
         latitude:
           type: number
+          nullable: true
+          description: Null for categories not tied to a fixed location, such as in_transit and in_flight.
           example: 47.6275
         longitude:
           type: number
+          nullable: true
+          description: Null for categories not tied to a fixed location, such as in_transit and in_flight.
           example: -122.3367
 
     FullResponse:
       type: object
       required:
-      - ip
+        - ip
 
       properties:
         ip:
@@ -2043,9 +1939,9 @@ components:
     MeResponse:
       type: object
       required:
-      - token
-      - requests
-      - features
+        - token
+        - requests
+        - features
       properties:
         token:
           type: string
@@ -2184,10 +2080,10 @@ components:
     AsnResponse:
       type: object
       required:
-      - asn
-      - name
-      - domain
-      - type
+        - asn
+        - name
+        - domain
+        - type
 
       properties:
         asn:
@@ -2204,11 +2100,18 @@ components:
 
         allocated:
           type: string
+          format: date
           example: "1997-02-14"
 
         registry:
           type: string
           example: "arin"
+          enum:
+            - arin
+            - ripe
+            - apnic
+            - lacnic
+            - afrinic
 
         domain:
           type: string
@@ -2226,11 +2129,11 @@ components:
           type: string
           example: "isp"
           enum:
-          - isp
-          - business
-          - education
-          - hosting
-          - inactive
+            - isp
+            - business
+            - education
+            - hosting
+            - government
 
         prefixes:
           type: array
@@ -2263,10 +2166,10 @@ components:
     Prefix:
       type: object
       required:
-      - netblock
-      - id
-      - name
-      - country
+        - netblock
+        - id
+        - name
+        - country
 
       properties:
         netblock:
@@ -2298,13 +2201,21 @@ components:
           nullable: true
           example: "quadranet.com"
 
+        rpki_status:
+          type: string
+          example: "valid"
+          enum:
+            - valid
+            - invalid
+            - unknown
+
     Prefix6:
       type: object
       required:
-      - netblock
-      - id
-      - name
-      - country
+        - netblock
+        - id
+        - name
+        - country
 
       properties:
         netblock:
@@ -2335,13 +2246,21 @@ components:
           type: string
           example: "comcast.com"
 
+        rpki_status:
+          type: string
+          example: "valid"
+          enum:
+            - valid
+            - invalid
+            - unknown
+
     RangesResponse:
       type: object
       required:
-      - domain
-      - redirects_to
-      - num_ranges
-      - ranges
+        - domain
+        - redirects_to
+        - num_ranges
+        - ranges
 
       properties:
         domain:
@@ -2365,7 +2284,7 @@ components:
     DomainsResponse:
       type: object
       required:
-      - total
+        - total
 
       properties:
         ip:
@@ -2417,9 +2336,9 @@ components:
     CompanyResponse:
       type: object
       required:
-      - name
-      - domain
-      - type
+        - name
+        - domain
+        - type
 
       properties:
         name:
@@ -2434,17 +2353,18 @@ components:
           type: string
           example: "isp"
           enum:
-          - isp
-          - business
-          - education
-          - hosting
+            - isp
+            - business
+            - education
+            - hosting
+            - government
 
     CarrierResponse:
       type: object
       required:
-      - name
-      - mcc
-      - mnc
+        - name
+        - mcc
+        - mnc
 
       properties:
         name:
@@ -2462,12 +2382,12 @@ components:
     PrivacyResponse:
       type: object
       required:
-      - vpn
-      - proxy
-      - tor
-      - hosting
-      - relay
-      - service
+        - vpn
+        - proxy
+        - tor
+        - hosting
+        - relay
+        - service
 
       properties:
         vpn:
@@ -2497,10 +2417,10 @@ components:
     ResidentialProxyResponse:
       type: object
       required:
-      - ip
-      - last_seen
-      - percent_days_seen
-      - service
+        - ip
+        - last_seen
+        - percent_days_seen
+        - service
 
       properties:
         ip:
@@ -2529,12 +2449,12 @@ components:
     PrivacyExtendedResponse:
       type: object
       required:
-      - vpn
-      - proxy
-      - tor
-      - relay
-      - hosting
-      - service
+        - vpn
+        - proxy
+        - tor
+        - relay
+        - hosting
+        - service
 
       properties:
         vpn:
@@ -2685,19 +2605,19 @@ components:
         total: 100
         page: 0
         records:
-        - range: "24.62.0.0/15"
-          id: ""
-          name: "Comcast Cable Communications Holdings, Inc"
-          country: "US"
-          org: "POC object or null"
-          admin: "POC object or null"
-          abuse: "POC object or null"
-          tech: "POC object or null"
-          maintainer: "POC object or null"
-          updated: "2010-10-18"
-          status: "REASSIGNMENT"
-          source: "arin"
-          raw: "<raw data>"
+          - range: "24.62.0.0/15"
+            id: ""
+            name: "Comcast Cable Communications Holdings, Inc"
+            country: "US"
+            org: "POC object or null"
+            admin: "POC object or null"
+            abuse: "POC object or null"
+            tech: "POC object or null"
+            maintainer: "POC object or null"
+            updated: "2010-10-18"
+            status: "REASSIGNMENT"
+            source: "arin"
+            raw: "<raw data>"
 
     WhoisIpResponse:
       type: object
@@ -2749,15 +2669,15 @@ components:
         total: 100
         page: 0
         records:
-        - range: "24.62.0.0/15"
-          id: "NEW-ENGLAND-5"
-          name: "Comcast Cable Communications Holdings, Inc"
-          country: "US"
-          org: "C02610695"
-          updated: "2010-10-18"
-          status: "REASSIGNMENT"
-          source: "arin"
-          raw: "<raw data>"
+          - range: "24.62.0.0/15"
+            id: "NEW-ENGLAND-5"
+            name: "Comcast Cable Communications Holdings, Inc"
+            country: "US"
+            org: "C02610695"
+            updated: "2010-10-18"
+            status: "REASSIGNMENT"
+            source: "arin"
+            raw: "<raw data>"
 
     WhoisDomainResponse:
       type: object
@@ -2796,16 +2716,16 @@ components:
                 example: "REASSIGNMENT"
               tech:
                 type: string
-                example:
+                example: null
               maintainer:
                 type: string
-                example:
+                example: null
               admin:
                 type: string
-                example:
+                example: null
               abuse:
                 type: string
-                example:
+                example: null
               updated:
                 type: string
                 format: date
@@ -2824,20 +2744,20 @@ components:
         total: 80
         page: 0
         records:
-        - range: "24.147.0.0/17"
-          id: "NEW-ENGLAND-10"
-          name: "Comcast Cable Communications Holdings, Inc"
-          country: "US"
-          org: "C02610737"
-          status: "REASSIGNMENT"
-          tech:
-          maintainer:
-          admin:
-          abuse:
-          updated: "2010-10-18"
-          source: "arin"
-          raw: "<raw data>"
-          domain: "comcast.net"
+          - range: "24.147.0.0/17"
+            id: "NEW-ENGLAND-10"
+            name: "Comcast Cable Communications Holdings, Inc"
+            country: "US"
+            org: "C02610737"
+            status: "REASSIGNMENT"
+            tech: null
+            maintainer: null
+            admin: null
+            abuse: null
+            updated: "2010-10-18"
+            source: "arin"
+            raw: "<raw data>"
+            domain: "comcast.net"
 
     WhoisAsnResponse:
       type: object
@@ -2870,7 +2790,7 @@ components:
                 example: "PK"
               org:
                 type: string
-                example:
+                example: null
               status:
                 type: string
                 example: "ALLOCATED NON-PORTABLE"
@@ -2901,19 +2821,19 @@ components:
         total: 47
         page: 0
         records:
-        - range: "58.65.203.0/24"
-          id: "CYBERNET"
-          name: "Broadband Services"
-          country: "PK"
-          org:
-          status: "ALLOCATED NON-PORTABLE"
-          admin: "POC object or null"
-          abuse: "POC object or null"
-          tech: "POC object or null"
-          maintainer: "POC object or null"
-          updated: "2021-01-27"
-          source: "apnic"
-          raw: "<raw data>"
+          - range: "58.65.203.0/24"
+            id: "CYBERNET"
+            name: "Broadband Services"
+            country: "PK"
+            org: null
+            status: "ALLOCATED NON-PORTABLE"
+            admin: "POC object or null"
+            abuse: "POC object or null"
+            tech: "POC object or null"
+            maintainer: "POC object or null"
+            updated: "2021-01-27"
+            source: "apnic"
+            raw: "<raw data>"
 
     WhoisOrgResponse:
       type: object
@@ -2940,7 +2860,7 @@ components:
                 example: "Pineapple Houser"
               address:
                 type: string
-                example:
+                example: null
               country:
                 type: string
                 example: "US"
@@ -2975,18 +2895,18 @@ components:
         total: 100
         page: 0
         records:
-        - id: "PINEAP"
-          name: "Pineapple Houser"
-          address:
-          country: "US"
-          admin: "POC object or null"
-          abuse: "POC object or null"
-          tech: "POC object or null"
-          maintainer: "POC object or null"
-          created: "2000-03-25"
-          updated: "2011-09-24"
-          source: "arin"
-          raw: "<raw data>"
+          - id: "PINEAP"
+            name: "Pineapple Houser"
+            address: null
+            country: "US"
+            admin: "POC object or null"
+            abuse: "POC object or null"
+            tech: "POC object or null"
+            maintainer: "POC object or null"
+            created: "2000-03-25"
+            updated: "2011-09-24"
+            source: "arin"
+            raw: "<raw data>"
 
     WhoisPocResponse:
       type: object
@@ -3045,23 +2965,23 @@ components:
         total: 1
         page: 0
         records:
-        - id: "CP312-ARIN"
-          name: "Cynthia Pararo"
-          email: "spararo@mindspring.com"
-          address: "US, GA, Atlanta, Pineapple Houser\n2131 Plaster Bridge Rd Ne, 303244036"
-          country: "US"
-          phone: ""
-          fax: ""
-          created: "2000-03-25"
-          updated: "2000-03-25"
-          source: "arin"
-          raw: "<raw data>"
+          - id: "CP312-ARIN"
+            name: "Cynthia Pararo"
+            email: "spararo@mindspring.com"
+            address: "US, GA, Atlanta, Pineapple Houser\n2131 Plaster Bridge Rd Ne, 303244036"
+            country: "US"
+            phone: ""
+            fax: ""
+            created: "2000-03-25"
+            updated: "2000-03-25"
+            source: "arin"
+            raw: "<raw data>"
 
     Error404:
       type: object
       required:
-      - status
-      - error
+        - status
+        - error
       properties:
         status:
           type: integer
@@ -3069,8 +2989,8 @@ components:
         error:
           type: object
           required:
-          - title
-          - message
+            - title
+            - message
           properties:
             title:
               type: string
@@ -3082,7 +3002,7 @@ components:
     Error404ASN:
       type: object
       required:
-      - "error"
+        - "error"
       properties:
         error:
           type: string
@@ -3090,8 +3010,8 @@ components:
     Error403:
       type: object
       required:
-      - title
-      - message
+        - title
+        - message
       properties:
         title:
           type: string
@@ -3103,8 +3023,8 @@ components:
     Error429:
       type: object
       required:
-      - title
-      - message
+        - title
+        - message
       properties:
         title:
           type: string
@@ -3116,8 +3036,8 @@ components:
     Error400:
       type: object
       required:
-      - title
-      - message
+        - title
+        - message
       properties:
         title:
           type: string
@@ -3129,7 +3049,7 @@ components:
     Error400Me:
       type: object
       required:
-      - error
+        - error
       properties:
         error:
           type: string
@@ -3145,8 +3065,8 @@ components:
     Error422:
       type: object
       required:
-      - title
-      - message
+        - title
+        - message
       properties:
         title:
           type: string
@@ -3158,14 +3078,14 @@ components:
     LiteResponse:
       type: object
       required:
-      - ip
-      - asn
-      - as_name
-      - as_domain
-      - country_code
-      - country
-      - continent_code
-      - continent
+        - ip
+        - asn
+        - as_name
+        - as_domain
+        - country_code
+        - country
+        - continent_code
+        - continent
 
       properties:
         ip:
@@ -3203,8 +3123,8 @@ components:
     LiteBogonResponse:
       type: object
       required:
-      - ip
-      - bogon
+        - ip
+        - bogon
       properties:
         ip:
           type: string
@@ -3216,7 +3136,7 @@ components:
     LiteErrorInvalidField:
       type: object
       required:
-      - error
+        - error
       properties:
         error:
           type: string
@@ -3225,7 +3145,7 @@ components:
     LiteErrorBadRequest:
       type: object
       required:
-      - error
+        - error
       properties:
         error:
           type: string
@@ -3234,8 +3154,8 @@ components:
     LiteErrorForbidden:
       type: object
       required:
-      - status
-      - error
+        - status
+        - error
       properties:
         status:
           type: integer
@@ -3243,8 +3163,8 @@ components:
         error:
           type: object
           required:
-          - title
-          - message
+            - title
+            - message
           properties:
             title:
               type: string
@@ -3256,7 +3176,7 @@ components:
     LiteErrorEndpointNotFound:
       type: object
       required:
-      - error
+        - error
       properties:
         error:
           type: string
@@ -3265,7 +3185,7 @@ components:
     CoreResponse:
       type: object
       required:
-      - ip
+        - ip
       properties:
         ip:
           type: string
@@ -3324,6 +3244,16 @@ components:
             type:
               type: string
               example: "hosting"
+              enum:
+                - hosting
+                - isp
+                - education
+                - government
+                - business
+        is_place:
+          type: boolean
+          description: Indicates whether the IP address is associated with a known public place. Core only ever returns this flag — Plus adds a place object with name and category, and Max adds the full set including ssid, latitude, and longitude.
+          example: true
         is_anonymous:
           type: boolean
           example: false
@@ -3343,7 +3273,7 @@ components:
     CoreErrorInvalidField:
       type: object
       required:
-      - error
+        - error
       properties:
         error:
           type: string
@@ -3352,7 +3282,7 @@ components:
     CoreErrorBadRequest:
       type: object
       required:
-      - error
+        - error
       properties:
         error:
           type: string
@@ -3361,8 +3291,8 @@ components:
     CoreErrorForbidden:
       type: object
       required:
-      - status
-      - error
+        - status
+        - error
       properties:
         status:
           type: integer
@@ -3370,8 +3300,8 @@ components:
         error:
           type: object
           required:
-          - title
-          - message
+            - title
+            - message
           properties:
             title:
               type: string
@@ -3383,7 +3313,7 @@ components:
     PlusResponse:
       type: object
       required:
-      - ip
+        - ip
       properties:
         ip:
           type: string
@@ -3437,6 +3367,16 @@ components:
               type: string
               format: date
               example: "2025-09-21"
+        place:
+          type: object
+          description: Information about the physical public place matched to the IP address. Omitted when there's no matching public place. Plus returns only name and category — ssid, latitude, and longitude are Max-only.
+          properties:
+            name:
+              type: string
+              example: "Museum of History and Industry (MOHAI)"
+            category:
+              type: string
+              example: "museum"
         "as":
           type: object
           properties:
@@ -3452,6 +3392,12 @@ components:
             type:
               type: string
               example: "isp"
+              enum:
+                - hosting
+                - isp
+                - education
+                - government
+                - business
             last_changed:
               type: string
               format: date
@@ -3486,6 +3432,10 @@ components:
             is_vpn:
               type: boolean
               example: false
+        is_place:
+          type: boolean
+          description: Indicates whether the IP address is associated with a known public place.
+          example: true
         is_anonymous:
           type: boolean
           example: false
@@ -3502,45 +3452,6 @@ components:
           type: boolean
           example: false
 
-    PlusErrorInvalidField:
-      type: object
-      required:
-      - error
-      properties:
-        error:
-          type: string
-          example: "invalid_field is not a valid field."
-
-    PlusErrorBadRequest:
-      type: object
-      required:
-      - error
-      properties:
-        error:
-          type: string
-          example: "Please provide a valid IP address"
-
-    PlusErrorForbidden:
-      type: object
-      required:
-      - status
-      - error
-      properties:
-        status:
-          type: integer
-          example: 403
-        error:
-          type: object
-          required:
-          - title
-          - message
-          properties:
-            title:
-              type: string
-              example: "Unknown token"
-            message:
-              type: string
-              example: "Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help"
 
   requestBodies:
     Batch:
@@ -3587,7 +3498,7 @@ components:
               2600:8807:a788:7c00:c828:264:8dcf:b37f
               181.200.55.93
               77.222.8.184
-
+  
   parameters:
     Ip:
       name: ip
@@ -3678,11 +3589,11 @@ components:
       schema:
         type: string
         enum:
-        - "arin"
-        - "ripe"
-        - "afrinic"
-        - "apnic"
-        - "lacnic"
+          - "arin"
+          - "ripe"
+          - "afrinic"
+          - "apnic"
+          - "lacnic"
 
     LiteField:
       name: field
@@ -3692,94 +3603,69 @@ components:
       schema:
         type: string
         enum:
-        - ip
-        - asn
-        - as_name
-        - as_domain
-        - country_code
-        - country
-        - continent_code
-        - continent
+          - ip
+          - asn
+          - as_name
+          - as_domain
+          - country_code
+          - country
+          - continent_code
+          - continent
 
-    CoreField:
+    LookupField:
       name: field
       in: path
-      description: A specific field from the core response or nested geo/as fields.
+      description: |
+        A specific field from the `/lookup` response, or a nested geo/as/mobile/anonymous field. The available fields depend on your token's plan:
+        - Core: `ip`, `hostname`, `geo`, `geo/city`, `geo/region`, `geo/region_code`, `geo/country`, `geo/country_code`, `geo/continent`, `geo/continent_code`, `geo/latitude`, `geo/longitude`, `geo/timezone`, `geo/postal_code`, `as`, `as/asn`, `as/name`, `as/domain`, `as/type`, `is_anonymous`, `is_anycast`, `is_hosting`, `is_mobile`, `is_satellite`
+        - Plus/Max additionally: `geo/dma_code`, `geo/geoname_id`, `geo/radius`, `geo/last_changed`, `as/last_changed`, `mobile`, `mobile/name`, `mobile/mcc`, `mobile/mnc`, `anonymous`, `anonymous/name`, `anonymous/is_proxy`, `anonymous/is_relay`, `anonymous/is_tor`, `anonymous/is_vpn`
+        - Max only: `anonymous/last_seen`, `anonymous/percent_days_seen`, `anonymous/is_res_proxy`
       required: true
       schema:
         type: string
         enum:
-        - ip
-        - hostname
-        - geo
-        - geo/city
-        - geo/region
-        - geo/region_code
-        - geo/country
-        - geo/country_code
-        - geo/continent
-        - geo/continent_code
-        - geo/latitude
-        - geo/longitude
-        - geo/timezone
-        - geo/postal_code
-        - as
-        - as/asn
-        - as/name
-        - as/domain
-        - as/type
-        - is_anonymous
-        - is_anycast
-        - is_hosting
-        - is_mobile
-        - is_satellite
-
-    PlusField:
-      name: field
-      in: path
-      description: A specific field from the plus response or nested geo/as/mobile/anonymous fields.
-      required: true
-      schema:
-        type: string
-        enum:
-        - ip
-        - geo
-        - geo/city
-        - geo/region
-        - geo/region_code
-        - geo/country
-        - geo/country_code
-        - geo/continent
-        - geo/continent_code
-        - geo/latitude
-        - geo/longitude
-        - geo/timezone
-        - geo/postal_code
-        - geo/dma_code
-        - geo/geoname_id
-        - geo/radius
-        - geo/last_changed
-        - as
-        - as/asn
-        - as/name
-        - as/domain
-        - as/type
-        - as/last_changed
-        - mobile
-        - mobile/name
-        - mobile/mcc
-        - mobile/mnc
-        - anonymous
-        - anonymous/name
-        - anonymous/is_proxy
-        - anonymous/is_relay
-        - anonymous/is_tor
-        - anonymous/is_vpn
-        - is_anonymous
-        - is_anycast
-        - is_hosting
-        - is_mobile
-        - is_satellite
+          - ip
+          - hostname
+          - geo
+          - geo/city
+          - geo/region
+          - geo/region_code
+          - geo/country
+          - geo/country_code
+          - geo/continent
+          - geo/continent_code
+          - geo/latitude
+          - geo/longitude
+          - geo/timezone
+          - geo/postal_code
+          - geo/dma_code
+          - geo/geoname_id
+          - geo/radius
+          - geo/last_changed
+          - as
+          - as/asn
+          - as/name
+          - as/domain
+          - as/type
+          - as/last_changed
+          - mobile
+          - mobile/name
+          - mobile/mcc
+          - mobile/mnc
+          - anonymous
+          - anonymous/name
+          - anonymous/last_seen
+          - anonymous/percent_days_seen
+          - anonymous/is_proxy
+          - anonymous/is_relay
+          - anonymous/is_tor
+          - anonymous/is_vpn
+          - anonymous/is_res_proxy
+          - is_anonymous
+          - is_anycast
+          - is_hosting
+          - is_mobile
+          - is_satellite
 
   responses:
     FullResponse:
@@ -4121,8 +4007,8 @@ components:
           schema:
             $ref: "#/components/schemas/CoreResponse"
 
-    CoreField:
-      description: A specific field value from the core response.
+    LookupField:
+      description: A specific field value from the /lookup response.
       content:
         text/plain:
           schema:
@@ -4160,39 +4046,6 @@ components:
         application/json:
           schema:
             $ref: "#/components/schemas/PlusResponse"
-
-    PlusField:
-      description: A specific field value from the plus response.
-      content:
-        text/plain:
-          schema:
-            type: string
-            example: "Toronto"
-        application/json:
-          schema:
-            type: object
-            example: {"city": "Toronto", "region": "Ontario"}
-
-    PlusInvalidField:
-      description: Invalid field name error.
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/PlusErrorInvalidField"
-
-    PlusBadRequest:
-      description: Bad request error (invalid IP format).
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/PlusErrorBadRequest"
-
-    PlusForbidden:
-      description: Forbidden error (authentication issues).
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/PlusErrorForbidden"
 
   securitySchemes:
     BasicAuth:

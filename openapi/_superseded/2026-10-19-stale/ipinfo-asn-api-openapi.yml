@@ -1,0 +1,262 @@
+openapi: 3.2.0
+info:
+  description: Official OpenAPI Specification for IPinfo's comprehensive IP intelligence API.
+  version: 1.0.0
+  title: IPinfo.io OpenAPI Specification Asn API
+  contact:
+    name: IPinfo
+    email: support@ipinfo.io
+    url: https://ipinfo.io/
+servers:
+- url: https://ipinfo.io/
+- url: https://v6.ipinfo.io/
+- url: https://api.ipinfo.io/
+tags:
+- name: ASN
+  description: ASN API.
+  externalDocs:
+    description: Find more info here
+    url: https://ipinfo.io/data/ip-asn
+paths:
+  /AS{asn}:
+    get:
+      tags:
+      - ASN
+      summary: IPinfo Returns Information About an ASN
+      description: 'Returns information about an ASN, such as the assigned prefixes, related domain, and more.
+
+        The ASN API provides comprehensive information about an Autonomous System (AS) entity.
+
+        It delivers data on the AS''s registration, ASN type, network details, associated prefixes (including IPv6), and relationships with other ASNs (peers, upstreams and downstreams).'
+      operationId: getAsn
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/Asn'
+      responses:
+        '200':
+          $ref: '#/components/responses/Asn'
+        '404':
+          $ref: '#/components/responses/NotFoundASN'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    Error403:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Unknown token
+        message:
+          type: string
+          example: Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help
+    AsnResponse:
+      type: object
+      required:
+      - asn
+      - name
+      - domain
+      - type
+      properties:
+        asn:
+          type: string
+          example: AS10507
+        name:
+          type: string
+          example: Sprint Personal Communications Systems
+        country:
+          type: string
+          example: US
+        allocated:
+          type: string
+          example: '1997-02-14'
+        registry:
+          type: string
+          example: arin
+        domain:
+          type: string
+          example: sprint.net
+        num_ips:
+          type: integer
+          example: 71224576
+        route:
+          type: string
+          example: 66.87.125.0/24
+        type:
+          type: string
+          example: isp
+          enum:
+          - isp
+          - business
+          - education
+          - hosting
+          - inactive
+        prefixes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Prefix'
+        prefixes6:
+          type: array
+          items:
+            $ref: '#/components/schemas/Prefix6'
+        peers:
+          type: array
+          items:
+            type: string
+            example: '1299'
+        upstreams:
+          type: array
+          items:
+            type: string
+            example: '1299'
+        downstreams:
+          type: array
+          items:
+            type: string
+            example: '109'
+    Prefix6:
+      type: object
+      required:
+      - netblock
+      - id
+      - name
+      - country
+      properties:
+        netblock:
+          type: string
+          example: 2601::/20
+        id:
+          type: string
+          example: COMCAST6NET
+        name:
+          type: string
+          example: Comcast Cable Communications, LLC
+        country:
+          type: string
+          example: US
+        size:
+          type: string
+          example: '20282409603651670423947251286016'
+        status:
+          type: string
+          example: ASSIGNMENT
+        domain:
+          type: string
+          example: comcast.com
+    Prefix:
+      type: object
+      required:
+      - netblock
+      - id
+      - name
+      - country
+      properties:
+        netblock:
+          type: string
+          example: 104.69.216.0/22
+        id:
+          type: string
+          example: AKAMAI
+        name:
+          type: string
+          example: Akamai Technologies, Inc.
+        country:
+          type: string
+          example: US
+        size:
+          type: string
+          example: '256'
+        status:
+          type: string
+          example: ALLOCATION
+        domain:
+          type:
+          - string
+          - 'null'
+          example: quadranet.com
+    Error404ASN:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: string
+          example: ASN Not Found!
+    Error500:
+      type: string
+      example: Internal server error
+    Error429:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Rate limit exceeded
+        message:
+          type: string
+          example: Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support
+  responses:
+    Asn:
+      description: ASN response object.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AsnResponse'
+    NotFoundASN:
+      description: ASN not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error404ASN'
+    TooManyRequests:
+      description: Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error429'
+    InternalServerError:
+      description: Internal server error or server unavailable.
+      content:
+        text/plain:
+          schema:
+            $ref: '#/components/schemas/Error500'
+    Forbidden:
+      description: Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error403'
+  parameters:
+    Asn:
+      name: asn
+      in: path
+      description: an ASN number.
+      required: true
+      schema:
+        type: integer
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: token
+externalDocs:
+  description: IPinfo Developers Portal / Documentation
+  url: https://ipinfo.io/developers
