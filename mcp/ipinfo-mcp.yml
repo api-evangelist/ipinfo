@@ -55,3 +55,30 @@ deployment:
   tools: 6
   checked: '2026-08-12'
   source: catalog MCP census
+tool_quality:
+  tool_count: 6
+  tokens_total: 5824
+  tokens_per_tool_median: 985
+  heavy_tools:
+  - name: ipinfo_lookup
+    tokens: 1561
+  heavy_tool_count: 1
+  params_total: 18
+  params_undescribed: 0
+  params_described_pct: 100.0
+  tools_with_undescribed_params: 0
+  tools_annotated: 6
+  annotated_pct: 100.0
+  state_changing_unhinted: []
+  tools_missing_schema: 0
+  short_descriptions: 0
+  duplicate_descriptions: 0
+  duplicate_names: 0
+  nonportable_names: []
+  output_schema_count: 6
+  token_estimate: chars/3.6 of each compact tool definition
+  source: mcp/ipinfo-mcp-tools.json
+  measured: '2026-10-20'
+  scored: false
+  note: Facts from the saved tools/list capture (mcp_tool_quality.py); recorded, not scored. Checks learned
+    from Glimind's agent-readiness audit.

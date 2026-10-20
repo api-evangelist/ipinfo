@@ -1,0 +1,1381 @@
+{
+  "endpoint": "https://mcp.ipinfo.io/",
+  "captured": "2026-10-20",
+  "method": "initialize + tools/list (anonymous, no tool called; roadmap#992)",
+  "protocol_version": "2025-06-18",
+  "server_info": {
+    "name": "ipinfo",
+    "version": "4.0.9"
+  },
+  "result": {
+    "tools": [
+      {
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        },
+        "annotations": {
+          "destructiveHint": false,
+          "idempotentHint": true,
+          "openWorldHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Look up geolocation, network, and metadata for one or more IP addresses.\n\nBy default queries the IPinfo Lite endpoint, which returns country, continent, and ASN info.\nSet detailed=True to query the full lookup endpoint, which adds city-level geolocation,\nprivacy flags (VPN, proxy, Tor, hosting, anycast), and richer AS data.\n\nResults are paginated. Use page and page_size to control which slice is returned.\n\nIf the API reports an error for specific IPs, those IPs are listed in errors\nwith the reason and left out of results.\n\nResults are cached in memory for the session, so repeat lookups of the same IP\nare served from cache without consuming API quota. You do not need to maintain\nyour own cache or deduplicate IPs before calling this tool. The _meta field\nreports api_calls_made and from_cache counts.",
+        "inputSchema": {
+          "properties": {
+            "ips": {
+              "description": "Public IP addresses to query, IPv4 or IPv6, e.g. [\"8.8.8.8\", \"2001:4860:4860::8888\"]. Private, loopback, reserved, multicast, and bogon addresses are rejected: they are reported under validation_errors and left out of results.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "detailed": {
+              "default": false,
+              "description": "Which IPinfo endpoint to query. Leave false to use the Lite endpoint, which returns country, continent, and basic ASN. Set to true to use the full lookup endpoint, which also returns city-level geolocation, privacy flags (VPN, proxy, Tor, hosting, anycast), and richer AS data; it requires a token whose plan includes that data, otherwise the call fails with ACCESS_DENIED.",
+              "type": "boolean"
+            },
+            "page": {
+              "default": 1,
+              "description": "Page of the result set to return, 1-based. Values below 1 are clamped to 1, and a page past the last one returns no results.",
+              "type": "integer"
+            },
+            "page_size": {
+              "default": 25,
+              "description": "How many IPs to resolve and return per page. Clamped to a maximum of 1000, the API batch limit. Only the IPs on the requested page are fetched, so a smaller page size consumes less quota per call.",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "ips"
+          ],
+          "type": "object",
+          "additionalProperties": false
+        },
+        "name": "ipinfo_lookup",
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "_pagination": {
+                      "properties": {
+                        "total_results": {
+                          "type": "integer"
+                        },
+                        "page": {
+                          "type": "integer"
+                        },
+                        "page_size": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "has_next": {
+                          "type": "boolean"
+                        },
+                        "has_previous": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "total_results",
+                        "page",
+                        "page_size",
+                        "total_pages",
+                        "has_next",
+                        "has_previous"
+                      ],
+                      "type": "object"
+                    },
+                    "_meta": {
+                      "properties": {
+                        "api_calls_made": {
+                          "type": "integer"
+                        },
+                        "from_cache": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "api_calls_made",
+                        "from_cache"
+                      ],
+                      "type": "object"
+                    },
+                    "results": {
+                      "additionalProperties": {
+                        "anyOf": [
+                          {
+                            "properties": {
+                              "ip": {
+                                "type": "string"
+                              },
+                              "hostname": {
+                                "type": "string"
+                              },
+                              "asn": {
+                                "type": "string"
+                              },
+                              "as_name": {
+                                "type": "string"
+                              },
+                              "as_domain": {
+                                "type": "string"
+                              },
+                              "country_code": {
+                                "type": "string"
+                              },
+                              "country": {
+                                "type": "string"
+                              },
+                              "continent_code": {
+                                "type": "string"
+                              },
+                              "continent": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "ip",
+                              "asn",
+                              "as_name",
+                              "as_domain",
+                              "country_code",
+                              "country",
+                              "continent_code",
+                              "continent"
+                            ],
+                            "type": "object"
+                          },
+                          {
+                            "properties": {
+                              "ip": {
+                                "type": "string"
+                              },
+                              "hostname": {
+                                "type": "string"
+                              },
+                              "geo": {
+                                "properties": {
+                                  "city": {
+                                    "type": "string"
+                                  },
+                                  "region": {
+                                    "type": "string"
+                                  },
+                                  "region_code": {
+                                    "type": "string"
+                                  },
+                                  "country": {
+                                    "type": "string"
+                                  },
+                                  "country_code": {
+                                    "type": "string"
+                                  },
+                                  "continent": {
+                                    "type": "string"
+                                  },
+                                  "continent_code": {
+                                    "type": "string"
+                                  },
+                                  "latitude": {
+                                    "type": "number"
+                                  },
+                                  "longitude": {
+                                    "type": "number"
+                                  },
+                                  "timezone": {
+                                    "type": "string"
+                                  },
+                                  "postal_code": {
+                                    "type": "string"
+                                  },
+                                  "dma_code": {
+                                    "type": "string"
+                                  },
+                                  "geoname_id": {
+                                    "type": "integer"
+                                  },
+                                  "radius": {
+                                    "type": "integer"
+                                  },
+                                  "last_changed": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "city",
+                                  "region",
+                                  "region_code",
+                                  "country",
+                                  "country_code",
+                                  "continent",
+                                  "continent_code",
+                                  "latitude",
+                                  "longitude",
+                                  "timezone",
+                                  "postal_code"
+                                ],
+                                "type": "object"
+                              },
+                              "as": {
+                                "properties": {
+                                  "asn": {
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "domain": {
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "type": "string"
+                                  },
+                                  "last_changed": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "asn",
+                                  "name",
+                                  "domain",
+                                  "type"
+                                ],
+                                "type": "object"
+                              },
+                              "anonymous": {
+                                "properties": {
+                                  "is_proxy": {
+                                    "type": "boolean"
+                                  },
+                                  "is_relay": {
+                                    "type": "boolean"
+                                  },
+                                  "is_tor": {
+                                    "type": "boolean"
+                                  },
+                                  "is_vpn": {
+                                    "type": "boolean"
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "is_proxy",
+                                  "is_relay",
+                                  "is_tor",
+                                  "is_vpn"
+                                ],
+                                "type": "object"
+                              },
+                              "mobile": {
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "mcc": {
+                                    "type": "string"
+                                  },
+                                  "mnc": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "name",
+                                  "mcc",
+                                  "mnc"
+                                ],
+                                "type": "object"
+                              },
+                              "is_anonymous": {
+                                "type": "boolean"
+                              },
+                              "is_anycast": {
+                                "type": "boolean"
+                              },
+                              "is_hosting": {
+                                "type": "boolean"
+                              },
+                              "is_mobile": {
+                                "type": "boolean"
+                              },
+                              "is_satellite": {
+                                "type": "boolean"
+                              }
+                            },
+                            "required": [
+                              "ip",
+                              "geo"
+                            ],
+                            "type": "object"
+                          },
+                          {
+                            "properties": {
+                              "ip": {
+                                "type": "string"
+                              },
+                              "service": {
+                                "type": "string"
+                              },
+                              "last_seen": {
+                                "type": "string"
+                              },
+                              "percent_days_seen": {
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "ip",
+                              "service",
+                              "last_seen",
+                              "percent_days_seen"
+                            ],
+                            "type": "object"
+                          },
+                          {
+                            "additionalProperties": true,
+                            "type": "object"
+                          }
+                        ]
+                      },
+                      "type": "object"
+                    },
+                    "validation_errors": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "type": "object"
+                    },
+                    "errors": {
+                      "additionalProperties": {
+                        "properties": {
+                          "code": {
+                            "enum": [
+                              "ACCESS_DENIED",
+                              "RATE_LIMITED",
+                              "INVALID_TOKEN",
+                              "NO_TOKEN",
+                              "API_ERROR",
+                              "UNKNOWN"
+                            ],
+                            "type": "string"
+                          },
+                          "message": {
+                            "type": "string"
+                          },
+                          "suggestion": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "_pagination",
+                    "_meta",
+                    "results"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "properties": {
+                    "code": {
+                      "enum": [
+                        "ACCESS_DENIED",
+                        "RATE_LIMITED",
+                        "INVALID_TOKEN",
+                        "NO_TOKEN",
+                        "API_ERROR",
+                        "UNKNOWN"
+                      ],
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "suggestion": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "title": "Ipinfo Lookup"
+      },
+      {
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        },
+        "annotations": {
+          "destructiveHint": false,
+          "idempotentHint": true,
+          "openWorldHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Check whether IP addresses are using privacy or anonymity services.\n\nReturns privacy flags for each IP: whether it is anonymous, using a VPN, proxy,\nrelay, or Tor, and whether it is an anycast, hosting, mobile, or satellite address.\n\nRequires a paid API token. Results are paginated.\n\nIf the API reports an error for specific IPs, those IPs are listed in errors\nwith the reason and left out of results. Do not treat a missing result as\n\"no privacy services detected\": check errors.\n\nResults are cached in memory for the session, so repeat checks of the same IP\nare served from cache without consuming API quota. You do not need to maintain\nyour own cache or deduplicate IPs before calling this tool. The _meta field\nreports api_calls_made and from_cache counts.",
+        "inputSchema": {
+          "properties": {
+            "ips": {
+              "description": "Public IP addresses to query, IPv4 or IPv6, e.g. [\"8.8.8.8\", \"2001:4860:4860::8888\"]. Private, loopback, reserved, multicast, and bogon addresses are rejected: they are reported under validation_errors and left out of results.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "page": {
+              "default": 1,
+              "description": "Page of the result set to return, 1-based. Values below 1 are clamped to 1, and a page past the last one returns no results.",
+              "type": "integer"
+            },
+            "page_size": {
+              "default": 25,
+              "description": "How many IPs to resolve and return per page. Clamped to a maximum of 1000, the API batch limit. Only the IPs on the requested page are fetched, so a smaller page size consumes less quota per call.",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "ips"
+          ],
+          "type": "object",
+          "additionalProperties": false
+        },
+        "name": "ipinfo_check_privacy",
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "_pagination": {
+                      "properties": {
+                        "total_results": {
+                          "type": "integer"
+                        },
+                        "page": {
+                          "type": "integer"
+                        },
+                        "page_size": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "has_next": {
+                          "type": "boolean"
+                        },
+                        "has_previous": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "total_results",
+                        "page",
+                        "page_size",
+                        "total_pages",
+                        "has_next",
+                        "has_previous"
+                      ],
+                      "type": "object"
+                    },
+                    "_meta": {
+                      "properties": {
+                        "api_calls_made": {
+                          "type": "integer"
+                        },
+                        "from_cache": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "api_calls_made",
+                        "from_cache"
+                      ],
+                      "type": "object"
+                    },
+                    "results": {
+                      "additionalProperties": {
+                        "properties": {
+                          "ip": {
+                            "type": "string"
+                          },
+                          "is_anonymous": {
+                            "type": "boolean"
+                          },
+                          "anonymous": {
+                            "properties": {
+                              "is_proxy": {
+                                "type": "boolean"
+                              },
+                              "is_relay": {
+                                "type": "boolean"
+                              },
+                              "is_tor": {
+                                "type": "boolean"
+                              },
+                              "is_vpn": {
+                                "type": "boolean"
+                              },
+                              "name": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "is_proxy",
+                              "is_relay",
+                              "is_tor",
+                              "is_vpn"
+                            ],
+                            "type": "object"
+                          },
+                          "is_anycast": {
+                            "type": "boolean"
+                          },
+                          "is_hosting": {
+                            "type": "boolean"
+                          },
+                          "is_mobile": {
+                            "type": "boolean"
+                          },
+                          "is_satellite": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "ip",
+                          "is_anonymous",
+                          "anonymous",
+                          "is_anycast",
+                          "is_hosting",
+                          "is_mobile",
+                          "is_satellite"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "object"
+                    },
+                    "validation_errors": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "type": "object"
+                    },
+                    "errors": {
+                      "additionalProperties": {
+                        "properties": {
+                          "code": {
+                            "enum": [
+                              "ACCESS_DENIED",
+                              "RATE_LIMITED",
+                              "INVALID_TOKEN",
+                              "NO_TOKEN",
+                              "API_ERROR",
+                              "UNKNOWN"
+                            ],
+                            "type": "string"
+                          },
+                          "message": {
+                            "type": "string"
+                          },
+                          "suggestion": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "_pagination",
+                    "_meta",
+                    "results"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "properties": {
+                    "code": {
+                      "enum": [
+                        "ACCESS_DENIED",
+                        "RATE_LIMITED",
+                        "INVALID_TOKEN",
+                        "NO_TOKEN",
+                        "API_ERROR",
+                        "UNKNOWN"
+                      ],
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "suggestion": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "title": "Ipinfo Check Privacy"
+      },
+      {
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        },
+        "annotations": {
+          "destructiveHint": false,
+          "idempotentHint": true,
+          "openWorldHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Check whether IP addresses are known residential proxies.\n\nReturns whether each IP is a residential proxy and, if so, the proxy service name,\nthe date it was last seen, and the percentage of days the IP was observed as a proxy.\n\nRequires a paid API token with residential proxy access. Results are paginated.\n\nIf the API reports an error for specific IPs, those IPs are listed in errors\nwith the reason and left out of results. Do not treat a missing result as\n\"not a residential proxy\": check errors.\n\nResults are cached in memory for the session, so repeat checks of the same IP\nare served from cache without consuming API quota. You do not need to maintain\nyour own cache or deduplicate IPs before calling this tool. The _meta field\nreports api_calls_made and from_cache counts.",
+        "inputSchema": {
+          "properties": {
+            "ips": {
+              "description": "Public IP addresses to query, IPv4 or IPv6, e.g. [\"8.8.8.8\", \"2001:4860:4860::8888\"]. Private, loopback, reserved, multicast, and bogon addresses are rejected: they are reported under validation_errors and left out of results.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "page": {
+              "default": 1,
+              "description": "Page of the result set to return, 1-based. Values below 1 are clamped to 1, and a page past the last one returns no results.",
+              "type": "integer"
+            },
+            "page_size": {
+              "default": 25,
+              "description": "How many IPs to resolve and return per page. Clamped to a maximum of 1000, the API batch limit. Only the IPs on the requested page are fetched, so a smaller page size consumes less quota per call.",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "ips"
+          ],
+          "type": "object",
+          "additionalProperties": false
+        },
+        "name": "ipinfo_check_residential_proxy",
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "_pagination": {
+                      "properties": {
+                        "total_results": {
+                          "type": "integer"
+                        },
+                        "page": {
+                          "type": "integer"
+                        },
+                        "page_size": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "has_next": {
+                          "type": "boolean"
+                        },
+                        "has_previous": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "total_results",
+                        "page",
+                        "page_size",
+                        "total_pages",
+                        "has_next",
+                        "has_previous"
+                      ],
+                      "type": "object"
+                    },
+                    "_meta": {
+                      "properties": {
+                        "api_calls_made": {
+                          "type": "integer"
+                        },
+                        "from_cache": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "api_calls_made",
+                        "from_cache"
+                      ],
+                      "type": "object"
+                    },
+                    "results": {
+                      "additionalProperties": {
+                        "properties": {
+                          "ip": {
+                            "type": "string"
+                          },
+                          "is_residential_proxy": {
+                            "type": "boolean"
+                          },
+                          "service": {
+                            "type": "string"
+                          },
+                          "last_seen": {
+                            "type": "string"
+                          },
+                          "percent_days_seen": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "ip",
+                          "is_residential_proxy"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "object"
+                    },
+                    "validation_errors": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "type": "object"
+                    },
+                    "errors": {
+                      "additionalProperties": {
+                        "properties": {
+                          "code": {
+                            "enum": [
+                              "ACCESS_DENIED",
+                              "RATE_LIMITED",
+                              "INVALID_TOKEN",
+                              "NO_TOKEN",
+                              "API_ERROR",
+                              "UNKNOWN"
+                            ],
+                            "type": "string"
+                          },
+                          "message": {
+                            "type": "string"
+                          },
+                          "suggestion": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "_pagination",
+                    "_meta",
+                    "results"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "properties": {
+                    "code": {
+                      "enum": [
+                        "ACCESS_DENIED",
+                        "RATE_LIMITED",
+                        "INVALID_TOKEN",
+                        "NO_TOKEN",
+                        "API_ERROR",
+                        "UNKNOWN"
+                      ],
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "suggestion": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "title": "Ipinfo Check Residential Proxy"
+      },
+      {
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        },
+        "annotations": {
+          "destructiveHint": false,
+          "idempotentHint": true,
+          "openWorldHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Get geographic location data for one or more IP addresses.\n\nBy default queries the IPinfo Lite endpoint, which returns country and continent.\nSet detailed=True to query the full lookup endpoint, which adds city, region,\ncoordinates, timezone, and postal code.\n\nResults are paginated.\n\nIf the API reports an error for specific IPs, those IPs are listed in errors\nwith the reason and left out of results.\n\nResults are cached in memory for the session, so repeat lookups of the same IP\nare served from cache without consuming API quota. You do not need to maintain\nyour own cache or deduplicate IPs before calling this tool. The _meta field\nreports api_calls_made and from_cache counts.",
+        "inputSchema": {
+          "properties": {
+            "ips": {
+              "description": "Public IP addresses to query, IPv4 or IPv6, e.g. [\"8.8.8.8\", \"2001:4860:4860::8888\"]. Private, loopback, reserved, multicast, and bogon addresses are rejected: they are reported under validation_errors and left out of results.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "detailed": {
+              "default": false,
+              "description": "Which IPinfo endpoint to query. Leave false to use the Lite endpoint, which returns country and continent only. Set to true to use the full lookup endpoint, which also returns city, region, latitude and longitude, timezone, and postal code; it requires a token whose plan includes that data, otherwise the call fails with ACCESS_DENIED.",
+              "type": "boolean"
+            },
+            "page": {
+              "default": 1,
+              "description": "Page of the result set to return, 1-based. Values below 1 are clamped to 1, and a page past the last one returns no results.",
+              "type": "integer"
+            },
+            "page_size": {
+              "default": 25,
+              "description": "How many IPs to resolve and return per page. Clamped to a maximum of 1000, the API batch limit. Only the IPs on the requested page are fetched, so a smaller page size consumes less quota per call.",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "ips"
+          ],
+          "type": "object",
+          "additionalProperties": false
+        },
+        "name": "ipinfo_geolocate",
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "_pagination": {
+                      "properties": {
+                        "total_results": {
+                          "type": "integer"
+                        },
+                        "page": {
+                          "type": "integer"
+                        },
+                        "page_size": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "has_next": {
+                          "type": "boolean"
+                        },
+                        "has_previous": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "total_results",
+                        "page",
+                        "page_size",
+                        "total_pages",
+                        "has_next",
+                        "has_previous"
+                      ],
+                      "type": "object"
+                    },
+                    "_meta": {
+                      "properties": {
+                        "api_calls_made": {
+                          "type": "integer"
+                        },
+                        "from_cache": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "api_calls_made",
+                        "from_cache"
+                      ],
+                      "type": "object"
+                    },
+                    "results": {
+                      "additionalProperties": {
+                        "properties": {
+                          "ip": {
+                            "type": "string"
+                          },
+                          "country": {
+                            "type": "string"
+                          },
+                          "country_code": {
+                            "type": "string"
+                          },
+                          "continent": {
+                            "type": "string"
+                          },
+                          "continent_code": {
+                            "type": "string"
+                          },
+                          "city": {
+                            "type": "string"
+                          },
+                          "region": {
+                            "type": "string"
+                          },
+                          "region_code": {
+                            "type": "string"
+                          },
+                          "latitude": {
+                            "type": "number"
+                          },
+                          "longitude": {
+                            "type": "number"
+                          },
+                          "timezone": {
+                            "type": "string"
+                          },
+                          "postal_code": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "ip",
+                          "country",
+                          "country_code",
+                          "continent",
+                          "continent_code"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "object"
+                    },
+                    "validation_errors": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "type": "object"
+                    },
+                    "errors": {
+                      "additionalProperties": {
+                        "properties": {
+                          "code": {
+                            "enum": [
+                              "ACCESS_DENIED",
+                              "RATE_LIMITED",
+                              "INVALID_TOKEN",
+                              "NO_TOKEN",
+                              "API_ERROR",
+                              "UNKNOWN"
+                            ],
+                            "type": "string"
+                          },
+                          "message": {
+                            "type": "string"
+                          },
+                          "suggestion": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "_pagination",
+                    "_meta",
+                    "results"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "properties": {
+                    "code": {
+                      "enum": [
+                        "ACCESS_DENIED",
+                        "RATE_LIMITED",
+                        "INVALID_TOKEN",
+                        "NO_TOKEN",
+                        "API_ERROR",
+                        "UNKNOWN"
+                      ],
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "suggestion": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "title": "Ipinfo Geolocate"
+      },
+      {
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        },
+        "annotations": {
+          "destructiveHint": false,
+          "idempotentHint": true,
+          "openWorldHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Get autonomous system (network ownership) information for IP addresses.\n\nBy default queries the IPinfo Lite endpoint, which returns ASN, name, and domain.\nSet detailed=True to query the full lookup endpoint, which also includes the network type\n(e.g. isp, hosting, business, education).\n\nResults are paginated.\n\nIf the API reports an error for specific IPs, those IPs are listed in errors\nwith the reason and left out of results.\n\nResults are cached in memory for the session, so repeat lookups of the same IP\nare served from cache without consuming API quota. You do not need to maintain\nyour own cache or deduplicate IPs before calling this tool. The _meta field\nreports api_calls_made and from_cache counts.",
+        "inputSchema": {
+          "properties": {
+            "ips": {
+              "description": "Public IP addresses to query, IPv4 or IPv6, e.g. [\"8.8.8.8\", \"2001:4860:4860::8888\"]. Private, loopback, reserved, multicast, and bogon addresses are rejected: they are reported under validation_errors and left out of results.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "detailed": {
+              "default": false,
+              "description": "Which IPinfo endpoint to query. Leave false to use the Lite endpoint, which returns the ASN, name, and domain. Set to true to use the full lookup endpoint, which also returns the network type (isp, hosting, business, education) and when the AS record last changed; it requires a token whose plan includes that data, otherwise the call fails with ACCESS_DENIED.",
+              "type": "boolean"
+            },
+            "page": {
+              "default": 1,
+              "description": "Page of the result set to return, 1-based. Values below 1 are clamped to 1, and a page past the last one returns no results.",
+              "type": "integer"
+            },
+            "page_size": {
+              "default": 25,
+              "description": "How many IPs to resolve and return per page. Clamped to a maximum of 1000, the API batch limit. Only the IPs on the requested page are fetched, so a smaller page size consumes less quota per call.",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "ips"
+          ],
+          "type": "object",
+          "additionalProperties": false
+        },
+        "name": "ipinfo_asn",
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "_pagination": {
+                      "properties": {
+                        "total_results": {
+                          "type": "integer"
+                        },
+                        "page": {
+                          "type": "integer"
+                        },
+                        "page_size": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "has_next": {
+                          "type": "boolean"
+                        },
+                        "has_previous": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "total_results",
+                        "page",
+                        "page_size",
+                        "total_pages",
+                        "has_next",
+                        "has_previous"
+                      ],
+                      "type": "object"
+                    },
+                    "_meta": {
+                      "properties": {
+                        "api_calls_made": {
+                          "type": "integer"
+                        },
+                        "from_cache": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "api_calls_made",
+                        "from_cache"
+                      ],
+                      "type": "object"
+                    },
+                    "results": {
+                      "additionalProperties": {
+                        "properties": {
+                          "ip": {
+                            "type": "string"
+                          },
+                          "asn": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "domain": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "last_changed": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "ip",
+                          "asn",
+                          "name",
+                          "domain"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "object"
+                    },
+                    "validation_errors": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "type": "object"
+                    },
+                    "errors": {
+                      "additionalProperties": {
+                        "properties": {
+                          "code": {
+                            "enum": [
+                              "ACCESS_DENIED",
+                              "RATE_LIMITED",
+                              "INVALID_TOKEN",
+                              "NO_TOKEN",
+                              "API_ERROR",
+                              "UNKNOWN"
+                            ],
+                            "type": "string"
+                          },
+                          "message": {
+                            "type": "string"
+                          },
+                          "suggestion": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "_pagination",
+                    "_meta",
+                    "results"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "properties": {
+                    "code": {
+                      "enum": [
+                        "ACCESS_DENIED",
+                        "RATE_LIMITED",
+                        "INVALID_TOKEN",
+                        "NO_TOKEN",
+                        "API_ERROR",
+                        "UNKNOWN"
+                      ],
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "suggestion": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "title": "Ipinfo Asn"
+      },
+      {
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        },
+        "annotations": {
+          "destructiveHint": false,
+          "idempotentHint": true,
+          "openWorldHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Check your IPinfo API usage and remaining quota.\n\nReturns daily and monthly request counts, the plan limit,\nand how many requests remain.",
+        "inputSchema": {
+          "properties": {},
+          "type": "object",
+          "additionalProperties": false
+        },
+        "name": "ipinfo_quota",
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    },
+                    "requests": {
+                      "properties": {
+                        "day": {
+                          "type": "integer"
+                        },
+                        "month": {
+                          "type": "integer"
+                        },
+                        "limit": {
+                          "type": "integer"
+                        },
+                        "remaining": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "day",
+                        "month",
+                        "limit",
+                        "remaining"
+                      ],
+                      "type": "object"
+                    },
+                    "features": {
+                      "additionalProperties": {
+                        "properties": {
+                          "daily": {
+                            "type": "integer"
+                          },
+                          "monthly": {
+                            "type": "integer"
+                          },
+                          "result_limit": {
+                            "type": "integer"
+                          },
+                          "firmographics": {
+                            "type": "boolean"
+                          },
+                          "org_additional": {
+                            "type": "boolean"
+                          },
+                          "vpn_provider": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "daily",
+                          "monthly"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "token",
+                    "requests"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "properties": {
+                    "code": {
+                      "enum": [
+                        "ACCESS_DENIED",
+                        "RATE_LIMITED",
+                        "INVALID_TOKEN",
+                        "NO_TOKEN",
+                        "API_ERROR",
+                        "UNKNOWN"
+                      ],
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "suggestion": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "title": "Ipinfo Quota"
+      }
+    ]
+  }
+}
