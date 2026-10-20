@@ -25,27 +25,147 @@ server:
     paste a token to generate ready-to-copy client configurations.
 tools:
 - name: ipinfo_lookup
-  description: Geolocation, network, and metadata for IP addresses, with an optional detailed mode for
-    city-level data and privacy flags.
+  description: 'Look up geolocation, network, and metadata for one or more IP addresses.
+
+
+    By default queries the IPinfo Lite endpoint, which returns country, continent, and ASN info.
+
+    Set detailed=True to query the full lookup endpoint, which adds city-level geolocation,
+
+    privacy flags (VPN, proxy, Tor, hosting, anycast), and richer AS data.
+
+
+    Results are paginated. Use page and page_size to control which slice is returned.
+
+
+    If the API reports an error for specific IPs, those IPs are listed in errors
+
+    with the reason and left out of results.
+
+
+    Results are cached in memory for the session, so repeat lookups of the same IP
+
+    are served from cache without consuming API quota. You do not need to maintain
+
+    your own cache or deduplicate IPs before calling this tool. The _meta field
+
+    reports api_calls_made and from_cache counts.'
   source_operation: openapi/ipinfo-openapi.yml#getInformationByIp
-- name: ipinfo_geolocate
-  description: Geographic location data returning country/continent (free tier) or city, region, coordinates,
-    timezone, and postal code (detailed mode).
-  source_operation: openapi/ipinfo-openapi.yml#getCoreInformationByIp
-- name: ipinfo_asn
-  description: Autonomous system and network ownership information, including ASN, organization name,
-    and domain.
-  source_operation: openapi/ipinfo-openapi.yml#getAsn
 - name: ipinfo_check_privacy
-  description: Detects VPN, proxy, relay, and Tor usage and flags for anycast, hosting, mobile, and satellite
-    networks.
+  description: 'Check whether IP addresses are using privacy or anonymity services.
+
+
+    Returns privacy flags for each IP: whether it is anonymous, using a VPN, proxy,
+
+    relay, or Tor, and whether it is an anycast, hosting, mobile, or satellite address.
+
+
+    Requires a paid API token. Results are paginated.
+
+
+    If the API reports an error for specific IPs, those IPs are listed in errors
+
+    with the reason and left out of results. Do not treat a missing result as
+
+    "no privacy services detected": check errors.
+
+
+    Results are cached in memory for the session, so repeat checks of the same IP
+
+    are served from cache without consuming API quota. You do not need to maintain
+
+    your own cache or deduplicate IPs before calling this tool. The _meta field
+
+    reports api_calls_made and from_cache counts.'
   source_operation: openapi/ipinfo-openapi.yml#getPrivacyInformationByIp
 - name: ipinfo_check_residential_proxy
-  description: Detects residential proxy usage and returns the proxy service name, last seen date, and
-    observation frequency.
+  description: 'Check whether IP addresses are known residential proxies.
+
+
+    Returns whether each IP is a residential proxy and, if so, the proxy service name,
+
+    the date it was last seen, and the percentage of days the IP was observed as a proxy.
+
+
+    Requires a paid API token with residential proxy access. Results are paginated.
+
+
+    If the API reports an error for specific IPs, those IPs are listed in errors
+
+    with the reason and left out of results. Do not treat a missing result as
+
+    "not a residential proxy": check errors.
+
+
+    Results are cached in memory for the session, so repeat checks of the same IP
+
+    are served from cache without consuming API quota. You do not need to maintain
+
+    your own cache or deduplicate IPs before calling this tool. The _meta field
+
+    reports api_calls_made and from_cache counts.'
   source_operation: openapi/ipinfo-openapi.yml#getResidentialProxyByIp
+- name: ipinfo_geolocate
+  description: 'Get geographic location data for one or more IP addresses.
+
+
+    By default queries the IPinfo Lite endpoint, which returns country and continent.
+
+    Set detailed=True to query the full lookup endpoint, which adds city, region,
+
+    coordinates, timezone, and postal code.
+
+
+    Results are paginated.
+
+
+    If the API reports an error for specific IPs, those IPs are listed in errors
+
+    with the reason and left out of results.
+
+
+    Results are cached in memory for the session, so repeat lookups of the same IP
+
+    are served from cache without consuming API quota. You do not need to maintain
+
+    your own cache or deduplicate IPs before calling this tool. The _meta field
+
+    reports api_calls_made and from_cache counts.'
+  source_operation: openapi/ipinfo-openapi.yml#getCoreInformationByIp
+- name: ipinfo_asn
+  description: 'Get autonomous system (network ownership) information for IP addresses.
+
+
+    By default queries the IPinfo Lite endpoint, which returns ASN, name, and domain.
+
+    Set detailed=True to query the full lookup endpoint, which also includes the network type
+
+    (e.g. isp, hosting, business, education).
+
+
+    Results are paginated.
+
+
+    If the API reports an error for specific IPs, those IPs are listed in errors
+
+    with the reason and left out of results.
+
+
+    Results are cached in memory for the session, so repeat lookups of the same IP
+
+    are served from cache without consuming API quota. You do not need to maintain
+
+    your own cache or deduplicate IPs before calling this tool. The _meta field
+
+    reports api_calls_made and from_cache counts.'
+  source_operation: openapi/ipinfo-openapi.yml#getAsn
 - name: ipinfo_quota
-  description: Returns API usage, quota limits, and remaining daily/monthly requests.
+  description: 'Check your IPinfo API usage and remaining quota.
+
+
+    Returns daily and monthly request counts, the plan limit,
+
+    and how many requests remain.'
   source_operation: openapi/ipinfo-openapi.yml#getMe
 deployment:
   mode: remote
@@ -82,3 +202,4 @@ tool_quality:
   scored: false
   note: Facts from the saved tools/list capture (mcp_tool_quality.py); recorded, not scored. Checks learned
     from Glimind's agent-readiness audit.
+tools_count: 6
