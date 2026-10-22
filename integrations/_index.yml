@@ -210,3 +210,104 @@
     builder: Pipedream repo (component)
   status: not-a-workflow
   arazzo: null
+- slug: ipinfo-homebrew
+  label: Homebrew
+  partner: homebrew
+  partner_name: Homebrew
+  category: official CLI (Homebrew)
+  type: register
+  channel: package-registry
+  evidence: https://formulae.brew.sh/formula/ipinfo-cli
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Homebrew (public package index)
+    spec_file: null
+    packages:
+    - name: ipinfo-cli
+      kind: formula
+      version: 3.3.3
+      released: null
+      lapsed: false
+      page: https://formulae.brew.sh/formula/ipinfo-cli
+      cli: 'formula desc: Official CLI for the IPinfo IP Address API'
+      repo_leg: domain:ipinfo.io
+      publisher_leg: artifact-github-org:ipinfo
+      matched_by: domain+name-among-holders
+    - name: mmdbctl
+      kind: formula
+      version: 1.5.0
+      released: null
+      lapsed: false
+      page: https://formulae.brew.sh/formula/mmdbctl
+      cli: 'formula desc: MMDB file management CLI supporting various operations on MMDB database files'
+      repo_leg: github-org:ipinfo
+      publisher_leg: artifact-github-org:ipinfo
+      matched_by: github-org
+    current: true
+    signal_note: 'the provider''s own command-line tool on a package manager: distribution, not an integration;
+      lapsed = no release in 24 months or deprecated / disabled by the manager'
+    detected_by: sweep-official-clis.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
+- slug: ipinfo-scoop
+  label: Scoop
+  partner_name: Scoop
+  category: official CLI (Scoop)
+  type: register
+  channel: package-registry
+  evidence: https://github.com/ScoopInstaller/Main/blob/master/bucket/ipinfo-cli.json
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Scoop (public package index)
+    spec_file: null
+    packages:
+    - name: ipinfo-cli
+      kind: main
+      version: 3.3.2
+      released: null
+      lapsed: false
+      page: https://github.com/ScoopInstaller/Main/blob/master/bucket/ipinfo-cli.json
+      cli: 'scoop description: This is the official CLI for the IPinfo.io IP address API'
+      repo_leg: domain:ipinfo.io
+      publisher_leg: artifact-github-org:ipinfo
+      matched_by: domain+name-among-holders
+    current: true
+    signal_note: 'the provider''s own command-line tool on a package manager: distribution, not an integration;
+      lapsed = no release in 24 months or deprecated / disabled by the manager'
+    detected_by: sweep-official-clis.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
+- slug: ipinfo-winget-windows-package-manager
+  label: winget (Windows Package Manager)
+  partner_name: winget (Windows Package Manager)
+  category: official CLI (winget (Windows Package Manager))
+  type: register
+  channel: package-registry
+  evidence: https://github.com/microsoft/winget-pkgs/tree/master/manifests/i/ipinfo/ipinfo
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: winget (Windows Package Manager) (public package index)
+    spec_file: null
+    packages:
+    - name: ipinfo.ipinfo
+      kind: manifest
+      version: 3.3.2
+      released: null
+      lapsed: false
+      page: https://github.com/microsoft/winget-pkgs/tree/master/manifests/i/ipinfo/ipinfo
+      cli: 'winget: This is the official CLI for the IPinfo.io IP address API.'
+      repo_leg: domain:ipinfo.io
+      publisher_leg: artifact-github-org:ipinfo
+      matched_by: domain+name-among-holders
+    current: true
+    signal_note: 'the provider''s own command-line tool on a package manager: distribution, not an integration;
+      lapsed = no release in 24 months or deprecated / disabled by the manager'
+    detected_by: sweep-official-clis.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
