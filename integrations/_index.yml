@@ -387,3 +387,63 @@
     detected: '2026-10-22'
   status: not-a-workflow
   arazzo: null
+- slug: ipinfo-arch-user-repository-aur
+  label: Arch User Repository (AUR)
+  partner_name: Arch User Repository (AUR)
+  category: official CLI (Arch User Repository (AUR))
+  type: register
+  channel: package-registry
+  evidence: https://aur.archlinux.org/packages/ipinfo-cli
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Arch User Repository (AUR) (public package index)
+    spec_file: null
+    packages:
+    - name: ipinfo-cli
+      kind: aur
+      version: 3.3.3-1
+      released: '2026-10-21'
+      released_field: AUR LastModified
+      out_of_date: false
+      lapsed: false
+      page: https://aur.archlinux.org/packages/ipinfo-cli
+      upstream: https://ipinfo.io
+      cli: 'AUR description: Official Command Line Interface for the IPinfo API (IP geolocation and other typ'
+      repo_leg: domain:ipinfo.io
+      publisher_leg: artifact-github-org:ipinfo
+      matched_by: domain+name-among-holders
+    - name: ipinfo-cli-bin
+      kind: aur
+      version: 3.3.2-1
+      released: '2026-05-08'
+      released_field: AUR LastModified
+      out_of_date: false
+      lapsed: false
+      page: https://aur.archlinux.org/packages/ipinfo-cli-bin
+      upstream: https://ipinfo.io
+      cli: 'AUR description: Official Command Line Interface for the IPinfo API (IP geolocation and other typ'
+      repo_leg: domain:ipinfo.io
+      publisher_leg: artifact-github-org:ipinfo
+      matched_by: domain+name-among-holders
+    - name: mmdbctl
+      kind: aur
+      version: 1.5.1-1
+      released: '2026-10-20'
+      released_field: AUR LastModified
+      out_of_date: false
+      lapsed: false
+      page: https://aur.archlinux.org/packages/mmdbctl
+      upstream: https://github.com/ipinfo/mmdbctl
+      cli: 'AUR description: mmdbctl is an MMDB file management CLI by IPinfo.io'
+      repo_leg: github-org:ipinfo
+      publisher_leg: artifact-github-org:ipinfo
+      matched_by: github-org
+    current: true
+    signal_note: 'the provider''s own command-line tool packaged for Arch Linux (community-maintained PKGBUILD whose
+      upstream and source artifact are the provider''s): distribution, not an integration; lapsed = flagged out-of-date
+      or not updated in 24 months'
+    detected_by: sweep-aur-vendor-cli-packages.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
