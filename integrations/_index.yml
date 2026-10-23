@@ -347,3 +347,43 @@
     detected: '2026-10-22'
   status: not-a-workflow
   arazzo: null
+- slug: ipinfo-packagist
+  label: Packagist
+  partner: packagist
+  partner_name: Packagist
+  category: official SDK (PHP)
+  type: register
+  channel: package-registry
+  evidence: https://packagist.org/packages/ipinfo/ipinfo
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Packagist (public registry JSON)
+    spec_file: null
+    language: PHP
+    packages:
+    - name: ipinfo/ipinfo
+      version: v3.6.0
+      released: '2026-06-15'
+      released_field: time
+      lapsed: false
+      page: https://packagist.org/packages/ipinfo/ipinfo
+      repo_leg: github-org:ipinfo
+      publisher_leg: email:ipinfo.io
+      matched_by: domain+name-among-holders
+    - name: ipinfo/ipinfolaravel
+      version: v2.13.0
+      released: '2026-07-15'
+      released_field: time
+      lapsed: false
+      page: https://packagist.org/packages/ipinfo/ipinfolaravel
+      repo_leg: github-org:ipinfo
+      publisher_leg: email:ipinfo.io
+      matched_by: domain+name-among-holders
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-php-dart-elixir-package-registries.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
