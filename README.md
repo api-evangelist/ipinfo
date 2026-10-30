@@ -1,4 +1,4 @@
-# IPinfo (ipinfo)
+# IPinfo
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,110 +66,294 @@
 
 IPinfo is an IP address data and intelligence platform that provides geolocation (country, region, city, coordinates, postal, timezone), ASN data, company association, mobile carrier identification, hosted domains lookup, privacy detection (VPN, proxy, Tor, relay, hosting), residential proxy detection, WHOIS, IP ranges, abuse contacts, and an IP-to-Places product. Data is available via a unified REST API (Lite, Core, Plus, Max, Enterprise tiers), a Batch Enrichment endpoint, and downloadable databases (CSV, MMDB, JSON, Parquet). Authentication uses access tokens via Basic Auth, Bearer Token, or query parameter; dual-stack IPv4/IPv6 endpoints are available.
 
-**APIs.json:** [https://ipinfo.io/developers](https://ipinfo.io/developers)
+**Areas:** IP Intelligence · IP Geolocation · ASN · Privacy Detection · VPN Detection · Threat Intelligence · Network Data · Mobile Carrier · WHOIS · Public APIs · Development
 
-## Tags
+## IPinfo on APIs.io
 
-- IP Intelligence
-- IP Geolocation
-- ASN
-- Privacy Detection
-- VPN Detection
-- Threat Intelligence
-- Network Data
-- Mobile Carrier
-- WHOIS
-- Public APIs
-- Development
+Everything profiled for IPinfo is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/ipinfo/](https://apis.io/providers/ipinfo/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (17)
 
-- **Created:** 2026-05-28
-- **Modified:** 2026-05-29
+- [IPinfo Abuse API](https://apis.io/apis/ipinfo/ipinfo-abuse-api/) — Abuse Contact API.
+- [IPinfo Asn API](https://apis.io/apis/ipinfo/ipinfo-asn-api/) — ASN API.
+- [IPinfo Carrier API](https://apis.io/apis/ipinfo/ipinfo-carrier-api/) — IP to Phone Carrier Detection API.
+- [IPinfo Company API](https://apis.io/apis/ipinfo/ipinfo-company-api/) — IP to Company API.
+- [IPinfo Domains API](https://apis.io/apis/ipinfo/ipinfo-domains-api/) — Hosted Domains API.
+- [IPinfo General API](https://apis.io/apis/ipinfo/ipinfo-general-api/) — General API.
+- [IPinfo Core API](https://apis.io/apis/ipinfo/ipinfo-ipinfo-core-api/) — IPinfo Core API - Core IP information service.
+- [IPinfo Lite API](https://apis.io/apis/ipinfo/ipinfo-ipinfo-lite-api/) — IPinfo Lite API - IPinfo's free API service for country and ASN information.
+- [IPinfo Max API](https://apis.io/apis/ipinfo/ipinfo-ipinfo-max-api/) — IPinfo Max API - Most comprehensive IP intelligence with residential proxy detection.
+- [IPinfo Plus API](https://apis.io/apis/ipinfo/ipinfo-ipinfo-plus-api/) — IPinfo Plus API - Enhanced IP information service with mobile and anonymity detection.
+- [IPinfo Places API](https://apis.io/apis/ipinfo/ipinfo-places-api/) — IPinfo Places API - Building-level IP intelligence for physical locations.
+- [IPinfo privacy detection API](https://apis.io/apis/ipinfo/ipinfo-privacy-detection-api/) — Privacy Detection Standard API.
+- [IPinfo privacy detection extended API](https://apis.io/apis/ipinfo/ipinfo-privacy-detection-extended-api/) — Privacy Detection Extended API with detailed methodologies.
+- [IPinfo Ranges API](https://apis.io/apis/ipinfo/ipinfo-ranges-api/) — IP Ranges API.
+- [IPinfo residential proxy detection API](https://apis.io/apis/ipinfo/ipinfo-residential-proxy-detection-api/) — Residential Proxy Detection API.
+- [IPinfo Single API](https://apis.io/apis/ipinfo/ipinfo-single-api/) — Single info API.
+- [IPinfo Whois API](https://apis.io/apis/ipinfo/ipinfo-whois-api/) — IP WHOIS API
 
-## APIs
+### Published properties
 
-### IPinfo Core API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Unified IP intelligence REST API exposing the Lite, Core, Plus, Max, Enterprise, Places, ASN, Company, Carrier, Hosted Domains, Privacy Detection (Standard and Extended), Residential Proxy Detection, WHOIS, IP Ranges, Abuse Contact, Batch Enrichment, and Tools (Summarize IPs, Map IPs) endpoints. All endpoints share the same `api.ipinfo.io` base URL and the same token-based authentication.
+#### Arazzo workflows (7)
 
-- **Human URL:** [https://ipinfo.io/developers](https://ipinfo.io/developers)
-- **Base URL:** `https://api.ipinfo.io`
+Multi-step workflows that chain operations into a business task.
 
-#### Tags
+- [IPinfo Abuse Contact and Hosted Domains](https://apis.io/arazzos/ipinfo/ipinfo-abuse-reporting-workflow/)
+- [IPinfo ASN Prefix Reconnaissance](https://apis.io/arazzos/ipinfo/ipinfo-asn-prefix-recon-workflow/)
+- [IPinfo Batch Enrich then Detail](https://apis.io/arazzos/ipinfo/ipinfo-batch-then-detail-workflow/)
+- [IPinfo IP to Operating Company](https://apis.io/arazzos/ipinfo/ipinfo-ip-to-company-workflow/)
+- [IPinfo Enrich My Current IP](https://apis.io/arazzos/ipinfo/ipinfo-my-ip-enrichment-workflow/)
+- [IPinfo Summarize and Map IP Addresses](https://apis.io/arazzos/ipinfo/ipinfo-summarize-and-map-workflow/)
+- [IPinfo IP Threat Screening](https://apis.io/arazzos/ipinfo/ipinfo-threat-screening-workflow/)
 
-- IP Intelligence
-- REST API
-- Geolocation
-- ASN
-- Privacy Detection
+#### MCP servers (1)
 
-#### Properties
+Model Context Protocol servers that expose the API to agents.
 
-- [Documentation](https://ipinfo.io/developers)
-- [API Reference](https://ipinfo.io/developers)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/ipinfo/main/openapi/ipinfo-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Getting Started](https://ipinfo.io/developers/getting-started)
-- [Authentication](https://ipinfo.io/developers#authentication)
-- [Quickstart](https://ipinfo.io/developers/lite-api)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-schema/) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-structure/)
-- [Example](https://raw.githubusercontent.com/api-evangelist/ipinfo/main/examples/)
-- [SDK](https://github.com/ipinfo/python)
-- [SDK](https://github.com/ipinfo/node)
-- [SDK](https://github.com/ipinfo/java)
-- [SDK](https://github.com/ipinfo/go)
-- [SDK](https://github.com/ipinfo/ruby)
-- [SDK](https://github.com/ipinfo/php)
-- [SDK](https://github.com/ipinfo/csharp)
-- [SDK](https://github.com/ipinfo/rust)
-- [SDK](https://github.com/ipinfo/perl)
-- [SDK](https://github.com/ipinfo/swift)
-- [SDK](https://github.com/ipinfo/erlang)
-- [SDK](https://github.com/ipinfo/django)
-- [SDK](https://github.com/ipinfo/laravel)
-- [SDK](https://github.com/ipinfo/spring)
-- [SDK](https://github.com/ipinfo/rails)
-- [SDK](https://github.com/ipinfo/node-express)
-- [Rate Limits](https://raw.githubusercontent.com/api-evangelist/ipinfo/main/rate-limits/ipinfo-rate-limits.yml)
-- [Plans](https://raw.githubusercontent.com/api-evangelist/ipinfo/main/plans/ipinfo-plans-pricing.yml)
-- [Postman Collection](collections/ipinfo.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ipinfo.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [ipinfo](https://apis.io/servers/ipinfo/ipinfo/)
 
-## Common Properties
+#### Agentic access (1)
 
-- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Ipinfo Agentic Access](https://apis.io/agentic-access/ipinfo/ipinfo-agentic-access/)
+
+#### JSON Schema (24)
+
+The data models the API reads and writes.
+
+- [AbuseResponse](https://apis.io/schemas/ipinfo/ipinfo-abuse-response/)
+- [AsnResponse](https://apis.io/schemas/ipinfo/ipinfo-asn-response/)
+- [CarrierResponse](https://apis.io/schemas/ipinfo/ipinfo-carrier-response/)
+- [CompanyResponse](https://apis.io/schemas/ipinfo/ipinfo-company-response/)
+- [CoreResponse](https://apis.io/schemas/ipinfo/ipinfo-core-response/)
+- [DomainsResponse](https://apis.io/schemas/ipinfo/ipinfo-domains-response/)
+- [FullResponse](https://apis.io/schemas/ipinfo/ipinfo-full-response/)
+- [LiteResponse](https://apis.io/schemas/ipinfo/ipinfo-lite-response/)
+- [MaxResponse](https://apis.io/schemas/ipinfo/ipinfo-max-response/)
+- [MeResponse](https://apis.io/schemas/ipinfo/ipinfo-me-response/)
+- [PlacesResponse](https://apis.io/schemas/ipinfo/ipinfo-places-response/)
+- [PlusResponse](https://apis.io/schemas/ipinfo/ipinfo-plus-response/)
+- [Prefix](https://apis.io/schemas/ipinfo/ipinfo-prefix/)
+- [Prefix6](https://apis.io/schemas/ipinfo/ipinfo-prefix6/)
+- [PrivacyExtendedResponse](https://apis.io/schemas/ipinfo/ipinfo-privacy-extended-response/)
+- [PrivacyResponse](https://apis.io/schemas/ipinfo/ipinfo-privacy-response/)
+- [RangesResponse](https://apis.io/schemas/ipinfo/ipinfo-ranges-response/)
+- [ResidentialProxyResponse](https://apis.io/schemas/ipinfo/ipinfo-residential-proxy-response/)
+- [WhoisAsnResponse](https://apis.io/schemas/ipinfo/ipinfo-whois-asn-response/)
+- [WhoisDomainResponse](https://apis.io/schemas/ipinfo/ipinfo-whois-domain-response/)
+- [WhoisIpResponse](https://apis.io/schemas/ipinfo/ipinfo-whois-ip-response/)
+- [WhoisNetIdResponse](https://apis.io/schemas/ipinfo/ipinfo-whois-net-id-response/)
+- [WhoisOrgResponse](https://apis.io/schemas/ipinfo/ipinfo-whois-org-response/)
+- [WhoisPocResponse](https://apis.io/schemas/ipinfo/ipinfo-whois-poc-response/)
+
+#### JSON Structure (24)
+
+Data models expressed in JSON Structure.
+
+- [Ipinfo Abuse Response Structure](https://apis.io/json-structure/ipinfo/ipinfo-abuse-response-structure/)
+- [Ipinfo Asn Response Structure](https://apis.io/json-structure/ipinfo/ipinfo-asn-response-structure/)
+- [Ipinfo Carrier Response Structure](https://apis.io/json-structure/ipinfo/ipinfo-carrier-response-structure/)
+- [Ipinfo Company Response Structure](https://apis.io/json-structure/ipinfo/ipinfo-company-response-structure/)
+- [Ipinfo Core Response Structure](https://apis.io/json-structure/ipinfo/ipinfo-core-response-structure/)
+- [Ipinfo Domains Response Structure](https://apis.io/json-structure/ipinfo/ipinfo-domains-response-structure/)
+- [Ipinfo Full Response Structure](https://apis.io/json-structure/ipinfo/ipinfo-full-response-structure/)
+- [Ipinfo Lite Response Structure](https://apis.io/json-structure/ipinfo/ipinfo-lite-response-structure/)
+- [Ipinfo Max Response Structure](https://apis.io/json-structure/ipinfo/ipinfo-max-response-structure/)
+- [Ipinfo Me Response Structure](https://apis.io/json-structure/ipinfo/ipinfo-me-response-structure/)
+- [Ipinfo Places Response Structure](https://apis.io/json-structure/ipinfo/ipinfo-places-response-structure/)
+- [Ipinfo Plus Response Structure](https://apis.io/json-structure/ipinfo/ipinfo-plus-response-structure/)
+- [Ipinfo Prefix Structure](https://apis.io/json-structure/ipinfo/ipinfo-prefix-structure/)
+- [Ipinfo Prefix6 Structure](https://apis.io/json-structure/ipinfo/ipinfo-prefix6-structure/)
+- [Ipinfo Privacy Extended Response Structure](https://apis.io/json-structure/ipinfo/ipinfo-privacy-extended-response-structure/)
+- [Ipinfo Privacy Response Structure](https://apis.io/json-structure/ipinfo/ipinfo-privacy-response-structure/)
+- [Ipinfo Ranges Response Structure](https://apis.io/json-structure/ipinfo/ipinfo-ranges-response-structure/)
+- [Ipinfo Residential Proxy Response Structure](https://apis.io/json-structure/ipinfo/ipinfo-residential-proxy-response-structure/)
+- [Ipinfo Whois Asn Response Structure](https://apis.io/json-structure/ipinfo/ipinfo-whois-asn-response-structure/)
+- [Ipinfo Whois Domain Response Structure](https://apis.io/json-structure/ipinfo/ipinfo-whois-domain-response-structure/)
+- [Ipinfo Whois Ip Response Structure](https://apis.io/json-structure/ipinfo/ipinfo-whois-ip-response-structure/)
+- [Ipinfo Whois Net Id Response Structure](https://apis.io/json-structure/ipinfo/ipinfo-whois-net-id-response-structure/)
+- [Ipinfo Whois Org Response Structure](https://apis.io/json-structure/ipinfo/ipinfo-whois-org-response-structure/)
+- [Ipinfo Whois Poc Response Structure](https://apis.io/json-structure/ipinfo/ipinfo-whois-poc-response-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Ipinfo Context](https://apis.io/jsonld/ipinfo/ipinfo-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Ipinfo Vocabulary](https://apis.io/vocabularies/ipinfo/ipinfo-vocabulary/)
+
+#### Examples (24)
+
+Example requests and responses.
+
+- [Ipinfo Abuse Response Example](https://apis.io/examples/ipinfo/ipinfo-abuse-response-example/)
+- [Ipinfo Asn Response Example](https://apis.io/examples/ipinfo/ipinfo-asn-response-example/)
+- [Ipinfo Carrier Response Example](https://apis.io/examples/ipinfo/ipinfo-carrier-response-example/)
+- [Ipinfo Company Response Example](https://apis.io/examples/ipinfo/ipinfo-company-response-example/)
+- [Ipinfo Core Response Example](https://apis.io/examples/ipinfo/ipinfo-core-response-example/)
+- [Ipinfo Domains Response Example](https://apis.io/examples/ipinfo/ipinfo-domains-response-example/)
+- [Ipinfo Full Response Example](https://apis.io/examples/ipinfo/ipinfo-full-response-example/)
+- [Ipinfo Lite Response Example](https://apis.io/examples/ipinfo/ipinfo-lite-response-example/)
+- [Ipinfo Max Response Example](https://apis.io/examples/ipinfo/ipinfo-max-response-example/)
+- [Ipinfo Me Response Example](https://apis.io/examples/ipinfo/ipinfo-me-response-example/)
+- [Ipinfo Places Response Example](https://apis.io/examples/ipinfo/ipinfo-places-response-example/)
+- [Ipinfo Plus Response Example](https://apis.io/examples/ipinfo/ipinfo-plus-response-example/)
+- [Ipinfo Prefix Example](https://apis.io/examples/ipinfo/ipinfo-prefix-example/)
+- [Ipinfo Prefix6 Example](https://apis.io/examples/ipinfo/ipinfo-prefix6-example/)
+- [Ipinfo Privacy Extended Response Example](https://apis.io/examples/ipinfo/ipinfo-privacy-extended-response-example/)
+- [Ipinfo Privacy Response Example](https://apis.io/examples/ipinfo/ipinfo-privacy-response-example/)
+- [Ipinfo Ranges Response Example](https://apis.io/examples/ipinfo/ipinfo-ranges-response-example/)
+- [Ipinfo Residential Proxy Response Example](https://apis.io/examples/ipinfo/ipinfo-residential-proxy-response-example/)
+- [Ipinfo Whois Asn Response Example](https://apis.io/examples/ipinfo/ipinfo-whois-asn-response-example/)
+- [Ipinfo Whois Domain Response Example](https://apis.io/examples/ipinfo/ipinfo-whois-domain-response-example/)
+- [Ipinfo Whois Ip Response Example](https://apis.io/examples/ipinfo/ipinfo-whois-ip-response-example/)
+- [Ipinfo Whois Net Id Response Example](https://apis.io/examples/ipinfo/ipinfo-whois-net-id-response-example/)
+- [Ipinfo Whois Org Response Example](https://apis.io/examples/ipinfo/ipinfo-whois-org-response-example/)
+- [Ipinfo Whois Poc Response Example](https://apis.io/examples/ipinfo/ipinfo-whois-poc-response-example/)
+
+#### Collections (35)
+
+Postman and Open Collection request collections.
+
+- [IPinfo.io OpenAPI Specification](https://apis.io/collections/ipinfo/open-ipinfo/)
+- [IPinfo.io OpenAPI Specification abuse API](https://apis.io/collections/ipinfo/open-ipinfo-abuse-api/)
+- [IPinfo.io OpenAPI Specification abuse asn API](https://apis.io/collections/ipinfo/open-ipinfo-asn-api/)
+- [IPinfo.io OpenAPI Specification abuse carrier API](https://apis.io/collections/ipinfo/open-ipinfo-carrier-api/)
+- [IPinfo.io OpenAPI Specification abuse company API](https://apis.io/collections/ipinfo/open-ipinfo-company-api/)
+- [IPinfo.io OpenAPI Specification abuse domains API](https://apis.io/collections/ipinfo/open-ipinfo-domains-api/)
+- [IPinfo.io OpenAPI Specification abuse general API](https://apis.io/collections/ipinfo/open-ipinfo-general-api/)
+- [IPinfo.io OpenAPI Specification abuse ipinfo core API](https://apis.io/collections/ipinfo/open-ipinfo-ipinfo-core-api/)
+- [IPinfo.io OpenAPI Specification abuse ipinfo lite API](https://apis.io/collections/ipinfo/open-ipinfo-ipinfo-lite-api/)
+- [IPinfo.io OpenAPI Specification abuse ipinfo max API](https://apis.io/collections/ipinfo/open-ipinfo-ipinfo-max-api/)
+- [IPinfo.io OpenAPI Specification abuse ipinfo plus API](https://apis.io/collections/ipinfo/open-ipinfo-ipinfo-plus-api/)
+- [IPinfo.io OpenAPI Specification abuse places API](https://apis.io/collections/ipinfo/open-ipinfo-places-api/)
+- [IPinfo.io OpenAPI Specification abuse privacy detection API](https://apis.io/collections/ipinfo/open-ipinfo-privacy-detection-api/)
+- [IPinfo.io OpenAPI Specification abuse privacy detection extended API](https://apis.io/collections/ipinfo/open-ipinfo-privacy-detection-extended-api/)
+- [IPinfo.io OpenAPI Specification abuse ranges API](https://apis.io/collections/ipinfo/open-ipinfo-ranges-api/)
+- [IPinfo.io OpenAPI Specification abuse residential proxy detection API](https://apis.io/collections/ipinfo/open-ipinfo-residential-proxy-detection-api/)
+- [IPinfo.io OpenAPI Specification abuse single API](https://apis.io/collections/ipinfo/open-ipinfo-single-api/)
+- [IPinfo.io OpenAPI Specification abuse whois API](https://apis.io/collections/ipinfo/open-ipinfo-whois-api/)
+- [IPinfo.io OpenAPI Specification abuse API](https://apis.io/collections/ipinfo/postman-ipinfo-abuse-api/)
+- [IPinfo.io OpenAPI Specification abuse asn API](https://apis.io/collections/ipinfo/postman-ipinfo-asn-api/)
+- [IPinfo.io OpenAPI Specification abuse carrier API](https://apis.io/collections/ipinfo/postman-ipinfo-carrier-api/)
+- [IPinfo.io OpenAPI Specification abuse company API](https://apis.io/collections/ipinfo/postman-ipinfo-company-api/)
+- [IPinfo.io OpenAPI Specification abuse domains API](https://apis.io/collections/ipinfo/postman-ipinfo-domains-api/)
+- [IPinfo.io OpenAPI Specification abuse general API](https://apis.io/collections/ipinfo/postman-ipinfo-general-api/)
+- [IPinfo.io OpenAPI Specification abuse ipinfo core API](https://apis.io/collections/ipinfo/postman-ipinfo-ipinfo-core-api/)
+- …and 10 more published on APIs.io
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Ipinfo Openapi Overlay](https://apis.io/overlays/ipinfo/ipinfo-openapi-overlay/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [IPinfo — jsonschema rules](https://apis.io/rules/ipinfo/ipinfo-jsonschema-spectral-rules/)
+- [IPinfo API Rules](https://apis.io/rules/ipinfo/ipinfo-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Ipinfo Authentication](https://apis.io/security/ipinfo/ipinfo-authentication/)
+- [Ipinfo Domain Security](https://apis.io/security/ipinfo/ipinfo-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Ipinfo Plans Pricing](https://apis.io/plans/ipinfo/ipinfo-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Ipinfo Rate Limits](https://apis.io/rate-limits/ipinfo/ipinfo-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Ipinfo Finops](https://apis.io/finops/ipinfo/ipinfo-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://ipinfo.io)
-- [Developer Portal](https://ipinfo.io/developers)
-- [Sign Up](https://ipinfo.io/signup)
-- [Login](https://ipinfo.io/login)
 - [Pricing](https://ipinfo.io/pricing)
-- [Console](https://ipinfo.io/account)
-- [Blog](https://ipinfo.io/blog)
 - [Support](https://support.ipinfo.io)
-- [Status Page](https://status.ipinfo.io)
 - [Changelog](https://ipinfo.io/changelog)
-- [Terms of Service](https://ipinfo.io/terms-of-service)
-- [Privacy Policy](https://ipinfo.io/privacy-policy)
+- [Blog](https://ipinfo.io/blog)
 - [Compliance](https://ipinfo.io/security)
-- [GitHub Organization](https://github.com/ipinfo)
-- [C L I](https://github.com/ipinfo/cli)
-- [C L I](https://github.com/ipinfo/mmdbctl)
-- [Tools](https://ipinfo.io/tools/summarize-ips)
-- [Tools](https://ipinfo.io/tools/map)
-- [Code Examples](https://github.com/ipinfo/sample-database)
-- [Code Examples](https://github.com/ipinfo/rails-example)
-- [Code Examples](https://github.com/ipinfo/docker)
-- [Spectral Rules](https://raw.githubusercontent.com/api-evangelist/ipinfo/main/rules/ipinfo-spectral-rules.yml)
-- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/ipinfo/main/vocabulary/ipinfo-vocabulary.yml)
-- [J S O N- L D](https://raw.githubusercontent.com/api-evangelist/ipinfo/main/json-ld/ipinfo-context.jsonld)
-- [Public APIs Listing](https://github.com/public-apis/public-apis)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Solutions](undefined)
+- [Terms of service](https://ipinfo.io/terms-of-service)
+- [Privacy policy](https://ipinfo.io/privacy-policy)
+- [GitHub](https://github.com/ipinfo)
+- [Status](https://status.ipinfo.io)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 56.2** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 64.3 |
+| Contract governance | 31.8 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 89.3 |
+| Access clarity | 46.1 |
+
+**Agent readiness 34.4** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | mostly |
+
+**Regulatory alignment 20.8** — Telecommunications
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/ipinfo/](https://apis.io/providers/ipinfo/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for IPinfo: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/ipinfo/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
